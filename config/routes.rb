@@ -2,7 +2,6 @@ Homefinance2::Application.routes.draw do
   resources :transactions
   resources :categories
   resources :accounts
-  end
   devise_for :users
 
   root :to => 'transactions#index'

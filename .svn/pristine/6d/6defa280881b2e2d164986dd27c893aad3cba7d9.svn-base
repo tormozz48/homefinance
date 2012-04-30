@@ -1,0 +1,12 @@
+<div class="form form-category">
+  <div class="form-header">
+    <span>
+      <%=t(:form_edit_category_title)%>
+    </span>
+  </div>
+  <div class="form-body">
+    <%= render 'form' %>
+    <%= link_to t(:button_show), @category, :class => "link" %>
+    <%= link_to t(:button_back), categories_path, :class => "link" %>
+  </div>
+</div>

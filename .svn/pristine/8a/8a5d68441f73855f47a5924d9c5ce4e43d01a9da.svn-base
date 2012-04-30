@@ -1,0 +1,156 @@
+html, body{
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  overflow: hidden;
+}
+
+.viewport {
+  width: 1024px;
+  height: 100%;
+  margin: auto;
+  background-color: #222;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 0px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+a {
+  color: #000;
+  &:visited {
+    color: #666; }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px; } }
+
+#notice {
+  color: green; }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
+#error_explanation {
+  width: 465px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  ul li {
+    font-size: 12px;
+    list-style: none;
+  }
+}
+
+.header{
+  height: 30px;
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+  background-color: #4682b4;
+  border-radius: 0px 0px 0px 0px;
+}
+
+.logo{
+  font-size: 28px;
+  font-family: Helvetica;
+  font-style: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.content{
+  margin: 20px;
+  padding: 10px;
+}
+
+.form{
+  margin: auto;
+  background-color: #ffffff;
+  border: 1px solid #4682b4;
+  border-radius: 10px;
+}
+
+.form-header{
+  height: 25px;
+  padding-left: 10px;
+  padding-top: 4px;
+  background-color: #4682b4;
+  border-radius: 10px 10px 0px 0px;
+ }
+
+.form-header span{
+  color: white;
+  font-size: 16px;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+
+.form-body{
+  padding: 10px;
+}
+
+.form-login{
+  width: 300px;
+  margin-top: 40px;
+}
+
+.form-signup{
+  width: 500px;
+  margin-top: 40px;
+}
+
+.remember-me{
+  margin-top: 5px;
+}
+
+.form-buttons{
+  padding-top: 5px;
+}
+
+.form-buttons input{
+  background-color: #4682b4;
+  color: #ffffff;
+  font-weight: bold;
+  border-color: #4682b4;
+  border-radius: 5px;
+}
+
+.input-field{
+  width: 300px;
+}
+
+.text-area{
+  width: 470px;
+  min-width: 470px;
+  max-width: 470px;
+  height: 100px;
+  min-height: 100px;
+  max-height: 100px;
+}

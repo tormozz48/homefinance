@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=t(:application_title)%></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="viewport">
+        <div class="header">
+            <div class="logo"><%=t(:application_title)%></div>
+        </div>
+        <%=render 'common/menu'%>
+        <div class="content">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+</html>

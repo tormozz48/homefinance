@@ -8,7 +8,7 @@ gem 'rails', '3.2.2'
 gem 'devise'
 gem 'pg'
 gem 'date_validator'
-gem 'linecache19'
+#gem 'linecache19'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,10 +38,10 @@ gem 'thin'
 
 # To use debugger
 #gem 'ruby-debug19', :require => 'ruby-debug'
-group :development, :test do
-  if RUBY_VERSION =~ /1.9/
-    gem 'ruby-debug19'
-  else
-    gem 'ruby-debug'
-  end
-end
+#group :development, :test do
+  #if RUBY_VERSION =~ /1.9/
+    #gem 'ruby-debug19'
+  #else
+    #gem 'ruby-debug'
+  #end
+#end

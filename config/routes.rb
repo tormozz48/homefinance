@@ -1,25 +1,7 @@
 Homefinance2::Application.routes.draw do
   resources :transactions
   resources :categories
-  resources :accounts do
-    member do
-       #get 'show_account'
-       #get 'show_cash'
-       #get 'new_account'
-       #get 'new_cash'
-       #get 'edit_account'
-       #get 'edit_cash'
-       #post 'create_account'
-       #post 'create_cash'
-       #put 'update_account'
-       #put 'update_cash'
-       #delete 'delete_account'
-       #delete 'delete_cash'
-     end
-     collection do
-       #get 'accounts'
-       #get 'cashes'
-     end
+  resources :accounts
   end
   devise_for :users
 

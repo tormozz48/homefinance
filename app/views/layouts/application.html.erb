@@ -11,7 +11,9 @@
         <div class="header">
             <div class="logo"><%=t(:application_title)%></div>
             <div class="current-user">
-              <%=t(:welcome)+" "+current_user.email %>
+              <%if !current_user.nil? %>
+                <%=t(:welcome)+" "+current_user.email %>
+              <%end%>
             </div>
         </div>
         <%=render 'common/menu'%>

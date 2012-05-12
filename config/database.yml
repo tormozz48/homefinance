@@ -23,7 +23,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: homefinance
+  database: test
   pool: 5
   username: postgres
   password: 12345

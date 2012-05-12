@@ -9,10 +9,9 @@
     <table class="data-table">
       <thead>
           <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th><%=t(:color)%></th>
+            <th><%=t(:name)%></th>
+            <th><%=t(:description)%></th>
             <th></th>
             <th></th>
           </tr>
@@ -20,10 +19,9 @@
       <tbody>
           <% @categories.each do |category| %>
               <tr>
-                <td class="td-category-color-s"><%=t(:color)%></td>
                 <td class="td-category-color"><div style="background-color: <%=getCategoryColor(category)%>;">&nbsp;</div></td>
-                <td class="td-category"><%=t(:name)%>&nbsp;<strong><%=category.name%></strong></td>
-                <td class="td-show"><%= link_to t(:button_show), category, :class => "link" %></td>
+                <td class="td-category">&nbsp;<strong><%=category.name%></strong></td>
+                <td class="td-category">&nbsp;<%=category.description%></td>
                 <td class="td-edit"><%= link_to t(:button_edit), edit_category_path(category),:class => "link" %></td>
                 <td class="td-delete"><%= link_to t(:button_delete), category, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></td>
               </tr>

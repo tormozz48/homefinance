@@ -4,13 +4,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    if(current_user.nil? == false)
-      @categories = Category.find_all_by_user_id(current_user.id)
-    else
-      @categories = Category.all
-    end
+    @categories = Category.order("name ASC").find_all_by_user_id(current_user.id)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @categories }
     end
   end
@@ -19,10 +15,13 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @category }
+    if(@category.user_id == current_user.id)
+      respond_to do |format|
+        format.html
+        format.json { render json: @category }
+      end
+    else
+      redirect_to :back and return
     end
   end
 
@@ -31,7 +30,7 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @category }
     end
   end
@@ -39,6 +38,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
+    if(@category.user_id != current_user.id)
+      redirect_to :back and return
+    end
   end
 
   # POST /categories
@@ -50,8 +52,7 @@ class CategoriesController < ApplicationController
       @category.amount = 0;
       respond_to do |format|
         if @category.save
-          format.html { redirect_to @category, notice: t(:message_category_successfully_added) }
-          format.json { render json: @category, status: :created, location: @category }
+          format.html {redirect_to categories_path}
         else
           format.html { render action: "new" }
           format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -64,15 +65,17 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
-
-    respond_to do |format|
-      if @category.update_attributes(params[:category])
-        format.html { redirect_to @category, notice: t(:message_category_successfully_updated) }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+    if(@category.user_id == current_user.id)
+      respond_to do |format|
+        if @category.update_attributes(params[:category])
+          format.html {redirect_to categories_path}
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to :back and return
     end
   end
 
@@ -80,11 +83,14 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.json
   def destroy
     @category = Category.find(params[:id])
-    @category.destroy
-
-    respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
+    if(@category.user_id == current_user.id)
+      @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to :back and return
     end
   end
 end

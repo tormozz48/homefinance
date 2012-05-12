@@ -10,6 +10,9 @@
     <div class="viewport">
         <div class="header">
             <div class="logo"><%=t(:application_title)%></div>
+            <div class="current-user">
+              <%=t(:welcome)+" "+current_user.email %>
+            </div>
         </div>
         <%=render 'common/menu'%>
         <div class="content">

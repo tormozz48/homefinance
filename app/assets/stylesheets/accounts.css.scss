@@ -3,16 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .amount-input-field{
-  width: 100px !important;
+  width: 140px !important;
 }
 
-.data-table td.td-account{
+.data-table td.td-account-amount{
+  width: 70px;
   padding-left: 5px;
   border-right: none;
 }
 
-.data-table td.td-amount{
-  width: 130px;
+.data-table td.td-account-name, .data-table td.td-account-description {
+  padding-left: 5px;
   border-left: none;
   border-right: none;
 }

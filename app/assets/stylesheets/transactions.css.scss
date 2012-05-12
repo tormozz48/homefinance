@@ -1,3 +1,39 @@
 // Place all the styles related to the Transactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.emptyh20{
+  height: 20px;
+}
+
+.form-transaction{
+  width: 500px;
+  height: auto;
+}
+
+.div-padding5{
+  padding-top: 5px;
+}
+
+.account-select{
+  width: 300px;
+}
+
+.data-table td.td-transaction-date{
+  width: 100px;
+  padding-left: 5px;
+  border-right: none;
+}
+
+.data-table td.td-transaction-amount{
+  width: 100px;
+  padding-left: 5px;
+  border-left: none;
+  border-right: none;
+}
+
+.data-table td.td-transaction-account{
+  padding-left: 5px;
+  border-left: none;
+  border-right: none;
+}

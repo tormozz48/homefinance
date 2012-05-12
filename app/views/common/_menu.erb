@@ -4,14 +4,14 @@
         <ul>
           <li><a href="#" id="transactions"><%=t(:menu_transaction)%></a>
             <ul>
-              <li><a href="#"><%=t(:menu_transaction_from_cash)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_from_account_to_cash)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_to_account)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_to_cash)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_from_cash_to_cash)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_from_account_to_category)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_from_account_to_account)%></a></li>
-              <li><a href="#"><%=t(:menu_transaction_from_cash_to_account)%></a></li>
+              <li><%= link_to t(:menu_transaction_from_cash), transactions_path(:type => getTransactionFromCashToCategory)%></li>
+              <li><%= link_to t(:menu_transaction_from_account_to_cash), transactions_path(:type => getTransactionFromAccountToCash)%></li>
+              <li><%= link_to t(:menu_transaction_to_account), transactions_path(:type => getTransactionToAccount)%></li>
+              <li><%= link_to t(:menu_transaction_to_cash), transactions_path(:type => getTransactionToCash)%></li>
+              <li><%= link_to t(:menu_transaction_from_cash_to_cash), transactions_path(:type => getTransactionFromCashToCash)%></li>
+              <li><%= link_to t(:menu_transaction_from_account_to_category), transactions_path(:type => getTransactionFromAccountToCategory)%></li>
+              <li><%= link_to t(:menu_transaction_from_account_to_account), transactions_path(:type => getTransactionFromAccountToAccount)%></li>
+              <li><%= link_to t(:menu_transaction_from_cash_to_account), transactions_path(:type => getTransactionFromCashToAccount)%></li>
             </ul>
           </li>
           <li><a href="#"><%=t(:menu_accounts)%></a>

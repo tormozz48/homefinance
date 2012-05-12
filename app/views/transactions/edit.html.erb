@@ -1,6 +1,21 @@
-<h1>Editing transaction</h1>
+<%editTitles = {0.to_s(10) => t(:form_edit_transaction_to_account_title),
+                1.to_s(10) => t(:form_edit_transaction_from_account_to_account_title),
+                2.to_s(10) => t(:form_edit_transaction_from_account_to_cash_title),
+                3.to_s(10) => t(:form_edit_transaction_from_account_to_category_title),
+                4.to_s(10) => t(:form_edit_transaction_to_cash_title),
+                5.to_s(10) => t(:form_edit_transaction_from_cash_to_account_title),
+                6.to_s(10) => t(:form_edit_transaction_from_cash_to_cash_title),
+                7.to_s(10) => t(:form_edit_transaction_from_cash_to_category_title)}%>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @transaction %> |
-<%= link_to 'Back', transactions_path %>
+<div class="form form-category">
+  <div class="form-header">
+    <span>
+      <%=editTitles[@transaction_type]%>
+    </span>
+  </div>
+  <div class="form-body">
+    <%= render 'form' %>
+    <%= link_to t(:button_show), @transaction, :class => "link" %>
+    <%= link_to t(:button_back), transactions_path(:type => @transaction_type), :class => "link" %>
+  </div>
+</div>

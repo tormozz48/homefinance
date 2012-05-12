@@ -1,5 +1,6 @@
 ru:
   application_title: "Домашние финансы"
+  welcome: "Пользователь:"
   error: "Ошибка"
   form_login_title: "Вход в программу"
   email: "E-Mail:"
@@ -19,11 +20,14 @@ ru:
   name: "Название:"
   description: "Описание:"
   amount: "Баланс:"
+  color: "Цвет:"
+  date: "Дата:"
+  comment: "Комментарий:"
+  summa: "Сумма:"
 
   #categories
   categories_list: "Список категорий расходов"
   add_new_category: "Добавить новую категорию расходов"
-  color: "Цвет:"
   form_new_category_title: "Добавление новой категории расходов"
   form_edit_category_title: "Редактирование категории расходов"
   form_show_category_title: "Просмотр деталей категории расходов"
@@ -39,6 +43,53 @@ ru:
   form_edit_account_cash_title: "Редактирование кошелька с наличными"
   form_show_account_card_title: "Просмотр банковского счета"
   form_show_account_cash_title: "Просмотр кошелька с наличными"
+
+  #transactions
+
+  add_new_transaction: "Добавить новую транзакцию"
+
+  account_from: "Со счета:"
+  account_to: "На счет:"
+  cash_from: "Из наличных:"
+  cash_to: "В наличные:"
+  category: "Категория расходов:"
+
+  transactions_to_account_list: "Список поступлений на банковский счет"
+  transactions_from_account_to_account_list: "Список переводов между счетами"
+  transactions_from_account_to_cash_list: "Список процедур обналичивания"
+  transactions_from_account_to_category_list: "Список прямых оплат со счетов"
+  transactions_to_cash_list: "Список поступления наличных"
+  transactions_from_cash_to_account_list: "Список переводов наличных на счета"
+  transactions_from_cash_to_cash_list: "Список процедур обмена наличными"
+  transactions_from_cash_to_category_list: "Список расходов наличных"
+
+  form_new_transaction_to_account_title: "Добавление нового поступления на банковский счет"
+  form_new_transaction_from_account_to_account_title: "Добавление нового перевода между счетами"
+  form_new_transaction_from_account_to_cash_title: "Добавление новой процедуры обналичивания"
+  form_new_transaction_from_account_to_category_title: "Добавление новой электронной оплаты со счета"
+  form_new_transaction_to_cash_title: "Добавление нового поступления наличных"
+  form_new_transaction_from_cash_to_account_title: "Добавление нового перевода наличных на счет"
+  form_new_transaction_from_cash_to_cash_title: "Добавление новой процедуры обмена наличными"
+  form_new_transaction_from_cash_to_category_title: "Добавление нового расхода наличных"
+
+  form_edit_transaction_to_account_title: "Редактирование поступления на банковский счет"
+  form_edit_transaction_from_account_to_account_title: "Редактирование перевода между счетами"
+  form_edit_transaction_from_account_to_cash_title: "Редактирование процедуры обналичивания"
+  form_edit_transaction_from_account_to_category_title: "Редактирование электронной оплаты со счета"
+  form_edit_transaction_to_cash_title: "Редактирование поступления наличных"
+  form_edit_transaction_from_cash_to_account_title: "Редактирование перевода наличных на счет"
+  form_edit_transaction_from_cash_to_cash_title: "Редактирование процедуры обмена наличными"
+  form_edit_transaction_from_cash_to_category_title: "Редактирование расхода наличных"
+
+  form_show_transaction_to_account_title: "Просмотр поступления на банковский счет"
+  form_show_transaction_from_account_to_account_title: "Просмотр перевода между счетами"
+  form_show_transaction_from_account_to_cash_title: "Просмотр процедуры обналичивания"
+  form_show_transaction_from_account_to_category_title: "Просмотр электронной оплаты со счета"
+  form_show_transaction_to_cash_title: "Просмотр поступления наличных"
+  form_show_transaction_from_cash_to_account_title: "Просмотр перевода наличных на счет"
+  form_show_transaction_from_cash_to_cash_title: "Просмотр процедуры обмена наличными"
+  form_show_transaction_from_cash_to_category_title: "Просмотр расхода наличных"
+
 
   #menu
   menu_transaction: "Переводы"
@@ -75,6 +126,9 @@ ru:
   message_account_cash_errors_header: "обнаружено при попытке сохранить кошелек с наличными:"
   message_account_cash_successfully_added: "Новый кошелек с наличными добавлен в систему"
   message_account_cash_successfully_updated: "Кошелек с наличными обновлен"
+  message_transaction_errors_header: "обнаружено при попытке сохранить транзакцию:"
+  message_transaction_successfully_added: "Новая транзакция добавлена в систему"
+  message_transaction_successfully_updated: "Транзакция обновлена"
 
 
   errors:

@@ -1,8 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /accounts
-  # GET /accounts.json
   def index
     @account_type = params[:type]
     @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(@account_type, current_user.id, true)
@@ -13,8 +11,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # GET /accounts/1
-  # GET /accounts/1.json
   def show
     @account_type = params[:type]
     @account = Account.find(params[:id])
@@ -28,8 +24,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # GET /accounts/new
-  # GET /accounts/new.json
   def new
     @account_type = params[:type]
     @account = Account.new
@@ -41,7 +35,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # GET /accounts/1/edit
   def edit
     @account_type = params[:type]
     @account = Account.find(params[:id])
@@ -50,8 +43,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # POST /accounts
-  # POST /accounts.json
   def create
     @account = Account.new(params[:account])
     @account_type = @account.account_type
@@ -68,8 +59,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # PUT /accounts/1
-  # PUT /accounts/1.json
   def update
     @account = Account.find(params[:id])
     @account_type = @account.account_type
@@ -87,8 +76,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  # DELETE /accounts/1
-  # DELETE /accounts/1.json
   def destroy
     @account = Account.find(params[:id])
     account_type = @account.account_type

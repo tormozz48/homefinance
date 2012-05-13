@@ -1,19 +1,11 @@
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
-      <%if @account_type == getAccountCardType.to_s(10)%>
-        <%=t(:account_cards_list)%>
-      <%elsif @account_type == getAccountCashType.to_s(10)%>
-        <%=t(:account_cashes_list)%>
-      <%end%>
+      <%=getIndexTitle(@account_type)%>
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%if @account_type == getAccountCardType.to_s(10)%>
-        <%= link_to t(:add_new_account_card), new_account_path(:type => @account_type), :class => "link" %>
-    <%elsif @account_type == getAccountCashType.to_s(10)%>
-        <%= link_to t(:add_new_account_cash), new_account_path(:type => @account_type), :class => "link" %>
-    <%end%>
+    <%=getAddButtonLink(@account_type)%>
     <table class="data-table">
       <thead>
       <tr>
@@ -30,11 +22,12 @@
             <td class="td-account-amount"><strong><%=account.amount%></strong></td>
             <td class="td-account-name"><strong><%=account.name%></strong></td>
             <td class="td-account-description"><%=account.description%></td>
-            <td class="td-edit"><%= link_to t(:button_edit), edit_account_path(account, :type => @account_type),:class => "link" %></td>
+            <td class="td-edit">
+              <%= link_to t(:button_edit), edit_account_path(account, :type => @account_type),:class => "link" %>
+            </td>
             <td class="td-delete">
-              <%if account.amount == 0%>
-                <%= link_to t(:button_delete), account, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %>
-              <%end%>
+              <%= link_to t(:button_delete), account,
+                          confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %>
             </td>
           </tr>
         <% end %>

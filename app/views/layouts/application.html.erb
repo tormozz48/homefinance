@@ -9,7 +9,9 @@
 <body>
     <div class="viewport">
         <div class="header">
+            <div class="logo-image"></div>
             <div class="logo"><%=t(:application_title)%></div>
+
             <div class="current-user">
               <%if !current_user.nil? %>
                 <%=t(:welcome)+" "+current_user.email %>

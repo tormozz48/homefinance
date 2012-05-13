@@ -1,16 +1,7 @@
-<%newTitles = {0.to_s(10) => t(:form_new_transaction_to_account_title),
-               1.to_s(10) => t(:form_new_transaction_from_account_to_account_title),
-               2.to_s(10) => t(:form_new_transaction_from_account_to_cash_title),
-               3.to_s(10) => t(:form_new_transaction_from_account_to_category_title),
-               4.to_s(10) => t(:form_new_transaction_to_cash_title),
-               5.to_s(10) => t(:form_new_transaction_from_cash_to_account_title),
-               6.to_s(10) => t(:form_new_transaction_from_cash_to_cash_title),
-               7.to_s(10) => t(:form_new_transaction_from_cash_to_category_title)}%>
-
 <div class="form form-transaction">
   <div class="form-header">
     <span>
-      <%=newTitles[@transaction_type]%>
+      <%=getNewTitle(@transaction_type)%>
     </span>
   </div>
   <div class="form-body">

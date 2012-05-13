@@ -1,11 +1,7 @@
 <div class="form form-category">
   <div class="form-header">
     <span>
-      <%if @account_type == getAccountCardType.to_s(10)%>
-        <%=t(:form_new_account_card_title)%>
-      <%elsif @account_type == getAccountCashType.to_s(10)%>
-        <%=t(:form_new_account_cash_title)%>
-      <%end%>
+      <%=getAddTitle(@account_type)%>
     </span>
   </div>
   <div class="form-body">

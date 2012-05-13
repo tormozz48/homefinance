@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418203055) do
+ActiveRecord::Schema.define(:version => 20120513084545) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(:version => 20120418203055) do
     t.float    "amount"
     t.integer  "account_type"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "enabled",      :default => true, :null => false
   end
 
   add_index "accounts", ["account_type"], :name => "index_accounts_on_account_type"
@@ -33,8 +34,9 @@ ActiveRecord::Schema.define(:version => 20120418203055) do
     t.string   "color"
     t.float    "amount"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "enabled",     :default => true, :null => false
   end
 
   add_index "categories", ["amount"], :name => "index_categories_on_amount"
@@ -49,8 +51,9 @@ ActiveRecord::Schema.define(:version => 20120418203055) do
     t.integer  "category_id"
     t.integer  "account_from_id"
     t.integer  "account_to_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "enabled",          :default => true, :null => false
   end
 
   add_index "transactions", ["account_from_id"], :name => "index_transactions_on_account_from_id"

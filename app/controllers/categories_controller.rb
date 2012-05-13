@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.order("name ASC").find_all_by_user_id(current_user.id)
+    @categories = Category.find_all_by_user_id_and_enabled(current_user.id, true)
     respond_to do |format|
       format.html
       format.json { render json: @categories }
@@ -84,7 +84,8 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     if(@category.user_id == current_user.id)
-      @category.destroy
+      @category.enabled = false
+      @category.save
       respond_to do |format|
         format.html { redirect_to categories_url }
         format.json { head :no_content }

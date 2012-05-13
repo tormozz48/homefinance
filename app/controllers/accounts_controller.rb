@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   # GET /accounts.json
   def index
     @account_type = params[:type]
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id(@account_type, current_user.id)
+    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(@account_type, current_user.id, true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -60,9 +60,6 @@ class AccountsController < ApplicationController
       respond_to do |format|
         if @account.save
           format.html {redirect_to accounts_path(:type=> @account_type)}
-          #format.html { redirect_to @account, account_type: @account.account_type,
-              #notice: @account.account_type == getAccountCardType ? t(:message_account_card_successfully_added) : t(:message_account_cash_successfully_added) }
-          #format.json { render json: [@account, @account_type], status: :created, location: @account }
         else
           format.html { render action: "new" }
           format.json { render json: [@account.errors, @account_type], status: :unprocessable_entity }
@@ -80,9 +77,6 @@ class AccountsController < ApplicationController
     respond_to do |format|
         if @account.update_attributes(params[:account])
           format.html {redirect_to accounts_path(:type=> @account_type)}
-          #format.html { redirect_to @account, account_type: @account_type,
-              #notice: @account.account_type == getAccountCardType ? t(:message_account_card_successfully_updated) : t(:message_account_cash_successfully_updated)  }
-          #format.json { render json: [@account, @account_type], status: :ok, location: @account }
         else
           format.html { render action: "edit" }
           format.json { render json: [@account.errors, @account_type], status: :unprocessable_entity }
@@ -97,10 +91,12 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1.json
   def destroy
     @account = Account.find(params[:id])
+    account_type = @account.account_type
     if(@account.user_id == current_user.id)
-      @account.destroy
+      @account.enabled=false
+      @account.save
       respond_to do |format|
-        format.html { redirect_to accounts_url }
+        format.html { redirect_to accounts_url(:type => account_type) }
         format.json { head :no_content }
       end
     else

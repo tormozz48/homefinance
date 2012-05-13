@@ -1,8 +1,6 @@
 class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /transactions
-  # GET /transactions.json
   def index
     @transaction_type = params[:type]
     if @transaction_type.nil?
@@ -15,8 +13,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/1
-  # GET /transactions/1.json
   def show
     @transaction = Transaction.find(params[:id])
     @transaction_type = @transaction.transaction_type
@@ -26,16 +22,14 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/new
-  # GET /transactions/new.json
   def new
     @transaction_type = params[:type]
 
     @transaction = Transaction.new(:transaction_type => @transaction_type, :amount => 0)
 
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id(getAccountCardType, current_user.id)
-    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id(getAccountCashType, current_user.id)
-    @categories = Category.order("name ASC").find_all_by_user_id(current_user.id)
+    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCardType, current_user.id, true)
+    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCashType, current_user.id, true)
+    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,18 +37,15 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/1/edit
   def edit
     @transaction = Transaction.find(params[:id])
     @transaction_type = @transaction.transaction_type
 
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id(getAccountCardType, current_user.id)
-    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id(getAccountCashType, current_user.id)
-    @categories = Category.order("name ASC").find_all_by_user_id(current_user.id)
+    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCardType, current_user.id, true)
+    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCashType, current_user.id, true)
+    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
   end
 
-  # POST /transactions
-  # POST /transactions.json
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction_type = @transaction.transaction_type
@@ -62,6 +53,7 @@ class TransactionsController < ApplicationController
     account_from = nil
     account_to = nil
     category = nil
+    valid = true
 
     if @transaction_type == getTransactionToAccount ||
        @transaction_type == getTransactionToCash
@@ -78,10 +70,15 @@ class TransactionsController < ApplicationController
       account_to = Account.find(@transaction.account_to_id)
       if(!account_from.nil? && !account_to.nil?)
         account_from.amount -=@transaction.amount
-        account_from.save!
+        if(account_from.valid?)
+          account_from.save
 
-        account_to.amount +=@transaction.amount
-        account_to.save
+          account_to.amount +=@transaction.amount
+          account_to.save
+        else
+          valid = false
+          @transaction.addNegativeAccountError
+        end
       end
     elsif @transaction_type == getTransactionFromAccountToCategory ||
           @transaction_type == getTransactionFromCashToCategory
@@ -89,18 +86,23 @@ class TransactionsController < ApplicationController
       category = Category.find(@transaction.category_id)
       if(!account_from.nil? && !category.nil?)
         account_from.amount -=@transaction.amount
-        account_from.save
+        if(account_from.valid?)
+          account_from.save
 
-        category.amount +=@transaction.amount
-        category.save
+          category.amount +=@transaction.amount
+          category.save
+        else
+          valid = false
+          @transaction.addNegativeAccountError
+        end
       end
     end
 
   if(current_user.nil? == false)
       @transaction.user = current_user
       respond_to do |format|
-        if @transaction.save
-          redirect_to transactions_path(:type => @transaction_type)
+        if valid == true && @transaction.save
+          format.html {redirect_to transactions_path(:type => @transaction_type)}
         else
           format.html { render action: "new" }
           format.json { render json: [@transaction.errors, @transaction_type], status: :unprocessable_entity }
@@ -109,14 +111,12 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # PUT /transactions/1
-  # PUT /transactions/1.json
   def update
     @transaction = Transaction.find(params[:id])
     @transaction_type = @transaction.transaction_type
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        redirect_to transactions_path(:type => @transaction_type)
+        redirect_to {transactions_path(:type => @transaction_type)}
       else
         format.html { render action: "edit" }
         format.json { render json: [@transaction.errors, @transaction_type], status: :unprocessable_entity }
@@ -124,13 +124,10 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # DELETE /transactions/1
-  # DELETE /transactions/1.json
   def destroy
     @transaction = Transaction.find(params[:id])
     @transaction_type = @transaction.transaction_type
     @transaction.destroy
-
     respond_to do |format|
       format.html { redirect_to transactions_path(:type => @transaction_type) }
       format.json { head :no_content }

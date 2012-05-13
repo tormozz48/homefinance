@@ -25,6 +25,8 @@ ru:
   comment: "Комментарий:"
   summa: "Сумма:"
 
+  reserved_name: "Не определено"
+
   #categories
   categories_list: "Список категорий расходов"
   add_new_category: "Добавить новую категорию расходов"
@@ -81,14 +83,14 @@ ru:
   form_edit_transaction_from_cash_to_cash_title: "Редактирование процедуры обмена наличными"
   form_edit_transaction_from_cash_to_category_title: "Редактирование расхода наличных"
 
-  form_show_transaction_to_account_title: "Просмотр поступления на банковский счет"
-  form_show_transaction_from_account_to_account_title: "Просмотр перевода между счетами"
-  form_show_transaction_from_account_to_cash_title: "Просмотр процедуры обналичивания"
-  form_show_transaction_from_account_to_category_title: "Просмотр электронной оплаты со счета"
-  form_show_transaction_to_cash_title: "Просмотр поступления наличных"
-  form_show_transaction_from_cash_to_account_title: "Просмотр перевода наличных на счет"
-  form_show_transaction_from_cash_to_cash_title: "Просмотр процедуры обмена наличными"
-  form_show_transaction_from_cash_to_category_title: "Просмотр расхода наличных"
+  #form_show_transaction_to_account_title: "Просмотр поступления на банковский счет"
+  #form_show_transaction_from_account_to_account_title: "Просмотр перевода между счетами"
+  #form_show_transaction_from_account_to_cash_title: "Просмотр процедуры обналичивания"
+  #form_show_transaction_from_account_to_category_title: "Просмотр электронной оплаты со счета"
+  #form_show_transaction_to_cash_title: "Просмотр поступления наличных"
+  #form_show_transaction_from_cash_to_account_title: "Просмотр перевода наличных на счет"
+  #form_show_transaction_from_cash_to_cash_title: "Просмотр процедуры обмена наличными"
+  #form_show_transaction_from_cash_to_category_title: "Просмотр расхода наличных"
 
 
   #menu
@@ -130,6 +132,8 @@ ru:
   message_transaction_successfully_added: "Новая транзакция добавлена в систему"
   message_transaction_successfully_updated: "Транзакция обновлена"
 
+  message_error_account_negative: "Баланс на счету не может быть отрицательным"
+  message_error_name_reserved: "Такое название зарезервировано в системе"
 
   errors:
     messages:

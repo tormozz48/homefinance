@@ -20,66 +20,66 @@
 <%if @transaction_type == getTransactionToAccount.to_s(10)%>
   <div class="div-padding5">
     <%= f.label t(:account_to)%><br/>
-    <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+    <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
   </div>
 <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:account_to)%><br/>
-      <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionFromAccountToCash.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:cash_to)%><br/>
-      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:category)%><br/>
-      <%= collection_select(:transaction, :category_id, @categories, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :category_id, @categories, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionToCash.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:cash_to)%><br/>
-      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionFromCashToAccount.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:account_to)%><br/>
-      <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionFromCashToCash.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:cash_to)%><br/>
-      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%elsif @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%><br/>
-      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
     <div class="div-padding5">
       <%= f.label t(:category)%><br/>
-      <%= collection_select(:transaction, :category_id, @categories, :id, :name, {}, {:class=>"account-select"})%>
+      <%= collection_select(:transaction, :category_id, @categories, :id, :name, {:include_blank => t(:reserved_name)}, {:class=>"account-select"})%>
     </div>
 <%end%>
   <div class="div-padding5"><%= f.label t(:comment) %><br />

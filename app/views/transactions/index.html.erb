@@ -10,7 +10,7 @@
       <thead>
       <tr>
         <th><%=t(:date)%></th>
-        <th><%=t(:amount)%></th>
+        <th><%=t(:summa)%></th>
         <%if @transaction_type == getTransactionToAccount.to_s(10)%>
             <th><%=t(:account_to)%></th>
         <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10)%>

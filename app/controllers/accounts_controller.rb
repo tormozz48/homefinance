@@ -12,16 +12,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account_type = params[:type]
-    @account = Account.find(params[:id])
-    if(@account.user_id == current_user.id)
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: [@account, account_type: @account_type] }
-      end
-    else
-      redirect_to :back and return
-    end
+
   end
 
   def new

@@ -14,15 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category = Category.find(params[:id])
-    if(@category.user_id == current_user.id)
-      respond_to do |format|
-        format.html
-        format.json { render json: @category }
-      end
-    else
-      redirect_to :back and return
-    end
+
   end
 
   # GET /categories/new

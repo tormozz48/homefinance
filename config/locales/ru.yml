@@ -83,16 +83,6 @@ ru:
   form_edit_transaction_from_cash_to_cash_title: "Редактирование процедуры обмена наличными"
   form_edit_transaction_from_cash_to_category_title: "Редактирование расхода наличных"
 
-  #form_show_transaction_to_account_title: "Просмотр поступления на банковский счет"
-  #form_show_transaction_from_account_to_account_title: "Просмотр перевода между счетами"
-  #form_show_transaction_from_account_to_cash_title: "Просмотр процедуры обналичивания"
-  #form_show_transaction_from_account_to_category_title: "Просмотр электронной оплаты со счета"
-  #form_show_transaction_to_cash_title: "Просмотр поступления наличных"
-  #form_show_transaction_from_cash_to_account_title: "Просмотр перевода наличных на счет"
-  #form_show_transaction_from_cash_to_cash_title: "Просмотр процедуры обмена наличными"
-  #form_show_transaction_from_cash_to_category_title: "Просмотр расхода наличных"
-
-
   #menu
   menu_transaction: "Переводы"
   menu_accounts: "Счета"
@@ -134,6 +124,9 @@ ru:
 
   message_error_account_negative: "Баланс на счету не может быть отрицательным"
   message_error_name_reserved: "Такое название зарезервировано в системе"
+  message_error_empty_account: "Не выбран банковский счет или кошелек с наличными"
+  message_error_empty_category: "Не выбрана категория расходов"
+
 
   errors:
     messages:
@@ -156,7 +149,7 @@ ru:
           attributes:
             name:
               blank: "Название категории не может быть пустым"
-              too_short: "Название категории должно быть длинее чем 5 символов"
+              too_short: "Название категории должно быть длинее чем 3 символа"
               taken: "Категория с таким имененм уже существует"
             color:
               blank: "Поле цвета категории не может быть пустым"
@@ -177,3 +170,10 @@ ru:
             amount:
               blank: "Кол-во денег на счету или в кошельке не может быть пустым"
               not_a_number: "Кол-во денег является числом"
+        transaction:
+          attributes:
+            description:
+              too_long: "Длина описания должна быть меньше чем 255 символов"
+            amount:
+              blank: "Сумма транзакции не может быть пустой"
+              not_a_number: "Сумма не является числом"

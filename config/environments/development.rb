@@ -41,7 +41,7 @@ Homefinance2::Application.configure do
       :port                 => 587,
       :domain               => 'homefinance.herokuapp.com',
       :user_name            => 'tormozz48@gmail.com',
-      :password             => 'pass4boedj',
+      :password             => 'tormozoid48',
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
 

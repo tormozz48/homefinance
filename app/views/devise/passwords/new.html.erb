@@ -1,12 +1,19 @@
-<h2>Forgot your password?</h2>
+<div class="form form-login">
+  <div class="form-header">
+    <span><%=t(:forgot_password)%></span>
+  </div>
+  <div class="form-body">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <div><%= f.label t(:email) %><br />
+    <%= f.email_field :email %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "links" %>
+    <div class="form-buttons"><%= f.submit "", :class=>"register-button", :title=>t(:sign_up) %></div>
+    <% end %>
+    <div class="link-wrapper">
+      <%= link_to t(:to_login_page), new_session_path(resource_name), :class=>"link" %><br/><br/>
+      <%= link_to t(:didnt_receive_confirmation_instructions), new_confirmation_path(resource_name), :class=>"link" %>
+    </div>
+  </div>
+</div>

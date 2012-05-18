@@ -10,6 +10,9 @@ ru:
   sign_in: "Вход"
   sign_up: "Регистрация"
   to_login_page: "Вернуться на страницу логина"
+  forgot_password: "Забыли пароль?"
+  didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
+
 
   button_save: "Сохранить"
   button_back: "Назад"

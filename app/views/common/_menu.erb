@@ -29,6 +29,12 @@
               <li><%= link_to t(:menu_category_my_categories), categories_path %></li>
             </ul>
           </li>
+          <li><a href="#"><%=t(:menu_statistics)%></a>
+            <ul>
+              <li><%= link_to t(:menu_statistic_date), statistic_date_path %></li>
+              <li><%= link_to t(:menu_statistic_category), statistic_category_path %></li>
+            </ul>
+          </li>
           <li><a href="#"><%=t(:menu_profile)%></a>
             <ul>
               <li><a href="#"><%=t(:menu_profile_my_profile)%></a></li>

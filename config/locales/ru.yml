@@ -86,11 +86,28 @@ ru:
   form_edit_transaction_from_cash_to_cash_title: "Редактирование процедуры обмена наличными"
   form_edit_transaction_from_cash_to_category_title: "Редактирование расхода наличных"
 
+  #statistic
+  statistic_date_title: "Статистика транзакций по дате"
+  statistic_category_title: "Статистика расходов наличных по категориям"
+  date_from: "От:"
+  date_to: "До:"
+  transaction_type: "Тип транзакции:"
+
+  mail_sign_up_title: "Добро пожаловать"
+  mail_sign_up_message: "Для подтверждения регистрации перейдите по ссылке:"
+  mail_sign_up_link: "Подтверждение регистрации"
+
+  mail_unlock_title: "Добрый день"
+  mail_unlock_message1: "Ваш аккаунт был заблокирован после нескольких попыток входа."
+  mail_unlock_message2: "Перейдите по ссылке чтобы разблокировать ваш аккаунт:"
+  mail_unlock_link: "Разблокировать аккаунт"
+
   #menu
   menu_transaction: "Переводы"
   menu_accounts: "Счета"
   menu_cashes: "Наличные"
   menu_categories: "Категории"
+  menu_statistics: "Статистика"
   menu_profile: "Профиль"
   menu_logout: "Выход"
 
@@ -106,6 +123,8 @@ ru:
   menu_account_my_accounts: "Мои счета"
   menu_cash_my_cashes: "Наличные средства"
   menu_category_my_categories: "Категории расходов"
+  menu_statistic_date: "Статистика по датам"
+  menu_statistic_category: "Статистика по категориям"
   menu_profile_my_profile: "Профиль пользователя"
   menu_logout_logout: "Выход из приложения"
 

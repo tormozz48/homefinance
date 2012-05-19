@@ -4,6 +4,9 @@ Homefinance2::Application.routes.draw do
   resources :accounts
   devise_for :users
 
+  match 'statistic_date', :to => 'statistics#getStatisticByDate'
+  match 'statistic_category', :to => 'statistics#getStatisticByCategory'
+
   root :to => 'transactions#index'
 
 

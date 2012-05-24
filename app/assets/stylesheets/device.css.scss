@@ -1,0 +1,32 @@
+.form-login{
+  width: 335px;
+  margin-top: 40px;
+}
+
+.form-signup{
+  width: 500px;
+  margin-top: 40px;
+}
+
+.login-button{
+  margin-top: -20px !important;
+  background: url(image_path('icons/right48.png')) no-repeat;
+}
+
+.register-button{
+  margin-top: -15px !important;
+  background: url(image_path('icons/registration48.png')) no-repeat;
+}
+
+.send-button{
+  margin-top: -10px !important;
+  background: url(image_path('icons/send48.png')) no-repeat;
+}
+
+.remember-email-input-field{
+  width: 368px;
+}
+
+.login-form-input-field{
+  width: 235px;
+}

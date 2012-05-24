@@ -21,6 +21,8 @@ class CategoriesController < ApplicationController
   # GET /categories/new.json
   def new
     @category = Category.new
+    @category.amount = 0;
+    @category.enabled = true;
     respond_to do |format|
       format.html
       format.json { render json: @category }
@@ -41,7 +43,8 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     if(current_user.nil? == false)
       @category.user = current_user
-      @category.amount = 0;
+      #@category.amount = 0;
+      #@category.enabled = true;
       respond_to do |format|
         if @category.save
           format.html {redirect_to categories_path}

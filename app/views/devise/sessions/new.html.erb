@@ -7,10 +7,10 @@
     <div class="form-body">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
             <div><%= f.label t(:email) %><br />
-                <%= f.email_field :email %>
+                <%= f.email_field :email, :class => "login-form-input-field"%>
             </div>
             <div><%= f.label t(:password) %><br />
-                <%= f.password_field :password %>
+                <%= f.password_field :password, :class => "login-form-input-field" %>
             </div>
             <% if devise_mapping.rememberable? -%>
             <div class="remember-me">

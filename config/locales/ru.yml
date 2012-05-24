@@ -5,6 +5,7 @@ ru:
   form_login_title: "Вход в программу"
   email: "E-Mail:"
   password: "Пароль:"
+  password_new: "Новый пароль:"
   password_confirm: "Подтверждение пароля:"
   remember_me: "Запомнить меня"
   sign_in: "Вход"
@@ -12,13 +13,16 @@ ru:
   to_login_page: "Вернуться на страницу логина"
   forgot_password: "Забыли пароль?"
   didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
-
+  resend_confirmation_instructions: "Выслать письмо с подтверждением"
+  change_password: "Изменить пароль"
 
   button_save: "Сохранить"
   button_back: "Назад"
   button_show: "Просмотр"
   button_edit: "Редактировать"
   button_delete: "Удалить"
+  button_send: "Выслать письмо"
+  button_statistic_show: "Показать статистику"
 
   name: "Название:"
   description: "Описание:"
@@ -93,6 +97,7 @@ ru:
   date_to: "До:"
   transaction_type: "Тип транзакции:"
 
+  #mail messages
   mail_sign_up_title: "Добро пожаловать"
   mail_sign_up_message: "Для подтверждения регистрации перейдите по ссылке:"
   mail_sign_up_link: "Подтверждение регистрации"
@@ -101,6 +106,12 @@ ru:
   mail_unlock_message1: "Ваш аккаунт был заблокирован после нескольких попыток входа."
   mail_unlock_message2: "Перейдите по ссылке чтобы разблокировать ваш аккаунт:"
   mail_unlock_link: "Разблокировать аккаунт"
+
+  mail_reset_password_title: "Добрый день"
+  mail_reset_password_message1: "Кто-то сделал запрос на изменение вашего пароля. Вы можете сделать это перейдя по ссылке ниже."
+  mail_reset_password_message2: "Если данный запрос отправлен не вами, пожалуйста проигнорируйте это письмо."
+  mail_reset_password_message3: "Ваш пароль не будет изменен пока вы не перейдете по ссылке и не создадите новый."
+  mail_reset_password_link: "Изменить пароль"
 
   #menu
   menu_transaction: "Переводы"
@@ -149,6 +160,11 @@ ru:
   message_error_empty_account: "Не выбран банковский счет или кошелек с наличными"
   message_error_empty_category: "Не выбрана категория расходов"
 
+  info_registration: "Заполните поля формы и нажмите на кнопку регистрации. После этого на ваш E-Mail будет
+                   отправлено письмо с подтверждением регистрации."
+  info_forgot_password: "Введите свой E-Mail и нажмите на кнопку 'Выслать письмо'. После это на ваш E-Mail будет
+                    отправлено письмо с дальнейшими указаниями по смене пароля."
+  info_change_password: "Введите новый пароль и подтвердите его. Нажмите кнопку 'Сохранить' чтобы изменения вступили в силу"
 
   errors:
     messages:
@@ -161,6 +177,7 @@ ru:
           attributes:
             email:
               invalid: "Неправильный адрес электронной почты"
+              taken: "Пользователь с таким E-Mail адресом уже зарегистрирован"
             password:
               blank: "Поле пароля не может быть пустым"
               confirmation: "Поле подтверждения пароля не может быть пустым"

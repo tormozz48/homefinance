@@ -14,10 +14,10 @@
     <%= f.number_field :amount, :class => "input-field amount-input-field"%>
   </div>
   <div class="div-padding5"><%= f.label t(:date)%><br/>
-    <%= date_select("transaction", "date", :order => [:day, :month, :year], :start_year => 2012, :use_month_numbers => true)%>
+    <%= f.text_field :date, :class => "input-field amount-input-field",  :id => "transactionDateId", :readOnly => true%>
   </div>
 
-<%if @transaction_type == getTransactionToAccount.to_s(10) || @transaction_type == getTransactionToAccount%>
+<%if  @transaction.transaction_type == getTransactionToAccount.to_s(10) ||  @transaction.transaction_type == getTransactionToAccount%>
   <div class="div-padding5">
     <%= f.label t(:account_to)%>
     <%if @task_new == true%><br/>
@@ -27,7 +27,7 @@
         <span class="account-name"><%= @transaction.account_to.name %></span>
     <%end%>
   </div>
-<%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10) || @transaction_type == getTransactionFromAccountToAccount%>
+<%elsif  @transaction.transaction_type == getTransactionFromAccountToAccount.to_s(10) ||  @transaction.transaction_type == getTransactionFromAccountToAccount%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%>
       <%if @task_new == true%><br/>
@@ -46,7 +46,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionFromAccountToCash.to_s(10) || @transaction_type == getTransactionFromAccountToCash%>
+<%elsif  @transaction.transaction_type == getTransactionFromAccountToCash.to_s(10) ||  @transaction.transaction_type == getTransactionFromAccountToCash%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%>
       <%if @task_new == true%><br/>
@@ -65,7 +65,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10) || @transaction_type == getTransactionFromAccountToCategory%>
+<%elsif  @transaction.transaction_type == getTransactionFromAccountToCategory.to_s(10) ||  @transaction.transaction_type == getTransactionFromAccountToCategory%>
     <div class="div-padding5">
       <%= f.label t(:account_from)%>
       <%if @task_new == true%><br/>
@@ -84,7 +84,7 @@
           <span class="account-name"><%= @transaction.category.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionToCash.to_s(10) || @transaction_type == getTransactionToCash%>
+<%elsif  @transaction.transaction_type == getTransactionToCash.to_s(10) ||  @transaction.transaction_type == getTransactionToCash%>
     <div class="div-padding5">
       <%= f.label t(:cash_to)%>
       <%if @task_new == true%><br/>
@@ -94,7 +94,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionFromCashToAccount.to_s(10) || @transaction_type == getTransactionFromCashToAccount%>
+<%elsif  @transaction.transaction_type == getTransactionFromCashToAccount.to_s(10) ||  @transaction.transaction_type == getTransactionFromCashToAccount%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%>
       <%if @task_new == true%><br/>
@@ -113,7 +113,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionFromCashToCash.to_s(10) || @transaction_type == getTransactionFromCashToCash%>
+<%elsif  @transaction.transaction_type == getTransactionFromCashToCash.to_s(10) ||  @transaction.transaction_type == getTransactionFromCashToCash%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%>
       <%if @task_new == true%><br/>
@@ -132,7 +132,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif @transaction_type == getTransactionFromCashToCategory.to_s(10) || @transaction_type == getTransactionFromCashToCategory%>
+<%elsif  @transaction.transaction_type == getTransactionFromCashToCategory.to_s(10) ||  @transaction.transaction_type == getTransactionFromCashToCategory%>
     <div class="div-padding5">
       <%= f.label t(:cash_from)%>
       <%if @task_new == true%><br/>
@@ -160,3 +160,9 @@
      <%= f.submit "", :class=>"save-button", :title=>t(:button_save)%>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        transactionFormInit();
+    });
+</script>

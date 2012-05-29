@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
     @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(@account_type, current_user.id, true)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # statistic_date.html.erb
       format.json { render :json => [@accounts, @account_type] }
     end
   end

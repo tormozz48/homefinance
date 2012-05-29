@@ -6,30 +6,41 @@
   </div>
   <div class="table-wrapper-body">
     <%= link_to t(:add_new_category), new_category_path, :class => "link" %>
-    <table class="data-table">
+    <table class="data-table" >
       <thead>
           <tr>
-            <th><%=t(:color)%></th>
-            <th><%=t(:name)%></th>
-            <th><%=t(:description)%></th>
+            <th class="header-category-color"><%=t(:color)%></th>
+            <th class="header-category-name"><%=t(:name)%></th>
+            <th class="header-category-description"><%=t(:description)%></th>
             <th></th>
             <th></th>
           </tr>
       </thead>
-      <tbody>
-          <% @categories.each do |category| %>
-              <tr>
-                <td class="td-category-color"><div style="background-color: <%=getCategoryColor(category)%>;">&nbsp;</div></td>
-                <td class="td-category">&nbsp;<strong><%=category.name%></strong></td>
-                <td class="td-category">&nbsp;<%=category.description%></td>
-                <td class="td-edit"><%= link_to t(:button_edit), edit_category_path(category),:class => "link" %></td>
-                <td class="td-delete"><%= link_to t(:button_delete), category, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></td>
-              </tr>
-          <% end %>
-      </tbody>
     </table>
+    <div class="data-wrapper">
+      <% @categories.each do |category| %>
+          <div class="data-item category-data-item">
+            <div class="body-category-color">
+                <div style="background-color: <%=getCategoryColor(category)%>;">&nbsp;</div>
+            </div>
+            <span class="body-category-name"><strong><%=category.name%></strong></span>
+            <span class="body-category-description"><%=category.description%></span>
+            <span class="td-delete">
+                <%= link_to t(:button_delete), category, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></span>
+            <span class="td-edit"><%= link_to t(:button_edit), edit_category_path(category),:class => "link" %></span>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        resizeDataWrapper();
+        jQuery(window).resize(function(){resizeDataWrapper();});
+    });
+</script>
+
 
 
 

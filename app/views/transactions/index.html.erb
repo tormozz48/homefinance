@@ -5,71 +5,81 @@
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t(:add_new_transaction), new_transaction_path(:type => @transaction_type), :class => "link" %>
+    <%= link_to t(:add_new_transaction), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
+    <div class="paginator">
+        <%= paginate @transactions%>
+    </div>
     <table class="data-table">
       <thead>
       <tr>
-        <th><%=t(:date)%></th>
-        <th><%=t(:summa)%></th>
+        <th class="header-transaction-date"><%=t(:date)%></th>
+        <th class="header-transaction-summa"><%=t(:summa)%></th>
         <%if @transaction_type == getTransactionToAccount.to_s(10)%>
-            <th><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t(:account_to)%></th>
         <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10)%>
-            <th><%=t(:account_from)%></th>
-            <th><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t(:account_from)%></th>
+            <th class="header-transaction-account"><%=t(:account_to)%></th>
         <%elsif @transaction_type == getTransactionFromAccountToCash.to_s(10)%>
-            <th><%=t(:account_from)%></th>
-            <th><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t(:account_from)%></th>
+            <th class="header-transaction-account"><%=t(:cash_to)%></th>
         <%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10)%>
-            <th><%=t(:account_from)%></th>
-            <th><%=t(:category)%></th>
+            <th class="header-transaction-account"><%=t(:account_from)%></th>
+            <th class="header-transaction-account"><%=t(:category)%></th>
         <%elsif @transaction_type == getTransactionToCash.to_s(10)%>
-            <th><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t(:cash_to)%></th>
         <%elsif @transaction_type == getTransactionFromCashToAccount.to_s(10)%>
-            <th><%=t(:cash_from)%></th>
-            <th><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t(:cash_from)%></th>
+            <th class="header-transaction-account"><%=t(:account_to)%></th>
         <%elsif @transaction_type == getTransactionFromCashToCash.to_s(10)%>
-            <th><%=t(:cash_from)%></th>
-            <th><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t(:cash_from)%></th>
+            <th class="header-transaction-account"><%=t(:cash_to)%></th>
         <%elsif @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
-            <th><%=t(:cash_from)%></th>
-            <th><%=t(:category)%></th>
+            <th class="header-transaction-account"><%=t(:cash_from)%></th>
+            <th class="header-transaction-account"><%=t(:category)%></th>
         <%end%>
         <th></th>
         <th></th>
       </tr>
       </thead>
-      <tbody>
+      </table>
+      <div class="data-wrapper">
       <% @transactions.each do |transaction| %>
-          <tr>
-            <td class="td-transaction-date" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></td>
-            <td class="td-transaction-amount"><%=transaction.amount%></td>
+        <div class="data-item transaction-data-item" style="background-color: <%=getRowColorByDate(transaction.date)%>">
+            <span class="body-transaction-date"><%=transaction.date%></span>
+            <span class="body-transaction-summa"><%=transaction.amount%></span>
             <%if @transaction_type == getTransactionToAccount.to_s(10) ||
                  @transaction_type == getTransactionToCash.to_s(10)%>
-               <td class="td-transaction-account">
+               <span class="body-transaction-account">
                  <%=transaction.account_to.name%> (<%=transaction.account_to.amount%>)
-               </td>
+               </span>
             <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10) ||
                     @transaction_type == getTransactionFromAccountToCash.to_s(10) ||
                     @transaction_type == getTransactionFromCashToAccount.to_s(10) ||
                     @transaction_type == getTransactionFromCashToCash.to_s(10)%>
-                <td class="td-transaction-account">
+                <span class="body-transaction-account">
                   <%=transaction.account_from.name%> (<%=transaction.account_from.amount%>)
-                </td>
-                <td class="td-transaction-account">
+                </span>
+                <span class="body-transaction-account">
                   <%=transaction.account_to.name%> (<%=transaction.account_to.amount%>)
-                </td>
+                </span>
             <%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
                     @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
-                <td class="td-transaction-account">
+                <span class="body-transaction-account">
                   <%=transaction.account_from.name%> (<%=transaction.account_from.amount%>)
-                </td>
-                <td class="td-transaction-account"><%=transaction.category.name%></td>
+                </span>
+                <span class="body-transaction-account"><%=transaction.category.name%></span>
             <%end%>
-            <td class="td-edit"><%= link_to t(:button_edit), edit_transaction_path(transaction, :type => @transaction_type),:class => "link" %></td>
-            <td class="td-delete"><%= link_to t(:button_delete), transaction, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></td>
-          </tr>
+            <span class="td-delete"><%= link_to t(:button_delete), transaction, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></span>
+            <span class="td-edit"><%= link_to t(:button_edit), edit_transaction_path(transaction, :type => @transaction_type),:class => "link" %></span>
+        </div>
       <% end %>
-      </tbody>
-    </table>
+      </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        resizeDataWrapper();
+        jQuery(window).resize(function(){resizeDataWrapper();});
+    });
+</script>

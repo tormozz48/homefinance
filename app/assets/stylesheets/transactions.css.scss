@@ -23,21 +23,32 @@
   font-weight: bold;
 }
 
-.data-table td.td-transaction-date{
-  width: 100px;
-  padding-left: 5px;
-  border-right: none;
+//-- data list start --//
+.body-transaction-date,
+.body-transaction-summa,
+.body-transaction-account{
+  display: inline-block;
+  vertical-align: top;
 }
 
-.data-table td.td-transaction-amount{
-  width: 100px;
-  padding-left: 5px;
-  border-left: none;
-  border-right: none;
+
+.header-transaction-date,
+.body-transaction-date{
+  width: 95px;
 }
 
-.data-table td.td-transaction-account{
-  padding-left: 5px;
-  border-left: none;
-  border-right: none;
+.body-transaction-date{
+  padding-left: 10px;
+  width: 85px;
 }
+
+.header-transaction-summa,
+.body-transaction-summa{
+  width: 90px;
+}
+
+.header-transaction-account,
+.body-transaction-account{
+  width: 250px;
+}
+//-- data list end --//

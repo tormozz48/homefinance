@@ -4,6 +4,7 @@ gem 'rails', '3.2.2'
 gem 'devise'
 gem 'pg'
 gem 'date_validator'
+gem 'kaminari'
 
  group :assets do
   gem 'sass-rails',   '~> 3.2.3'

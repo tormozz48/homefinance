@@ -6,14 +6,33 @@
   width: 140px !important;
 }
 
-.data-table td.td-account-amount{
+//-- data list start --//
+.header-account-amount,
+.body-account-amount{
   width: 70px;
-  padding-left: 5px;
-  border-right: none;
 }
 
-.data-table td.td-account-name, .data-table td.td-account-description {
-  padding-left: 5px;
-  border-left: none;
-  border-right: none;
+.body-account-amount,
+.body-account-name,
+.body-account-description{
+  display: inline-block;
+  vertical-align: top;
 }
+
+.header-account-name{
+  width: 255px;
+}
+
+.body-account-name{
+  width: 250px;
+  padding-right: 10px;
+}
+
+.header-account-description,.body-account-description{
+  width: 350px;
+}
+
+.body-account-description{
+  padding-right: 10px;
+}
+//-- data list end --//

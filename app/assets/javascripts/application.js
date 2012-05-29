@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function resizeDataWrapper(){
+    var h = document.body.offsetHeight - 220;
+    jQuery(".data-wrapper").css("height", h+"px");
+}

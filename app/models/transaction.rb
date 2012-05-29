@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  paginates_per 10
+
   validates :amount, :date, :transaction_type,  :presence => true
   validates :amount, :numericality => {:greater_than_or_equal_to => 0 }
   validates :comment, :length => {:maximum => 255}
@@ -11,30 +13,30 @@ class Transaction < ActiveRecord::Base
   belongs_to :account_to, :readonly => true, :class_name => "Account"
 
   def checkForAccountFrom
-    valid = true
     if(self.account_from_id.nil?)
       self.addEmptyAccountFromError
-      valid = false
+      return false
+    else
+      return true
     end
-    return valid
   end
 
   def checkForAccountTo
-    valid = true
     if(self.account_to_id.nil?)
       self.addEmptyAccountToError
-      valid = false
+      return false
+    else
+      return true
     end
-    return valid
   end
 
   def checkForCategory
-    valid = true
     if(self.category_id.nil?)
       self.addEmptyCategoryError
-      valid = false
+      return false
+    else
+      return true
     end
-    return valid
   end
 
   def addNegativeAccountError
@@ -54,21 +56,19 @@ class Transaction < ActiveRecord::Base
   end
 
   def transferSumToAccount
-    valid = true
     if self.checkForAccountTo == true
       account_to = Account.find(self.account_to_id)
       if !account_to.nil?
         account_to.amount += self.amount
         account_to.save
       end
+      return true
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def changeSumToAccount
-    valid = true
     if self.checkForAccountTo == true
       old_transaction = Transaction.find(self.id)
       diff = self.amount - old_transaction.amount
@@ -77,31 +77,29 @@ class Transaction < ActiveRecord::Base
         account_to.amount += diff
         account_to.save
       end
+      return true
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def rollbackSumFromAccount
-    valid = true
     account_to = Account.find(self.account_to_id)
     if !account_to.nil?
       account_to.amount -= self.amount
       if account_to.valid?
         account_to.save
       else
-        valid = false
         self.addNegativeAccountError
+        return false
       end
+      return true
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def transferSumBetweenAccounts
-    valid = true
     if self.checkForAccountFrom == true && self.checkForAccountTo == true
       account_from = Account.find(self.account_from_id)
       account_to = Account.find(self.account_to_id)
@@ -109,22 +107,20 @@ class Transaction < ActiveRecord::Base
         account_from.amount -= self.amount
         if account_from.valid?
           account_from.save
-
           account_to.amount += self.amount
           account_to.save
         else
-          valid = false
           self.addNegativeAccountError
+          return false
         end
       end
+      return true
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def changeSumBetweenAccounts
-     valid = true
      if self.checkForAccountFrom == true && self.checkForAccountTo == true
         old_transaction = Transaction.find(self.id)
         diff = self.amount - old_transaction.amount
@@ -136,43 +132,41 @@ class Transaction < ActiveRecord::Base
           account_from.amount -= diff
           if account_from.valid?
             account_from.save
-
             account_to.amount += diff
             account_to.save
+            return true
           else
-            valid = false
             self.addNegativeAccountError
+            return false
           end
+        else
+          return false
         end
      else
-       valid = false
+       return false
      end
-     return valid
   end
 
   def rollbackSumBetweenAccounts
-    valid = true
     account_from = Account.find(self.account_from_id)
     account_to = Account.find(self.account_to_id)
     if !account_from.nil? && !account_to.nil?
       account_to.amount -= self.amount
       if(account_to.valid?)
         account_to.save
-
         account_from.amount += self.amount
         account_from.save
+        return true
       else
-        valid = false
         self.addNegativeAccountError
+        return false
       end
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def transferSumFromAccountToCategory
-    valid = true
     if self.checkForAccountFrom == true && self.checkForCategory == true
       account_from = Account.find(self.account_from_id)
       category = Category.find(self.category_id)
@@ -180,22 +174,22 @@ class Transaction < ActiveRecord::Base
         account_from.amount -= self.amount
         if(account_from.valid?)
           account_from.save
-
           category.amount += self.amount
           category.save
+          return true
         else
-          valid = false
           self.addNegativeAccountError
+          return false
         end
+      else
+        return false
       end
     else
-      valid = false
+      return false
     end
-    return valid
   end
 
   def changeSumFromAccountToCategory
-     valid = true
      if self.checkForAccountFrom == true && self.checkForCategory == true
        old_transaction = Transaction.find(self.id)
        diff = self.amount - old_transaction.amount
@@ -206,31 +200,29 @@ class Transaction < ActiveRecord::Base
          account_from.amount -= diff
          if(account_from.valid?)
            account_from.save
-
            category.amount += self.diff
            category.save
+           return true
          else
-           valid = false
            self.addNegativeAccountError
+           return false
          end
+       else
+         return false
        end
      else
-       valid = false
+       return false
      end
-     return valid
   end
 
   def rollbackSumFromCategory
-    valid = true
-    account_from = Account.find(@transaction.account_from_id)
+    account_from = Account.find(self.account_from_id)
     if !account_from.nil?
-      account_from.amount +=@transaction.amount
-      if(account_from.valid?)
-        account_from.save
-      end
+      account_from.amount += self.amount
+      account_from.save
+      return true
     else
-      valid = false
+      return false
     end
-    return valid
   end
 end

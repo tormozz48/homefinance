@@ -1,5 +1,4 @@
-jQuery(document).ready(function(){
-
+function categoriesFormInit(){
     jQuery('#colorFieldId').css('background-color', '#'+jQuery('#colorFieldId').val());
     jQuery('#colorFieldId').css('color', '#'+jQuery('#colorFieldId').val());
 
@@ -15,4 +14,4 @@ jQuery(document).ready(function(){
             $(this).ColorPickerSetColor(this.value);
         }
     });
-});
+};

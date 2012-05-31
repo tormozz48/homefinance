@@ -1,6 +1,3 @@
-<div style="display: none;">
-<%= Seer::init_visualization -%>
-</div>
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
@@ -11,13 +8,13 @@
     <%= form_tag('/show_statistic_by_date', :id =>"statisticDateFormId", :remote => true) do -%>
         <div class="statistic-form-wrapper">
           <%= label_tag "date_from", t(:date_from)%>
-          <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true%>
-          <%= label_tag "date_to", t(:date_to)%>
-          <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true%>
-          <%= label_tag "transaction_type", t(:transaction_type)%>
+          <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
+          <%= label_tag "date_to", t(:date_to), :class => "statistic-date-label"%>
+          <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
+          <%= label_tag "transaction_type", t(:transaction_type), :class => "statistic-date-label"%>
           <%= select_tag "transaction_type", getTransactionTypesOptionList.html_safe%>
           <span class="">
-            <%= submit_tag t(:button_statistic_show), :class => "link", :title => t(:button_statistic_show) %>
+            <%= link_to_function t(:button_statistic_show), "jQuery('#statisticDateFormId').submit();", :class => "link", :title => t(:button_statistic_show) %>
           </span>
         </div>
     <% end -%>

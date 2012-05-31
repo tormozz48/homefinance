@@ -24,6 +24,8 @@ class StatisticsController < ApplicationController
   end
 
   def showStatisticByCategory
-
+    date_from = params[:date_from]
+    date_to = params[:date_to]
+    transaction_type = params[:transaction_type]
   end
 end

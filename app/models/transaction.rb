@@ -200,7 +200,7 @@ class Transaction < ActiveRecord::Base
          account_from.amount -= diff
          if(account_from.valid?)
            account_from.save
-           category.amount += self.diff
+           category.amount += diff
            category.save
            return true
          else

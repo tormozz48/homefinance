@@ -1,0 +1,37 @@
+.paginator span{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.paginator span a{
+  text-decoration: none;
+}
+
+.paginator-first-page{
+  background: url(image_path('icons/first24.png')) no-repeat;
+}
+
+.paginator-last-page{
+  background: url(image_path('icons/last24.png')) no-repeat;
+}
+
+.paginator-previous-page{
+  background: url(image_path('icons/previous24.png')) no-repeat;
+}
+
+.paginator-next-page{
+  background: url(image_path('icons/next24.png')) no-repeat;
+}
+
+.paginator-page{
+   width: 16px !important;
+   height: 20px !important;
+   font-size: 14px;
+   text-align: center;
+}
+
+.paginator-page-gap{
+
+}

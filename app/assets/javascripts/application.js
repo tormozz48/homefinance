@@ -18,3 +18,5 @@ function resizeDataWrapper(){
     var h = document.body.offsetHeight - 220;
     jQuery(".data-wrapper").css("height", h+"px");
 }
+
+

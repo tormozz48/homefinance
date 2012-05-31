@@ -11,7 +11,7 @@
   <% end %>
   <%= f.hidden_field :transaction_type%>
   <div><%= f.label t(:summa) %><br />
-    <%= f.number_field :amount, :class => "input-field amount-input-field"%>
+    <%= f.number_field :amount, :id => "transactionAmountId", :class => "input-field amount-input-field"%>
   </div>
   <div class="div-padding5"><%= f.label t(:date)%><br/>
     <%= f.text_field :date, :class => "input-field amount-input-field",  :id => "transactionDateId", :readOnly => true%>

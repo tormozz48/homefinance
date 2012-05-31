@@ -2,13 +2,13 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @transaction_type = params[:type]
-    p = params[:page].nil? ? 1 : params[:page]
-    if @transaction_type.nil?
+    if params[:type].nil?
       redirect_to transactions_path(:type => getTransactionFromCashToCategory) and return
+    else
+      @transaction_type = params[:type]
     end
-    #@transactions = Transaction.order("date DESC").page(p).find_all_by_transaction_type_and_user_id(@transaction_type, current_user.id)
-    @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ?", @transaction_type, current_user.id, true).order("date DESC").page(p)
+    session[:page] = params[:page].nil? ? 1 : params[:page]
+    @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ?", @transaction_type, current_user.id, true).order("date DESC").page(session[:page])
   end
 
   def show
@@ -52,7 +52,7 @@ class TransactionsController < ApplicationController
       end
       respond_to do |format|
         if valid == true && @transaction.save
-          format.html {redirect_to transactions_path(:type => @transaction.transaction_type)}
+          format.html {redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
         else
           @task_new = true
           @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCardType, current_user.id, true)
@@ -87,7 +87,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if valid == true && @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type)}
+        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
       else
         @task_new = false
         format.html { render action: "edit" }
@@ -116,12 +116,12 @@ class TransactionsController < ApplicationController
     if valid == true
       @transaction.destroy
       respond_to do |format|
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type) }
+        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]) }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type), :alert => @transaction.errors }
+        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]), :alert => @transaction.errors }
         format.json { head :no_content }
       end
     end

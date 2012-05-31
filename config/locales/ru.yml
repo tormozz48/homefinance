@@ -92,7 +92,7 @@ ru:
 
   #statistic
   statistic_date_title: "Статистика транзакций по дате"
-  statistic_category_title: "Статистика расходов наличных по категориям"
+  statistic_category_title: "Статистика расходов по категориям"
   date_from: "От:"
   date_to: "До:"
   transaction_type: "Тип транзакции:"
@@ -169,6 +169,15 @@ ru:
   errors:
     messages:
       not_saved: "Ошибка сохранения данных"
+
+  views:
+    pagination:
+      dummy: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+      first: "Перейти на первую страницу"
+      previous: "Перейти на предыдущую страницу"
+      next: "Перейти на следующую страницу"
+      last: "Перейти на последнюю страницу"
+      truncate: "..."
 
   activerecord:
     errors:

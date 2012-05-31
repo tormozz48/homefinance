@@ -15,6 +15,11 @@
 }
 
 //-- data list start --//
+
+.category-data-item{
+  background-color: #eef;
+}
+
 .header-category-color{
   width: 60px;
 }
@@ -28,6 +33,12 @@
 
 .body-category-color{
   width: 55px;
+}
+
+.body-category-color div{
+  width: 50px;
+  height: 20px;
+  border-radius: 10px;
 }
 
 .header-category-name,

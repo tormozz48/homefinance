@@ -70,7 +70,12 @@
                 <span class="body-transaction-account"><%=transaction.category.name%></span>
             <%end%>
             <span class="td-delete"><%= link_to t(:button_delete), transaction, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></span>
-            <span class="td-edit"><%= link_to t(:button_edit), edit_transaction_path(transaction, :type => @transaction_type),:class => "link" %></span>
+            <span class="td-edit"><%= link_to t(:button_edit), edit_transaction_path(transaction, :type => @transaction_type, :page => @p),:class => "link" %></span>
+            <%if !transaction.comment.nil? && !transaction.comment.blank?%>
+                <div class="body-transaction-comment">
+                    <%=transaction.comment %>
+                </div>
+            <%end%>
         </div>
       <% end %>
       </div>

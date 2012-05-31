@@ -34,21 +34,29 @@
 
 .header-transaction-date,
 .body-transaction-date{
-  width: 95px;
+  width: 110px;
 }
 
 .body-transaction-date{
+  font-weight: bold;
   padding-left: 10px;
-  width: 85px;
+  width: 100px;
 }
 
 .header-transaction-summa,
 .body-transaction-summa{
+  font-weight: bold;
   width: 90px;
 }
 
 .header-transaction-account,
 .body-transaction-account{
   width: 250px;
+}
+
+.body-transaction-comment{
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 //-- data list end --//

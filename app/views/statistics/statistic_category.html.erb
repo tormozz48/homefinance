@@ -21,3 +21,13 @@
   </div>
 </div>
 <div id="chartContainer" class="statistic-graph-wrapper"></div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        resizeChartWrapper();
+        jQuery(window).resize(function(){resizeChartWrapper();});
+        initPieChartOptions('<%=t(:statistic_category_title)%>');
+        statisticInit();
+        jQuery('#statisticCategoryFormId').submit();
+    });
+</script>

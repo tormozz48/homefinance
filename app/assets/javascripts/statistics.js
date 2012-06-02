@@ -8,6 +8,85 @@
 
 var chart = null;
 var lineChartOptions = null;
+var pieChartOptions = null;
+
+function initLineChartOptions(title, x_title, y_title){
+    lineChartOptions = {
+        chart: {
+            renderTo: 'chartContainer',
+            type: 'line',
+            borderRadius: 10
+        },
+        title: {text: title},
+        subtitle: {text: ''},
+        xAxis: {
+            title: {text: x_title},
+            gridLineWidth: 1,
+            categories: []
+        },
+        legend: {enabled: false},
+        yAxis: {
+            title: {text: y_title},
+            gridLineWidth: 1
+        },
+        tooltip: {
+            enabled: true,
+            formatter: function() {
+                return '<b></b>'+
+                    this.x +': '+ this.y;
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {enabled: true},
+                enableMouseTracking: true
+            }
+        },
+        series: []
+    };
+};
+
+function initPieChartOptions(title){
+    pieChartOptions = {
+        chart: {
+            renderTo: 'chartContainer',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: title
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*100)/100 +' %';
+            }
+        },
+        legend:{
+            align: "left",
+            layout: "vertical",
+            verticalAlign: 'top',
+            x: 0,
+            y: 50
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    formatter: function() {
+                        return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*100)/100 +' %';
+                    }
+                },
+                showInLegend: true
+            }
+        },
+        series: []
+    };
+};
 
 function statisticInit(){
     jQuery.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
@@ -51,5 +130,23 @@ function statisticInit(){
            chart.destroy();
         }
         chart = new Highcharts.Chart(lineChartOptions);
+    });
+
+    jQuery('#statisticCategoryFormId').ajaxSuccess(function(evt, request, settings){
+        var data = jQuery.parseJSON(request.responseText);
+        var items = new Array();
+        var series = {type: 'pie', name: '',data: []};
+        if(data.length > 0  && data[0].length > 0){
+            for(var i = 0; i < data[0].length ; i++){
+                items.push({name: data[0][i]['category_name'], color: '#'+data[0][i]['category_color'], y: parseFloat(data[0][i]['transaction_amount'])});
+            }
+        }
+        series.data = items;
+        pieChartOptions.series = new Array();
+        pieChartOptions.series.push(series);
+        if(chart != null){
+            chart.destroy();
+        }
+        chart = new Highcharts.Chart(pieChartOptions);
     });
 };

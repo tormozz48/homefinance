@@ -24,39 +24,10 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        lineChartOptions = {
-            chart: {
-                renderTo: 'chartContainer',
-                type: 'line',
-                borderRadius: 10
-            },
-            title: {text: '<%=t(:statistic_date_title)%>'},
-            subtitle: {text: ''},
-            xAxis: {
-                title: {text: '<%=t(:date)%>'},
-                gridLineWidth: 1,
-                categories: []
-            },
-            legend: {enabled: false},
-            yAxis: {
-                title: {text: '<%=t(:summa)%>'},
-                gridLineWidth: 1
-            },
-            tooltip: {
-                enabled: true,
-                formatter: function() {
-                    return '<b></b>'+
-                            this.x +': '+ this.y;
-                }
-            },
-            plotOptions: {
-                line: {
-                    dataLabels: {enabled: true},
-                    enableMouseTracking: true
-                }
-            },
-            series: []
-        };
+        resizeChartWrapper();
+        jQuery(window).resize(function(){resizeChartWrapper();});
+        initLineChartOptions('<%=t(:statistic_date_title)%>','<%=t(:date)%>','<%=t(:summa)%>');
         statisticInit();
+        jQuery('#statisticDateFormId').submit();
     });
 </script>

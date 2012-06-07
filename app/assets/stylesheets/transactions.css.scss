@@ -55,8 +55,14 @@
 }
 
 .body-transaction-comment{
+  display: none;
   padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.transaction-data-item:hover .body-transaction-comment{
+  display: block;
+}
+
 //-- data list end --//

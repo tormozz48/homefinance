@@ -115,15 +115,10 @@ class TransactionsController < ApplicationController
 
     if valid == true
       @transaction.destroy
-      respond_to do |format|
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]) }
-        format.json { head :no_content }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]), :alert => @transaction.errors }
-        format.json { head :no_content }
-      end
+    end
+    respond_to do |format|
+      format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]) }
+      format.json { head :no_content } and return
     end
   end
 end

@@ -1,0 +1,44 @@
+<div class="table-wrapper">
+  <div class="table-wrapper-header">
+    <span>
+      <%=t(:weights_list)%>
+    </span>
+  </div>
+  <div class="table-wrapper-body">
+    <%= link_to t(:add_new_weight), new_weight_path, :class => "link link-inline" %>
+    <div class="paginator">
+
+    </div>
+    <table class="data-table">
+      <thead>
+          <tr>
+            <th class="header-weight-date"><%=t(:date)%></th>
+            <th class="header-weight-weight"><%=t(:weight)%></th>
+            <th class="header-weight-training"><%=t(:training)%></th>
+            <th class="header-weight-day-difference"><%=t(:day_difference)%></th>
+            <th class="header-weight-week-difference"><%=t(:week_difference)%></th>
+            <th class="header-weight-month-difference"><%=t(:month_difference)%></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
+    </table>
+    <div class="data-wrapper">
+      <% @weights.each do |weight| %>
+         <div class="data-item">
+            <div class="body-weight-date"><%=weight.date%></div>
+            <div class="body-weight-weight"><%=weight.weight%></div>
+            <div class="body-weight-training"><%=weight.training%></div>
+            <div class="body-weight-day-difference"><%=weight.day_difference%></div>
+            <div class="body-weight-week-difference"><%=weight.week_difference%></div>
+            <div class="body-weight-month-difference"><%=weight.month_difference%></div>
+            <span class="td-delete">
+                <%= link_to t(:button_delete), weight, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %>
+            </span>
+            <span class="td-edit"><%= link_to t(:button_edit), edit_weight_path(weight),:class => "link" %></span>
+         </div> 
+      <% end %>
+    </div>
+  </div>
+</div>
+

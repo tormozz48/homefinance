@@ -1,0 +1,17 @@
+<table class="data-table">
+  <tr>
+    <th><%=t(:time)%></th>
+    <th><%=t(:overweight)%></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @weight.eatings.each do |eating| %>
+  <tr>
+    <td><%= eating.time %></td>
+    <td><%= eating.overweight %></td>
+    <td><%= link_to t(:button_edit), edit_eating_path(eating) %></td>
+    <td><%= link_to t(:button_delete), eating, confirm: t(:message_record_delete_confirm), method: :delete %></td>
+  </tr>
+<% end %>
+</table>

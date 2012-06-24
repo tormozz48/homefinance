@@ -14,38 +14,20 @@
               <li><%= link_to t(:menu_transaction_from_cash_to_account), transactions_path(:type => getTransactionFromCashToAccount)%></li>
             </ul>
           </li>
-          <li><a href="#"><%=t(:menu_accounts)%></a>
-            <ul>
-              <li><%= link_to t(:menu_account_my_accounts), accounts_path(:type => getAccountCardType)%></li>
-            </ul>
-          </li>
-          <li><a href="#"><%=t(:menu_cashes)%></a>
-            <ul>
-              <li><%= link_to t(:menu_cash_my_cashes), accounts_path(:type => getAccountCashType) %></li>
-            </ul>
-          </li>
-          <li><a href="#"><%=t(:menu_categories)%></a>
-            <ul>
-              <li><%= link_to t(:menu_category_my_categories), categories_path %></li>
-            </ul>
-          </li>
+          <li><%= link_to t(:menu_accounts), accounts_path(:type => getAccountCardType)%></li>
+          <li><%= link_to t(:menu_cashes), accounts_path(:type => getAccountCashType) %>
+          <li><%= link_to t(:menu_categories), categories_path %></li>
           <li><a href="#"><%=t(:menu_statistics)%></a>
             <ul>
               <li><%= link_to t(:menu_statistic_date), statistic_date_path %></li>
               <li><%= link_to t(:menu_statistic_category), statistic_category_path %></li>
             </ul>
           </li>
-          <li><a href="#"><%=t(:menu_profile)%></a>
-            <ul>
-              <li><a href="#"><%=t(:menu_profile_my_profile)%></a></li>
-            </ul>
-          </li>
-          <li><a href="#"><%=t(:menu_logout)%></a>
-            <ul>
-              <li>
-                <%=link_to t(:menu_logout_logout), destroy_user_session_path, {:method=>"DELETE", :id=>"sign_out", :confirm => t(:message_logout_confirm)} %>
-              </li>
-            </ul>
+          <li><%= link_to t(:menu_fooddiary), weights_path %></li>
+          <li><a href="#"><%=t(:menu_profile)%></a></li>
+          <li>
+               <%=link_to t(:menu_logout), destroy_user_session_path,
+                          {:method=>"DELETE", :id=>"sign_out", :confirm => t(:message_logout_confirm)} %>
           </li>
         </ul>
       </div>

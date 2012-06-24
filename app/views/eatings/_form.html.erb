@@ -1,0 +1,33 @@
+<%= form_for(@eating) do |f| %>
+  <% if @eating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eating.errors.count, "error") %> prohibited this eating from being saved:</h2>
+
+      <ul>
+      <% @eating.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :enabled %><br />
+    <%= f.check_box :enabled %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.time_select :time %>
+  </div>
+  <div class="field">
+    <%= f.label :food %><br />
+    <%= f.text_field :food %>
+  </div>
+  <div class="field">
+    <%= f.label :overweight %><br />
+    <%= f.check_box :overweight %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

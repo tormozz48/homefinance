@@ -1,0 +1,35 @@
+<%= form_for(@weight) do |f| %>
+  <% if @weight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+
+      <ul>
+      <% @weight.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :enabled%>
+  <div>
+    <%= f.label t(:weight) %><br />
+    <%= f.text_field :weight, :id => "weightAmountId", :class => "input-field weight-input-field" %>
+  </div>
+  <div class="field">
+    <%= f.label t(:date) %><br />
+    <%= f.text_field :date, :id=> "weightDateId", :class => "input-field weight-input-field" %>
+  </div>
+  <div>
+    <%= f.label t(:training) %>
+    <%= f.check_box :training, :class => "input-field training-input-field" %>
+  </div>
+  <div class="actions form-buttons">
+    <%= f.submit "", :class=>"save-button", :title=>t(:button_save)%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        weightFormInit();
+    });
+</script>

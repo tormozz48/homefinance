@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513084545) do
+ActiveRecord::Schema.define(:version => 20120610081549) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,32 @@ ActiveRecord::Schema.define(:version => 20120513084545) do
 
   add_index "categories", ["amount"], :name => "index_categories_on_amount"
   add_index "categories", ["user_id"], :name => "index_categories_on_user_id"
+
+  create_table "eating_types", :force => true do |t|
+    t.string   "name"
+    t.string   "eating_order"
+    t.boolean  "enabled"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "eating_types", ["eating_order"], :name => "index_eating_types_on_eating_order"
+  add_index "eating_types", ["enabled"], :name => "index_eating_types_on_enabled"
+
+  create_table "eatings", :force => true do |t|
+    t.boolean  "enabled"
+    t.time     "time"
+    t.string   "food"
+    t.boolean  "overweight"
+    t.integer  "weight_id"
+    t.integer  "eating_type_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "eatings", ["eating_type_id"], :name => "index_eatings_on_eating_type_id"
+  add_index "eatings", ["enabled"], :name => "index_eatings_on_enabled"
+  add_index "eatings", ["weight_id"], :name => "index_eatings_on_weight_id"
 
   create_table "transactions", :force => true do |t|
     t.float    "amount"
@@ -90,5 +116,19 @@ ActiveRecord::Schema.define(:version => 20120513084545) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+
+  create_table "weights", :force => true do |t|
+    t.boolean  "enabled"
+    t.float    "weight"
+    t.boolean  "training"
+    t.date     "date"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "weights", ["date"], :name => "index_weights_on_date"
+  add_index "weights", ["enabled"], :name => "index_weights_on_enabled"
+  add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
 
 end

@@ -1,4 +1,9 @@
 Homefinance2::Application.routes.draw do
+
+  resources :weights do
+    resources :eatings
+  end
+
   resources :transactions
   resources :categories
   resources :accounts

@@ -31,6 +31,13 @@ ru:
   date: "Дата:"
   comment: "Комментарий:"
   summa: "Сумма:"
+  weight: "Вес:"
+  training: "Тренировка:"
+  time: "Время"
+  overweight: "Переедание"
+  day_difference: "Разница за день:"
+  week_difference: "Разница за неделю:"
+  month_difference: "Разница за месяц:"
 
   reserved_name: "Не определено"
 
@@ -39,7 +46,6 @@ ru:
   add_new_category: "Добавить новую категорию расходов"
   form_new_category_title: "Добавление новой категории расходов"
   form_edit_category_title: "Редактирование категории расходов"
-  form_show_category_title: "Просмотр деталей категории расходов"
 
   #accounts
   account_cards_list: "Список банковских счетов"
@@ -50,11 +56,8 @@ ru:
   form_new_account_cash_title: "Добавление нового кошелька с наличными"
   form_edit_account_card_title: "Редактирование банковского счета"
   form_edit_account_cash_title: "Редактирование кошелька с наличными"
-  form_show_account_card_title: "Просмотр банковского счета"
-  form_show_account_cash_title: "Просмотр кошелька с наличными"
 
   #transactions
-
   add_new_transaction: "Добавить новую транзакцию"
 
   account_from: "Со счета:"
@@ -97,6 +100,12 @@ ru:
   date_to: "До:"
   transaction_type: "Тип транзакции:"
 
+  #weights
+  weights_list: "Список записей веса"
+  add_new_weight: "Добавить новую запись"
+  form_new_weight_title: "Добавление новой записи веса"
+  form_edit_weight_title: "Редактирование записи веса"
+
   #mail messages
   mail_sign_up_title: "Добро пожаловать"
   mail_sign_up_message: "Для подтверждения регистрации перейдите по ссылке:"
@@ -119,6 +128,7 @@ ru:
   menu_cashes: "Наличные"
   menu_categories: "Категории"
   menu_statistics: "Статистика"
+  menu_fooddiary: "Дневник питания"
   menu_profile: "Профиль"
   menu_logout: "Выход"
 
@@ -131,30 +141,16 @@ ru:
   menu_transaction_from_cash_to_cash: "Передача наличных"
   menu_transaction_from_cash: "Оплата наличными"
 
-  menu_account_my_accounts: "Мои счета"
-  menu_cash_my_cashes: "Наличные средства"
-  menu_category_my_categories: "Категории расходов"
   menu_statistic_date: "Статистика по датам"
   menu_statistic_category: "Статистика по категориям"
-  menu_profile_my_profile: "Профиль пользователя"
-  menu_logout_logout: "Выход из приложения"
 
   #messages
   message_logout_confirm: "Вы действительно хотите выйти из приложения?"
   message_record_delete_confirm: "Вы действительно хотите удалить эту запись?"
   message_category_errors_header: "обнаружено при попытке сохранить категорию:"
-  message_category_successfully_added: "Новая категория расходов добавлена в систему"
-  message_category_successfully_updated: "Категория расходов обновлена"
   message_account_card_errors_header: "обнаружено при попытке сохранить банковский счет:"
-  message_account_card_successfully_added: "Новый банковский счет добавлен в систему"
-  message_account_card_successfully_updated: "Банковский счет обновлен"
   message_account_cash_errors_header: "обнаружено при попытке сохранить кошелек с наличными:"
-  message_account_cash_successfully_added: "Новый кошелек с наличными добавлен в систему"
-  message_account_cash_successfully_updated: "Кошелек с наличными обновлен"
   message_transaction_errors_header: "обнаружено при попытке сохранить транзакцию:"
-  message_transaction_successfully_added: "Новая транзакция добавлена в систему"
-  message_transaction_successfully_updated: "Транзакция обновлена"
-
   message_error_account_negative: "Баланс на счету не может быть отрицательным"
   message_error_name_reserved: "Такое название зарезервировано в системе"
   message_error_empty_account: "Не выбран банковский счет или кошелек с наличными"

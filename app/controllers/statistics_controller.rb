@@ -35,7 +35,7 @@ class StatisticsController < ApplicationController
         :transaction_type => transaction_type,
         :enabled => true,
         :user_id => current_user.id).select("categories.name as category_name, categories.color as category_color, sum(transactions.amount) as transaction_amount").
-        joins('inner join categories on categories.id = transactions.category_id').group("categories.name, categories.color").order("transaction_amount asc").having("sum(transactions.amount) > 0")
+        joins('inner join categories on categories.id = transactions.category_id').group("categories.name, categories.color").order("transaction_amount desc").having("sum(transactions.amount) > 0")
     render :json=>[transactions]  and return
   end
 

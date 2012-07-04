@@ -1,17 +1,10 @@
 class EatingsController < ApplicationController
-  # GET /eatings
-  # GET /eatings.json
+  before_filter :authenticate_user!
+
   def index
     @eatings = Eating.all
-
-    respond_to do |format|
-      format.html # _eatings.html.erb
-      format.json { render json: @eatings }
-    end
   end
 
-  # GET /eatings/1
-  # GET /eatings/1.json
   def show
     @eating = Eating.find(params[:id])
 
@@ -21,31 +14,45 @@ class EatingsController < ApplicationController
     end
   end
 
-  # GET /eatings/new
-  # GET /eatings/new.json
   def new
+    weight_id = params[:weight_id]
     @eating = Eating.new
+    @eating.enabled = true
+    @eating.time=Time.now
+    @eating.weight_id = weight_id
+    @eating.overweight=false
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @eating }
+    @eating_types = EatingType.order("eating_order").where("enabled = true")
+    if @eating_types.nil?
+      eating_type_breakfast = EatingType.new(:name => I18n.t(:eating_type_breakfast), :eating_order => 0, :enabled => true )
+      eating_type_breakfast.save
+      eating_type_lunch1 = EatingType.new(:name => I18n.t(:eating_type_lunch1), :eating_order => 1, :enabled => true )
+      eating_type_lunch1.save
+      eating_type_afternoon = EatingType.new(:name => I18n.t(:eating_type_afternoon), :eating_order => 2, :enabled => true )
+      eating_type_afternoon.save
+      eating_type_lunch2 = EatingType.new(:name => I18n.t(:eating_type_lunch2), :eating_order => 3, :enabled => true )
+      eating_type_lunch2.save
+      eating_type_dinner = EatingType.new(:name => I18n.t(:eating_type_dinner), :eating_order => 4, :enabled => true )
+      eating_type_dinner.save
+      eating_type_additional = EatingType.new(:name => I18n.t(:eating_type_additional), :eating_order => 5, :enabled => true )
+      eating_type_additional.save
+      @eating_types = EatingType.order("eating_order").where("enabled = true")
     end
   end
 
-  # GET /eatings/1/edit
   def edit
     @eating = Eating.find(params[:id])
   end
 
-  # POST /eatings
-  # POST /eatings.json
   def create
     @eating = Eating.new(params[:eating])
+    if @eating.overweight.nil?
+      @eating.overweight=false
+    end
 
     respond_to do |format|
       if @eating.save
-        format.html { redirect_to @eating, notice: 'Eating was successfully created.' }
-        format.json { render json: @eating, status: :created, location: @eating }
+        format.html { redirect_to weights_path }
       else
         format.html { render action: "new" }
         format.json { render json: @eating.errors, status: :unprocessable_entity }
@@ -53,8 +60,6 @@ class EatingsController < ApplicationController
     end
   end
 
-  # PUT /eatings/1
-  # PUT /eatings/1.json
   def update
     @eating = Eating.find(params[:id])
 
@@ -69,8 +74,6 @@ class EatingsController < ApplicationController
     end
   end
 
-  # DELETE /eatings/1
-  # DELETE /eatings/1.json
   def destroy
     @eating = Eating.find(params[:id])
     @eating.destroy

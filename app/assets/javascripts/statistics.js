@@ -117,8 +117,13 @@ function statisticInit(){
         var yValues = new Array();
         var series = {data: []};
         if(data.length > 0  && data[0].length > 0){
+            var k = data[0].length/10 >= 1 ? data[0].length/10 : 1;
             for(var i = 0; i < data[0].length ; i++){
-                xValues.push(data[0][i]['transaction_date']);
+                if(i%k == 0){
+                    xValues.push(data[0][i]['transaction_date']);
+                }else{
+                    xValues.push('');
+                }
                 yValues.push(parseFloat(data[0][i]['transaction_amount']));
             }
         }

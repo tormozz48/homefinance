@@ -1,5 +1,12 @@
-<h1>New eating</h1>
+<div class="form form-category">
+  <div class="form-header">
+    <span>
+        <%=t(:form_new_eating_title)%>
+    </span>
+  </div>
+  <div class="form-body">
+    <%= render 'form' %>
+    <%= link_to t(:button_back), weights_path, :class=>"link" %>
+  </div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', eatings_path %>

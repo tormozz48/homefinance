@@ -1,3 +1,7 @@
+.td-add_eating{
+  width: 117px;
+}
+
 .form-weight{
   width: 500px;
   height: 200px;
@@ -29,15 +33,15 @@
 }
 
 .header-weight-day-difference{
-  width: 150px;
+  width: 140px;
 }
 
 .header-weight-week-difference{
-  width: 170px;
+  width: 100px;
 }
 
 .header-weight-month-difference{
-  width: 150px;
+  width: 100px;
 }
 
 .body-weight-date,
@@ -70,13 +74,19 @@
 }
 
 .body-weight-day-difference{
-  width: 150px;
+  width: 140px;
 }
 
 .body-weight-week-difference{
-  width: 170px;
+  width: 100px;
 }
 
 .body-weight-month-difference{
-  width: 150px;
+  width: 100px;
+}
+
+.marker{
+  width: 24px;
+  margin-left: 38px;
+  background: url(image_path('icons/marker24.png')) no-repeat;
 }

@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
       @transaction_type = params[:type]
     end
     session[:page] = params[:page].nil? ? 1 : params[:page]
-    @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ?", @transaction_type, current_user.id, true).order("date DESC").page(session[:page])
+    @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ?", @transaction_type, current_user.id, true).order("date DESC, id DESC").page(session[:page])
   end
 
   def show

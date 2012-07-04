@@ -54,8 +54,9 @@ function initLineChartOptions(title, x_title, y_title){
     };
 };
 
-function initPieChartOptions(title){
+function initPieChartOptions(title, other){
     pieChartOptions = {
+        categoryOtherTitle: other,
         chart: {
             renderTo: 'chartContainer',
             plotBackgroundColor: null,
@@ -125,13 +126,8 @@ function statisticInit(){
         var yValues = new Array();
         var series = {data: []};
         if(data.length > 0  && data[0].length > 0){
-            //var k = data[0].length/10 >= 1 ? Math.round(data[0].length/10) : 1;
             for(var i = 0; i < data[0].length ; i++){
-                //if(i%k == 0){
-                    xValues.push(data[0][i]['transaction_date']);
-                //}else{
-                    //xValues.push();
-                //}
+                xValues.push(data[0][i]['transaction_date']);
                 yValues.push(parseFloat(data[0][i]['transaction_amount']));
             }
         }
@@ -150,8 +146,17 @@ function statisticInit(){
         var items = new Array();
         var series = {type: 'pie', name: '',data: []};
         if(data.length > 0  && data[0].length > 0){
+            var count = 10;
+            var sum = 0;
             for(var i = 0; i < data[0].length ; i++){
-                items.push({name: data[0][i]['category_name'], color: '#'+data[0][i]['category_color'], y: parseFloat(data[0][i]['transaction_amount'])});
+                if(i<count){
+                    items.push({name: data[0][i]['category_name'], color: '#'+data[0][i]['category_color'], y: parseFloat(data[0][i]['transaction_amount'])});
+                }else{
+                    sum += parseFloat(data[0][i]['transaction_amount']);
+                }
+            }
+            if(sum > 0){
+                items.push({name: pieChartOptions.categoryOtherTitle, color: '#fff', y: sum});
             }
         }
         series.data = items;

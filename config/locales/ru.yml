@@ -36,8 +36,11 @@ ru:
   time: "Время"
   overweight: "Переедание"
   day_difference: "Разница за день:"
-  week_difference: "Разница за неделю:"
-  month_difference: "Разница за месяц:"
+  week_difference: "за неделю:"
+  month_difference: "за месяц:"
+  time: "Время:"
+  food: "Еда:"
+  overweight: "Переедание:"
 
   reserved_name: "Не определено"
 
@@ -99,12 +102,26 @@ ru:
   date_from: "От:"
   date_to: "До:"
   transaction_type: "Тип транзакции:"
+  category_other: "Другое"
 
   #weights
   weights_list: "Список записей веса"
   add_new_weight: "Добавить новую запись"
+  add_new_eating: "+Прием пищи"
   form_new_weight_title: "Добавление новой записи веса"
   form_edit_weight_title: "Редактирование записи веса"
+
+  #eatings
+  form_new_eating_title: "Добавление новой записи приема пищи"
+  form_edit_eating_title: "Редактирование записи приема пищи"
+
+  #eating types
+  eating_type_breakfast: "Завтрак"
+  eating_type_lunch1: "Ланч"
+  eating_type_afternoon: "Обед"
+  eating_type_dinner: "Ужин"
+  eating_type_lunch2: "Полдник"
+  eating_type_additional: "Перекус"
 
   #mail messages
   mail_sign_up_title: "Добро пожаловать"
@@ -221,3 +238,10 @@ ru:
             amount:
               blank: "Сумма транзакции не может быть пустой"
               not_a_number: "Сумма не является числом"
+        eating:
+          attributes:
+            overweight:
+              blank: "Поле переедания не может быть пустым"
+            food:
+              blank: "Поле еды не может быть пустым"
+              too_long: "Длина поля еды должна быть меньше 255 символов"

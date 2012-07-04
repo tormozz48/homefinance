@@ -21,7 +21,15 @@ function initLineChartOptions(title, x_title, y_title){
         subtitle: {text: ''},
         xAxis: {
             title: {text: x_title},
+            type: 'linear',
             gridLineWidth: 1,
+            labels: {
+                rotation: -90,
+                align: 'right',
+                style: {
+                    font: 'normal 11px Verdana, sans-serif'
+                }
+            },
             categories: []
         },
         legend: {enabled: false},
@@ -117,13 +125,13 @@ function statisticInit(){
         var yValues = new Array();
         var series = {data: []};
         if(data.length > 0  && data[0].length > 0){
-            var k = data[0].length/10 >= 1 ? data[0].length/10 : 1;
+            //var k = data[0].length/10 >= 1 ? Math.round(data[0].length/10) : 1;
             for(var i = 0; i < data[0].length ; i++){
-                if(i%k == 0){
+                //if(i%k == 0){
                     xValues.push(data[0][i]['transaction_date']);
-                }else{
-                    xValues.push('');
-                }
+                //}else{
+                    //xValues.push();
+                //}
                 yValues.push(parseFloat(data[0][i]['transaction_amount']));
             }
         }

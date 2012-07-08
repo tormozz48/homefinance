@@ -13,6 +13,9 @@ Homefinance2::Application.routes.draw do
   match 'statistic_category', :to => 'statistics#initStatisticByCategory'
   match 'show_statistic_by_category', :to => 'statistics#showStatisticByCategory'
 
+  match 'edit_user_profile', :to => 'application#edit'
+  match 'update_user_profile', :to => 'application#update'
+  match 'sign_with_social', :to => 'application#sign_with_social'
 
   root :to => 'transactions#index'
 end

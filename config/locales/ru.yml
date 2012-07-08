@@ -5,6 +5,8 @@ ru:
   form_login_title: "Вход в программу"
   email: "E-Mail:"
   password: "Пароль:"
+  first_name: "Имя:"
+  last_name: "Фамилия:"
   password_new: "Новый пароль:"
   password_confirm: "Подтверждение пароля:"
   remember_me: "Запомнить меня"
@@ -15,6 +17,7 @@ ru:
   didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
   resend_confirmation_instructions: "Выслать письмо с подтверждением"
   change_password: "Изменить пароль"
+  edit_user_profile_title: "Редактирование профиля пользователя"
 
   button_save: "Сохранить"
   button_back: "Назад"
@@ -41,6 +44,7 @@ ru:
   time: "Время:"
   food: "Еда:"
   overweight: "Переедание:"
+  eating_type: "Тип приема пищи:"
 
   reserved_name: "Не определено"
 
@@ -161,6 +165,9 @@ ru:
   menu_statistic_date: "Статистика по датам"
   menu_statistic_category: "Статистика по категориям"
 
+  menu_fooddiary_tracker: "Трекер"
+  menu_fooddiary_statistic: "Статистика"
+
   #messages
   message_logout_confirm: "Вы действительно хотите выйти из приложения?"
   message_record_delete_confirm: "Вы действительно хотите удалить эту запись?"
@@ -168,6 +175,8 @@ ru:
   message_account_card_errors_header: "обнаружено при попытке сохранить банковский счет:"
   message_account_cash_errors_header: "обнаружено при попытке сохранить кошелек с наличными:"
   message_transaction_errors_header: "обнаружено при попытке сохранить транзакцию:"
+  message_weight_errors_header: "обнаружено при попытке сохранить запись веса:"
+  message_eating_errors_header: "обнаружено при попытке сохранить запись питания:"
   message_error_account_negative: "Баланс на счету не может быть отрицательным"
   message_error_name_reserved: "Такое название зарезервировано в системе"
   message_error_empty_account: "Не выбран банковский счет или кошелек с наличными"
@@ -238,6 +247,14 @@ ru:
             amount:
               blank: "Сумма транзакции не может быть пустой"
               not_a_number: "Сумма не является числом"
+        weight:
+          attributes:
+            weight:
+              blank: "Поле веса не может быть пустым"
+              not_a_number: "Вес не является числом"
+            date:
+              blank: "Поле даты не может быть пустой"
+              taken: "Запись с такой датой уже существует"
         eating:
           attributes:
             overweight:
@@ -245,3 +262,5 @@ ru:
             food:
               blank: "Поле еды не может быть пустым"
               too_long: "Длина поля еды должна быть меньше 255 символов"
+            eating_type_id:
+              blank: "Не выбран тип питания"

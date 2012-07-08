@@ -1,5 +1,5 @@
 class Eating < ActiveRecord::Base
-  validates :enabled, :time, :overweight, :food, :presence => true
+  validates :enabled, :time, :food, :eating_type_id, :presence => true
   validate :enabled, :overweight => { :in => [true, false] }
   validates :food, :length => {:maximum => 255}
 

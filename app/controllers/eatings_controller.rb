@@ -2,16 +2,11 @@ class EatingsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @eatings = Eating.all
+
   end
 
   def show
-    @eating = Eating.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @eating }
-    end
   end
 
   def new
@@ -23,7 +18,7 @@ class EatingsController < ApplicationController
     @eating.overweight=false
 
     @eating_types = EatingType.order("eating_order").where("enabled = true")
-    if @eating_types.nil?
+    if (@eating_types.nil? || @eating_types.length == 0)
       eating_type_breakfast = EatingType.new(:name => I18n.t(:eating_type_breakfast), :eating_order => 0, :enabled => true )
       eating_type_breakfast.save
       eating_type_lunch1 = EatingType.new(:name => I18n.t(:eating_type_lunch1), :eating_order => 1, :enabled => true )
@@ -42,6 +37,7 @@ class EatingsController < ApplicationController
 
   def edit
     @eating = Eating.find(params[:id])
+    @eating_types = EatingType.order("eating_order").where("enabled = true")
   end
 
   def create
@@ -54,8 +50,9 @@ class EatingsController < ApplicationController
       if @eating.save
         format.html { redirect_to weights_path }
       else
+        @eating_types = EatingType.order("eating_order").where("enabled = true")
         format.html { render action: "new" }
-        format.json { render json: @eating.errors, status: :unprocessable_entity }
+        format.json { render json: [@eating.errors, @eating_types], status: :unprocessable_entity }
       end
     end
   end
@@ -65,8 +62,7 @@ class EatingsController < ApplicationController
 
     respond_to do |format|
       if @eating.update_attributes(params[:eating])
-        format.html { redirect_to @eating, notice: 'Eating was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to weights_path }
       else
         format.html { render action: "edit" }
         format.json { render json: @eating.errors, status: :unprocessable_entity }
@@ -79,7 +75,7 @@ class EatingsController < ApplicationController
     @eating.destroy
 
     respond_to do |format|
-      format.html { redirect_to eatings_url }
+      format.html { redirect_to weights_path }
       format.json { head :no_content }
     end
   end

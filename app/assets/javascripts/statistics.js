@@ -156,7 +156,7 @@ function statisticInit(){
                 }
             }
             if(sum > 0){
-                items.push({name: pieChartOptions.categoryOtherTitle, color: '#fff', y: sum});
+                items.push({name: pieChartOptions.categoryOtherTitle, color: '#999', y: sum});
             }
         }
         series.data = items;

@@ -1,7 +1,7 @@
 <%= form_for(@weight) do |f| %>
   <% if @weight.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+      <h2><%=@weight.errors.count%> <%=t(:error)%> <%=t(:message_weight_errors_header)%></h2>
 
       <ul>
       <% @weight.errors.full_messages.each do |msg| %>

@@ -7,7 +7,7 @@
   <div class="table-wrapper-body">
     <%= link_to t(:add_new_weight), new_weight_path, :class => "link link-inline" %>
     <div class="paginator">
-
+      <%= paginate @weights%>
     </div>
     <table class="data-table">
       <thead>
@@ -25,7 +25,7 @@
     </table>
     <div class="data-wrapper">
       <% @weights.each do |weight| %>
-         <div class="data-item">
+         <div class="data-item weight-data-item">
             <div class="body-weight-date"><%=weight.date%></div>
             <div class="body-weight-weight"><%=weight.weight%></div>
             <div class="body-weight-training">
@@ -41,6 +41,21 @@
             </span>
             <span class="td-edit"><%= link_to t(:button_edit), edit_weight_path(weight),:class => "link" %></span>
             <span class="td-edit td-add_eating"><%= link_to t(:add_new_eating), new_eating_path(:weight_id => weight.id),:class => "link" %></span>
+            <%if weight.eatings.nil? == false && weight.eatings.length > 0 %>
+            <div class="eating-wrapper">
+              <% weight.eatings.each do |eating| %>
+                 <span class="td-delete"><%=link_to t(:button_delete), eating, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete link-small"%></span>
+                 <span class="td-edit"><%=link_to t(:button_edit), edit_eating_path(eating), :class => "link link-small"%></span>
+                 <span class="eating-type"><%=eating.eating_type.name%></span>
+                 <span class="eating-time"><%=eating.time.to_formatted_s(:time)%></span>
+                  <%if eating.overweight == true%>
+                      <span class="eating-food eating-food-overweight"><%=eating.food%></span>
+                  <%else%>
+                      <span class="eating-food eating-food-normal"><%=eating.food%></span>
+                  <%end%>
+              <% end %>
+            </div>
+            <%end%>
          </div> 
       <% end %>
     </div>

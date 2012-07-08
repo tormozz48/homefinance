@@ -23,8 +23,15 @@
               <li><%= link_to t(:menu_statistic_category), statistic_category_path %></li>
             </ul>
           </li>
-          <li><%= link_to t(:menu_fooddiary), weights_path %></li>
-          <li><a href="#"><%=t(:menu_profile)%></a></li>
+          <li><a href="#"><%=t(:menu_fooddiary)%></a>
+            <ul>
+              <li><%= link_to t(:menu_fooddiary_tracker), weights_path %></li>
+              <li><a href="#"><%=t(:menu_fooddiary_statistic)%></a></li>
+            </ul>
+          </li>
+          <li>
+              <%=link_to t(:menu_profile), edit_user_profile_path%>
+          </li>
           <li>
                <%=link_to t(:menu_logout), destroy_user_session_path,
                           {:method=>"DELETE", :id=>"sign_out", :confirm => t(:message_logout_confirm)} %>

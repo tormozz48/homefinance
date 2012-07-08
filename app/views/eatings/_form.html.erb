@@ -1,7 +1,7 @@
 <%= form_for(@eating) do |f| %>
   <% if @eating.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@eating.errors.count, "error") %> prohibited this eating from being saved:</h2>
+      <h2><%=@eating.errors.count%> <%=t(:error) %> <%=t(:message_eating_errors_header)%></h2>
 
       <ul>
       <% @eating.errors.full_messages.each do |msg| %>
@@ -15,6 +15,11 @@
   <div class="field">
     <%= f.label t(:time) %>
     <%= f.time_select :time %>
+  </div>
+  <div class="field">
+    <%= f.label t(:eating_type)%>
+    <%= collection_select(:eating, :eating_type_id, @eating_types, :id, :name,
+                              {:include_blank => t(:reserved_name)}, {:class=>"eating-type-select"})%>
   </div>
   <div class="field">
     <%= f.label t(:food) %><br />

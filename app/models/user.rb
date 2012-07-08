@@ -12,5 +12,5 @@ class User < ActiveRecord::Base
          :timeoutable
 
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :authentication_token
 end

@@ -1,5 +1,6 @@
 ru:
   application_title: "Домашние финансы"
+  application_description: "Удобный сайт для ведения домашней бухгалтерии, отслеживания доходов и расходов."
   welcome: "Пользователь:"
   error: "Ошибка"
   form_login_title: "Вход в программу"
@@ -107,6 +108,7 @@ ru:
   date_to: "До:"
   transaction_type: "Тип транзакции:"
   category_other: "Другое"
+  categories_display_count: "Показывать категорий без группировки:"
 
   #weights
   weights_list: "Список записей веса"

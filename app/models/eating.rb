@@ -7,4 +7,6 @@ class Eating < ActiveRecord::Base
   belongs_to :eating_type, :readonly => true
 
   attr_accessible :enabled, :time, :eating_type_id, :overweight, :food, :weight_id
+
+  default_scope order("eating_type_id ASC")
 end

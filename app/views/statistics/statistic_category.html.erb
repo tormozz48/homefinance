@@ -5,17 +5,16 @@
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true) do -%>
+    <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true, :class => "statisticForm") do -%>
         <div class="statistic-form-wrapper">
           <%= label_tag "date_from", t(:date_from)%>
           <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
           <%= label_tag "date_to", t(:date_to), :class => "statistic-date-label"%>
           <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
           <%= label_tag "transaction_type", t(:transaction_type), :class => "statistic-date-label"%>
-          <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe%>
-          <span class="">
-            <%= link_to_function t(:button_statistic_show), "jQuery('#statisticCategoryFormId').submit();", :class => "link", :title => t(:button_statistic_show) %>
-          </span>
+          <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :id => "transaction_type_id"%>
+          <%= label_tag "categories_count", t(:categories_display_count), :class => "statistic-date-label"%>
+          <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id"%>
         </div>
     <% end -%>
   </div>
@@ -24,10 +23,13 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        resizeChartWrapper();
-        jQuery(window).resize(function(){resizeChartWrapper();});
-        initPieChartOptions('<%=t(:statistic_category_title)%>', '<%=t(:category_other)%>');
+        jQuery('#transaction_type_id').change(function(){
+            jQuery('#statisticCategoryFormId').submit();
+        });
+        jQuery('#categories_count_id').change(function(){
+            jQuery('#statisticCategoryFormId').submit();
+        });
+        initCategoryChartOptions('<%=t(:statistic_category_title)%>', '<%=t(:category_other)%>');
         statisticInit();
-        jQuery('#statisticCategoryFormId').submit();
     });
 </script>

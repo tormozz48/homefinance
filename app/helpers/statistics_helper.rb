@@ -18,4 +18,13 @@ module StatisticsHelper
     str += "<option value="+3.to_s(10)+">"+I18n.t(:menu_transaction_from_account_to_category)+"</option>"
     return str
   end
+
+  def getCategoriesDisplayCountOptionList
+    str = ""
+    str += "<option>5</option>"
+    str += "<option selected='selected'>10</option>"
+    str += "<option>15</option>"
+    str += "<option>20</option>"
+    return str
+  end
 end

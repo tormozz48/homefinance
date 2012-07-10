@@ -2,6 +2,10 @@
   height: 25px;
 }
 
+.statistic-date-form-wrapper{
+  height: 70px;
+}
+
 .statistic-graph-wrapper{
   min-width: 900px;
   width: 900px;
@@ -12,10 +16,17 @@
   padding: 5px;
 }
 
+.statistic-date-label-left,
+.statistic-date-label,
+.statistic-transaction-type{
+  vertical-align: top;
+}
+
 .statistic-date-label{
   margin-left: 15px;
 }
 
 .statistic-date-field{
+  vertical-align: top;
   width: 80px;
 }

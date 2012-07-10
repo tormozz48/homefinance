@@ -36,8 +36,7 @@ function initStatisticByDateChartOptions(title, x_title, y_title){
         legend: {enabled: false},
         yAxis: {
             title: {text: y_title},
-            gridLineWidth: 1,
-            min: 0
+            gridLineWidth: 1
         },
         tooltip: {
             enabled: true,
@@ -130,6 +129,7 @@ function statisticInit(){
     jQuery('#statisticDateFormId').ajaxSuccess(function(evt, request, settings){
         var data = jQuery.parseJSON(request.responseText);
         var cat_ser = null;
+        lineChartOptions.yAxis.min = 0;
         lineChartOptions.xAxis.categories = new Array();
         lineChartOptions.series = new Array();
         if(data.length > 0  && data[0].length > 0){
@@ -142,6 +142,25 @@ function statisticInit(){
         }
         if(chart != null){
            chart.destroy();
+        }
+        chart = new Highcharts.Chart(lineChartOptions);
+    });
+
+    jQuery('#statisticWeightFormId').ajaxSuccess(function(evt, request, settings){
+        var data = jQuery.parseJSON(request.responseText);
+        var cat_ser = null;
+        lineChartOptions.xAxis.categories = new Array();
+        lineChartOptions.series = new Array();
+        if(data.length > 0  && data[0].length > 0){
+            cat_ser = {data: []};
+            for(var i = 0; i < data[0].length ; i++){
+                lineChartOptions.xAxis.categories.push(data[0][i]['date'])
+                cat_ser.data.push(parseFloat(data[0][i]['weight']));
+            }
+            lineChartOptions.series.push(cat_ser);
+        }
+        if(chart != null){
+            chart.destroy();
         }
         chart = new Highcharts.Chart(lineChartOptions);
     });

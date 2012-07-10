@@ -14,7 +14,7 @@ class Weight < ActiveRecord::Base
      if(rec.nil?)
         return 0
      else
-        return self.weight - rec.weight
+        return (self.weight - rec.weight).round 1
      end
   end
 
@@ -23,7 +23,7 @@ class Weight < ActiveRecord::Base
     if(rec.nil?)
       return 0
     else
-      return self.weight - rec.weight
+      return (self.weight - rec.weight).round 1
     end
   end
 
@@ -32,7 +32,7 @@ class Weight < ActiveRecord::Base
     if(rec.nil?)
       return 0
     else
-      return self.weight - rec.weight
+      return (self.weight - rec.weight).round 1
     end
   end
 

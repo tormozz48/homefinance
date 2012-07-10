@@ -20,7 +20,7 @@ function resizeDataWrapper(){
 };
 
 function resizeChartWrapper(){
-    var h = document.body.offsetHeight - 265;
+    var h = document.body.offsetHeight - 220;
     jQuery(".statistic-graph-wrapper").css("height", h+"px");
 };
 

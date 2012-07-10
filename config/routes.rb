@@ -17,5 +17,8 @@ Homefinance2::Application.routes.draw do
   match 'update_user_profile', :to => 'application#update'
   match 'sign_with_social', :to => 'application#sign_with_social'
 
+  match 'statistic_weight', :to => 'weights#initStatisticWeight'
+  match 'show_statistic_weight', :to => 'weights#showStatisticWeight'
+
   root :to => 'transactions#index'
 end

@@ -116,6 +116,7 @@ ru:
   add_new_eating: "+Прием пищи"
   form_new_weight_title: "Добавление новой записи веса"
   form_edit_weight_title: "Редактирование записи веса"
+  chart_weight_title: "График изменения веса"
 
   #eatings
   form_new_eating_title: "Добавление новой записи приема пищи"

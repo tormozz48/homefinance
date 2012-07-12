@@ -6,6 +6,11 @@
   </div>
   <div class="table-wrapper-body">
     <%= link_to t(:add_new_weight), new_weight_path, :class => "link link-inline" %>
+    <div class="eating-color-description">
+      <span><%=t(:overweight)%></span><div class="eating-color-overweight">&nbsp;</div>
+      <span><%=t(:violation)%></span><div class="eating-color-violation">&nbsp;</div>
+      <span><%=t(:normal)%></span><div class="eating-color-normal">&nbsp;</div>
+    </div>
     <div class="paginator">
       <%= paginate @weights%>
     </div>

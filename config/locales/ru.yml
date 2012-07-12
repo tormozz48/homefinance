@@ -45,6 +45,7 @@ ru:
   time: "Время:"
   food: "Еда:"
   overweight: "Переедание:"
+  violation: "Нарушение:"
   eating_type: "Тип приема пищи:"
 
   reserved_name: "Не определено"
@@ -147,29 +148,32 @@ ru:
   mail_reset_password_link: "Изменить пароль"
 
   #menu
-  menu_transaction: "Переводы"
-  menu_accounts: "Счета"
-  menu_cashes: "Наличные"
-  menu_categories: "Категории"
-  menu_statistics: "Статистика"
-  menu_fooddiary: "Дневник питания"
-  menu_profile: "Профиль"
-  menu_logout: "Выход"
-
-  menu_transaction_to_account: "Начисление на счет"
-  menu_transaction_from_account_to_account: "Перевод между счетами"
-  menu_transaction_from_account_to_cash: "Снятие наличных"
-  menu_transaction_from_account_to_category: "Оплата со счета"
-  menu_transaction_to_cash: "Получение наличных"
-  menu_transaction_from_cash_to_account: "Перевод с наличных на счет"
-  menu_transaction_from_cash_to_cash: "Передача наличных"
-  menu_transaction_from_cash: "Оплата наличными"
-
-  menu_statistic_date: "Статистика по датам"
-  menu_statistic_category: "Статистика по категориям"
-
-  menu_fooddiary_tracker: "Трекер"
-  menu_fooddiary_statistic: "Статистика"
+  menu:
+      transaction:
+        title: "Переводы"
+        to_account: "Начисление на счет"
+        from_account:
+          to_account: "Перевод между счетами"
+          to_cash: "Снятие наличных"
+          to_category: "Оплата со счета"
+        to_cash: "Получение наличных"
+        from_cash:
+          to_account: "Перевод с наличных на счет"
+          to_cash: "Передача наличных"
+          to_category: "Оплата наличными"
+      accounts: "Счета"
+      cashes: "Наличные"
+      categories: "Категории"
+      statistic:
+        title: "Статистика"
+        date: "Статистика по датам"
+        category: "Статистика по категориям"
+      fooddiary:
+        title: "Дневник питания"
+        tracker: "Трекер"
+        statistic: "Статистика"
+      profile: "Профиль"
+      logout: "Выход"
 
   #messages
   message_logout_confirm: "Вы действительно хотите выйти из приложения?"

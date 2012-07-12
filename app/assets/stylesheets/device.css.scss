@@ -1,5 +1,5 @@
 .form-login{
-  width: 335px;
+  width: 340px;
   margin-top: 40px;
 }
 
@@ -9,8 +9,10 @@
 }
 
 .login-button{
-  margin-top: 25px !important;
-  background: url(image_path('icons/right48.png')) no-repeat;
+  margin-top: 0px !important;
+  width: 64px !important;
+  height: 64px !important;
+  background: url(image_path('icons/login64.png')) no-repeat;
 }
 
 .register-button{

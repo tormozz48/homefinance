@@ -16,6 +16,7 @@ class EatingsController < ApplicationController
     @eating.time=Time.now
     @eating.weight_id = weight_id
     @eating.overweight=false
+    @eating.violation=false
 
     @eating_types = EatingType.order("eating_order").where("enabled = true")
     if (@eating_types.nil? || @eating_types.length == 0)
@@ -44,6 +45,9 @@ class EatingsController < ApplicationController
     @eating = Eating.new(params[:eating])
     if @eating.overweight.nil?
       @eating.overweight=false
+    end
+    if @eating.violation.nil?
+      @eating.violation=false
     end
 
     respond_to do |format|

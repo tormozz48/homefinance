@@ -2,38 +2,38 @@
     <div class="menu-wrapper">
       <div class="menu">
         <ul>
-          <li><a href="#" id="transactions"><%=t(:menu_transaction)%></a>
+          <li><a href="#" id="transactions"><%=t('menu.transaction.title')%></a>
             <ul>
-              <li><%= link_to t(:menu_transaction_from_cash), transactions_path(:type => getTransactionFromCashToCategory)%></li>
-              <li><%= link_to t(:menu_transaction_from_account_to_cash), transactions_path(:type => getTransactionFromAccountToCash)%></li>
-              <li><%= link_to t(:menu_transaction_to_account), transactions_path(:type => getTransactionToAccount)%></li>
-              <li><%= link_to t(:menu_transaction_to_cash), transactions_path(:type => getTransactionToCash)%></li>
-              <li><%= link_to t(:menu_transaction_from_cash_to_cash), transactions_path(:type => getTransactionFromCashToCash)%></li>
-              <li><%= link_to t(:menu_transaction_from_account_to_category), transactions_path(:type => getTransactionFromAccountToCategory)%></li>
-              <li><%= link_to t(:menu_transaction_from_account_to_account), transactions_path(:type => getTransactionFromAccountToAccount)%></li>
-              <li><%= link_to t(:menu_transaction_from_cash_to_account), transactions_path(:type => getTransactionFromCashToAccount)%></li>
+              <li><%= link_to t('menu.transaction.from_cash.to_category'), transactions_path(:type => getTransactionFromCashToCategory)%></li>
+              <li><%= link_to t('menu.transaction.from_account.to_cash'), transactions_path(:type => getTransactionFromAccountToCash)%></li>
+              <li><%= link_to t('menu.transaction.to_account'), transactions_path(:type => getTransactionToAccount)%></li>
+              <li><%= link_to t('menu.transaction.to_cash'), transactions_path(:type => getTransactionToCash)%></li>
+              <li><%= link_to t('menu.transaction.from_cash.to_cash'), transactions_path(:type => getTransactionFromCashToCash)%></li>
+              <li><%= link_to t('menu.transaction.from_account.to_category'), transactions_path(:type => getTransactionFromAccountToCategory)%></li>
+              <li><%= link_to t('menu.transaction.from_account.to_account'), transactions_path(:type => getTransactionFromAccountToAccount)%></li>
+              <li><%= link_to t('menu.transaction.from_cash.to_account'), transactions_path(:type => getTransactionFromCashToAccount)%></li>
             </ul>
           </li>
-          <li><%= link_to t(:menu_accounts), accounts_path(:type => getAccountCardType)%></li>
-          <li><%= link_to t(:menu_cashes), accounts_path(:type => getAccountCashType) %>
-          <li><%= link_to t(:menu_categories), categories_path %></li>
-          <li><a href="#"><%=t(:menu_statistics)%></a>
+          <li><%= link_to t('menu.accounts'), accounts_path(:type => getAccountCardType)%></li>
+          <li><%= link_to t('menu.cashes'), accounts_path(:type => getAccountCashType) %>
+          <li><%= link_to t('menu.categories'), categories_path %></li>
+          <li><a href="#"><%=t('menu.statistic.title')%></a>
             <ul>
-              <li><%= link_to t(:menu_statistic_date), statistic_date_path %></li>
-              <li><%= link_to t(:menu_statistic_category), statistic_category_path %></li>
+              <li><%= link_to t('menu.statistic.date'), statistic_date_path %></li>
+              <li><%= link_to t('menu.statistic.category'), statistic_category_path %></li>
             </ul>
           </li>
-          <li><a href="#"><%=t(:menu_fooddiary)%></a>
+          <li><a href="#"><%=t('menu.fooddiary.title')%></a>
             <ul>
-              <li><%= link_to t(:menu_fooddiary_tracker), weights_path %></li>
-              <li><%= link_to t(:menu_fooddiary_statistic), statistic_weight_path %></li>
+              <li><%= link_to t('menu.fooddiary.tracker'), weights_path %></li>
+              <li><%= link_to t('menu.fooddiary.statistic'), statistic_weight_path %></li>
             </ul>
           </li>
           <li>
-              <%=link_to t(:menu_profile), edit_user_profile_path%>
+              <%=link_to t('menu.profile'), edit_user_profile_path%>
           </li>
           <li>
-               <%=link_to t(:menu_logout), destroy_user_session_path,
+               <%=link_to t('menu.logout'), destroy_user_session_path,
                           {:method=>"DELETE", :id=>"sign_out", :confirm => t(:message_logout_confirm)} %>
           </li>
         </ul>

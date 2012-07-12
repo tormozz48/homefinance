@@ -52,6 +52,8 @@
 
                       <%if eating.overweight == true%>
                           <span class="eating-food eating-food-overweight"><%=eating.food%></span>
+                      <%elsif eating.violation == true%>
+                          <span class="eating-food eating-food-violation"><%=eating.food%></span>
                       <%else%>
                           <span class="eating-food eating-food-normal"><%=eating.food%></span>
                       <%end%>

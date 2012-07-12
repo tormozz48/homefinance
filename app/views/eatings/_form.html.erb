@@ -27,9 +27,19 @@
   </div>
   <div class="field">
     <%= f.label t(:overweight) %>
-    <%= f.check_box :overweight, :class => "input-field training-input-field" %>
+    <%= f.check_box :overweight, :id =>"overweightId", :class => "input-field training-input-field" %>
+  </div>
+  <div class="field">
+    <%= f.label t(:violation) %>
+    <%= f.check_box :violation, :id =>"violationId", :class => "input-field training-input-field" %>
   </div>
   <div class="actions form-buttons">
      <%= f.submit "", :class=>"save-button", :title=>t(:button_save)%>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        initEatingForm();
+    });
+</script>

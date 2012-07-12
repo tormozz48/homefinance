@@ -46,6 +46,7 @@ ru:
   food: "Еда:"
   overweight: "Переедание:"
   violation: "Нарушение:"
+  normal: "Норма:"
   eating_type: "Тип приема пищи:"
 
   reserved_name: "Не определено"

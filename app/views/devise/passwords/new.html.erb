@@ -1,23 +1,23 @@
 <div class="form form-signup">
   <div class="form-header">
-    <span><%=t(:forgot_password)%></span>
+    <span><%=t('link.forgot_password')%></span>
   </div>
   <div class="form-body">
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="form-info">
-       <%=t(:info_forgot_password)%>
+       <%=t('info.forgot_password')%>
     </div>
     <br/>
-    <div><%= f.label t(:email) %><br />
+    <div><%= f.label t('field.user.email') %><br />
     <%= f.email_field :email, :class => "remember-email-input-field" %></div>
 
-    <div class="form-buttons"><%= f.submit "", :class=>"send-button", :title=>t(:button_send) %></div>
+    <div class="form-buttons"><%= f.submit "", :class=>"send-button", :title=>t('button.send') %></div>
     <% end %>
     <div class="link-wrapper">
-      <%= link_to t(:button_back), new_session_path(resource_name), :class=>"link" %>
-      <%= link_to t(:didnt_receive_confirmation_instructions), new_confirmation_path(resource_name), :class=>"link" %>
+      <%= link_to t('button.back'), new_session_path(resource_name), :class=>"link" %>
+      <%= link_to t('link.didnt_receive_confirmation_instructions'), new_confirmation_path(resource_name), :class=>"link" %>
     </div>
   </div>
   <div class="form-footer"></div>

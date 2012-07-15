@@ -1,12 +1,12 @@
 <div class="form form-signup">
   <div class="form-header">
-    <span><%=t(:edit_user_profile_title)%></span>
+    <span><%=t('form.title.edit.user.profile')%></span>
   </div>
   <div class="form-body">
     <%= form_for(@user, :url => update_user_profile_path(@user)) do |f| %>
         <% if @user.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(@user.errors.count, t(:error)) %> <%=t(:message_category_errors_header)%></h2>
+              <h2><%= pluralize(@user.errors.count, t('common.error')) %> <%=t('message.error.user.header')%></h2>
               <ul>
                 <% @user.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
@@ -14,20 +14,20 @@
               </ul>
             </div>
         <% end %>
-        <div><%= f.label t(:email) %><br />
+        <div><%= f.label t('field.user.email') %><br />
           <%= f.email_field :email %>
         </div>
-        <div><%= f.label t(:first_name) %><br />
+        <div><%= f.label t('field.user.first_name') %><br />
           <%= f.text_field :first_name %>
         </div>
-        <div><%= f.label t(:last_name) %><br />
+        <div><%= f.label t('field.user.last_name') %><br />
           <%= f.text_field :last_name %>
         </div>
-        <div class="form-buttons"><%= f.submit "", :class=>"save-button", :title=>t(:button_save) %></div>
+        <div class="form-buttons"><%= f.submit "", :class=>"save-button", :title=>t('button.save') %></div>
     <% end %>
 
     <div class="link-wrapper">
-      <%= link_to t(:button_back), root_path, :class=>"link" %><br />
+      <%= link_to t('button.back'), root_path, :class=>"link" %><br />
     </div>
   </div>
   <div class="form-footer"></div>

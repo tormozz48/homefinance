@@ -2,13 +2,25 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @date_from = params[:date_from].nil? ? 1.year.ago.to_date : params[:date_from]
+    @date_to = params[:date_to].nil? ? Date.today : params[:date_to]
+    @category_id = params[:category]
+
     if params[:type].nil?
       redirect_to transactions_path(:type => getTransactionFromCashToCategory) and return
     else
       @transaction_type = params[:type]
     end
     session[:page] = params[:page].nil? ? 1 : params[:page]
-    @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ?", @transaction_type, current_user.id, true).order("date DESC, id DESC").page(session[:page])
+    if !@category_id.nil? && (@transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
+                              @transaction_type == getTransactionFromCashToCategory.to_s(10))
+      @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ? and category_id = ? and date between ? and ?",
+                                        @transaction_type, current_user.id, true, @category_id, @date_from, @date_to).order("date DESC, id DESC").page(session[:page])
+    else
+      @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ? and date between ? and ?",
+                                        @transaction_type, current_user.id, true, @date_from, @date_to).order("date DESC, id DESC").page(session[:page])
+    end
+    @categories = Category.where("enabled = true").order("name asc")
   end
 
   def show

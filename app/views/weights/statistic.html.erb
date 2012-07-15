@@ -1,15 +1,15 @@
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
-      <%=t(:chart_weight_title)%>
+      <%=t('form.title.statistic.weight')%>
     </span>
   </div>
   <div class="table-wrapper-body">
     <%= form_tag('/show_statistic_weight', :id =>"statisticWeightFormId", :remote => true, :class => "statisticForm") do -%>
         <div class="statistic-form-wrapper">
-          <%= label_tag "date_from", t(:date_from), :class => "statistic-date-label-left"%>
+          <%= label_tag "date_from", t('field.common.date_from'), :class => "statistic-date-label-left"%>
           <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
-          <%= label_tag "date_to", t(:date_to), :class => "statistic-date-label"%>
+          <%= label_tag "date_to", t('field.common.date_to'), :class => "statistic-date-label"%>
           <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
         </div>
     <% end -%>
@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        initStatisticByDateChartOptions('<%=t(:chart_weight_title)%>','<%=t(:date)%>','<%=t(:weight)%>');
+        initStatisticByDateChartOptions('<%=t('form.title.statistic.weight')%>','<%=t('field.common.date')%>','<%=t('field.weight.weight')%>');
         statisticInit();
     });
 </script>

@@ -5,37 +5,51 @@
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t(:add_new_transaction), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
+    <%= link_to t('add.transaction'), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
+    <%= form_tag(transactions_path(:type =>@transaction_type), :id =>"transactionFilterFormId", :method=>:get, :remote => false, :class => "transaction-filter-form") do -%>
+        <div class="transaction-filter-form">
+          <%=hidden_field_tag 'type', @transaction_type%>
+          <%= label_tag "date_from", t('field.common.date_from'), :class => "statistic-date-label-left"%>
+          <%= text_field_tag "date_from", @date_from, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
+          <%= label_tag "date_to", t('field.common.date_to'), :class => "statistic-date-label"%>
+          <%= text_field_tag "date_to", @date_to, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
+          <%if @transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
+               @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
+            <%= label_tag "category", t('field.transaction.category'), :class => "statistic-date-label"%>
+            <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category_id"%>
+          <%end%>
+        </div>
+    <% end -%>
     <div class="paginator">
         <%= paginate @transactions%>
     </div>
     <table class="data-table">
       <thead>
       <tr>
-        <th class="header-transaction-date"><%=t(:date)%></th>
-        <th class="header-transaction-summa"><%=t(:summa)%></th>
+        <th class="header-transaction-date"><%=t('field.common.date')%></th>
+        <th class="header-transaction-summa"><%=t('field.transaction.summa')%></th>
         <%if @transaction_type == getTransactionToAccount.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_to')%></th>
         <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:account_from)%></th>
-            <th class="header-transaction-account"><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_to')%></th>
         <%elsif @transaction_type == getTransactionFromAccountToCash.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:account_from)%></th>
-            <th class="header-transaction-account"><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_to')%></th>
         <%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:account_from)%></th>
-            <th class="header-transaction-account"><%=t(:category)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.category')%></th>
         <%elsif @transaction_type == getTransactionToCash.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_to')%></th>
         <%elsif @transaction_type == getTransactionFromCashToAccount.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:cash_from)%></th>
-            <th class="header-transaction-account"><%=t(:account_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.account_to')%></th>
         <%elsif @transaction_type == getTransactionFromCashToCash.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:cash_from)%></th>
-            <th class="header-transaction-account"><%=t(:cash_to)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_to')%></th>
         <%elsif @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
-            <th class="header-transaction-account"><%=t(:cash_from)%></th>
-            <th class="header-transaction-account"><%=t(:category)%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.cash_from')%></th>
+            <th class="header-transaction-account"><%=t('field.transaction.category')%></th>
         <%end%>
         <th></th>
         <th></th>
@@ -69,8 +83,8 @@
                 </span>
                 <span class="body-transaction-account"><%=transaction.category.name%></span>
             <%end%>
-            <span class="td-delete"><%= link_to t(:button_delete), transaction, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></span>
-            <span class="td-edit"><%= link_to t(:button_edit), edit_transaction_path(transaction, :type => @transaction_type, :page => @p),:class => "link" %></span>
+            <span class="td-delete"><%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %></span>
+            <span class="td-edit"><%= link_to t('button.edit'), edit_transaction_path(transaction, :type => @transaction_type, :page => @p),:class => "link" %></span>
             <%if !transaction.comment.nil? && !transaction.comment.blank?%>
                 <div class="body-transaction-comment">
                     <%=transaction.comment %>
@@ -86,5 +100,6 @@
     jQuery(document).ready(function(){
         resizeDataWrapper();
         jQuery(window).resize(function(){resizeDataWrapper();});
+        transactionFilterFormInit();
     });
 </script>

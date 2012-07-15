@@ -13,7 +13,7 @@ class Category < ActiveRecord::Base
   attr_accessible :name, :amount, :description, :color, :user, :user_id, :enabled
 
   def reserve_name
-    errors.add(:name, I18n.t(:message_error_name_reserved)) if [I18n.t(:reserved_name)].include? self.name
+    errors.add(:name, I18n.t('message.error.category.reserved')) if [I18n.t('common.undefined')].include? self.name
   end
 
 end

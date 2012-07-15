@@ -1,19 +1,19 @@
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
-      <%=t(:statistic_date_title)%>
+      <%=t('form.title.statistic.date')%>
     </span>
   </div>
   <div class="table-wrapper-body">
     <%= form_tag('/show_statistic_by_date', :id =>"statisticDateFormId", :remote => true, :class => "statisticForm") do -%>
         <div class="statistic-form-wrapper">
-          <%= label_tag "date_from", t(:date_from), :class => "statistic-date-label-left"%>
+          <%= label_tag "date_from", t('field.common.date_from'), :class => "statistic-date-label-left"%>
           <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
-          <%= label_tag "date_to", t(:date_to), :class => "statistic-date-label"%>
+          <%= label_tag "date_to", t('field.common.date_to'), :class => "statistic-date-label"%>
           <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
-          <%= label_tag "transaction_type", t(:transaction_type), :class => "statistic-date-label"%>
+          <%= label_tag "transaction_type", t('field.transaction.type'), :class => "statistic-date-label"%>
           <%= select_tag "transaction_type", getTransactionTypesOptionList.html_safe, :id => "transaction_type_id", :class => "statistic-transaction-type" %>
-          <%= label_tag "category", t(:category), :class => "statistic-date-label"%>
+          <%= label_tag "category", t('field.transaction.category'), :class => "statistic-date-label"%>
           <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name"), :include_blank => true, :id => "category_id"%>
         </div>
     <% end -%>
@@ -39,7 +39,7 @@
         jQuery('#category_id').change(function(){
             jQuery('#statisticDateFormId').submit();
         });
-        initStatisticByDateChartOptions('<%=t(:statistic_date_title)%>','<%=t(:date)%>','<%=t(:summa)%>');
+        initStatisticByDateChartOptions('<%=t('form.title.statistic.date')%>','<%=t('field.common.date')%>','<%=t('field.transaction.summa')%>');
         statisticInit();
     });
 </script>

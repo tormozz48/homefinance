@@ -2,11 +2,9 @@ class EatingsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-
   end
 
   def show
-
   end
 
   def new
@@ -20,17 +18,17 @@ class EatingsController < ApplicationController
 
     @eating_types = EatingType.order("eating_order").where("enabled = true")
     if (@eating_types.nil? || @eating_types.length == 0)
-      eating_type_breakfast = EatingType.new(:name => I18n.t(:eating_type_breakfast), :eating_order => 0, :enabled => true )
+      eating_type_breakfast = EatingType.new(:name => I18n.t('eating.type.breakfast'), :eating_order => 0, :enabled => true )
       eating_type_breakfast.save
-      eating_type_lunch1 = EatingType.new(:name => I18n.t(:eating_type_lunch1), :eating_order => 1, :enabled => true )
+      eating_type_lunch1 = EatingType.new(:name => I18n.t('eating.type.lunch1'), :eating_order => 1, :enabled => true )
       eating_type_lunch1.save
-      eating_type_afternoon = EatingType.new(:name => I18n.t(:eating_type_afternoon), :eating_order => 2, :enabled => true )
+      eating_type_afternoon = EatingType.new(:name => I18n.t('eating.type.afternoon'), :eating_order => 2, :enabled => true )
       eating_type_afternoon.save
-      eating_type_lunch2 = EatingType.new(:name => I18n.t(:eating_type_lunch2), :eating_order => 3, :enabled => true )
+      eating_type_lunch2 = EatingType.new(:name => I18n.t('eating.type.lunch2'), :eating_order => 3, :enabled => true )
       eating_type_lunch2.save
-      eating_type_dinner = EatingType.new(:name => I18n.t(:eating_type_dinner), :eating_order => 4, :enabled => true )
+      eating_type_dinner = EatingType.new(:name => I18n.t('eating.type.dinner'), :eating_order => 4, :enabled => true )
       eating_type_dinner.save
-      eating_type_additional = EatingType.new(:name => I18n.t(:eating_type_additional), :eating_order => 5, :enabled => true )
+      eating_type_additional = EatingType.new(:name => I18n.t('eating.type.additional'), :eating_order => 5, :enabled => true )
       eating_type_additional.save
       @eating_types = EatingType.order("eating_order").where("enabled = true")
     end

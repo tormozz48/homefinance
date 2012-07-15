@@ -1,5 +1,5 @@
-<p><%=t(:mail_sign_up_title)%> <%= @resource.email %>!</p>
+<p><%=t('mail.sign_up.title')%> <%= @resource.email %>!</p>
 
-<p><%=t(:mail_sign_up_message)%></p>
+<p><%=t('mail.sign_up.message')%></p>
 
-<p><%= link_to t(:mail_sign_up_link), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to t('mail.sign_up.link'), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

@@ -34,7 +34,7 @@
           </li>
           <li>
                <%=link_to t('menu.logout'), destroy_user_session_path,
-                          {:method=>"DELETE", :id=>"sign_out", :confirm => t(:message_logout_confirm)} %>
+                          {:method=>"DELETE", :id=>"sign_out", :confirm => t('message.confirm.logout')} %>
           </li>
         </ul>
       </div>

@@ -1,6 +1,6 @@
 <div class="form form-signup">
   <div class="form-header">
-    <span><%=t(:change_password)%></span>
+    <span><%=t('link.change_password')%></span>
   </div>
   <div class="form-body">
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -8,22 +8,22 @@
         <%= f.hidden_field :reset_password_token %>
 
         <div class="form-info">
-          <%=t(:info_change_password)%>
+          <%=t('info.change_password')%>
         </div>
         <br/>
-        <div><%= f.label :password, t(:password_new) %><br />
+        <div><%= f.label :password, t('field.user.password_new') %><br />
         <%= f.password_field :password %></div>
 
-        <div><%= f.label :password_confirmation, t(:password_confirm) %><br />
+        <div><%= f.label :password_confirmation, t('field.user.password_confirm') %><br />
         <%= f.password_field :password_confirmation %></div>
 
         <div class="form-buttons">
-            <div><%= f.submit "", :class=>"save-button", :title=>t(:button_save) %></div>
+            <div><%= f.submit "", :class=>"save-button", :title=>t('button.save') %></div>
         </div>
     <% end %>
     <div class="link-wrapper">
-      <%= link_to t(:to_login_page), new_session_path(resource_name), :class=>"link" %>
-      <%= link_to t(:sign_up), new_registration_path(resource_name), :class => "link" %>
+      <%= link_to t('link.to_login_page'), new_session_path(resource_name), :class=>"link" %>
+      <%= link_to t('link.sign.up'), new_registration_path(resource_name), :class => "link" %>
     </div>
   </div>
   <div class="form-footer"></div>

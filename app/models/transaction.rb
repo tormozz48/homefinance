@@ -40,19 +40,19 @@ class Transaction < ActiveRecord::Base
   end
 
   def addNegativeAccountError
-    errors[:account_from] = I18n.t(:message_error_account_negative)
+    errors[:account_from] = I18n.t('message.error.account.negative')
   end
 
   def addEmptyAccountFromError
-    errors[:account_from] = I18n.t(:message_error_empty_account)
+    errors[:account_from] = I18n.t('message.error.account.empty')
   end
 
   def addEmptyAccountToError
-    errors[:account_to] = I18n.t(:message_error_empty_account)
+    errors[:account_to] = I18n.t('message.error.account.empty')
   end
 
   def addEmptyCategoryError
-    errors[:category] = I18n.t(:message_error_empty_category)
+    errors[:category] = I18n.t('message.error.category.empty')
   end
 
   def transferSumToAccount

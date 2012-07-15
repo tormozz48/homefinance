@@ -1,7 +1,7 @@
 <%= form_for(@eating) do |f| %>
   <% if @eating.errors.any? %>
     <div id="error_explanation">
-      <h2><%=@eating.errors.count%> <%=t(:error) %> <%=t(:message_eating_errors_header)%></h2>
+      <h2><%=@eating.errors.count%> <%=t('common.error') %> <%=t('message.error.eating.header')%></h2>
 
       <ul>
       <% @eating.errors.full_messages.each do |msg| %>
@@ -13,28 +13,28 @@
   <%= f.hidden_field :enabled%>
   <%= f.hidden_field :weight_id%>
   <div class="field">
-    <%= f.label t(:time) %>
+    <%= f.label t('field.eating.time') %>
     <%= f.time_select :time %>
   </div>
   <div class="field">
-    <%= f.label t(:eating_type)%>
+    <%= f.label t('field.eating.eating_type')%>
     <%= collection_select(:eating, :eating_type_id, @eating_types, :id, :name,
-                              {:include_blank => t(:reserved_name)}, {:class=>"eating-type-select"})%>
+                              {:include_blank => t('common.undefined')}, {:class=>"eating-type-select"})%>
   </div>
   <div class="field">
-    <%= f.label t(:food) %><br />
+    <%= f.label t('field.eating.food') %><br />
     <%= f.text_area :food, :size => "60x6", :class => "text-area" %>
   </div>
   <div class="field">
-    <%= f.label t(:overweight) %>
+    <%= f.label t('field.eating.overweight') %>
     <%= f.check_box :overweight, :id =>"overweightId", :class => "input-field training-input-field" %>
   </div>
   <div class="field">
-    <%= f.label t(:violation) %>
+    <%= f.label t('field.eating.violation') %>
     <%= f.check_box :violation, :id =>"violationId", :class => "input-field training-input-field" %>
   </div>
   <div class="actions form-buttons">
-     <%= f.submit "", :class=>"save-button", :title=>t(:button_save)%>
+     <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>
   </div>
 <% end %>
 

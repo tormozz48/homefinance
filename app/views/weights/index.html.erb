@@ -1,15 +1,15 @@
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
-      <%=t(:weights_list)%>
+      <%=t('list.weights')%>
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t(:add_new_weight), new_weight_path, :class => "link link-inline" %>
+    <%= link_to t('add.weight'), new_weight_path, :class => "link link-inline" %>
     <div class="eating-color-description">
-      <span><%=t(:overweight)%></span><div class="eating-color-overweight">&nbsp;</div>
-      <span><%=t(:violation)%></span><div class="eating-color-violation">&nbsp;</div>
-      <span><%=t(:normal)%></span><div class="eating-color-normal">&nbsp;</div>
+      <span><%=t('field.eating.overweight')%></span><div class="eating-color-overweight">&nbsp;</div>
+      <span><%=t('field.eating.violation')%></span><div class="eating-color-violation">&nbsp;</div>
+      <span><%=t('field.eating.normal')%></span><div class="eating-color-normal">&nbsp;</div>
     </div>
     <div class="paginator">
       <%= paginate @weights%>
@@ -17,12 +17,12 @@
     <table class="data-table">
       <thead>
           <tr>
-            <th class="header-weight-date"><%=t(:date)%></th>
-            <th class="header-weight-weight"><%=t(:weight)%></th>
-            <th class="header-weight-training"><%=t(:training)%></th>
-            <th class="header-weight-day-difference"><%=t(:day_difference)%></th>
-            <th class="header-weight-week-difference"><%=t(:week_difference)%></th>
-            <th class="header-weight-month-difference"><%=t(:month_difference)%></th>
+            <th class="header-weight-date"><%=t('field.common.date')%></th>
+            <th class="header-weight-weight"><%=t('field.weight.weight')%></th>
+            <th class="header-weight-training"><%=t('field.weight.training')%></th>
+            <th class="header-weight-day-difference"><%=t('field.weight.day_difference')%></th>
+            <th class="header-weight-week-difference"><%=t('field.weight.week_difference')%></th>
+            <th class="header-weight-month-difference"><%=t('field.weight.month_difference')%></th>
             <th></th>
             <th></th>
           </tr>
@@ -42,16 +42,16 @@
             <div class="body-weight-week-difference"><%=weight.week_difference%></div>
             <div class="body-weight-month-difference"><%=weight.month_difference%></div>
             <span class="td-delete">
-                <%= link_to t(:button_delete), weight, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %>
+                <%= link_to t('button.delete'), weight, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
             </span>
-            <span class="td-edit"><%= link_to t(:button_edit), edit_weight_path(weight),:class => "link" %></span>
-            <span class="td-edit td-add_eating"><%= link_to t(:add_new_eating), new_eating_path(:weight_id => weight.id),:class => "link" %></span>
+            <span class="td-edit"><%= link_to t('button.edit'), edit_weight_path(weight),:class => "link" %></span>
+            <span class="td-edit td-add_eating"><%= link_to t('add.eating'), new_eating_path(:weight_id => weight.id),:class => "link" %></span>
             <%if weight.eatings.nil? == false && weight.eatings.length > 0 %>
             <div class="eating-wrapper">
               <% weight.eatings.each do |eating| %>
                  <div class="eating-data-item">
-                     <span><%=link_to t(:button_edit), edit_eating_path(eating), :class => "link link-small"%></span>
-                     <span><%=link_to t(:button_delete), eating, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete link-small"%></span>
+                     <span><%=link_to t('button.edit'), edit_eating_path(eating), :class => "link link-small"%></span>
+                     <span><%=link_to t('button.delete'), eating, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete link-small"%></span>
                      <span class="eating-time"><%=eating.time.to_formatted_s(:time)%></span>
                      <span class="eating-type"><%=eating.eating_type.name%></span>
 

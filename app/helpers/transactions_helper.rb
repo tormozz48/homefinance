@@ -44,36 +44,36 @@ module TransactionsHelper
   end
 
   def getIndexTitle(transaction_type)
-    return {0.to_s(10) => I18n.t(:transactions_to_account_list),
-            1.to_s(10) => I18n.t(:transactions_from_account_to_account_list),
-            2.to_s(10) => I18n.t(:transactions_from_account_to_cash_list),
-            3.to_s(10) => I18n.t(:transactions_from_account_to_category_list),
-            4.to_s(10) => I18n.t(:transactions_to_cash_list),
-            5.to_s(10) => I18n.t(:transactions_from_cash_to_account_list),
-            6.to_s(10) => I18n.t(:transactions_from_cash_to_cash_list),
-            7.to_s(10) => I18n.t(:transactions_from_cash_to_category_list)}[transaction_type]
+    return {0.to_s(10) => I18n.t('list.transactions.to_account'),
+            1.to_s(10) => I18n.t('list.transactions.from_account.to_account'),
+            2.to_s(10) => I18n.t('list.transactions.from_account.to_cash'),
+            3.to_s(10) => I18n.t('list.transactions.from_account.to_category'),
+            4.to_s(10) => I18n.t('list.transactions.to_cash'),
+            5.to_s(10) => I18n.t('list.transactions.from_cash.to_account'),
+            6.to_s(10) => I18n.t('list.transactions.from_cash.to_cash'),
+            7.to_s(10) => I18n.t('list.transactions.from_cash.to_category')}[transaction_type]
   end
 
   def getNewTitle(transaction_type)
-    return {0 => I18n.t(:form_new_transaction_to_account_title),
-            1 => I18n.t(:form_new_transaction_from_account_to_account_title),
-            2 => I18n.t(:form_new_transaction_from_account_to_cash_title),
-            3 => I18n.t(:form_new_transaction_from_account_to_category_title),
-            4 => I18n.t(:form_new_transaction_to_cash_title),
-            5 => I18n.t(:form_new_transaction_from_cash_to_account_title),
-            6 => I18n.t(:form_new_transaction_from_cash_to_cash_title),
-            7 => I18n.t(:form_new_transaction_from_cash_to_category_title)}[transaction_type]
+    return {0 => I18n.t('form.title.new.transaction.to_account'),
+            1 => I18n.t('form.title.new.transaction.from_account.to_account'),
+            2 => I18n.t('form.title.new.transaction.from_account.to_cash'),
+            3 => I18n.t('form.title.new.transaction.from_account.to_category'),
+            4 => I18n.t('form.title.new.transaction.to_cash'),
+            5 => I18n.t('form.title.new.transaction.from_cash.to_account'),
+            6 => I18n.t('form.title.new.transaction.from_cash.to_cash'),
+            7 => I18n.t('form.title.new.transaction.from_cash.to_category')}[transaction_type]
   end
 
   def getEditTitle(transaction_type)
     transaction_type
-    return {0 => I18n.t(:form_edit_transaction_to_account_title),
-            1 => I18n.t(:form_edit_transaction_from_account_to_account_title),
-            2 => I18n.t(:form_edit_transaction_from_account_to_cash_title),
-            3 => I18n.t(:form_edit_transaction_from_account_to_category_title),
-            4 => I18n.t(:form_edit_transaction_to_cash_title),
-            5 => I18n.t(:form_edit_transaction_from_cash_to_account_title),
-            6 => I18n.t(:form_edit_transaction_from_cash_to_cash_title),
-            7 => I18n.t(:form_edit_transaction_from_cash_to_category_title)}[transaction_type]
+    return {0 => I18n.t('form.title.edit.transaction.to_account'),
+            1 => I18n.t('form.title.edit.transaction.from_account.to_account'),
+            2 => I18n.t('form.title.edit.transaction.from_account.to_cash'),
+            3 => I18n.t('form.title.edit.transaction.from_account.to_category'),
+            4 => I18n.t('form.title.edit.transaction.to_cash'),
+            5 => I18n.t('form.title.edit.transaction.from_cash.to_account'),
+            6 => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
+            7 => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
   end
 end

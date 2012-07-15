@@ -1,28 +1,28 @@
 <div class="form form-signup">
     <div class="form-header">
-        <span><%=t(:sign_up)%></span>
+        <span><%=t('link.sign.up')%></span>
     </div>
     <div class="form-body">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
             <div class="form-info">
-              <%=t(:info_registration)%>
+              <%=t('info.registration')%>
             </div>
             <br>
-            <div><%= f.label t(:email) %><br />
+            <div><%= f.label t('field.user.email') %><br />
                 <%= f.email_field :email %>
             </div>
-            <div><%= f.label t(:password) %><br />
+            <div><%= f.label t('field.user.password') %><br />
                 <%= f.password_field :password %>
             </div>
-            <div><%= f.label t(:password_confirm) %><br />
+            <div><%= f.label t('field.user.password_confirm') %><br />
                 <%= f.password_field :password_confirmation %>
             </div>
-            <div class="form-buttons"><%= f.submit "", :class=>"register-button", :title=>t(:sign_up) %></div>
+            <div class="form-buttons"><%= f.submit "", :class=>"register-button", :title=>t('link.sign.up') %></div>
         <% end %>
 
         <div class="link-wrapper">
-          <%= link_to t(:button_back), new_session_path(resource_name), :class=>"link" %><br />
+          <%= link_to t('button.back'), new_session_path(resource_name), :class=>"link" %><br />
         </div>
     </div>
     <div class="form-footer"></div>

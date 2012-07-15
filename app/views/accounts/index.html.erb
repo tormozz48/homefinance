@@ -9,9 +9,9 @@
     <table class="data-table">
       <thead>
       <tr>
-        <th class="header-account-amount"><%=t(:amount)%></th>
-        <th class="header-account-name"><%=t(:name)%></th>
-        <th class="header-account-description"><%=t(:description)%></th>
+        <th class="header-account-amount"><%=t('field.account.amount')%></th>
+        <th class="header-account-name"><%=t('field.common.name')%></th>
+        <th class="header-account-description"><%=t('field.common.description')%></th>
         <th></th>
         <th></th>
       </tr>
@@ -24,11 +24,11 @@
             <span class="body-account-name"><strong><%=account.name%></strong></span>
             <span class="body-account-description"><%=account.description%></span>
             <span class="td-delete">
-              <%= link_to t(:button_delete), account,
-                          confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %>
+              <%= link_to t('button.delete'), account,
+                          confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
             </span>
             <span class="td-edit">
-              <%= link_to t(:button_edit), edit_account_path(account, :type => @account_type),:class => "link" %>
+              <%= link_to t('button.edit'), edit_account_path(account, :type => @account_type),:class => "link" %>
             </span>
           </div>
         <% end %>

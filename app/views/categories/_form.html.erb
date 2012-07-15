@@ -1,7 +1,7 @@
 <%= form_for(@category) do |f| %>
     <% if @category.errors.any? %>
         <div id="error_explanation">
-            <h2><%= pluralize(@category.errors.count, t(:error)) %> <%=t(:message_category_errors_header)%></h2>
+            <h2><%= pluralize(@category.errors.count, t('common.error')) %> <%=t('message.error.category.header')%></h2>
             <ul>
                 <% @category.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
@@ -11,17 +11,17 @@
     <% end %>
     <%= f.hidden_field :amount%>
     <%= f.hidden_field :enabled%>
-    <div><%= f.label t(:name) %><br />
+    <div><%= f.label t('field.common.name') %><br />
         <%= f.text_field :name, :class => "input-field"%>
     </div>
-    <div><%= f.label t(:description) %><br />
+    <div><%= f.label t('field.common.description') %><br />
         <%= f.text_area :description, :size => "60x6", :class => "text-area"%>
     </div>
-    <div><%= f.label t(:color) %><br />
+    <div><%= f.label t('field.category.color') %><br />
         <%= f.text_field :color, :id => "colorFieldId", :class => "category-color-field", :readOnly => true%>
     </div>
     <div class="actions form-buttons">
-        <%= f.submit "", :class=>"save-button", :title=>t(:button_save)%>
+        <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>
     </div>
 <% end %>
 

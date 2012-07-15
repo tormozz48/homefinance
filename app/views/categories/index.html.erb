@@ -1,17 +1,17 @@
 <div class="table-wrapper">
   <div class="table-wrapper-header">
     <span>
-      <%=t(:categories_list)%>
+      <%=t('list.categories')%>
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t(:add_new_category), new_category_path, :class => "link" %>
+    <%= link_to t('add.category'), new_category_path, :class => "link" %>
     <table class="data-table" >
       <thead>
           <tr>
-            <th class="header-category-color"><%=t(:color)%></th>
-            <th class="header-category-name"><%=t(:name)%></th>
-            <th class="header-category-description"><%=t(:description)%></th>
+            <th class="header-category-color"><%=t('field.category.color')%></th>
+            <th class="header-category-name"><%=t('field.common.name')%></th>
+            <th class="header-category-description"><%=t('field.common.description')%></th>
             <th></th>
             <th></th>
           </tr>
@@ -26,8 +26,8 @@
             <span class="body-category-name"><strong><%=category.name%></strong></span>
             <span class="body-category-description"><%=category.description%></span>
             <span class="td-delete">
-                <%= link_to t(:button_delete), category, confirm: t(:message_record_delete_confirm), method: :delete, :class => "link link-delete" %></span>
-            <span class="td-edit"><%= link_to t(:button_edit), edit_category_path(category),:class => "link" %></span>
+                <%= link_to t('button.delete'), category, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %></span>
+            <span class="td-edit"><%= link_to t('button.edit'), edit_category_path(category),:class => "link" %></span>
           </div>
       <% end %>
     </div>

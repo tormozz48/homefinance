@@ -1,152 +1,175 @@
 ru:
-  application_title: "Домашние финансы"
-  application_description: "Удобный сайт для ведения домашней бухгалтерии, отслеживания доходов и расходов."
-  welcome: "Пользователь:"
-  error: "Ошибка"
-  form_login_title: "Вход в программу"
-  email: "E-Mail:"
-  password: "Пароль:"
-  first_name: "Имя:"
-  last_name: "Фамилия:"
-  password_new: "Новый пароль:"
-  password_confirm: "Подтверждение пароля:"
-  remember_me: "Запомнить меня"
-  sign_in: "Вход"
-  sign_up: "Регистрация"
-  to_login_page: "Вернуться на страницу логина"
-  forgot_password: "Забыли пароль?"
-  didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
-  resend_confirmation_instructions: "Выслать письмо с подтверждением"
-  change_password: "Изменить пароль"
-  edit_user_profile_title: "Редактирование профиля пользователя"
+  application:
+    title: "Домашние финансы"
+    description: "Удобный сайт для ведения домашней бухгалтерии, отслеживания доходов и расходов."
+    user: "Пользователь:"
 
-  button_save: "Сохранить"
-  button_back: "Назад"
-  button_show: "Просмотр"
-  button_edit: "Редактировать"
-  button_delete: "Удалить"
-  button_send: "Выслать письмо"
-  button_statistic_show: "Показать статистику"
-
-  name: "Название:"
-  description: "Описание:"
-  amount: "Баланс:"
-  color: "Цвет:"
-  date: "Дата:"
-  comment: "Комментарий:"
-  summa: "Сумма:"
-  weight: "Вес:"
-  training: "Тренировка:"
-  time: "Время"
-  overweight: "Переедание"
-  day_difference: "Разница за день:"
-  week_difference: "за неделю:"
-  month_difference: "за месяц:"
-  time: "Время:"
-  food: "Еда:"
-  overweight: "Переедание:"
-  violation: "Нарушение:"
-  normal: "Норма:"
-  eating_type: "Тип приема пищи:"
-
-  reserved_name: "Не определено"
-
-  #categories
-  categories_list: "Список категорий расходов"
-  add_new_category: "Добавить новую категорию расходов"
-  form_new_category_title: "Добавление новой категории расходов"
-  form_edit_category_title: "Редактирование категории расходов"
-
-  #accounts
-  account_cards_list: "Список банковских счетов"
-  account_cashes_list: "Список кошельков с наличными"
-  add_new_account_card: "Добавить новый банковский счет"
-  add_new_account_cash: "Добавить новый кошелек с наличными"
-  form_new_account_card_title: "Добавление нового банковского счета"
-  form_new_account_cash_title: "Добавление нового кошелька с наличными"
-  form_edit_account_card_title: "Редактирование банковского счета"
-  form_edit_account_cash_title: "Редактирование кошелька с наличными"
-
-  #transactions
-  add_new_transaction: "Добавить новую транзакцию"
-
-  account_from: "Со счета:"
-  account_to: "На счет:"
-  cash_from: "Из наличных:"
-  cash_to: "В наличные:"
-  category: "Категория расходов:"
-
-  transactions_to_account_list: "Список поступлений на банковский счет"
-  transactions_from_account_to_account_list: "Список переводов между счетами"
-  transactions_from_account_to_cash_list: "Список процедур обналичивания"
-  transactions_from_account_to_category_list: "Список прямых оплат со счетов"
-  transactions_to_cash_list: "Список поступления наличных"
-  transactions_from_cash_to_account_list: "Список переводов наличных на счета"
-  transactions_from_cash_to_cash_list: "Список процедур обмена наличными"
-  transactions_from_cash_to_category_list: "Список расходов наличных"
-
-  form_new_transaction_to_account_title: "Добавление нового поступления на банковский счет"
-  form_new_transaction_from_account_to_account_title: "Добавление нового перевода между счетами"
-  form_new_transaction_from_account_to_cash_title: "Добавление новой процедуры обналичивания"
-  form_new_transaction_from_account_to_category_title: "Добавление новой электронной оплаты со счета"
-  form_new_transaction_to_cash_title: "Добавление нового поступления наличных"
-  form_new_transaction_from_cash_to_account_title: "Добавление нового перевода наличных на счет"
-  form_new_transaction_from_cash_to_cash_title: "Добавление новой процедуры обмена наличными"
-  form_new_transaction_from_cash_to_category_title: "Добавление нового расхода наличных"
-
-  form_edit_transaction_to_account_title: "Редактирование поступления на банковский счет"
-  form_edit_transaction_from_account_to_account_title: "Редактирование перевода между счетами"
-  form_edit_transaction_from_account_to_cash_title: "Редактирование процедуры обналичивания"
-  form_edit_transaction_from_account_to_category_title: "Редактирование электронной оплаты со счета"
-  form_edit_transaction_to_cash_title: "Редактирование поступления наличных"
-  form_edit_transaction_from_cash_to_account_title: "Редактирование перевода наличных на счет"
-  form_edit_transaction_from_cash_to_cash_title: "Редактирование процедуры обмена наличными"
-  form_edit_transaction_from_cash_to_category_title: "Редактирование расхода наличных"
-
-  #statistic
-  statistic_date_title: "Статистика транзакций по дате"
-  statistic_category_title: "Статистика расходов по категориям"
-  date_from: "От:"
-  date_to: "До:"
-  transaction_type: "Тип транзакции:"
-  category_other: "Другое"
   categories_display_count: "Показывать категорий без группировки:"
 
-  #weights
-  weights_list: "Список записей веса"
-  add_new_weight: "Добавить новую запись"
-  add_new_eating: "+Прием пищи"
-  form_new_weight_title: "Добавление новой записи веса"
-  form_edit_weight_title: "Редактирование записи веса"
-  chart_weight_title: "График изменения веса"
+  link:
+    sign:
+      in: "Вход"
+      up: "Регистрация"
+    to_login_page: "Вернуться на страницу логина"
+    forgot_password: "Забыли пароль?"
+    resend_confirmation_instructions: "Выслать письмо с подтверждением"
+    didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
+    change_password: "Изменить пароль"
 
-  #eatings
-  form_new_eating_title: "Добавление новой записи приема пищи"
-  form_edit_eating_title: "Редактирование записи приема пищи"
+  common:
+    error: "Ошибка"
+    undefined: "Не определено"
+    other: "Другое"
 
+  field:
+    common:
+      name: "Название:"
+      description: "Описание:"
+      date: "Дата:"
+      date_from: "От:"
+      date_to: "До:"
+    user:
+      email: "E-Mail:"
+      password: "Пароль:"
+      first_name: "Имя:"
+      last_name: "Фамилия:"
+      password_new: "Новый пароль:"
+      password_confirm: "Подтверждение пароля:"
+      remember_me: "Запомнить меня"
+    account:
+      amount: "Баланс:"
+    category:
+      color: "Цвет:"
+    transaction:
+      comment: "Комментарий:"
+      summa: "Сумма:"
+      account_from: "Со счета:"
+      account_to: "На счет:"
+      cash_from: "Из наличных:"
+      cash_to: "В наличные:"
+      category: "Категория расходов:"
+      type: "Тип транзакции:"
+    weight:
+      weight: "Вес:"
+      training: "Тренировка:"
+      day_difference: "Разница за день:"
+      week_difference: "за неделю:"
+      month_difference: "за месяц:"
+    eating:
+      eating_type: "Тип приема пищи:"
+      time: "Время"
+      food: "Еда:"
+      overweight: "Переедание"
+      violation: "Нарушение:"
+      normal: "Норма:"
+
+  button:
+    save: "Сохранить"
+    back: "Назад"
+    show: "Просмотр"
+    edit: "Редактировать"
+    delete: "Удалить"
+    send: "Выслать письмо"
+
+  list:
+    categories: "Список категорий расходов"
+    account:
+      cards:  "Список банковских счетов"
+      cashes: "Список кошельков с наличными"
+    transactions:
+      to_account: "Список поступлений на банковский счет"
+      from_account:
+        to_account: "Список переводов между счетами"
+        to_cash: "Список процедур обналичивания"
+        to_category: "Список прямых оплат со счетов"
+      to_cash: "Список поступления наличных"
+      from_cash:
+        to_account: "Список переводов наличных на счета"
+        to_cash: "Список процедур обмена наличными"
+        to_category: "Список расходов наличных"
+    weights: "Список записей веса"
+
+  add:
+    category: "Добавить новую категорию расходов"
+    account:
+      card: "Добавить новый банковский счет"
+      cash: "Добавить новый кошелек с наличными"
+    transaction: "Добавить транзакцию"
+    weight: "Добавить новую запись веса"
+    eating: "+Прием пищи"
+
+  form:
+    title:
+      new:
+        category: "Добавление новой категории расходов"
+        account:
+          card: "Добавление нового банковского счета"
+          cash: "Добавление нового кошелька с наличными"
+        transaction:
+          to_account: "Добавление нового поступления на банковский счет"
+          from_account:
+            to_account: "Добавление нового перевода между счетами"
+            to_cash: "Добавление новой процедуры обналичивания"
+            to_category: "Добавление новой электронной оплаты со счета"
+          to_cash: "Добавление нового поступления наличных"
+          from_cash:
+            to_account: "Добавление нового перевода наличных на счет"
+            to_cash: "Добавление новой процедуры обмена наличными"
+            to_category: "Добавление нового расхода наличных"
+        weight: "Добавление новой записи веса"
+        eating: "Добавление новой записи приема пищи"
+      edit:
+        category: "Редактирование категории расходов"
+        account:
+          card: "Редактирование банковского счета"
+          cash: "Редактирование кошелька с наличными"
+        transaction:
+          to_account: "Редактирование поступления на банковский счет"
+          from_account:
+            to_account: "Редактирование перевода между счетами"
+            to_cash: "Редактирование процедуры обналичивания"
+            to_category: "Редактирование электронной оплаты со счета"
+          to_cash: "Редактирование поступления наличных"
+          from_cash:
+            to_account: "Редактирование перевода наличных на счет"
+            to_cash: "Редактирование процедуры обмена наличными"
+            to_category: "Редактирование расхода наличных"
+        weight: "Редактирование записи веса"
+        eating: "Редактирование записи приема пищи"
+        user:
+          profile: "Редактирование профиля пользователя"
+      statistic:
+        date: "Статистика транзакций по дате"
+        category: "Статистика расходов по категориям"
+        weight: "График изменения веса"
+      login: "Вход в программу"
   #eating types
-  eating_type_breakfast: "Завтрак"
-  eating_type_lunch1: "Ланч"
-  eating_type_afternoon: "Обед"
-  eating_type_dinner: "Ужин"
-  eating_type_lunch2: "Полдник"
-  eating_type_additional: "Перекус"
+  eating:
+    type:
+      breakfast: "Завтрак"
+      lunch1: "Ланч"
+      afternoon: "Обед"
+      dinner: "Ужин"
+      lunch2: "Полдник"
+      additional: "Перекус"
 
   #mail messages
-  mail_sign_up_title: "Добро пожаловать"
-  mail_sign_up_message: "Для подтверждения регистрации перейдите по ссылке:"
-  mail_sign_up_link: "Подтверждение регистрации"
-
-  mail_unlock_title: "Добрый день"
-  mail_unlock_message1: "Ваш аккаунт был заблокирован после нескольких попыток входа."
-  mail_unlock_message2: "Перейдите по ссылке чтобы разблокировать ваш аккаунт:"
-  mail_unlock_link: "Разблокировать аккаунт"
-
-  mail_reset_password_title: "Добрый день"
-  mail_reset_password_message1: "Кто-то сделал запрос на изменение вашего пароля. Вы можете сделать это перейдя по ссылке ниже."
-  mail_reset_password_message2: "Если данный запрос отправлен не вами, пожалуйста проигнорируйте это письмо."
-  mail_reset_password_message3: "Ваш пароль не будет изменен пока вы не перейдете по ссылке и не создадите новый."
-  mail_reset_password_link: "Изменить пароль"
+  mail:
+    sign_up:
+      title: "Добро пожаловать"
+      message: "Для подтверждения регистрации перейдите по ссылке:"
+      link: "Подтверждение регистрации"
+    unlock:
+      title: "Добрый день"
+      message1: "Ваш аккаунт был заблокирован после нескольких попыток входа."
+      message2: "Перейдите по ссылке чтобы разблокировать ваш аккаунт:"
+      link: "Разблокировать аккаунт"
+    reset_password:
+      title: "Добрый день"
+      message1: "Кто-то сделал запрос на изменение вашего пароля. Вы можете сделать это перейдя по ссылке ниже."
+      message2: "Если данный запрос отправлен не вами, пожалуйста проигнорируйте это письмо."
+      message3: "Ваш пароль не будет изменен пока вы не перейдете по ссылке и не создадите новый."
+      link: "Изменить пароль"
 
   #menu
   menu:
@@ -177,24 +200,37 @@ ru:
       logout: "Выход"
 
   #messages
-  message_logout_confirm: "Вы действительно хотите выйти из приложения?"
-  message_record_delete_confirm: "Вы действительно хотите удалить эту запись?"
-  message_category_errors_header: "обнаружено при попытке сохранить категорию:"
-  message_account_card_errors_header: "обнаружено при попытке сохранить банковский счет:"
-  message_account_cash_errors_header: "обнаружено при попытке сохранить кошелек с наличными:"
-  message_transaction_errors_header: "обнаружено при попытке сохранить транзакцию:"
-  message_weight_errors_header: "обнаружено при попытке сохранить запись веса:"
-  message_eating_errors_header: "обнаружено при попытке сохранить запись питания:"
-  message_error_account_negative: "Баланс на счету не может быть отрицательным"
-  message_error_name_reserved: "Такое название зарезервировано в системе"
-  message_error_empty_account: "Не выбран банковский счет или кошелек с наличными"
-  message_error_empty_category: "Не выбрана категория расходов"
+  message:
+    confirm:
+      logout: "Вы действительно хотите выйти из приложения?"
+      delete: "Вы действительно хотите удалить эту запись?"
+    error:
+      account:
+        empty: "Не выбран банковский счет или кошелек с наличными"
+        negative: "Баланс на счету не может быть отрицательным"
+        header:
+          card: "обнаружено при попытке сохранить банковский счет:"
+          cash: "обнаружено при попытке сохранить кошелек с наличными:"
+      category:
+        empty: "Не выбрана категория расходов"
+        reserved: "Такое название зарезервировано в системе"
+        header: "обнаружено при попытке сохранить категорию:"
+      transaction:
+        header: "обнаружено при попытке сохранить транзакцию:"
+      weight:
+        header: "обнаружено при попытке сохранить запись веса:"
+      eating:
+        header: "обнаружено при попытке сохранить запись питания:"
+      user:
+        header: "обнаружено пр попытке сохранить профильпользователя:"
 
-  info_registration: "Заполните поля формы и нажмите на кнопку регистрации. После этого на ваш E-Mail будет
+
+  info:
+    registration: "Заполните поля формы и нажмите на кнопку регистрации. После этого на ваш E-Mail будет
                    отправлено письмо с подтверждением регистрации."
-  info_forgot_password: "Введите свой E-Mail и нажмите на кнопку 'Выслать письмо'. После это на ваш E-Mail будет
+    forgot_password: "Введите свой E-Mail и нажмите на кнопку 'Выслать письмо'. После это на ваш E-Mail будет
                     отправлено письмо с дальнейшими указаниями по смене пароля."
-  info_change_password: "Введите новый пароль и подтвердите его. Нажмите кнопку 'Сохранить' чтобы изменения вступили в силу"
+    change_password: "Введите новый пароль и подтвердите его. Нажмите кнопку 'Сохранить' чтобы изменения вступили в силу"
 
   errors:
     messages:

@@ -3,7 +3,12 @@ Homefinance2::Application.routes.draw do
   resources :weights
   resources :eatings
 
-  resources :transactions
+  resources :transactions do
+    collection do
+      post 'filter'
+    end
+  end
+
   resources :categories
   resources :accounts
   devise_for :users

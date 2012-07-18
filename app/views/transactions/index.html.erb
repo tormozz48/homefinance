@@ -6,7 +6,7 @@
   </div>
   <div class="table-wrapper-body">
     <%= link_to t('add.transaction'), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
-    <%= form_tag(transactions_path(:type =>@transaction_type), :id =>"transactionFilterFormId", :method=>:get, :remote => false, :class => "transaction-filter-form") do -%>
+    <%= form_tag(filter_transactions_path(:type =>@transaction_type), :id =>"transactionFilterFormId", :method=>:post, :remote => false, :class => "transaction-filter-form") do -%>
         <div class="transaction-filter-form">
           <%=hidden_field_tag 'type', @transaction_type%>
           <%= label_tag "date_from", t('field.common.date_from'), :class => "statistic-date-label-left"%>

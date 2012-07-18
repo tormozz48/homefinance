@@ -24,8 +24,13 @@ class TransactionsController < ApplicationController
     @categories = Category.where("enabled = true").order("name asc")
   end
 
-  def show
-
+  def filter
+    respond_to do |format|
+      format.html { redirect_to transactions_path(:type => params[:type],
+                                                  :date_from => params[:date_from],
+                                                  :date_to => params[:date_to],
+                                                  :category => params[:category])}
+    end
   end
 
   def new

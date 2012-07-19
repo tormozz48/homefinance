@@ -16,7 +16,12 @@ Homefinance2::Application.routes.draw do
     end
   end
 
-  resources :accounts
+  resources :accounts do
+    collection do
+      get 'load'
+      post 'sort'
+    end
+  end
   devise_for :users
 
   match 'statistic_date', :to => 'statistics#initStatisticByDate'

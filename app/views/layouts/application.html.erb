@@ -16,7 +16,7 @@
 
             <div class="current-user">
               <%if !current_user.nil? %>
-                <%=t('application.user')+" "+user_full_name %>
+                <%=t('application.user')%><span><%=user_full_name%></span>
               <%end%>
             </div>
         </div>

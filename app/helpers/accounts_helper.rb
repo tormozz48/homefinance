@@ -41,4 +41,12 @@ module AccountsHelper
       return I18n.t('form.title.edit.account.cash')
     end
   end
+
+  def getAccountsSortingOptionList
+    str = ""
+    str += "<option value='name'>"+I18n.t('field.common.name')+"</option>"
+    str += "<option value='description'>"+I18n.t('field.common.description')+"</option>"
+    str += "<option value='amount'>"+I18n.t('field.account.amount')+"</option>"
+    return str
+  end
 end

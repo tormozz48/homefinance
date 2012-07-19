@@ -6,6 +6,14 @@
   </div>
   <div class="table-wrapper-body">
     <%=getAddButtonLink(@account_type)%>
+    <%= form_tag(sort_accounts_path, :id =>"accountSortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
+        <div class="category-sorting-form">
+          <%= hidden_field_tag "type", @account_type%>
+          <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
+          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field_id"%>
+          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction_id"%>
+        </div>
+    <% end -%>
     <table class="data-table">
       <thead>
       <tr>
@@ -18,27 +26,13 @@
       </thead>
     </table>
     <div class="data-wrapper">
-        <% @accounts.each do |account| %>
-          <div class="data-item account-data-item">
-            <span class="body-account-amount"><strong><%=account.amount%></strong></span>
-            <span class="body-account-name"><strong><%=account.name%></strong></span>
-            <span class="body-account-description"><%=account.description%></span>
-            <span class="td-delete">
-              <%= link_to t('button.delete'), account,
-                          confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-            </span>
-            <span class="td-edit">
-              <%= link_to t('button.edit'), edit_account_path(account, :type => @account_type),:class => "link" %>
-            </span>
-          </div>
-        <% end %>
+      <!--accounts will be rendered here-->
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        resizeDataWrapper();
-        jQuery(window).resize(function(){resizeDataWrapper();});
+       accountsListInit(<%=@account_type%>)
     });
 </script>

@@ -3,16 +3,26 @@ class AccountsController < ApplicationController
 
   def index
     @account_type = params[:type]
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(@account_type, current_user.id, true)
-
-    respond_to do |format|
-      format.html # statistic_date.html.erb
-      format.json { render :json => [@accounts, @account_type] }
-    end
   end
 
-  def show
+  def load
+    account_type = params[:type]
 
+    field = params[:field].nil? ? "name" : params[:field]
+    direction = params[:direction].nil? ? "asc" : params[:direction]
+    sortStr = field + " " + direction
+
+    @accounts = Account.order(sortStr).find_all_by_account_type_and_user_id_and_enabled(account_type, current_user.id, true)
+    render :partial => "accounts"
+  end
+
+  def sort
+    respond_to do |format|
+      format.html { redirect_to load_accounts_path(
+                                    :type => params[:type],
+                                    :field => params[:field],
+                                    :direction => params[:direction])}
+    end
   end
 
   def new

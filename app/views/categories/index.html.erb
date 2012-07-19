@@ -8,7 +8,7 @@
     <%= link_to t('add.category'), new_category_path, :class => "link" %>
     <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
         <div class="category-sorting-form">
-           <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label"%>
+           <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
            <%= select_tag "field", getCategoriesSortingOptionList.html_safe , :id => "field_id"%>
            <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction_id"%>
         </div>

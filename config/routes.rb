@@ -9,7 +9,13 @@ Homefinance2::Application.routes.draw do
     end
   end
 
-  resources :categories
+  resources :categories do
+    collection do
+      get 'load'
+      post 'sort'
+    end
+  end
+
   resources :accounts
   devise_for :users
 

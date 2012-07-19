@@ -5,6 +5,7 @@ ru:
     user: "Пользователь:"
 
   categories_display_count: "Показывать категорий без группировки:"
+  sorting_by: "Сортировать по:"
 
   link:
     sign:
@@ -20,6 +21,9 @@ ru:
     error: "Ошибка"
     undefined: "Не определено"
     other: "Другое"
+    sorting:
+      asc: "По возрастанию"
+      desc: "По убыванию"
 
   field:
     common:
@@ -57,9 +61,9 @@ ru:
       month_difference: "за месяц:"
     eating:
       eating_type: "Тип приема пищи:"
-      time: "Время"
+      time: "Время:"
       food: "Еда:"
-      overweight: "Переедание"
+      overweight: "Переедание:"
       violation: "Нарушение:"
       normal: "Норма:"
 

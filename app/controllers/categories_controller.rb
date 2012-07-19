@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.find_all_by_user_id_and_enabled(current_user.id, true)
+    @categories = Category.order("name asc").find_all_by_user_id_and_enabled(current_user.id, true)
     respond_to do |format|
       format.html
       format.json { render json: @categories }

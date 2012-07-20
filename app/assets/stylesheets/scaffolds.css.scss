@@ -2,15 +2,15 @@ html, body{
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url(image_path('background1.png')) #222 repeat;
+  //background: url(image_path('background1.png')) #222 repeat;
   font: normal 90% verdana, arial, helvetica, sans-serif;
 }
 
 .viewport {
-  width: 90%;
+  width: 100%;
   height: 100%;
   margin: auto;
-  background: url(image_path('background.png')) #222 repeat;
+  background: url(image_path('background1.png')) #222 repeat;
   border-left: 1px solid black;
   border-right:1px solid black;
 }
@@ -47,21 +47,22 @@ html, body{
 //and logged user full name or email if user already logged in application
 .header{
   width: 100%;
-  height: 35px;
-  padding: .5% 0 0 0;
+  height: 28px;
   background-color: #4682b4;
   color: #fff;
 }
 
 .header > .logo,
-.header > .logo-image{
+.header > .logo-image,
+.header > .current-user{
   display: inline-block;
-  margin-left: 0.8%;
 }
 
 .header > .logo{
+  margin-top: 3px;
+  line-height: 18px;
   vertical-align: top;
-  font-size:  2em;
+  font-size:  1.8em;
   text-align: left;
   text-shadow: black 1px 1px 2px, red 0 0 1em;
 }
@@ -73,10 +74,10 @@ html, body{
 }
 
 .current-user{
-  width: 30%;
   float: right;
-  margin-top: 0.5%;
-  padding-right: 2%;
+  width: 400px;
+  margin-top: 5px;
+  margin-right: 10px;
   text-align: right;
   font-size: 1.1em;
 }
@@ -85,6 +86,11 @@ html, body{
   padding-left: 3%;
   font-weight: bold;
 }
+
+.current-user span a{
+  color: #fff;
+}
+
 
 .content{
   margin: 0.5%;
@@ -96,6 +102,10 @@ html, body{
   background-color: #fff;
   border: 1px solid #4682b4;
   border-radius: 10px;
+}
+
+.table-wrapper{
+  border: none;
 }
 
 .form-header, .table-wrapper-header{
@@ -115,18 +125,14 @@ html, body{
   border-radius: 0 0 10px 10px;
 }
 
+.table-wrapper-body{
+  padding: 0.8%;
+}
+
 .form-info{
-  padding: 5px;
+  padding: 1%;
   border: 1px solid #4682b4;
   border-radius: 5px;
-}
-
-.remember-me{
-  margin-top: 5px;
-}
-
-.form-buttons{
-  padding-top: 5px;
 }
 
 .form-buttons input{
@@ -166,7 +172,7 @@ html, body{
 .link{
   padding: 4px;
   background-color: #4682b4;
-  color: #ffffff !important;
+  color: #fff !important;
   font-weight: bold;
   border-color: #111 !important;
   border-radius: 5px;
@@ -183,11 +189,11 @@ html, body{
 }
 
 .link-delete{
-  background-color: #aa0000;
+  background-color: #a00;
 }
 
 .link-delete:hover{
-  background-color: #ee0000;
+  background-color: #e00;
 }
 
 .data-table{
@@ -211,19 +217,7 @@ html, body{
   padding-top: 6px;
 }
 
-.data-table td.td-edit{
-  width: 130px;
-  border-left: none;
-  border-right: none;
-}
-
-.data-table td.td-delete{
-  width: 80px;
-  border-left: none;
-}
-
 .data-wrapper{
-  height: 400px;
   overflow: auto;
 }
 
@@ -235,19 +229,197 @@ html, body{
   border-radius: 5px;
 }
 
-.td-edit{
-  width: 130px;
+.td-edit, .td-delete{
   display: inline-block;
   float: right
 }
 
+.td-edit{
+  width: 125px;
+}
+
 .td-delete{
-  width: 70px;
-  display: inline-block;
-  float: right
+  width: 68px;
 }
 
 .paginator{
   display: inline-block;
   float: right;
+}
+
+//categories
+.form-category{
+  width: 500px;
+}
+
+.category-color-field{
+  width: 60px;
+}
+
+.color-div{
+  display: inline-block;
+  width: 50px;
+}
+
+.category-sorting-form{
+  display: inline-block;
+  float: right;
+  height: 25px;
+}
+
+//accounts
+.amount-input-field{
+  width: 140px !important;
+}
+
+//transactions
+.emptyh20{
+  height: 20px;
+}
+
+.form-transaction{
+  width: 500px;
+  height: auto;
+}
+
+.div-padding5{
+  padding-top: 5px;
+}
+
+.account-select{
+  width: 300px;
+}
+
+.account-name{
+  font-weight: bold;
+}
+
+.transaction-filter-form{
+  display: inline-block;
+  width: 600px;
+}
+
+//weights
+.weight-data-item{
+  background-color: #eef;
+}
+
+.td-add_eating{
+  width: 117px;
+}
+
+.form-weight{
+  width: 500px;
+  height: auto;
+}
+
+.weight-input-field{
+  width: 120px;
+}
+
+.training-input-field{
+  width: 30px;
+  padding-top: 5px;
+}
+
+.new_eating_link{
+  margin-top: 15px;
+}
+
+
+.marker{
+  width: 24px;
+  margin-left: 38px;
+  background: url(image_path('icons/marker24.png')) no-repeat;
+}
+
+//eatings
+.eating-type-select{
+  width: 130px;
+}
+
+.eating-wrapper{
+  margin-top: 15px;
+}
+
+.eating-type{
+  width: 150px;
+  font-weight: bold;
+}
+
+.eating-time{
+  width: 100px;
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.eating-food{
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.eating-food-normal{
+  color: #080;
+}
+
+.eating-food-overweight{
+  color: #800;
+}
+
+.eating-food-violation{
+  color: #D90;
+}
+
+.link-small{
+  font-size: 10px;
+}
+
+.eating-data-item{
+  margin-top: 7px;
+}
+
+.eating-color-description{
+  display: inline;
+  margin-left: 30px;
+}
+
+.eating-color-overweight,
+.eating-color-violation,
+.eating-color-normal{
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+}
+
+.eating-color-overweight{
+  background-color: #800;
+}
+
+.eating-color-violation{
+  background-color: #D90;
+}
+
+.eating-color-normal{
+  background-color: #080;
+}
+
+//statistics
+.statistic-table-wrapper-body{
+  border-radius: 10px 10px 0 0;
+}
+
+.statistic-graph-wrapper{
+  width: 100%;
+  min-width: 200px;
+  height: 400px;
+}
+
+.statistic-date-label{
+  margin-left: 15px;
+}
+
+.statistic-date-field{
+  width: 80px;
 }

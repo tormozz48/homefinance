@@ -4,7 +4,7 @@
       <%=t('form.title.statistic.category')%>
     </span>
   </div>
-  <div class="table-wrapper-body">
+  <div class="table-wrapper-body statistic-table-wrapper-body">
     <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true, :class => "statisticForm") do -%>
         <div class="statistic-form-wrapper">
           <%= label_tag "date_from", t('field.common.date_from')%>

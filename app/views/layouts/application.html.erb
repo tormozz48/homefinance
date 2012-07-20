@@ -13,10 +13,11 @@
         <div class="header">
             <div class="logo-image"></div>
             <div class="logo"><%=t('application.title')%></div>
-
             <div class="current-user">
               <%if !current_user.nil? %>
-                <%=t('application.user')%><span><%=user_full_name%></span>
+                <%=t('application.user')%><span><%=link_to user_full_name, edit_user_profile_path%></span>
+                <span><%=link_to t('menu.logout'), destroy_user_session_path,
+                             {:method=>"DELETE", :id=>"sign_out", :confirm => t('message.confirm.logout')} %></span>
               <%end%>
             </div>
         </div>

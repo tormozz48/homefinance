@@ -15,7 +15,7 @@ function initStatisticByDateChartOptions(title, x_title, y_title){
         chart: {
             renderTo: 'chartContainer',
             type: 'spline',
-            borderRadius: 10
+            borderRadius: 0
         },
         colors:[],
         title: {text: title},
@@ -62,7 +62,8 @@ function initCategoryChartOptions(title, other){
             renderTo: 'chartContainer',
             plotBackgroundColor: null,
             plotBorderWidth: null,
-            plotShadow: false
+            plotShadow: false,
+            borderRadius: 0
         },
         title: {
             text: title

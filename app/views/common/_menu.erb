@@ -29,13 +29,6 @@
               <li><%= link_to t('menu.fooddiary.statistic'), statistic_weight_path %></li>
             </ul>
           </li>
-          <li>
-              <%=link_to t('menu.profile'), edit_user_profile_path%>
-          </li>
-          <li>
-               <%=link_to t('menu.logout'), destroy_user_session_path,
-                          {:method=>"DELETE", :id=>"sign_out", :confirm => t('message.confirm.logout')} %>
-          </li>
         </ul>
       </div>
     </div>

@@ -1,0 +1,161 @@
+//-- transactions data columns--//
+.body-transaction-date,
+.body-transaction-summa,
+.body-transaction-account{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.header-transaction-date,
+.body-transaction-date{
+  width: 10%;
+  min-width: 83px;
+}
+
+.body-transaction-date{
+  font-weight: bold;
+}
+
+.header-transaction-summa,
+.body-transaction-summa{
+  font-weight: bold;
+  width: 7%;
+  min-width: 62px;
+}
+
+.header-transaction-account,
+.body-transaction-account{
+  width: 25%;
+  min-width: 185px;
+}
+
+.body-transaction-comment{
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+//-- accounts data columns--//
+.account-data-item,
+.category-data-item{
+  background-color: #eef;
+}
+
+.body-account-amount,
+.body-account-name,
+.body-account-description{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.header-account-amount,
+.body-account-amount{
+  width: 10%;
+  min-width: 60px;
+}
+
+.header-account-name,
+.body-account-name,
+.header-account-description,
+.body-account-description{
+  width: 30%;
+  min-width: 150px;
+}
+
+//-- categories data columns--//
+.body-category-color,
+.body-category-name,
+.body-category-description{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.header-category-color,
+.body-category-color{
+  width: 4%;
+  min-width: 45px;
+}
+
+.body-category-color div{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.header-category-name,
+.body-category-name{
+  width: 20%;
+  min-width: 150px;
+}
+
+.header-category-description,
+.body-category-description{
+  width: 40%;
+  min-width: 150px;
+}
+
+//-- weights --//
+.header-weight-date{
+  width: 90px;
+}
+
+.header-weight-weight{
+  width: 50px;
+}
+
+.header-weight-training{
+  width: 100px;
+}
+
+.header-weight-day-difference{
+  width: 140px;
+}
+
+.header-weight-week-difference{
+  width: 100px;
+}
+
+.header-weight-month-difference{
+  width: 100px;
+}
+
+.body-weight-date,
+.body-weight-weight,
+.body-weight-training,
+.body-weight-day-difference,
+.body-weight-week-difference,
+.body-weight-month-difference{
+  display:  inline-block;
+}
+
+.body-weight-date{
+  width: 90px;
+}
+
+.body-weight-weight{
+  font-weight: bold;
+  width: 50px;
+}
+
+.body-weight-training{
+  width: 100px;
+}
+
+.body-weight-training,
+.body-weight-day-difference,
+.body-weight-week-difference,
+.body-weight-month-difference{
+  text-align: center;
+}
+
+.body-weight-day-difference{
+  width: 140px;
+}
+
+.body-weight-week-difference{
+  width: 100px;
+}
+
+.body-weight-month-difference{
+  width: 100px;
+}

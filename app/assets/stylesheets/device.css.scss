@@ -1,5 +1,5 @@
 .form-login{
-  width: 330px;
+  width: 340px;
 }
 
 .form-signup{
@@ -23,10 +23,17 @@
   background: url(image_path('icons/send48.png')) no-repeat;
 }
 
-.remember-email-input-field{
-  width: 368px;
-}
-
 .login-form-input-field{
   width: 235px;
+}
+
+.remember-me{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.form-info{
+  padding: 5px;
+  border: 1px solid #4682b4;
+  border-radius: 5px;
 }

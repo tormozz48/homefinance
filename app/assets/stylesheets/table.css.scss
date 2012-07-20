@@ -1,3 +1,7 @@
+.header-buttons{
+  width: 165px;
+}
+
 //-- transactions data columns--//
 .body-transaction-date,
 .body-transaction-summa,
@@ -31,7 +35,7 @@
 
 .body-transaction-comment{
   padding-top: 5px;
-  padding-left: 10px;
+  padding-left: 170px;
   padding-right: 10px;
 }
 
@@ -95,30 +99,6 @@
 }
 
 //-- weights --//
-.header-weight-date{
-  width: 90px;
-}
-
-.header-weight-weight{
-  width: 50px;
-}
-
-.header-weight-training{
-  width: 100px;
-}
-
-.header-weight-day-difference{
-  width: 140px;
-}
-
-.header-weight-week-difference{
-  width: 100px;
-}
-
-.header-weight-month-difference{
-  width: 100px;
-}
-
 .body-weight-date,
 .body-weight-weight,
 .body-weight-training,
@@ -128,17 +108,36 @@
   display:  inline-block;
 }
 
+.header-weight-date,
 .body-weight-date{
-  width: 90px;
+  width: 6%;
+  min-width: 80px;
+}
+
+.header-weight-weight,
+.body-weight-weight{
+  width: 7%;
+  min-width: 50px;
 }
 
 .body-weight-weight{
   font-weight: bold;
-  width: 50px;
 }
 
-.body-weight-training{
-  width: 100px;
+.header-weight-training,
+.body-weight-training,
+.header-weight-week-difference,
+.body-weight-week-difference,
+.header-weight-month-difference,
+.body-weight-month-difference{
+  width: 7%;
+  min-width: 90px;
+}
+
+.header-weight-day-difference,
+.body-weight-day-difference{
+  width: 11%;
+  min-width: 135px;
 }
 
 .body-weight-training,
@@ -146,16 +145,4 @@
 .body-weight-week-difference,
 .body-weight-month-difference{
   text-align: center;
-}
-
-.body-weight-day-difference{
-  width: 140px;
-}
-
-.body-weight-week-difference{
-  width: 100px;
-}
-
-.body-weight-month-difference{
-  width: 100px;
 }

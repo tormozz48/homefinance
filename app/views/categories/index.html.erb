@@ -5,7 +5,7 @@
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t('add.category'), new_category_path, :class => "link" %>
+    <%= link_to t('add.item'), new_category_path, :class => "link" %>
     <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
         <div class="category-sorting-form">
            <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
@@ -16,6 +16,7 @@
     <table class="data-table" >
       <thead>
           <tr>
+            <th class="header-buttons">&nbsp;</th>
             <th class="header-category-color"><%=t('field.category.color')%></th>
             <th class="header-category-name"><%=t('field.common.name')%></th>
             <th class="header-category-description"><%=t('field.common.description')%></th>

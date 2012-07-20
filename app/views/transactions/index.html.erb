@@ -5,7 +5,7 @@
     </span>
   </div>
   <div class="table-wrapper-body">
-    <%= link_to t('add.transaction'), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
+    <%= link_to t('add.item'), new_transaction_path(:type => @transaction_type), :class => "link link-inline" %>
     <%= form_tag(filter_transactions_path(:type =>@transaction_type), :id =>"transactionFilterFormId", :method=>:post, :remote => false, :class => "transaction-filter-form") do -%>
         <div class="transaction-filter-form">
           <%=hidden_field_tag 'type', @transaction_type%>
@@ -26,6 +26,7 @@
     <table class="data-table">
       <thead>
       <tr>
+        <th class="header-buttons">&nbsp;</th>
         <th class="header-transaction-date"><%=t('field.common.date')%></th>
         <th class="header-transaction-summa"><%=t('field.transaction.summa')%></th>
         <%if @transaction_type == getTransactionToAccount.to_s(10)%>
@@ -59,6 +60,8 @@
       <div class="data-wrapper">
       <% @transactions.each do |transaction| %>
         <div id="transaction_"<%=transaction.id%> class="data-item transaction-data-item" style="background-color: <%=getRowColorByDate(transaction.date)%>">
+            <span class="td-edit"><%= link_to t('button.edit'), edit_transaction_path(transaction, :type => @transaction_type, :page => @p),:class => "link" %></span>
+            <span class="td-delete"><%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %></span>
             <span class="body-transaction-date"><%=transaction.date%></span>
             <span class="body-transaction-summa"><%=transaction.amount%></span>
             <%if @transaction_type == getTransactionToAccount.to_s(10) ||
@@ -83,8 +86,6 @@
                 </span>
                 <span class="body-transaction-account"><%=transaction.category.name%></span>
             <%end%>
-            <span class="td-delete"><%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %></span>
-            <span class="td-edit"><%= link_to t('button.edit'), edit_transaction_path(transaction, :type => @transaction_type, :page => @p),:class => "link" %></span>
             <%if !transaction.comment.nil? && !transaction.comment.blank?%>
                 <div class="body-transaction-comment">
                     <%=transaction.comment %>

@@ -26,18 +26,13 @@ class AccountsController < ApplicationController
   end
 
   def new
-    @account_type = params[:type]
+    account_type = params[:type]
     @account = Account.new
-    @account.account_type = @account_type
+    @account.account_type = account_type
     @account.amount = 0
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: [@account, @account_type] }
-    end
   end
 
   def edit
-    @account_type = params[:type]
     @account = Account.find(params[:id])
     if(@account.user_id != current_user.id)
        redirect_to :back and return

@@ -1,12 +1,12 @@
 <div class="form form-category">
   <div class="form-header">
     <span>
-      <%=getEditTitle(@account_type)%>
+      <%=getAccountEditTitle(@account.account_type)%>
     </span>
   </div>
   <div class="form-body">
     <%= render 'form' %>
-    <%= link_to t('button.back'), accounts_path(:type => @account_type), :class => "link" %>
+    <%= link_to t('button.back'), accounts_path(:type => @account.account_type), :class => "link" %>
   </div>
   <div class="form-footer"></div>
 </div>

@@ -67,22 +67,22 @@
             <%if @transaction_type == getTransactionToAccount.to_s(10) ||
                  @transaction_type == getTransactionToCash.to_s(10)%>
                <span class="body-transaction-account">
-                 <%=transaction.account_to.name%> (<%=transaction.account_to.amount%>)
+                 <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
                </span>
             <%elsif @transaction_type == getTransactionFromAccountToAccount.to_s(10) ||
                     @transaction_type == getTransactionFromAccountToCash.to_s(10) ||
                     @transaction_type == getTransactionFromCashToAccount.to_s(10) ||
                     @transaction_type == getTransactionFromCashToCash.to_s(10)%>
                 <span class="body-transaction-account">
-                  <%=transaction.account_from.name%> (<%=transaction.account_from.amount%>)
+                  <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
                 </span>
                 <span class="body-transaction-account">
-                  <%=transaction.account_to.name%> (<%=transaction.account_to.amount%>)
+                  <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
                 </span>
             <%elsif @transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
                     @transaction_type == getTransactionFromCashToCategory.to_s(10)%>
                 <span class="body-transaction-account">
-                  <%=transaction.account_from.name%> (<%=transaction.account_from.amount%>)
+                  <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
                 </span>
                 <span class="body-transaction-account"><%=transaction.category.name%></span>
             <%end%>

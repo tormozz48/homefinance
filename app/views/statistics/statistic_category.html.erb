@@ -13,8 +13,10 @@
           <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
           <%= label_tag "transaction_type", t('field.transaction.type'), :class => "statistic-date-label"%>
           <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :id => "transaction_type_id"%>
-          <%= label_tag "categories_count", t(:categories_display_count), :class => "statistic-date-label"%>
-          <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id"%>
+          <span>
+            <%= label_tag "categories_count", t(:categories_display_count), :class => "statistic-date-label"%>
+            <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id"%>
+          </span>
         </div>
     <% end -%>
   </div>

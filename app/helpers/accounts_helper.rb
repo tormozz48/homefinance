@@ -8,7 +8,7 @@ module AccountsHelper
     return 1
   end
 
-  def getIndexTitle(type)
+  def getAccountIndexTitle(type)
     if type == getAccountCardType.to_s(10)
       return I18n.t('list.account.cards')
     elsif type == getAccountCashType.to_s(10)
@@ -17,27 +17,21 @@ module AccountsHelper
   end
 
   def getAddButtonLink(type)
-    title = ""
-    if @account_type == getAccountCardType.to_s(10)
-      title = I18n.t('add.item')
-    elsif @account_type == getAccountCashType.to_s(10)
-      title = I18n.t('add.item')
-    end
-    return link_to title , new_account_path(:type => @account_type), :class => "link"
+    return link_to I18n.t('add.item') , new_account_path(:type => @account_type), :class => "link"
   end
 
   def getAddTitle(type)
-    if type == getAccountCardType.to_s(10)
+    if type == getAccountCardType
       return I18n.t('form.title.new.account.card')
-    elsif type == getAccountCashType.to_s(10)
+    elsif type == getAccountCashType
       return I18n.t('form.title.new.account.cash')
     end
   end
 
-  def getEditTitle(type)
-    if type == getAccountCardType.to_s(10)
+  def getAccountEditTitle(type)
+    if type == getAccountCardType
       return I18n.t('form.title.edit.account.card')
-    elsif type == getAccountCashType.to_s(10)
+    elsif type == getAccountCashType
       return I18n.t('form.title.edit.account.cash')
     end
   end

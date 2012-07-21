@@ -2,9 +2,9 @@
     <% if @account.errors.any? %>
         <div id="error_explanation">
           <h2>
-            <%if @account_type == getAccountCardType.to_s(10)%>
+            <%if @account.account_type == getAccountCardType.to_s(10)%>
                 <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.card')%>
-            <%elsif @account_type == getAccountCashType.to_s(10)%>
+            <%elsif @account.account_type == getAccountCashType.to_s(10)%>
                 <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.cash')%>
             <%end%>
           </h2>

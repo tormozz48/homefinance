@@ -59,10 +59,14 @@
 }
 
 .header-account-name,
-.body-account-name,
+.body-account-name{
+  width: 30%;
+  min-width: 150px;
+}
+
 .header-account-description,
 .body-account-description{
-  width: 30%;
+  width: 40%;
   min-width: 150px;
 }
 

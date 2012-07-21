@@ -76,4 +76,8 @@ module TransactionsHelper
             6 => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
             7 => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
   end
+
+  def roundFloatTwoDigits(number)
+    return (number * 100).to_i.to_f / 100
+  end
 end

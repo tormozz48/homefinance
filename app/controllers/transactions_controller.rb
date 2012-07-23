@@ -2,34 +2,68 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @date_from = params[:date_from].nil? ? 1.year.ago.to_date : params[:date_from]
-    @date_to = params[:date_to].nil? ? Date.today : params[:date_to]
-    @category_id = params[:category]
+    @transaction_type = params[:type]
+    if @transaction_type.nil?
+      @transaction_type = getTransactionFromCashToCategory
+    else
+      @transaction_type = @transaction_type.to_i
+    end
+    @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
+    @date_from = 1.month.ago.to_date
+    @date_to = Date.today
+  end
 
-    if params[:type].nil?
-      redirect_to transactions_path(:type => getTransactionFromCashToCategory) and return
-    else
-      @transaction_type = params[:type]
-    end
+  def load
+    transaction_type = params[:type]
+    date_from = params[:date_from].nil? ? 1.month.ago.to_date : params[:date_from]
+    date_to = params[:date_to].nil? ? Date.today : params[:date_to]
+    category_id = params[:category]
+
+    field = params[:field].nil? ? "date" : params[:field]
+    direction = params[:direction].nil? ? "desc" : params[:direction]
+    sortStr = field + " " + direction + ", id DESC"
+
     session[:page] = params[:page].nil? ? 1 : params[:page]
-    if !@category_id.nil? && !@category_id.blank? &&
-                             (@transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
-                              @transaction_type == getTransactionFromCashToCategory.to_s(10))
-      @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ? and category_id = ? and date between ? and ?",
-                                        @transaction_type, current_user.id, true, @category_id, @date_from, @date_to).order("date DESC, id DESC").page(session[:page])
+
+    if !category_id.nil? && !category_id.blank? &&
+        (transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
+         transaction_type == getTransactionFromCashToCategory.to_s(10))
+      @transactions = Transaction.where("transaction_type = :transaction_type and
+                                         user_id = :user_id and
+                                         enabled = :enabled and
+                                         category_id = :category_id and
+                                         date between :date_from and :date_to",
+                                        {:transaction_type => transaction_type,
+                                         :user_id => current_user.id,
+                                         :enabled => true,
+                                         :category_id => category_id,
+                                         :date_from => date_from,
+                                         :date_to => date_to
+                                        }).order(sortStr)
     else
-      @transactions = Transaction.where("transaction_type = ? and user_id = ? and enabled = ? and date between ? and ?",
-                                        @transaction_type, current_user.id, true, @date_from, @date_to).order("date DESC, id DESC").page(session[:page])
+      @transactions = Transaction.where("transaction_type = :transaction_type and
+                                         user_id = :user_id and
+                                         enabled = :enabled and
+                                         date between :date_from and :date_to",
+                                        {:transaction_type => transaction_type,
+                                         :user_id => current_user.id,
+                                         :enabled => true,
+                                         :date_from => date_from,
+                                         :date_to => date_to
+                                        }).order(sortStr)
     end
-    @categories = Category.where("enabled = true").order("name asc")
+    render :partial => 'transactions'
   end
 
   def filter
     respond_to do |format|
-      format.html { redirect_to transactions_path(:type => params[:type],
+      format.html { redirect_to load_transactions_path(
+                                                  :type => params[:type],
                                                   :date_from => params[:date_from],
                                                   :date_to => params[:date_to],
-                                                  :category => params[:category])}
+                                                  :category => params[:category],
+                                                  :field => params[:field],
+                                                  :direction => params[:direction])}
     end
   end
 

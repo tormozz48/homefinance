@@ -284,7 +284,12 @@ html, body{
 
 .transaction-filter-form{
   display: inline-block;
-  width: 600px;
+  width: 100%;
+}
+
+.transaction-sorting-form{
+  display: inline-block;
+  float: right;
 }
 
 //weights

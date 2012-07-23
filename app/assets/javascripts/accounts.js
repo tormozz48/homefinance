@@ -2,11 +2,7 @@ function accountsListInit(account_type){
     resizeDataWrapper();
     jQuery(window).resize(function(){resizeDataWrapper();});
 
-    jQuery('#field_id').change(function(){
-        jQuery('#accountSortingFormId').submit();
-    });
-
-    jQuery('#direction_id').change(function(){
+    jQuery('#field_id, #direction_id').change(function(){
         jQuery('#accountSortingFormId').submit();
     });
 

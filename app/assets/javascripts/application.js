@@ -16,7 +16,7 @@
 
 function resizeDataWrapper(v){
     if(v == null){
-        v = 200;
+        v = 180;
     }
     var h = document.body.offsetHeight - v;
     jQuery(".data-wrapper").css("height", h+"px");
@@ -42,3 +42,29 @@ jQuery.fn.ForceNumericOnly =function(){
         });
     });
 };
+
+function initDatePickersInForm(formId){
+    jQuery.datepicker.setDefaults(jQuery.extend(jQuery.datepicker.regional["ru"]));
+    jQuery('#date_from_id').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: new Date(),
+        changeMonth: true,
+        changeYear: true,
+        onSelect: function(dateText, inst) {
+            jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
+            jQuery('#date_from_id').datepicker('hide');
+            jQuery('#'+formId).submit();
+        }
+    });
+    jQuery('#date_to_id').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: new Date(),
+        changeMonth: true,
+        changeYear: true,
+        onSelect: function(dateText, inst) {
+            jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
+            jQuery('#date_to_id').datepicker('hide');
+            jQuery('#'+formId).submit();
+        }
+    });
+}

@@ -2,11 +2,7 @@ function categoriesListInit(){
     resizeDataWrapper();
     jQuery(window).resize(function(){resizeDataWrapper();});
 
-    jQuery('#field_id').change(function(){
-        jQuery('#categorySortingFormId').submit();
-    });
-
-    jQuery('#direction_id').change(function(){
+    jQuery('#field_id, #direction_id ').change(function(){
         jQuery('#categorySortingFormId').submit();
     });
 
@@ -31,13 +27,13 @@ function categoriesFormInit(){
     jQuery('#colorFieldId').ColorPicker({
         flat: false,
         onSubmit: function(hsb, hex, rgb, el) {
-            $(el).val(hex);
-            $(el).css('color', '#'+hex);
-            $(el).css('background-color', '#'+hex);
-            $(el).ColorPickerHide();
+            jQuery(el).val(hex);
+            jQuery(el).css('color', '#'+hex);
+            jQuery(el).css('background-color', '#'+hex);
+            jQuery(el).ColorPickerHide();
         },
         onBeforeShow: function () {
-            $(this).ColorPickerSetColor(this.value);
+            jQuery(this).ColorPickerSetColor(this.value);
         }
     });
 };

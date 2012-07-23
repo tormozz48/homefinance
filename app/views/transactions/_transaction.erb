@@ -1,11 +1,11 @@
-<div id="transaction_"<%=transaction.id%> class="data-item transaction-data-item" style="background-color: <%=getRowColorByDate(transaction.date)%>">
+<div id="transaction_"<%=transaction.id%> class="data-item">
             <span class="td-edit">
               <%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p),:class => "link" %>
             </span>
             <span class="td-delete">
               <%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
             </span>
-  <span class="body-transaction-date"><%=transaction.date%></span>
+  <span class="body-transaction-date" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></span>
   <span class="body-transaction-summa"><%=transaction.amount%></span>
   <%if transaction.transaction_type == getTransactionToAccount ||
           transaction.transaction_type == getTransactionToCash%>

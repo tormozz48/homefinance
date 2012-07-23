@@ -10,10 +10,10 @@
 </head>
 <body>
     <div class="viewport">
-        <div class="header">
-            <div class="logo-image"></div>
-            <div class="logo"><%=t('application.title')%></div>
-            <div class="current-user">
+        <div id="headerID">
+            <div id="logoImageID"></div>
+            <div id="logoID"><%=t('application.title')%></div>
+            <div id="currentUserID">
               <%if !current_user.nil? %>
                 <%=t('application.user')%><span><%=link_to user_full_name, edit_user_profile_path%></span>
                 <span><%=link_to t('menu.logout'), destroy_user_session_path,
@@ -22,7 +22,7 @@
             </div>
         </div>
         <%=render 'common/menu'%>
-        <div class="content">
+        <div id="contentID">
             <%= yield %>
         </div>
     </div>

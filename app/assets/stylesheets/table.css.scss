@@ -1,15 +1,19 @@
+//--common data column styles--//
 .header-buttons{
   width: 165px;
 }
 
-//-- transactions data columns--//
-.body-transaction-date,
-.body-transaction-summa,
-.body-transaction-account{
+[class|=body]{
   display: inline-block;
   vertical-align: top;
 }
 
+.account-data-item,
+.category-data-item{
+  background-color: #eef;
+}
+
+//-- transactions data columns--//
 .header-transaction-date,
 .body-transaction-date{
   width: 10%;
@@ -18,6 +22,8 @@
 
 .body-transaction-date{
   font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
 }
 
 .header-transaction-summa,
@@ -40,18 +46,6 @@
 }
 
 //-- accounts data columns--//
-.account-data-item,
-.category-data-item{
-  background-color: #eef;
-}
-
-.body-account-amount,
-.body-account-name,
-.body-account-description{
-  display: inline-block;
-  vertical-align: top;
-}
-
 .header-account-amount,
 .body-account-amount{
   width: 10%;
@@ -71,13 +65,6 @@
 }
 
 //-- categories data columns--//
-.body-category-color,
-.body-category-name,
-.body-category-description{
-  display: inline-block;
-  vertical-align: top;
-}
-
 .header-category-color,
 .body-category-color{
   width: 4%;
@@ -102,16 +89,7 @@
   min-width: 150px;
 }
 
-//-- weights --//
-.body-weight-date,
-.body-weight-weight,
-.body-weight-training,
-.body-weight-day-difference,
-.body-weight-week-difference,
-.body-weight-month-difference{
-  display:  inline-block;
-}
-
+//-- weights data columns--//
 .header-weight-date,
 .body-weight-date{
   width: 6%;
@@ -129,10 +107,10 @@
 }
 
 .header-weight-training,
-.body-weight-training,
 .header-weight-week-difference,
-.body-weight-week-difference,
 .header-weight-month-difference,
+.body-weight-training,
+.body-weight-week-difference,
 .body-weight-month-difference{
   width: 7%;
   min-width: 90px;

@@ -13,42 +13,12 @@ function transactionFormInit(){
 };
 
 function transactionsListInit(type){
-    resizeDataWrapper(220);
-    jQuery(window).resize(function(){resizeDataWrapper(220);});
+    resizeDataWrapper(180);
+    jQuery(window).resize(function(){resizeDataWrapper(180);});
 
-    jQuery.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
-    jQuery('#date_from_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
-            jQuery('#date_from_id').datepicker('hide');
-            jQuery('#transactionFilterFormId').submit();
-        }
-    });
-    jQuery('#date_to_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
-            jQuery('#date_to_id').datepicker('hide');
-            jQuery('#transactionFilterFormId').submit();
-        }
-    });
+    initDatePickersInForm("transactionFilterFormId");
 
-    jQuery('#category_id').change(function(){
-        jQuery('#transactionFilterFormId').submit();
-    });
-
-    jQuery('#field_id').change(function(){
-        jQuery('#transactionFilterFormId').submit();
-    });
-
-    jQuery('#direction_id').change(function(){
+    jQuery('#category_id, #field_id, #direction_id').change(function(){
         jQuery('#transactionFilterFormId').submit();
     });
 
@@ -64,4 +34,16 @@ function transactionsListInit(type){
        jQuery('.data-wrapper').empty();
        jQuery('.data-wrapper').html(jqXHR.responseText);
     });
+};
+
+function toggleFilter(){
+  if(jQuery('#transactionFilterFormId').css("display") == "none"){
+    resizeDataWrapper(205);
+    jQuery('#transactionFilterFormId').show();
+    jQuery(window).resize(function(){resizeDataWrapper(205);});
+  }else{
+    resizeDataWrapper(180);
+    jQuery('#transactionFilterFormId').hide();
+    jQuery(window).resize(function(){resizeDataWrapper(180);});
+  }
 };

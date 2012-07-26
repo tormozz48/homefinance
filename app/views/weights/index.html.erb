@@ -1,10 +1,10 @@
-<div class="table-wrapper">
-  <div class="table-wrapper-header">
+<div id="tableWrapperID">
+  <div id="tableWrapperHeaderID">
     <span>
       <%=t('list.weights')%>
     </span>
   </div>
-  <div class="table-wrapper-body">
+  <div id="tableWrapperBodyID">
     <%= link_to t('add.item'), new_weight_path, :class => "link link-inline" %>
     <div class="eating-color-description">
       <span><%=t('field.eating.overweight')%></span><div class="eating-color-overweight">&nbsp;</div>
@@ -14,7 +14,7 @@
     <div class="paginator">
       <%= paginate @weights%>
     </div>
-    <table class="data-table">
+    <table id="dataTableID">
       <thead>
           <tr>
             <th class="header-weight-date"><%=t('field.common.date')%></th>
@@ -28,7 +28,7 @@
           </tr>
       </thead>
     </table>
-    <div class="data-wrapper">
+    <div id="dataWrapperID">
       <% @weights.each do |weight| %>
          <div class="data-item weight-data-item">
             <div class="body-weight-date"><%=weight.date%></div>

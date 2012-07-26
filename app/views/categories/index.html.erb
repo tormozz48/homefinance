@@ -1,10 +1,10 @@
-<div class="table-wrapper">
-  <div class="table-wrapper-header">
+<div id="tableWrapperID">
+  <div id="tableWrapperHeaderID">
     <span>
       <%=t('list.categories')%>
     </span>
   </div>
-  <div class="table-wrapper-body">
+  <div id="tableWrapperBodyID">
     <%= link_to t('add.item'), new_category_path, :class => "link" %>
     <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
         <div class="category-sorting-form">
@@ -13,27 +13,31 @@
            <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction_id"%>
         </div>
     <% end -%>
-    <table class="data-table" >
+    <table id="dataTableID" >
       <thead>
           <tr>
             <th class="header-buttons">&nbsp;</th>
-            <th class="header-category-color"><%=t('field.category.color')%></th>
-            <th class="header-category-name"><%=t('field.common.name')%></th>
-            <th class="header-category-description"><%=t('field.common.description')%></th>
+            <th id="categoryColorHeaderID">
+                <%=t('field.category.color')%>
+            </th>
+            <th id="categoryNameHeaderID">
+                <%=t('field.common.name')%>
+            </th>
+            <th id="categoryDescriptionHeaderID">
+                <%=t('field.common.description')%>
+            </th>
             <th></th>
             <th></th>
           </tr>
       </thead>
     </table>
-    <div class="data-wrapper">
-      <!--categories will be rendered here-->
-    </div>
+    <div id="dataWrapperID"></div>
   </div>
 </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        categoriesListInit();
+       categoriesJS.init();
     });
 </script>
 

@@ -9,12 +9,13 @@
 }
 
 .account-data-item,
-.category-data-item{
+.category-data-item,
+.transaction-data-item{
   background-color: #eef;
 }
 
 //-- transactions data columns--//
-.header-transaction-date,
+#transactionDateHeaderId,
 .body-transaction-date{
   width: 10%;
   min-width: 83px;
@@ -26,7 +27,7 @@
   border-radius: 8px;
 }
 
-.header-transaction-summa,
+#transactionSumHeaderId,
 .body-transaction-summa{
   font-weight: bold;
   width: 7%;
@@ -46,29 +47,22 @@
 }
 
 //-- accounts data columns--//
-.header-account-amount,
+#accountAmountHeaderID,
 .body-account-amount{
-  width: 10%;
-  min-width: 60px;
+  width: 70px;
 }
 
-.header-account-name,
-.body-account-name{
-  width: 30%;
-  min-width: 150px;
-}
-
-.header-account-description,
+#accountNameHeaderID,
+#accountDescriptionHeaderID,
+.body-account-name,
 .body-account-description{
-  width: 40%;
-  min-width: 150px;
+  width: 300px;
 }
 
 //-- categories data columns--//
-.header-category-color,
+#categoryColorHeaderID,
 .body-category-color{
-  width: 4%;
-  min-width: 45px;
+  width: 50px;
 }
 
 .body-category-color div{
@@ -77,16 +71,11 @@
   border-radius: 10px;
 }
 
-.header-category-name,
-.body-category-name{
-  width: 20%;
-  min-width: 150px;
-}
-
-.header-category-description,
+#categoryNameHeaderID,
+#categoryDescriptionHeaderID,
+.body-category-name,
 .body-category-description{
-  width: 40%;
-  min-width: 150px;
+  width: 200px;
 }
 
 //-- weights data columns--//

@@ -14,12 +14,15 @@
 //= require jquery_ujs
 //= require_tree .
 
+var accountsJS = new AccountsJS();
+var categoriesJS = new CategoriesJS();
+
 function resizeDataWrapper(v){
     if(v == null){
         v = 180;
     }
     var h = document.body.offsetHeight - v;
-    jQuery(".data-wrapper").css("height", h+"px");
+    jQuery("#dataWrapperID").css("height", h+"px");
 };
 
 function resizeChartWrapper(){

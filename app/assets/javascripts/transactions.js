@@ -23,16 +23,16 @@ function transactionsListInit(type){
     });
 
     jQuery('#transactionFilterFormId').ajaxSuccess(function(evt, request, settings){
-        jQuery('.data-wrapper').empty();
-        jQuery('.data-wrapper').html(request.responseText);
+        jQuery('#dataWrapperID').empty();
+        jQuery('#dataWrapperID').html(request.responseText);
     });
 
     //load transactions after page loading
     jQuery.ajax({
         url: '/transactions/load?type='+type
     }).done(function (doc, status, jqXHR ) {
-       jQuery('.data-wrapper').empty();
-       jQuery('.data-wrapper').html(jqXHR.responseText);
+       jQuery('#dataWrapperID').empty();
+       jQuery('#dataWrapperID').html(jqXHR.responseText);
     });
 };
 

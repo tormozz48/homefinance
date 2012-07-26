@@ -19,6 +19,6 @@
           <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category_id"%>
       <%else%>
           <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category_id", :disabled => true%>
-    <%end%>
+      <%end%>
     </div>
 <% end -%>

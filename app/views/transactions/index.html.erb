@@ -1,26 +1,28 @@
-<div class="table-wrapper">
-  <div class="table-wrapper-header">
+<div id="tableWrapperID">
+  <div id="tableWrapperHeaderID">
     <span>
       <%=getIndexTitle(@transaction_type)%>
     </span>
   </div>
-  <div class="table-wrapper-body">
+  <div id="tableWrapperBodyID">
     <%= render 'filter'%>
-    <table class="data-table">
+    <table id="dataTableID">
       <thead>
-      <tr>
-        <th class="header-buttons">&nbsp;</th>
-        <th class="header-transaction-date"><%=t('field.common.date')%></th>
-        <th class="header-transaction-summa"><%=t('field.transaction.summa')%></th>
-        <%=createTransactionTableHeader(@transaction_type)%>
-        <th></th>
-        <th></th>
-      </tr>
+          <tr>
+            <th class="header-buttons">&nbsp;</th>
+            <th id="transactionDateHeaderId">
+              <%=t('field.common.date')%>
+            </th>
+            <th id="transactionSumHeaderId">
+              <%=t('field.transaction.summa')%>
+            </th>
+            <%=createTransactionTableHeader(@transaction_type)%>
+            <th></th>
+            <th></th>
+          </tr>
       </thead>
-      </table>
-      <div class="data-wrapper">
-        <!--transactions will be rendered here-->
-      </div>
+    </table>
+    <div id="dataWrapperID"></div>
   </div>
 </div>
 

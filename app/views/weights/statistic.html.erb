@@ -1,10 +1,10 @@
-<div class="table-wrapper">
-  <div class="table-wrapper-header">
+<div id="tableWrapperID">
+  <div id="tableWrapperHeaderID">
     <span>
       <%=t('form.title.statistic.weight')%>
     </span>
   </div>
-  <div class="table-wrapper-body  statistic-table-wrapper-body">
+  <div id="tableWrapperBodyID" class="statistic-table-wrapper-body">
     <%= form_tag('/show_statistic_weight', :id =>"statisticWeightFormId", :remote => true, :class => "statisticForm") do -%>
         <div class="statistic-form-wrapper">
           <%= label_tag "date_from", t('field.common.date_from'), :class => "statistic-date-label-left"%>

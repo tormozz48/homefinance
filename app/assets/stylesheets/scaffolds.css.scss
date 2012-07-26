@@ -99,14 +99,14 @@ html, body{
   padding: 5px;
 }
 
-.form, .table-wrapper{
+.form, #tableWrapperID{
   margin: auto;
   background-color: #fff;
   border: none;
   border-radius: 10px;
 }
 
-.form-header, .table-wrapper-header{
+.form-header, #tableWrapperHeaderID{
   height: 25px;
   padding-left: 10px;
   padding-top: 5px;
@@ -117,7 +117,7 @@ html, body{
   font-weight: bold;
 }
 
-.form-body, .table-wrapper-body{
+.form-body, #tableWrapperBodyID{
   padding: 5px;
   background: url(image_path('background2.png')) #fff repeat;
   border-radius: 0 0 10px 10px;
@@ -188,21 +188,21 @@ html, body{
   background-color: #e00;
 }
 
-.data-table{
-  width: 100%;
-  margin-top: 5px;
-  border: none;
-}
+#dataTableID{
+    width: 100%;
+    margin-top: 5px;
+    border: none;
+  }
 
-.data-table th{
-  height: 25px;
-  padding-top: 4px;
-  padding-left: 5px;
-  background-color: #4682b4;
-  color: #fff;
-}
+  #dataTableID th{
+    height: 25px;
+    padding-top: 4px;
+    padding-left: 5px;
+    background-color: #4682b4;
+    color: #fff;
+  }
 
-.data-wrapper{
+#dataWrapperID{
   overflow: auto;
 }
 

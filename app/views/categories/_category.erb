@@ -1,11 +1,21 @@
 <div class="data-item category-data-item">
-  <span class="td-edit"><%= link_to t('button.edit'), edit_category_path(category),:class => "link" %></span>
+  <span class="td-edit">
+    <%= link_to t('button.edit'), edit_category_path(category),:class => "link" %>
+  </span>
   <span class="td-delete">
     <%= link_to t('button.delete'), category, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
   </span>
   <div class="body-category-color">
-    <div style="background-color: <%=getCategoryColor(category)%>;">&nbsp;</div>
+    <div style="background-color: <%=getCategoryColor(category)%>;">
+      &nbsp;
+    </div>
   </div>
-  <span class="body-category-name"><strong><%=category.name%></strong></span>
-  <span class="body-category-description"><%=category.description%></span>
+  <span class="body-category-name">
+    <strong>
+      <%=category.name%>
+    </strong>
+  </span>
+  <span class="body-category-description">
+    <%=category.description%>
+  </span>
 </div>

@@ -1,37 +1,43 @@
-<div id="transaction_"<%=transaction.id%> class="data-item">
-            <span class="td-edit">
-              <%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p),:class => "link" %>
-            </span>
-            <span class="td-delete">
-              <%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-            </span>
-  <span class="body-transaction-date" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></span>
-  <span class="body-transaction-summa"><%=transaction.amount%></span>
-  <%if transaction.transaction_type == getTransactionToAccount ||
+<div id="transaction_"<%=transaction.id%> class="data-item transaction-data-item">
+    <span class="td-edit">
+        <%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p),:class => "link" %>
+    </span>
+    <span class="td-delete">
+        <%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
+    </span>
+    <span class="body-transaction-date" style="background-color: <%=getRowColorByDate(transaction.date)%>">
+        <%=transaction.date%>
+    </span>
+    <span class="body-transaction-summa">
+        <%=transaction.amount%>
+    </span>
+    <%if transaction.transaction_type == getTransactionToAccount ||
           transaction.transaction_type == getTransactionToCash%>
-               <span class="body-transaction-account">
-                 <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
-               </span>
-  <%elsif transaction.transaction_type == getTransactionFromAccountToAccount ||
-          transaction.transaction_type == getTransactionFromAccountToCash ||
-          transaction.transaction_type == getTransactionFromCashToAccount ||
-          transaction.transaction_type == getTransactionFromCashToCash%>
-                <span class="body-transaction-account">
-                  <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
-                </span>
-                <span class="body-transaction-account">
-                  <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
-                </span>
-  <%elsif transaction.transaction_type == getTransactionFromAccountToCategory ||
-          transaction.transaction_type == getTransactionFromCashToCategory%>
-                <span class="body-transaction-account">
-                  <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
-                </span>
-      <span class="body-transaction-account"><%=transaction.category.name%></span>
-  <%end%>
-  <%if !transaction.comment.nil? && !transaction.comment.blank?%>
-      <div class="body-transaction-comment">
-        <%=transaction.comment %>
-      </div>
-  <%end%>
+        <span class="body-transaction-account">
+          <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+        </span>
+    <%elsif transaction.transaction_type == getTransactionFromAccountToAccount ||
+            transaction.transaction_type == getTransactionFromAccountToCash ||
+            transaction.transaction_type == getTransactionFromCashToAccount ||
+            transaction.transaction_type == getTransactionFromCashToCash%>
+        <span class="body-transaction-account">
+          <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+        </span>
+        <span class="body-transaction-account">
+          <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+        </span>
+    <%elsif transaction.transaction_type == getTransactionFromAccountToCategory ||
+            transaction.transaction_type == getTransactionFromCashToCategory%>
+        <span class="body-transaction-account">
+          <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+        </span>
+        <span class="body-transaction-account">
+          <%=transaction.category.name%>
+        </span>
+    <%end%>
+    <%if !transaction.comment.nil? && !transaction.comment.blank?%>
+        <div class="body-transaction-comment">
+            <%=transaction.comment %>
+        </div>
+    <%end%>
 </div>

@@ -207,12 +207,19 @@ html, body{
 }
 
 .data-item{
-  width: 98%;
-  margin-top: 5px;
-  padding: 5px;
-  border: 1px solid #4682b4;
-  border-radius: 5px;
-}
+    width: 98%;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #4682b4;
+    border-radius: 5px;
+  }
+
+  .data-item:hover{
+      background-color: #ddf;
+      -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
 
 .td-edit, .td-delete{
   display: inline-block;
@@ -424,4 +431,14 @@ html, body{
 
 .statistic-date-field{
   width: 80px;
+}
+
+//ajax
+#loadingIndicatorID{
+  width: 128px;
+  height: 128px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  background: url(image_path('loading.gif')) no-repeat;
 }

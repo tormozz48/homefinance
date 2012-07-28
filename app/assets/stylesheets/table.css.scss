@@ -1,6 +1,7 @@
 //--common data column styles--//
-.header-buttons{
+#editButtonsHeaderID{
   width: 165px;
+  min-width: 165px;
 }
 
 [class|=body]{
@@ -15,10 +16,10 @@
 }
 
 //-- transactions data columns--//
-#transactionDateHeaderId,
+#transactionDateHeaderID,
 .body-transaction-date{
-  width: 10%;
-  min-width: 83px;
+  width: 90px;
+  min-width: 90px;
 }
 
 .body-transaction-date{
@@ -27,17 +28,17 @@
   border-radius: 8px;
 }
 
-#transactionSumHeaderId,
+#transactionSumHeaderID,
 .body-transaction-summa{
+  width: 60px;
+  min-width: 60px;
   font-weight: bold;
-  width: 7%;
-  min-width: 62px;
 }
 
-.header-transaction-account,
+#transactionAccountHeaderID1,
+#transactionAccountHeaderID2,
 .body-transaction-account{
-  width: 25%;
-  min-width: 185px;
+  width: 200px;
 }
 
 .body-transaction-comment{

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
+var transactionsJS = new TransactionJS();
 var accountsJS = new AccountsJS();
 var categoriesJS = new CategoriesJS();
 
@@ -37,37 +38,12 @@ jQuery.fn.ForceNumericOnly =function(){
             return (
                 key == 8 ||
                     key == 9 ||
-                    key == 46 ||
-                    key == 190 ||
-                    (key >= 37 && key <= 40) ||
-                    (key >= 48 && key <= 57) ||
-                    (key >= 96 && key <= 105));
+                        key == 46 ||
+                            key == 190 ||
+                                (key >= 37 && key <= 40) ||
+                                    (key >= 48 && key <= 57) ||
+                                        (key >= 96 && key <= 105)
+            );
         });
     });
 };
-
-function initDatePickersInForm(formId){
-    jQuery.datepicker.setDefaults(jQuery.extend(jQuery.datepicker.regional["ru"]));
-    jQuery('#date_from_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
-            jQuery('#date_from_id').datepicker('hide');
-            jQuery('#'+formId).submit();
-        }
-    });
-    jQuery('#date_to_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
-            jQuery('#date_to_id').datepicker('hide');
-            jQuery('#'+formId).submit();
-        }
-    });
-}

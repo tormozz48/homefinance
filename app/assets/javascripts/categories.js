@@ -29,11 +29,11 @@ var CategoriesJS = function(){
     };
 
     this.resizeColumns = function(){
-        var dataItemWidth = jQuery('.data-item')[0].clientWidth;
-        var buttonsColumnWidth = 165;
-        var colorColumnWidth = jQuery('.body-category-color')[0].clientWidth;
-        var nameColumnWidth = jQuery('.body-category-name')[0].clientWidth;
-        var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - colorColumnWidth - nameColumnWidth - 35;
+        var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
+        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;;
+        var colorColumnWidth = jQuery('#categoryColorHeaderID')[0].clientWidth;
+        var nameColumnWidth = jQuery('#categoryNameHeaderID')[0].clientWidth;
+        var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - colorColumnWidth - nameColumnWidth - 40;
 
         jQuery('#categoryDescriptionHeaderID').css("width", descriptionColumnWidth+"px");
         jQuery('.body-category-description').css("width", descriptionColumnWidth+"px");

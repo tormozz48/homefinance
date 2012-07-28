@@ -9,11 +9,11 @@
     <table id="dataTableID">
       <thead>
           <tr>
-            <th class="header-buttons">&nbsp;</th>
-            <th id="transactionDateHeaderId">
+            <th id="editButtonsHeaderID">&nbsp;</th>
+            <th id="transactionDateHeaderID">
               <%=t('field.common.date')%>
             </th>
-            <th id="transactionSumHeaderId">
+            <th id="transactionSumHeaderID">
               <%=t('field.transaction.summa')%>
             </th>
             <%=createTransactionTableHeader(@transaction_type)%>
@@ -28,6 +28,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        transactionsListInit(<%=@transaction_type%>);
+        transactionsJS.init(<%=@transaction_type%>);
     });
 </script>

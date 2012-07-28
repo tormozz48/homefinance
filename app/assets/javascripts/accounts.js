@@ -29,10 +29,10 @@ var AccountsJS = function(){
     };
 
     this.resizeColumns = function(){
-        var dataItemWidth = jQuery('.data-item')[0].clientWidth;
-        var buttonsColumnWidth = 165;
-        var amountColumnWidth = jQuery('.body-account-amount')[0].clientWidth;
-        var nameColumnWidth = jQuery('.body-account-name')[0].clientWidth;
+        var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
+        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;;
+        var amountColumnWidth = jQuery('#accountAmountHeaderID')[0].clientWidth;
+        var nameColumnWidth = jQuery('#accountNameHeaderID')[0].clientWidth;
         var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - amountColumnWidth - nameColumnWidth - 35;
 
         jQuery('#accountDescriptionHeaderID').css("width", descriptionColumnWidth+"px");

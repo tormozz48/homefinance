@@ -56,9 +56,9 @@ ru:
     weight:
       weight: "Вес:"
       training: "Тренировка:"
-      day_difference: "Разница за день:"
-      week_difference: "за неделю:"
-      month_difference: "за месяц:"
+      day_difference: "день:"
+      week_difference: "неделя:"
+      month_difference: "месяц:"
     eating:
       eating_type: "Тип приема пищи:"
       time: "Время:"
@@ -286,10 +286,10 @@ ru:
               not_a_number: "Кол-во денег является числом"
         transaction:
           attributes:
-            description:
-              too_long: "Длина описания должна быть меньше чем 255 символов"
+            comment:
+              too_long: "Длина комментария должна быть меньше чем 255 символов"
             amount:
-              blank: "Сумма транзакции не может быть пустой"
+              blank: "Сумма не может быть пустой"
               not_a_number: "Сумма не является числом"
         weight:
           attributes:

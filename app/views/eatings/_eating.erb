@@ -1,0 +1,28 @@
+<div class="eating-data-item">
+  <span>
+    <%=link_to t('button.edit'), edit_eating_path(eating), :class => "link link-small"%>
+  </span>
+  <span>
+    <%=link_to t('button.delete'), eating, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete link-small"%>
+  </span>
+  <span class="eating-time">
+    <%=eating.time.to_formatted_s(:time)%>
+  </span>
+  <span class="eating-type">
+    <%=eating.eating_type.name%>
+  </span>
+
+  <%if eating.overweight == true%>
+      <span class="eating-food eating-food-overweight">
+        <%=eating.food%>
+      </span>
+  <%elsif eating.violation == true%>
+      <span class="eating-food eating-food-violation">
+        <%=eating.food%>
+      </span>
+  <%else%>
+      <span class="eating-food eating-food-normal">
+        <%=eating.food%>
+      </span>
+  <%end%>
+</div>

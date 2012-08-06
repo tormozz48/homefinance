@@ -58,12 +58,12 @@ class TransactionsController < ApplicationController
   def filter
     respond_to do |format|
       format.html { redirect_to load_transactions_path(
-                                                  :type => params[:type],
-                                                  :date_from => params[:date_from],
-                                                  :date_to => params[:date_to],
-                                                  :category => params[:category],
-                                                  :field => params[:field],
-                                                  :direction => params[:direction])}
+                                :type => params[:type],
+                                :date_from => params[:date_from],
+                                :date_to => params[:date_to],
+                                :category => params[:category],
+                                :field => params[:field],
+                                :direction => params[:direction])}
     end
   end
 

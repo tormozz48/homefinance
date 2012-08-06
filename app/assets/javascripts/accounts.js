@@ -30,7 +30,7 @@ var AccountsJS = function(){
 
     this.resizeColumns = function(){
         var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
-        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;;
+        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;
         var amountColumnWidth = jQuery('#accountAmountHeaderID')[0].clientWidth;
         var nameColumnWidth = jQuery('#accountNameHeaderID')[0].clientWidth;
         var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - amountColumnWidth - nameColumnWidth - 35;

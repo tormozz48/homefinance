@@ -76,7 +76,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     account_type = @account.account_type
     if(@account.user_id == current_user.id)
-      @account.enabled=false
+      @account.update_attribute(:enabled, false)
       @account.save
       respond_to do |format|
         format.html { redirect_to accounts_url(:type => account_type) }

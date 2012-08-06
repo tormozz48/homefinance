@@ -61,7 +61,6 @@ class EatingsController < ApplicationController
 
   def update
     @eating = Eating.find(params[:id])
-
     respond_to do |format|
       if @eating.update_attributes(params[:eating])
         format.html { redirect_to weights_path }

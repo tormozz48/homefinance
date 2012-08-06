@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     if(@category.user_id == current_user.id)
-      @category.enabled = false
+      @category.update_attribute(:enabled, false)
       @category.save
       respond_to do |format|
         format.html { redirect_to categories_url }

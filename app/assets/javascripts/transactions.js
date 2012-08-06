@@ -46,9 +46,16 @@ var TransactionJS = function(){
 
       //load transactions after page loading
       jQuery.ajax({
-          url: '/transactions/load?type='+type
+          url: '/transactions/load?type='+type,
+          beforeSend: function ( xhr ) {
+              var c = '<div class="b-modal" id="loadingIndicatorID"></div>';
+              jQuery.arcticmodal({
+                  content: c
+              });
+          }
       }).done(function (doc, status, jqXHR ) {
           transactionsJS.handleResponse(jqXHR);
+          jQuery.arcticmodal('close');
       });
   };
 

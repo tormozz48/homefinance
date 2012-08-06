@@ -7,9 +7,17 @@
   <div id="tableWrapperBodyID">
     <%= link_to t('add.item'), new_weight_path, :class => "link link-inline" %>
     <div class="eating-color-description">
-      <span><%=t('field.eating.overweight')%></span><div class="eating-color-overweight">&nbsp;</div>
-      <span><%=t('field.eating.violation')%></span><div class="eating-color-violation">&nbsp;</div>
-      <span><%=t('field.eating.normal')%></span><div class="eating-color-normal">&nbsp;</div>
+      <span>
+        <%=t('field.eating.overweight')%>
+      </span>
+      <div class="eating-color-overweight">&nbsp;</div>
+      <span>
+        <%=t('field.eating.violation')%>
+      </span>
+      <div class="eating-color-violation">&nbsp;</div>
+      <span>
+        <%=t('field.eating.normal')%>
+      </span><div class="eating-color-normal">&nbsp;</div>
     </div>
     <div class="paginator">
       <%= paginate @weights%>
@@ -17,57 +25,31 @@
     <table id="dataTableID">
       <thead>
           <tr>
-            <th class="header-weight-date"><%=t('field.common.date')%></th>
-            <th class="header-weight-weight"><%=t('field.weight.weight')%></th>
-            <th class="header-weight-training"><%=t('field.weight.training')%></th>
-            <th class="header-weight-day-difference"><%=t('field.weight.day_difference')%></th>
-            <th class="header-weight-week-difference"><%=t('field.weight.week_difference')%></th>
-            <th class="header-weight-month-difference"><%=t('field.weight.month_difference')%></th>
+            <th id="editButtonsHeaderID">
+              &nbsp;
+            </th>
+            <th id="weightDateHeaderID">
+              <%=t('field.common.date')%>
+            </th>
+            <th id="weightWeightHeaderID">
+              <%=t('field.weight.weight')%>
+            </th>
+            <th id="weightDayDifferenceHeaderID">
+              &Delta; <%=t('field.weight.day_difference')%>
+            </th>
+            <th id="weightWeekDifferenceHeaderID">
+              &Delta; <%=t('field.weight.week_difference')%>
+            </th>
+            <th id="weightMonthDifferenceHeaderID">
+              &Delta; <%=t('field.weight.month_difference')%>
+            </th>
             <th></th>
             <th></th>
           </tr>
       </thead>
     </table>
     <div id="dataWrapperID">
-      <% @weights.each do |weight| %>
-         <div class="data-item weight-data-item">
-            <div class="body-weight-date"><%=weight.date%></div>
-            <div class="body-weight-weight"><%=weight.weight%></div>
-            <div class="body-weight-training">
-              <%if weight.training == true%>
-                <div class="marker">&nbsp;</div>
-              <%end%>
-            </div>
-            <div class="body-weight-day-difference"><%=weight.day_difference%></div>
-            <div class="body-weight-week-difference"><%=weight.week_difference%></div>
-            <div class="body-weight-month-difference"><%=weight.month_difference%></div>
-            <span class="td-delete">
-                <%= link_to t('button.delete'), weight, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-            </span>
-            <span class="td-edit"><%= link_to t('button.edit'), edit_weight_path(weight),:class => "link" %></span>
-            <span class="td-edit td-add_eating"><%= link_to t('add.eating'), new_eating_path(:weight_id => weight.id),:class => "link" %></span>
-            <%if weight.eatings.nil? == false && weight.eatings.length > 0 %>
-            <div class="eating-wrapper">
-              <% weight.eatings.each do |eating| %>
-                 <div class="eating-data-item">
-                     <span><%=link_to t('button.edit'), edit_eating_path(eating), :class => "link link-small"%></span>
-                     <span><%=link_to t('button.delete'), eating, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete link-small"%></span>
-                     <span class="eating-time"><%=eating.time.to_formatted_s(:time)%></span>
-                     <span class="eating-type"><%=eating.eating_type.name%></span>
-
-                      <%if eating.overweight == true%>
-                          <span class="eating-food eating-food-overweight"><%=eating.food%></span>
-                      <%elsif eating.violation == true%>
-                          <span class="eating-food eating-food-violation"><%=eating.food%></span>
-                      <%else%>
-                          <span class="eating-food eating-food-normal"><%=eating.food%></span>
-                      <%end%>
-                 </div>
-              <% end %>
-            </div>
-            <%end%>
-         </div> 
-      <% end %>
+      <%=render 'weights/weights'%>
     </div>
   </div>
 </div>

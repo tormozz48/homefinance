@@ -11,13 +11,16 @@
     <% end %>
     <%= f.hidden_field :amount%>
     <%= f.hidden_field :enabled%>
-    <div><%= f.label t('field.common.name') %><br />
+    <div class="margin-top10">
+        <%= f.label t('field.common.name'), :class => "form-label" %><br />
         <%= f.text_field :name, :class => "input-field"%>
     </div>
-    <div><%= f.label t('field.common.description') %><br />
+    <div class="margin-top10">
+        <%= f.label t('field.common.description'), :class => "form-label" %><br />
         <%= f.text_area :description, :size => "60x6", :class => "text-area"%>
     </div>
-    <div><%= f.label t('field.category.color') %><br />
+    <div class="margin-top10">
+        <%= f.label t('field.category.color'), :class => "form-label" %>
         <%= f.text_field :color, :id => "colorFieldId", :class => "category-color-field", :readOnly => true%>
     </div>
     <div class="actions form-buttons">
@@ -27,6 +30,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        categoriesJS.formInit;
+        categoriesJS.formInit();
     });
 </script>

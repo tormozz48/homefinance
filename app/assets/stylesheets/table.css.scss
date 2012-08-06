@@ -80,41 +80,28 @@
 }
 
 //-- weights data columns--//
-.header-weight-date,
+#weightDateHeaderID,
 .body-weight-date{
-  width: 6%;
-  min-width: 80px;
+  width: 90px;
 }
 
-.header-weight-weight,
+#weightWeightHeaderID,
 .body-weight-weight{
-  width: 7%;
-  min-width: 50px;
+  width: 60px;
 }
 
 .body-weight-weight{
   font-weight: bold;
 }
 
-.header-weight-training,
-.header-weight-week-difference,
-.header-weight-month-difference,
-.body-weight-training,
-.body-weight-week-difference,
-.body-weight-month-difference{
-  width: 7%;
-  min-width: 90px;
-}
-
-.header-weight-day-difference,
-.body-weight-day-difference{
-  width: 11%;
-  min-width: 135px;
-}
-
+#weightTrenningHeaderID,
+#weightWeekDifferenceHeaderID,
+#weightMonthDifferenceHeaderID,
+#weightDayDifferenceHeaderID,
 .body-weight-training,
 .body-weight-day-difference,
 .body-weight-week-difference,
 .body-weight-month-difference{
+  width: 80px;
   text-align: center;
 }

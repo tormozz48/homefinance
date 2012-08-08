@@ -11,6 +11,7 @@ class TransactionsController < ApplicationController
     @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
     @date_from = 1.month.ago.to_date
     @date_to = Date.today
+    @page = 1
   end
 
   def load
@@ -39,7 +40,7 @@ class TransactionsController < ApplicationController
                                          :category_id => category_id,
                                          :date_from => date_from,
                                          :date_to => date_to
-                                        }).order(sortStr)
+                                        }).order(sortStr)#.page(session[:page])
     else
       @transactions = Transaction.where("transaction_type = :transaction_type and
                                          user_id = :user_id and
@@ -50,7 +51,7 @@ class TransactionsController < ApplicationController
                                          :enabled => true,
                                          :date_from => date_from,
                                          :date_to => date_to
-                                        }).order(sortStr)
+                                        }).order(sortStr)#.page(session[:page])
     end
     render :partial => 'transactions'
   end
@@ -63,7 +64,8 @@ class TransactionsController < ApplicationController
                                 :date_to => params[:date_to],
                                 :category => params[:category],
                                 :field => params[:field],
-                                :direction => params[:direction])}
+                                :direction => params[:direction],
+                                :page => params[:page])}
     end
   end
 

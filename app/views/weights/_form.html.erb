@@ -11,16 +11,18 @@
     </div>
   <% end %>
   <%= f.hidden_field :enabled%>
-  <div>
-    <%= f.label t('field.weight.weight') %><br />
+  <div class="margin-top10">
+    <%= f.label t('field.weight.weight'), :class => "form-label" %>
     <%= f.text_field :weight, :id => "weightAmountId", :class => "input-field weight-input-field" %>
+  <!--
   </div>
-  <div class="field">
-    <%= f.label t('field.common.date') %><br />
+  <div class="margin-top10"> -->
+    <%= f.label t('field.common.date'), :class => "form-label" %>
     <%= f.text_field :date, :id=> "weightDateId", :class => "input-field weight-input-field" %>
+  <!--
   </div>
-  <div>
-    <%= f.label t('field.weight.training') %>
+  <div class="margin-top10"> -->
+    <%= f.label t('field.weight.training'), :class => "form-label" %>
     <%= f.check_box :training, :class => "input-field training-input-field" %>
   </div>
   <div class="actions form-buttons">

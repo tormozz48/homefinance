@@ -292,6 +292,7 @@ html, body{
 
 .account-name{
   font-weight: bold;
+  color: #666;
 }
 
  #transactionFilterSortFormId{
@@ -334,7 +335,7 @@ html, body{
 }
 
 .weight-input-field{
-  width: 120px;
+  width: 100px;
 }
 
 .training-input-field{
@@ -354,6 +355,12 @@ html, body{
 }
 
 //eatings
+.eating-type-select-wrapper{
+  display: inline-block;
+  float: right;
+  margin-right: 13px;
+}
+
 .eating-type-select{
   width: 130px;
 }

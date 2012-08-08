@@ -16,13 +16,13 @@
         </div>
     <% end %>
     <%= f.hidden_field :account_type%>
-    <div><%= f.label t('field.common.name') %><br />
+    <div class="margin-top10"><%= f.label t('field.common.name'), :class => "form-label" %><br />
       <%= f.text_field :name, :class => "input-field"%>
     </div>
-    <div><%= f.label t('field.common.description') %><br />
+    <div class="margin-top10"><%= f.label t('field.common.description'), :class => "form-label" %><br />
       <%= f.text_area :description, :size => "60x6", :class => "text-area"%>
     </div>
-    <div><%= f.label t('field.account.amount') %><br />
+    <div class="margin-top10"><%= f.label t('field.account.amount'), :class => "form-label" %><br />
       <%= f.text_field :amount, :class => "input-field amount-input-field input-field-disabled", :readOnly => true%>
     </div>
     <div class="actions form-buttons">

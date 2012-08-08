@@ -5,6 +5,8 @@ var TransactionJS = function(){
 
    this.init = function(type){
 
+      jQuery('#direction_id')[0].selectedIndex = 1;
+
       resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
       jQuery(window).resize(function(){
           resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
@@ -20,6 +22,7 @@ var TransactionJS = function(){
           onSelect: function(dateText, inst) {
               jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
               jQuery('#date_from_id').datepicker('hide');
+              jQuery('#pageID').val(1);
               jQuery('#transactionFilterFormId').submit();
           }
       });
@@ -32,11 +35,13 @@ var TransactionJS = function(){
           onSelect: function(dateText, inst) {
               jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
               jQuery('#date_to_id').datepicker('hide');
+              jQuery('#pageID').val(1);
               jQuery('#transactionFilterFormId').submit();
           }
       });
 
       jQuery('#category_id, #field_id, #direction_id').change(function(){
+          jQuery('#pageID').val(1);
           jQuery('#transactionFilterFormId').submit();
       });
 
@@ -44,6 +49,30 @@ var TransactionJS = function(){
           transactionsJS.handleResponse(request);
       });
 
+       /*
+       jQuery('#addNewTransactionButtonID').click(function(){
+           var url = jQuery(this).attr('href');
+           jQuery.ajax({
+               url: url,
+               beforeSend: function ( xhr ) {
+                   var c = '<div class="b-modal" id="loadingIndicatorID"></div>';
+                   jQuery.arcticmodal({
+                       content: c
+                   });
+               }
+           }).done(function (doc, status, jqXHR ) {
+               var c =  '<div class="b-modal">'+
+                            +'<div class="b-modal_close arcticmodal-close">X</div>' +
+                            +jqXHR.responseText+
+                       +'</div>';
+               jQuery.arcticmodal('close');
+               jQuery.arcticmodal({
+                   content: c
+               });
+           });
+          return false;
+       });
+       */
       //load transactions after page loading
       jQuery.ajax({
           url: '/transactions/load?type='+type,
@@ -59,9 +88,22 @@ var TransactionJS = function(){
       });
   };
 
+  this.lazyLoad = function(){
+      var p = jQuery('#pageID').val();
+      jQuery('#pageID').val(++p);
+      jQuery('#transactionFilterFormId').submit();
+  };
+
   this.handleResponse = function(response){
-      jQuery('#dataWrapperID').empty();
-      jQuery('#dataWrapperID').html(response.responseText);
+      var p = jQuery('#pageID').val();
+      if(p == 1){
+        jQuery('#dataWrapperID').empty();
+        jQuery('#dataWrapperID').append(response.responseText);
+      }else{
+        if(response.responseText.length > 0){
+            jQuery('#dataWrapperID').append(response.responseText);
+        }
+      }
       this.resizeColumns();
   };
 

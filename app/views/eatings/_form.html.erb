@@ -12,25 +12,23 @@
   <% end %>
   <%= f.hidden_field :enabled%>
   <%= f.hidden_field :weight_id%>
-  <div class="field">
-    <%= f.label t('field.eating.time') %>
+  <div class="field margin-top10">
+    <%= f.label t('field.eating.time'), :class => "form-label" %>
     <%= f.time_select :time %>
-  </div>
-  <div class="field">
-    <%= f.label t('field.eating.eating_type')%>
-    <%= collection_select(:eating, :eating_type_id, @eating_types, :id, :name,
+    <div class="eating-type-select-wrapper">
+        <%= f.label t('field.eating.eating_type'), :class => "form-label"%>
+        <%= collection_select(:eating, :eating_type_id, @eating_types, :id, :name,
                               {:include_blank => t('common.undefined')}, {:class=>"eating-type-select"})%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label t('field.eating.food') %><br />
+  <div class="field margin-top10">
+    <%= f.label t('field.eating.food'), :class => "form-label" %><br />
     <%= f.text_area :food, :size => "60x6", :class => "text-area" %>
   </div>
-  <div class="field">
-    <%= f.label t('field.eating.overweight') %>
+  <div class="field margin-top10">
+    <%= f.label t('field.eating.overweight'), :class => "form-label" %>
     <%= f.check_box :overweight, :id =>"overweightId", :class => "input-field training-input-field" %>
-  </div>
-  <div class="field">
-    <%= f.label t('field.eating.violation') %>
+    <%= f.label t('field.eating.violation'), :class => "form-label" %>
     <%= f.check_box :violation, :id =>"violationId", :class => "input-field training-input-field" %>
   </div>
   <div class="actions form-buttons">

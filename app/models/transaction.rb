@@ -244,7 +244,7 @@ class Transaction < ActiveRecord::Base
     elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
         self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
         self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == Transaction::RANSACTION_FROM_CASH_TO_CASH)
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
       return self.transferSumBetweenAccounts
     elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
         self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)

@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  #paginates_per 30
+  paginates_per 30
 
   validates :amount, :date, :transaction_type,  :presence => true
   validates :amount, :numericality => {:greater_than_or_equal_to => 0 }
@@ -223,6 +223,51 @@ class Transaction < ActiveRecord::Base
       return true
     else
       return false
+    end
+  end
+
+  def calculateTransactionNew
+    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_TO_CASH)
+      return self.transferSumToAccount
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+      return self.transferSumBetweenAccounts
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+      return self.transferSumFromAccountToCategory
+    end
+  end
+
+  def calculateTransactionEdit
+    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_TO_CASH)
+      return self.changeSumToAccount
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+      return self.changeSumBetweenAccounts
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+      return self.changeSumFromAccountToCategory
+    end
+  end
+
+  def calculateTransactionDestroy
+    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_TO_CASH)
+      return self.rollbackSumFromAccount
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+      return self.rollbackSumBetweenAccounts
+    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+      return self.rollbackSumFromCategory
     end
   end
 end

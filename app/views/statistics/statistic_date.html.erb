@@ -22,8 +22,8 @@
 <div id="chartContainer" class="statistic-graph-wrapper"></div>
 
 <script type="text/javascript">
-    var TRANSACTION_FROM_ACCOUNT_TO_CATEGORY = '<%=getTransactionFromAccountToCategory.to_s(10)%>';
-    var TRANSACTION_FROM_CASH_TO_CATEGORY = '<%=getTransactionFromCashToCategory.to_s(10)%>';
+    var TRANSACTION_FROM_ACCOUNT_TO_CATEGORY = '<%=TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10)%>';
+    var TRANSACTION_FROM_CASH_TO_CATEGORY = '<%=TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10)%>';
 
     jQuery(document).ready(function(){
         jQuery('#transaction_type_id').change(function(){

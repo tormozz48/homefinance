@@ -16,8 +16,8 @@
         <%= label_tag "date_to", t('field.common.date_to'), :class => "statistic-date-label"%>
         <%= text_field_tag "date_to", @date_to, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
         <%= label_tag "category", t('field.transaction.category'), :class => "statistic-date-label"%>
-        <%if @transaction_type == getTransactionFromAccountToCategory ||
-              @transaction_type == getTransactionFromCashToCategory%>
+        <%if @transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+              @transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY%>
             <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category_id"%>
         <%else%>
             <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category_id", :disabled => true%>

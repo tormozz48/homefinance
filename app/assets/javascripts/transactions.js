@@ -2,6 +2,7 @@ var TransactionJS = function(){
 
    this.DATA_WRAPPER_HEIGHT = 180;
    this.DATA_WRAPPER_HEIGHT_WITH_FILTER = 212;
+   this.editMode = false;
 
    this.init = function(type){
 
@@ -49,7 +50,7 @@ var TransactionJS = function(){
           transactionsJS.handleResponse(request);
       });
 
-       /*
+      /*
        jQuery('#addNewTransactionButtonID').click(function(){
            var url = jQuery(this).attr('href');
            jQuery.ajax({
@@ -61,25 +62,31 @@ var TransactionJS = function(){
                    });
                }
            }).done(function (doc, status, jqXHR ) {
-               var c =  '<div class="b-modal">'+
-                            +'<div class="b-modal_close arcticmodal-close">X</div>' +
-                            +jqXHR.responseText+
-                       +'</div>';
+               transactionsJS.editMode = true;
+               var c =  '<div class="b-modal"><div class="b-modal_close arcticmodal-close">X</div>'+jqXHR.responseText+'</div>';
                jQuery.arcticmodal('close');
                jQuery.arcticmodal({
-                   content: c
+                   content: c,
+                   closeOnEsc: false,
+                   closeOnOverlayClick: false
                });
            });
           return false;
        });
        */
-      //load transactions after page loading
+
+      // actions after page loading
       jQuery.ajax({
           url: '/transactions/load?type='+type,
           beforeSend: function ( xhr ) {
               var c = '<div class="b-modal" id="loadingIndicatorID"></div>';
               jQuery.arcticmodal({
-                  content: c
+                  content: c,
+                  closeOnEsc: false,
+                  closeOnOverlayClick: false,
+                  afterClose: function(data, el) {
+                      transactionsJS.editMode = false;
+                  }
               });
           }
       }).done(function (doc, status, jqXHR ) {
@@ -95,16 +102,15 @@ var TransactionJS = function(){
   };
 
   this.handleResponse = function(response){
-      var p = jQuery('#pageID').val();
-      if(p == 1){
-        jQuery('#dataWrapperID').empty();
-        jQuery('#dataWrapperID').append(response.responseText);
-      }else{
-        if(response.responseText.length > 0){
-            jQuery('#dataWrapperID').append(response.responseText);
-        }
+      if(transactionsJS.editMode == false){
+          var p = jQuery('#pageID').val();
+          if(p == 1){
+            jQuery('#dataWrapperID').empty();
+          }
+          jQuery('#dataWrapperID').append(response.responseText);
+          this.resizeColumns();
       }
-      this.resizeColumns();
+
   };
 
   this.resizeColumns = function(){

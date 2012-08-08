@@ -1,79 +1,47 @@
 module TransactionsHelper
 
-
-  def getTransactionToAccount
-     return 0
-  end
-
-  def getTransactionFromAccountToAccount
-    return 1
-  end
-
-  def getTransactionFromAccountToCash
-    return 2
-  end
-
-  def getTransactionFromAccountToCategory
-    return 3
-  end
-
-  def getTransactionToCash
-    return 4
-  end
-
-  def getTransactionFromCashToAccount
-    return 5
-  end
-
-  def getTransactionFromCashToCash
-    return 6
-  end
-
-  def getTransactionFromCashToCategory
-    return 7
-  end
-
   def getRowColorByDate(date)
-    return "#"+{0 => "C34DFF",
-                1 => "FF6A4D",
-                2 => "FFC34D",
-                3 => "E1FF4D",
-                4 => "88FF4D",
-                5 => "4DE1FF",
-                6 => "4D88FF"}[date.to_time().wday]
+    return "#"+{0 => "C34DFF", #sunday
+                1 => "FF6A4D", #monday
+                2 => "FFC34D", #tuesday
+                3 => "E1FF4D", #wednesday
+                4 => "88FF4D", #thursday
+                5 => "4DE1FF", #friday
+                6 => "4D88FF"  #saturday
+            }[date.to_time().wday]
   end
 
   def getIndexTitle(transaction_type)
-    return {0 => I18n.t('list.transactions.to_account'),
-            1 => I18n.t('list.transactions.from_account.to_account'),
-            2 => I18n.t('list.transactions.from_account.to_cash'),
-            3 => I18n.t('list.transactions.from_account.to_category'),
-            4 => I18n.t('list.transactions.to_cash'),
-            5 => I18n.t('list.transactions.from_cash.to_account'),
-            6 => I18n.t('list.transactions.from_cash.to_cash'),
-            7 => I18n.t('list.transactions.from_cash.to_category')}[transaction_type]
+    return {TRANSACTION_TO_ACCOUNT => I18n.t('list.transactions.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('list.transactions.from_account.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('list.transactions.from_account.to_cash'),
+            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('list.transactions.from_account.to_category'),
+            TRANSACTION_TO_CASH => I18n.t('list.transactions.to_cash'),
+            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('list.transactions.from_cash.to_account'),
+            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('list.transactions.from_cash.to_cash'),
+            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('list.transactions.from_cash.to_category')}[transaction_type]
   end
 
   def getNewTitle(transaction_type)
-    return {0 => I18n.t('form.title.new.transaction.to_account'),
-            1 => I18n.t('form.title.new.transaction.from_account.to_account'),
-            2 => I18n.t('form.title.new.transaction.from_account.to_cash'),
-            3 => I18n.t('form.title.new.transaction.from_account.to_category'),
-            4 => I18n.t('form.title.new.transaction.to_cash'),
-            5 => I18n.t('form.title.new.transaction.from_cash.to_account'),
-            6 => I18n.t('form.title.new.transaction.from_cash.to_cash'),
-            7 => I18n.t('form.title.new.transaction.from_cash.to_category')}[transaction_type]
+    return {TRANSACTION_TO_ACCOUNT => I18n.t('form.title.new.transaction.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_account.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.new.transaction.from_account.to_cash'),
+            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.new.transaction.from_account.to_category'),
+            TRANSACTION_TO_CASH => I18n.t('form.title.new.transaction.to_cash'),
+            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_cash.to_account'),
+            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.new.transaction.from_cash.to_cash'),
+            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.new.transaction.from_cash.to_category')}[transaction_type]
   end
 
   def getEditTitle(transaction_type)
-    return {0 => I18n.t('form.title.edit.transaction.to_account'),
-            1 => I18n.t('form.title.edit.transaction.from_account.to_account'),
-            2 => I18n.t('form.title.edit.transaction.from_account.to_cash'),
-            3 => I18n.t('form.title.edit.transaction.from_account.to_category'),
-            4 => I18n.t('form.title.edit.transaction.to_cash'),
-            5 => I18n.t('form.title.edit.transaction.from_cash.to_account'),
-            6 => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
-            7 => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
+    return {TRANSACTION_TO_ACCOUNT => I18n.t('form.title.edit.transaction.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_account.to_account'),
+            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.edit.transaction.from_account.to_cash'),
+            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_account.to_category'),
+            TRANSACTION_TO_CASH => I18n.t('form.title.edit.transaction.to_cash'),
+            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_cash.to_account'),
+            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
+            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
   end
 
   def roundFloatTwoDigits(number)
@@ -81,36 +49,34 @@ module TransactionsHelper
   end
 
   def createTransactionTableHeader(transaction_type)
-    if transaction_type == getTransactionToAccount
+    if transaction_type == TRANSACTION_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID1")
-    elsif transaction_type == getTransactionFromAccountToAccount
+    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == getTransactionFromAccountToCash
+    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == getTransactionFromAccountToCategory
+    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == getTransactionToCash
+    elsif transaction_type == TRANSACTION_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID1")
-    elsif transaction_type == getTransactionFromCashToAccount
+    elsif transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == getTransactionFromCashToCash
+    elsif transaction_type == TRANSACTION_FROM_CASH_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == getTransactionFromCashToCategory
+    elsif transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
     end
   end
 
   def getTransactionsSortingOptionList(transaction_type)
-    str = ""
-    str += "<option value='date'>"+I18n.t('field.common.date')+"</option>"
-    str += "<option value='amount'>"+I18n.t('field.transaction.summa')+"</option>"
-    str += "<option value='comment'>"+I18n.t('field.transaction.comment')+"</option>"
-    return str
+    return content_tag(:option, I18n.t('field.common.date'), :value =>"date") +
+           content_tag(:option, I18n.t('field.transaction.summa'), :value =>"amount") +
+           content_tag(:option, I18n.t('field.transaction.comment'), :value =>"comment")
   end
 end

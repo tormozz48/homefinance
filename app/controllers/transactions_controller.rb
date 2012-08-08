@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   def index
     @transaction_type = params[:type]
     if @transaction_type.nil?
-      @transaction_type = getTransactionFromCashToCategory
+      @transaction_type = TRANSACTION_FROM_CASH_TO_CATEGORY
     else
       @transaction_type = @transaction_type.to_i
     end
@@ -27,8 +27,8 @@ class TransactionsController < ApplicationController
     session[:page] = params[:page].nil? ? 1 : params[:page]
 
     if !category_id.nil? && !category_id.blank? &&
-        (transaction_type == getTransactionFromAccountToCategory.to_s(10) ||
-         transaction_type == getTransactionFromCashToCategory.to_s(10))
+        (transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
+         transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
       @transactions = Transaction.where("transaction_type = :transaction_type and
                                          user_id = :user_id and
                                          enabled = :enabled and
@@ -53,19 +53,20 @@ class TransactionsController < ApplicationController
                                          :date_to => date_to
                                         }).order(sortStr)#.page(session[:page])
     end
-    render :partial => 'transactions'
+    @page = session[:page]
+    render :partial => 'transactions/transactions'
   end
 
   def filter
     respond_to do |format|
       format.html { redirect_to load_transactions_path(
-                                :type => params[:type],
-                                :date_from => params[:date_from],
-                                :date_to => params[:date_to],
-                                :category => params[:category],
-                                :field => params[:field],
-                                :direction => params[:direction],
-                                :page => params[:page])}
+                                    :type => params[:type],
+                                    :date_from => params[:date_from],
+                                    :date_to => params[:date_to],
+                                    :category => params[:category],
+                                    :field => params[:field],
+                                    :direction => params[:direction],
+                                    :page => params[:page])}
     end
   end
 
@@ -86,24 +87,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(params[:transaction])
     if(current_user.nil? == false)
       @transaction.user = current_user
-      valid = true
-
-      if(@transaction.valid?)
-        if (@transaction.transaction_type == getTransactionToAccount ||
-            @transaction.transaction_type == getTransactionToCash)
-              valid = @transaction.transferSumToAccount
-        elsif (@transaction.transaction_type == getTransactionFromAccountToAccount ||
-               @transaction.transaction_type == getTransactionFromAccountToCash ||
-               @transaction.transaction_type == getTransactionFromCashToAccount ||
-               @transaction.transaction_type == getTransactionFromCashToCash)
-                  valid = @transaction.transferSumBetweenAccounts
-        elsif (@transaction.transaction_type == getTransactionFromAccountToCategory ||
-               @transaction.transaction_type == getTransactionFromCashToCategory)
-                  valid = @transaction.transferSumFromAccountToCategory
-        end
-      else
-        valid = false
-      end
+      valid = @transaction.valid? ? @transaction.calculateTransactionNew : false
       respond_to do |format|
         if valid == true && @transaction.save
           format.html {redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
@@ -124,21 +108,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     p = params[:transaction]
     @transaction.amount = p[:amount]
-    valid = true
-
-    if (@transaction.transaction_type == getTransactionToAccount ||
-        @transaction.transaction_type == getTransactionToCash)
-      valid = @transaction.changeSumToAccount
-    elsif (@transaction.transaction_type == getTransactionFromAccountToAccount ||
-           @transaction.transaction_type == getTransactionFromAccountToCash ||
-           @transaction.transaction_type == getTransactionFromCashToAccount ||
-           @transaction.transaction_type == getTransactionFromCashToCash)
-      valid = @transaction.changeSumBetweenAccounts
-    elsif (@transaction.transaction_type == getTransactionFromAccountToCategory ||
-           @transaction.transaction_type == getTransactionFromCashToCategory)
-      valid = @transaction.changeSumFromAccountToCategory
-    end
-
+    valid = @transaction.valid? ? @transaction.calculateTransactionEdit : false
     respond_to do |format|
       if valid == true && @transaction.update_attributes(params[:transaction])
         format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
@@ -152,27 +122,10 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction = Transaction.find(params[:id])
-    valid = true
-
-    if (@transaction.transaction_type == getTransactionToAccount ||
-        @transaction.transaction_type == getTransactionToCash)
-      valid = @transaction.rollbackSumFromAccount
-    elsif (@transaction.transaction_type == getTransactionFromAccountToAccount ||
-           @transaction.transaction_type == getTransactionFromAccountToCash ||
-           @transaction.transaction_type == getTransactionFromCashToAccount ||
-           @transaction.transaction_type == getTransactionFromCashToCash)
-      valid = @transaction.rollbackSumBetweenAccounts
-    elsif (@transaction.transaction_type == getTransactionFromAccountToCategory ||
-           @transaction.transaction_type == getTransactionFromCashToCategory)
-      valid = @transaction.rollbackSumFromCategory
-    end
-
-    if valid == true
-      @transaction.destroy
-    end
+    valid = @transaction.valid? ? @transaction.calculateTransactionDestroy : false
+    @transaction.destroy if valid
     respond_to do |format|
       format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]) }
-      format.json { head :no_content } and return
     end
   end
 end

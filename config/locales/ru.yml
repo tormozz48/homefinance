@@ -6,6 +6,7 @@ ru:
 
   categories_display_count: "Показывать категорий без группировки:"
   sorting_by: "Упорядочить по полю:"
+  load_more: "Загрузить еще ..."
 
   link:
     sign:

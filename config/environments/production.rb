@@ -78,5 +78,4 @@ Homefinance2::Application.configure do
       :password             => 'pass4boedj',
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
-
 end

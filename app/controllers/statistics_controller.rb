@@ -20,8 +20,8 @@ class StatisticsController < ApplicationController
     transaction_type = params[:transaction_type]
     category_id = params[:category]
     if(!category_id.empty? &&
-       (transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
-        transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10)))
+       (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
+        transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10)))
           transactions = Transaction.where(
             :date => (date_from.to_date)..(date_to.to_date),
             :transaction_type => transaction_type,

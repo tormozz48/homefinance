@@ -17,7 +17,7 @@
     <%= f.text_field :date, :class => "input-field amount-input-field",  :id => "transactionDateId", :readOnly => true%>
   </div>
 
-<%if  @transaction.transaction_type == TRANSACTION_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == TRANSACTION_TO_ACCOUNT%>
+<%if  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT%>
   <div class="margin-top10">
     <%= f.label t('field.transaction.account_to'), :class => "form-label"%>
     <%if @task_new == true%><br/>
@@ -27,7 +27,7 @@
         <span class="account-name"><%= @transaction.account_to.name %></span>
     <%end%>
   </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -46,7 +46,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -65,7 +65,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -84,7 +84,7 @@
           <span class="account-name"><%= @transaction.category.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_TO_CASH.to_s(10) ||  @transaction.transaction_type == TRANSACTION_TO_CASH%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.cash_to'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -94,7 +94,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -113,7 +113,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CASH.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CASH%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>
@@ -132,7 +132,7 @@
           <span class="account-name"><%= @transaction.account_to.name %></span>
       <%end%>
     </div>
-<%elsif  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY%>
+<%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
     <div class="margin-top10">
       <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
       <%if @task_new == true%><br/>

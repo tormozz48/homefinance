@@ -11,23 +11,23 @@
     <span class="body-transaction-summa">
         <%=transaction.amount%>
     </span>
-    <%if transaction.transaction_type == TRANSACTION_TO_ACCOUNT ||
-          transaction.transaction_type == TRANSACTION_TO_CASH%>
+    <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
+          transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
         <span class="body-transaction-account">
           <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
         </span>
-    <%elsif transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-            transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-            transaction.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-            transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CASH%>
+    <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+            transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
         <span class="body-transaction-account">
           <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
         </span>
         <span class="body-transaction-account">
           <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
         </span>
-    <%elsif transaction.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-            transaction.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY%>
+    <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
         <span class="body-transaction-account">
           <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
         </span>

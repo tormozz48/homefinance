@@ -12,36 +12,36 @@ module TransactionsHelper
   end
 
   def getIndexTitle(transaction_type)
-    return {TRANSACTION_TO_ACCOUNT => I18n.t('list.transactions.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('list.transactions.from_account.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('list.transactions.from_account.to_cash'),
-            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('list.transactions.from_account.to_category'),
-            TRANSACTION_TO_CASH => I18n.t('list.transactions.to_cash'),
-            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('list.transactions.from_cash.to_account'),
-            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('list.transactions.from_cash.to_cash'),
-            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('list.transactions.from_cash.to_category')}[transaction_type]
+    return {Transaction::TRANSACTION_TO_ACCOUNT => I18n.t('list.transactions.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('list.transactions.from_account.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('list.transactions.from_account.to_cash'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('list.transactions.from_account.to_category'),
+            Transaction::TRANSACTION_TO_CASH => I18n.t('list.transactions.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('list.transactions.from_cash.to_account'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CASH => I18n.t('list.transactions.from_cash.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('list.transactions.from_cash.to_category')}[transaction_type]
   end
 
   def getNewTitle(transaction_type)
-    return {TRANSACTION_TO_ACCOUNT => I18n.t('form.title.new.transaction.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_account.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.new.transaction.from_account.to_cash'),
-            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.new.transaction.from_account.to_category'),
-            TRANSACTION_TO_CASH => I18n.t('form.title.new.transaction.to_cash'),
-            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_cash.to_account'),
-            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.new.transaction.from_cash.to_cash'),
-            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.new.transaction.from_cash.to_category')}[transaction_type]
+    return {Transaction::TRANSACTION_TO_ACCOUNT => I18n.t('form.title.new.transaction.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_account.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.new.transaction.from_account.to_cash'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.new.transaction.from_account.to_category'),
+            Transaction::TRANSACTION_TO_CASH => I18n.t('form.title.new.transaction.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.new.transaction.from_cash.to_account'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.new.transaction.from_cash.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.new.transaction.from_cash.to_category')}[transaction_type]
   end
 
   def getEditTitle(transaction_type)
-    return {TRANSACTION_TO_ACCOUNT => I18n.t('form.title.edit.transaction.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_account.to_account'),
-            TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.edit.transaction.from_account.to_cash'),
-            TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_account.to_category'),
-            TRANSACTION_TO_CASH => I18n.t('form.title.edit.transaction.to_cash'),
-            TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_cash.to_account'),
-            TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
-            TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
+    return {Transaction::TRANSACTION_TO_ACCOUNT => I18n.t('form.title.edit.transaction.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_account.to_account'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH => I18n.t('form.title.edit.transaction.from_account.to_cash'),
+            Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_account.to_category'),
+            Transaction::TRANSACTION_TO_CASH => I18n.t('form.title.edit.transaction.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT => I18n.t('form.title.edit.transaction.from_cash.to_account'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CASH => I18n.t('form.title.edit.transaction.from_cash.to_cash'),
+            Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY => I18n.t('form.title.edit.transaction.from_cash.to_category')}[transaction_type]
   end
 
   def roundFloatTwoDigits(number)
@@ -49,26 +49,26 @@ module TransactionsHelper
   end
 
   def createTransactionTableHeader(transaction_type)
-    if transaction_type == TRANSACTION_TO_ACCOUNT
+    if transaction_type == Transaction::TRANSACTION_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID1")
-    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
+    elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH
+    elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
+    elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
       return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == TRANSACTION_TO_CASH
+    elsif transaction_type == Transaction::TRANSACTION_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID1")
-    elsif transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT
+    elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == TRANSACTION_FROM_CASH_TO_CASH
+    elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
-    elsif transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY
+    elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
       return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
              content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
     end

@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   def index
     @transaction_type = params[:type]
     if @transaction_type.nil?
-      @transaction_type = TRANSACTION_FROM_CASH_TO_CATEGORY
+      @transaction_type = Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
     else
       @transaction_type = @transaction_type.to_i
     end
@@ -27,8 +27,8 @@ class TransactionsController < ApplicationController
     session[:page] = params[:page].nil? ? 1 : params[:page]
 
     if !category_id.nil? && !category_id.blank? &&
-        (transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
-         transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
+        (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
+         transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
       @transactions = Transaction.where("transaction_type = :transaction_type and
                                          user_id = :user_id and
                                          enabled = :enabled and

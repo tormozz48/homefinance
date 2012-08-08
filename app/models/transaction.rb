@@ -12,6 +12,17 @@ class Transaction < ActiveRecord::Base
   belongs_to :account_from,  :readonly => true, :class_name => "Account"
   belongs_to :account_to, :readonly => true, :class_name => "Account"
 
+  #transaction types
+  TRANSACTION_TO_ACCOUNT = 0
+  TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT = 1
+  TRANSACTION_FROM_ACCOUNT_TO_CASH = 2
+  TRANSACTION_FROM_ACCOUNT_TO_CATEGORY = 3
+  TRANSACTION_TO_CASH = 4
+  TRANSACTION_FROM_CASH_TO_ACCOUNT = 5
+  TRANSACTION_FROM_CASH_TO_CASH = 6
+  TRANSACTION_FROM_CASH_TO_CATEGORY = 7
+
+
   def checkForAccountFrom
     if(self.account_from_id.nil?)
       self.addEmptyAccountFromError
@@ -227,46 +238,46 @@ class Transaction < ActiveRecord::Base
   end
 
   def calculateTransactionNew
-    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_TO_CASH)
+    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
       return self.transferSumToAccount
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == Transaction::RANSACTION_FROM_CASH_TO_CASH)
       return self.transferSumBetweenAccounts
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
       return self.transferSumFromAccountToCategory
     end
   end
 
   def calculateTransactionEdit
-    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_TO_CASH)
+    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
       return self.changeSumToAccount
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
       return self.changeSumBetweenAccounts
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
       return self.changeSumFromAccountToCategory
     end
   end
 
   def calculateTransactionDestroy
-    if (self.transaction_type == TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_TO_CASH)
+    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
       return self.rollbackSumFromAccount
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CASH)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
       return self.rollbackSumBetweenAccounts
-    elsif (self.transaction_type == TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == TRANSACTION_FROM_CASH_TO_CATEGORY)
+    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
       return self.rollbackSumFromCategory
     end
   end

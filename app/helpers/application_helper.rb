@@ -11,9 +11,7 @@ module ApplicationHelper
   end
 
   def getSortingDirectionOptionList
-    str = ""
-    str += "<option value='asc'>"+I18n.t('common.sorting.asc')+"</option>"
-    str += "<option value='desc'>"+I18n.t('common.sorting.desc')+"</option>"
-    return str
+      return content_tag(:option, I18n.t('common.sorting.asc'), :value =>"asc") +
+             content_tag(:option, I18n.t('common.sorting.desc'), :value =>"desc")
   end
 end

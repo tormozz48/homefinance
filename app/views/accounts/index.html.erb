@@ -10,8 +10,8 @@
         <div class="category-sorting-form">
           <%= hidden_field_tag "type", @account_type%>
           <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
-          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field_id"%>
-          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction_id"%>
+          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field"%>
+          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction"%>
         </div>
     <% end -%>
     <table id="dataTableID">

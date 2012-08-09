@@ -9,8 +9,10 @@
             <%=t('info.forgot_password')%>
         </div>
         <br/>
-        <div><%= f.label t('field.user.email') %><br />
-        <%= f.email_field :email, :class => "remember-email-input-field" %></div>
+        <div>
+          <%= label_tag :email, t('field.user.email'), :class => "form-label" %><br />
+          <%= f.email_field :email, :class => "remember-email-input-field", :id => :email %>
+        </div>
 
         <div class="form-buttons">
             <%= f.submit "", :class=>"send-button", :title=>t('button.send') %>

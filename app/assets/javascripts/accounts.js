@@ -6,7 +6,7 @@ var AccountsJS = function(){
             accountsJS.resizeColumns();
         });
 
-        jQuery('#field_id, #direction_id').change(function(){
+        jQuery('#field, #direction').change(function(){
             jQuery('#accountSortingFormId').submit();
         });
 

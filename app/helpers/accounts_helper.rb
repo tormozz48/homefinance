@@ -1,19 +1,7 @@
 module AccountsHelper
-  #account types
-  def getAccountCardType
-    return 0
-  end
-
-  def getAccountCashType
-    return 1
-  end
-
   def getAccountIndexTitle(type)
-    if type == getAccountCardType.to_s(10)
-      return I18n.t('list.account.cards')
-    elsif type == getAccountCashType.to_s(10)
-      return I18n.t('list.account.cashes')
-    end
+    return {Account::ACCOUNT_CARD_TYPE.to_s(10) => I18n.t('list.account.cards'),
+            Account::ACCOUNT_CASH_TYPE.to_s(10) => I18n.t('list.account.cashes')}[type]
   end
 
   def getAddButtonLink(type)
@@ -21,26 +9,19 @@ module AccountsHelper
   end
 
   def getAddTitle(type)
-    if type == getAccountCardType
-      return I18n.t('form.title.new.account.card')
-    elsif type == getAccountCashType
-      return I18n.t('form.title.new.account.cash')
-    end
+      return {Account::ACCOUNT_CARD_TYPE => I18n.t('form.title.new.account.card'),
+              Account::ACCOUNT_CASH_TYPE => I18n.t('form.title.new.account.cash')}[type]
   end
 
   def getAccountEditTitle(type)
-    if type == getAccountCardType
-      return I18n.t('form.title.edit.account.card')
-    elsif type == getAccountCashType
-      return I18n.t('form.title.edit.account.cash')
-    end
+      return {Account::ACCOUNT_CARD_TYPE => I18n.t('form.title.edit.account.card'),
+              Account::ACCOUNT_CASH_TYPE => I18n.t('form.title.edit.account.cash')}[type]
+
   end
 
   def getAccountsSortingOptionList
-    str = ""
-    str += "<option value='name'>"+I18n.t('field.common.name')+"</option>"
-    str += "<option value='description'>"+I18n.t('field.common.description')+"</option>"
-    str += "<option value='amount'>"+I18n.t('field.account.amount')+"</option>"
-    return str
+      return content_tag(:option, I18n.t('field.common.name'), :value =>"name") +
+             content_tag(:option, I18n.t('field.common.description'), :value =>"description") +
+             content_tag(:option, I18n.t('field.account.amount'), :value =>"amount")
   end
 end

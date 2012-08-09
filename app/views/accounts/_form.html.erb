@@ -2,9 +2,9 @@
     <% if @account.errors.any? %>
         <div id="error_explanation">
           <h2>
-            <%if @account.account_type == getAccountCardType.to_s(10)%>
+            <%if @account.account_type == Account::ACCOUNT_CARD_TYPE.to_s(10)%>
                 <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.card')%>
-            <%elsif @account.account_type == getAccountCashType.to_s(10)%>
+            <%elsif @account.account_type == Account::ACCOUNT_CASH_TYPE.to_s(10)%>
                 <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.cash')%>
             <%end%>
           </h2>
@@ -16,14 +16,17 @@
         </div>
     <% end %>
     <%= f.hidden_field :account_type%>
-    <div class="margin-top10"><%= f.label t('field.common.name'), :class => "form-label" %><br />
-      <%= f.text_field :name, :class => "input-field"%>
+    <div class="margin-top10">
+      <%= label_tag :name, t('field.common.name'), :class => "form-label" %><br />
+      <%= f.text_field :name, :class => "input-field", :id => "name"%>
     </div>
-    <div class="margin-top10"><%= f.label t('field.common.description'), :class => "form-label" %><br />
-      <%= f.text_area :description, :size => "60x6", :class => "text-area"%>
+    <div class="margin-top10">
+      <%= label_tag :description, t('field.common.description'), :class => "form-label" %><br />
+      <%= f.text_area :description, :size => "60x6", :class => "text-area", :id => "description"%>
     </div>
-    <div class="margin-top10"><%= f.label t('field.account.amount'), :class => "form-label" %><br />
-      <%= f.text_field :amount, :class => "input-field amount-input-field input-field-disabled", :readOnly => true%>
+    <div class="margin-top10">
+      <%= label_tag :amount, t('field.account.amount'), :class => "form-label" %><br />
+      <%= f.text_field :amount, :class => "input-field amount-input-field input-field-disabled", :readOnly => "readonly", :id => "amount"%>
     </div>
     <div class="actions form-buttons">
       <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>

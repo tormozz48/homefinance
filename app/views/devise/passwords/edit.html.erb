@@ -11,11 +11,15 @@
           <%=t('info.change_password')%>
         </div>
         <br/>
-        <div><%= f.label :password, t('field.user.password_new') %><br />
-        <%= f.password_field :password %></div>
+        <div>
+          <%= label_tag :password, t('field.user.password_new'), :class => "form-label" %><br />
+          <%= f.password_field :password, :id => :password %>
+        </div>
 
-        <div><%= f.label :password_confirmation, t('field.user.password_confirm') %><br />
-        <%= f.password_field :password_confirmation %></div>
+        <div>
+          <%= label_tag :password_confirmation, t('field.user.password_confirm'), :class => "form-label" %><br />
+          <%= f.password_field :password_confirmation, :id => :password_confirmation %>
+        </div>
 
         <div class="form-buttons">
             <div><%= f.submit "", :class=>"save-button", :title=>t('button.save') %></div>

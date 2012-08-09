@@ -1,12 +1,6 @@
 class EatingsController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
-  end
-
-  def show
-  end
-
   def new
     weight_id = params[:weight_id]
     @eating = Eating.new

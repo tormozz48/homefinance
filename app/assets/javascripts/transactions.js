@@ -6,7 +6,7 @@ var TransactionJS = function(){
 
    this.init = function(type){
 
-      jQuery('#direction_id')[0].selectedIndex = 1;
+      jQuery('#direction')[0].selectedIndex = 1;
 
       resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
       jQuery(window).resize(function(){
@@ -15,33 +15,33 @@ var TransactionJS = function(){
       });
 
       jQuery.datepicker.setDefaults(jQuery.extend(jQuery.datepicker.regional["ru"]));
-      jQuery('#date_from_id').datepicker({
+      jQuery('#date_from').datepicker({
           dateFormat: 'yy-mm-dd',
           maxDate: new Date(),
           changeMonth: true,
           changeYear: true,
           onSelect: function(dateText, inst) {
-              jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
-              jQuery('#date_from_id').datepicker('hide');
+              jQuery('#date_to').datepicker('option', 'minDate', jQuery('#date_from').datepicker('getDate'));
+              jQuery('#date_from').datepicker('hide');
               jQuery('#pageID').val(1);
               jQuery('#transactionFilterFormId').submit();
           }
       });
 
-      jQuery('#date_to_id').datepicker({
+      jQuery('#date_to').datepicker({
           dateFormat: 'yy-mm-dd',
           maxDate: new Date(),
           changeMonth: true,
           changeYear: true,
           onSelect: function(dateText, inst) {
-              jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
-              jQuery('#date_to_id').datepicker('hide');
+              jQuery('#date_from').datepicker('option', 'maxDate', jQuery('#date_to').datepicker('getDate'));
+              jQuery('#date_to').datepicker('hide');
               jQuery('#pageID').val(1);
               jQuery('#transactionFilterFormId').submit();
           }
       });
 
-      jQuery('#category_id, #field_id, #direction_id').change(function(){
+      jQuery('#category, #field, #direction').change(function(){
           jQuery('#pageID').val(1);
           jQuery('#transactionFilterFormId').submit();
       });
@@ -127,17 +127,17 @@ var TransactionJS = function(){
   };
 
   this.formInit = function(){
-      jQuery('#transactionDateId').datepicker({
+      jQuery('#date').datepicker({
           dateFormat: 'yy-mm-dd',
           maxDate: new Date(),
           changeMonth: true,
           changeYear: true,
           onSelect: function(dateText, inst) {
-              jQuery('#transactionDateId').datepicker('hide')
+              jQuery('#date').datepicker('hide')
           }
       });
 
-      jQuery('#transactionAmountId').ForceNumericOnly();
+      jQuery('#amount').ForceNumericOnly();
   };
 
   this.toggleFilter = function(){

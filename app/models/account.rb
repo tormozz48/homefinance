@@ -10,4 +10,10 @@ class Account < ActiveRecord::Base
   attr_accessible :name, :amount, :description, :account_type, :user, :user_id, :enabled
 
   belongs_to :user, :readonly => true
+
+  #account types
+  ACCOUNT_CARD_TYPE = 0
+  ACCOUNT_CASH_TYPE = 1
+
+
 end

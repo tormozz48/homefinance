@@ -72,8 +72,8 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new(:transaction_type => params[:type], :amount => 0, :date => Date.today)
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCardType, current_user.id, true)
-    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCashType, current_user.id, true)
+    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
+    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
     @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
     @task_new = true
   end
@@ -93,8 +93,8 @@ class TransactionsController < ApplicationController
           format.html {redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
         else
           @task_new = true
-          @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCardType, current_user.id, true)
-          @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(getAccountCashType, current_user.id, true)
+          @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
+          @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
           @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
 
           format.html { render action: "new" }

@@ -6,7 +6,7 @@ var CategoriesJS = function(){
             categoriesJS.resizeColumns();
         });
 
-        jQuery('#field_id, #direction_id ').change(function(){
+        jQuery('#field, #direction').change(function(){
             jQuery('#categorySortingFormId').submit();
         });
 

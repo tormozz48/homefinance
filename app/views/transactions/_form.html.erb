@@ -10,150 +10,35 @@
     </div>
   <% end %>
   <%= f.hidden_field :transaction_type%>
-  <div class="margin-top10"><%= f.label t('field.transaction.summa'), :class => "form-label" %><br />
-    <%= f.number_field :amount, :id => "transactionAmountId", :class => "input-field amount-input-field"%>
+  <div class="margin-top10">
+    <%= label_tag :amount, t('field.transaction.summa'), :class => "form-label" %><br />
+    <%= f.number_field :amount, :id => "amount", :class => "input-field amount-input-field"%>
   </div>
-  <div class="margin-top10"><%= f.label t('field.common.date'), :class => "form-label"%><br/>
-    <%= f.text_field :date, :class => "input-field amount-input-field",  :id => "transactionDateId", :readOnly => true%>
+  <div class="margin-top10">
+    <%= label_tag :date, t('field.common.date'), :class => "form-label"%><br/>
+    <%= f.text_field :date, :class => "input-field amount-input-field",  :id => "date", :readOnly => "readonly"%>
   </div>
 
 <%if  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT%>
-  <div class="margin-top10">
-    <%= f.label t('field.transaction.account_to'), :class => "form-label"%>
-    <%if @task_new == true%><br/>
-        <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name,
-                              {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-    <%else%>
-        <span class="account-name"><%= @transaction.account_to.name %></span>
-    <%end%>
-  </div>
+    <%=render :partial => 'transactions/form_to_account'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-          <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.account_to'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-          <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_to.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_account_to_account'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_to'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_to.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_account_to_cash'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.account_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.category'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :category_id, @categories, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.category.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_account_to_category'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_to'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_to.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_to_cash'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-             <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.account_to'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-          <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_to.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_cash_to_account'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-          <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_to'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.account_to.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_cash_to_cash'%>
 <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.cash_from'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-           <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-           <span class="account-name"><%= @transaction.account_from.name %></span>
-      <%end%>
-    </div>
-    <div class="margin-top10">
-      <%= f.label t('field.transaction.category'), :class => "form-label"%>
-      <%if @task_new == true%><br/>
-            <%= collection_select(:transaction, :category_id, @categories, :id, :name,
-                            {:include_blank => t('common.undefined')}, {:class=>"account-select"})%>
-      <%else%>
-          <span class="account-name"><%= @transaction.category.name %></span>
-      <%end%>
-    </div>
+    <%=render :partial => 'transactions/form_from_cash_to_category'%>
 <%end%>
-  <div class="margin-top10"><%= f.label t('field.transaction.comment'), :class => "form-label" %><br />
-    <%= f.text_area :comment, :size => "60x6", :class => "text-area"%>
+  <div class="margin-top10">
+    <%= label_tag :comment, t('field.transaction.comment'), :class => "form-label" %><br />
+    <%= f.text_area :comment, :size => "60x6", :id => "comment", :class => "text-area"%>
   </div>
   <div class="emptyh20">&nbsp;</div>
   <div class="actions form-buttons">

@@ -6,12 +6,6 @@ class WeightsController < ApplicationController
     @weights = Weight.order("date DESC").where("enabled = true and user_id = ?", current_user.id).page(session[:page])
   end
 
-
-  def show
-
-  end
-
-
   def new
     last_record = Weight.where("enabled = true and user_id = ?", current_user.id).last
 
@@ -21,7 +15,6 @@ class WeightsController < ApplicationController
     @weight.weight = last_record.nil? ? 0 : last_record.weight
     @weight.date = Date.today
   end
-
 
   def edit
     @weight = Weight.find(params[:id])
@@ -57,7 +50,6 @@ class WeightsController < ApplicationController
     weight = Weight.find(params[:id])
     weight.update_attribute(:enabled, false)
     weight.save
-
 
     respond_to do |format|
       format.html { redirect_to weights_path(:page => session[:page]) }

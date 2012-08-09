@@ -9,14 +9,17 @@
               <%=t('info.registration')%>
             </div>
             <br>
-            <div><%= f.label t('field.user.email') %><br />
-                <%= f.email_field :email %>
+            <div>
+                <%= label_tag :email, t('field.user.email'), :class => "form-label" %><br />
+                <%= f.email_field :email, :id => :email %>
             </div>
-            <div><%= f.label t('field.user.password') %><br />
-                <%= f.password_field :password %>
+            <div>
+                <%= label_tag :password, t('field.user.password'), :class => "form-label" %><br />
+                <%= f.password_field :password, :id => :password %>
             </div>
-            <div><%= f.label t('field.user.password_confirm') %><br />
-                <%= f.password_field :password_confirmation %>
+            <div>
+                <%= label_tag :password_confirmation, t('field.user.password_confirm'), :class => "form-label" %><br />
+                <%= f.password_field :password_confirmation, :id => :password_confirmation %>
             </div>
             <div class="form-buttons"><%= f.submit "", :class=>"register-button", :title=>t('link.sign.up') %></div>
         <% end %>

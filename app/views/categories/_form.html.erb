@@ -12,16 +12,16 @@
     <%= f.hidden_field :amount%>
     <%= f.hidden_field :enabled%>
     <div class="margin-top10">
-        <%= f.label t('field.common.name'), :class => "form-label" %><br />
-        <%= f.text_field :name, :class => "input-field"%>
+        <%= label_tag :name, t('field.common.name'), :class => "form-label" %><br />
+        <%= f.text_field :name, :class => "input-field", :id => "name"%>
     </div>
     <div class="margin-top10">
-        <%= f.label t('field.common.description'), :class => "form-label" %><br />
-        <%= f.text_area :description, :size => "60x6", :class => "text-area"%>
+        <%= label_tag :description, t('field.common.description'), :class => "form-label" %><br />
+        <%= f.text_area :description, :size => "60x6", :class => "text-area", :id => "description"%>
     </div>
     <div class="margin-top10">
-        <%= f.label t('field.category.color'), :class => "form-label" %>
-        <%= f.text_field :color, :id => "colorFieldId", :class => "category-color-field", :readOnly => true%>
+        <%= label_tag :colorFieldId, t('field.category.color'), :class => "form-label" %>
+        <%= f.text_field :color, :id => "colorFieldId", :class => "category-color-field", :readOnly => "readOnly"%>
     </div>
     <div class="actions form-buttons">
         <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>

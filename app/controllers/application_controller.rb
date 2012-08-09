@@ -3,15 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!, :only => [:edit, :update]
 
-  #account types
-  def getAccountCardType
-    return 0
-  end
-
-  def getAccountCashType
-    return 1
-  end
-
   def edit
     @user = current_user
     respond_to do |format|

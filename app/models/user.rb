@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
                       :email => access_token.extra.raw_info.email,
                       :password => Devise.friendly_token[0,20])
       user.skip_confirmation!
+      logger.info user.errors
       user.save!
       logger.info "user saved to db"
       return user

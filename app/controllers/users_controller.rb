@@ -24,7 +24,9 @@ class UsersController < Devise::OmniauthCallbacksController
     fbUser = User.find_for_facebook_oauth request.env["omniauth.auth"]
     if fbUser.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      sign_in_and_redirect fbUser, :event => :authentication
+      sign_in fbUser, :bypass => true
+      redirect_to root_path
+      #sign_in_and_redirect fbUser, :event => :authentication
     else
       flash[:notice] = "authentication error"
       redirect_to root_path

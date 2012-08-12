@@ -23,16 +23,18 @@ Homefinance2::Application.routes.draw do
       post 'sort'
     end
   end
+
   devise_for :users
+
+  match '/auth/facebook/callback' => 'users#facebook'
 
   match 'statistic_date', :to => 'statistics#initStatisticByDate'
   match 'show_statistic_by_date', :to => 'statistics#showStatisticByDate'
   match 'statistic_category', :to => 'statistics#initStatisticByCategory'
   match 'show_statistic_by_category', :to => 'statistics#showStatisticByCategory'
 
-  match 'edit_user_profile', :to => 'application#edit'
-  match 'update_user_profile', :to => 'application#update'
-  match 'sign_with_social', :to => 'application#sign_with_social'
+  match 'edit_user_profile', :to => 'users#edit'
+  match 'update_user_profile', :to => 'users#update'
 
   match 'statistic_weight', :to => 'weights#initStatisticWeight'
   match 'show_statistic_weight', :to => 'weights#showStatisticWeight'

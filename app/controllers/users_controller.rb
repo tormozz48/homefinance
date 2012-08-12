@@ -26,10 +26,10 @@ class UsersController < Devise::OmniauthCallbacksController
       logger.info "user found in database"
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
       logger.info "user sign in start"
-      sign_in fbUser, :bypass => true
-      logger.info "user sign in end"
-      redirect_to root_path
-      #sign_in_and_redirect fbUser, :event => :authentication
+      #sign_in fbUser, :bypass => true
+      #logger.info "user sign in end"
+      #redirect_to root_path
+      sign_in_and_redirect fbUser, :event => :authentication
     else
       logger.info "auth error"
       flash[:notice] = "authentication error"

@@ -22,8 +22,8 @@ class UsersController < Devise::OmniauthCallbacksController
 
   def facebook
     fbUser = User.find_for_facebook_oauth request.env["omniauth.auth"]
-    if fbUser.persisted?
-      logger.info "user persisted"
+    if fbUser.nil? == false
+      logger.info "user found in database"
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
       logger.info "user sign in start"
       sign_in fbUser, :bypass => true

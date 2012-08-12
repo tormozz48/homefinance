@@ -5,6 +5,12 @@ gem 'devise'
 gem 'pg'
 gem 'date_validator'
 gem 'kaminari'
+gem 'heroku'
+gem 'taps'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
  group :assets do
   gem 'sass-rails',   '~> 3.2.3'

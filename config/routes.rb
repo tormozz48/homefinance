@@ -24,7 +24,7 @@ Homefinance2::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users" }
 
   match 'statistic_date', :to => 'statistics#initStatisticByDate'
   match 'show_statistic_by_date', :to => 'statistics#showStatisticByDate'

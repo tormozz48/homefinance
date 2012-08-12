@@ -17,9 +17,12 @@ class User < ActiveRecord::Base
   attr_accessible :nickname, :provider, :url, :username, :authentication_token
 
   def self.find_for_facebook_oauth access_token
+    logger.info "find for facebook start"
     if user = User.where(:url => access_token.info.urls.Facebook).first
+      logger.info "user found"
       user
     else
+      logger.info "start create user"
       user = User.new(:provider => access_token.provider,
                       :url => access_token.info.urls.Facebook,
                       :username => access_token.extra.raw_info.name,
@@ -28,6 +31,7 @@ class User < ActiveRecord::Base
                       :password => Devise.friendly_token[0,20])
       user.skip_confirmation!
       user.save
+      logger.info "user saved to db"
       return user
     end
   end

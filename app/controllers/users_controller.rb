@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, :only => [:edit, :update]
+
   def edit
     @user = current_user
     respond_to do |format|
@@ -28,10 +30,22 @@ class UsersController < ApplicationController
        require 'net/http'
        url = URI.parse('http://loginza.ru/api/authinfo?token='+token+"&id="+app_id+"&sig="+secret_key)
        social_data = ActiveSupport::JSON.decode(Net::HTTP.get(url))
-       identity = social_data['identity']
-       provider = social_data['provider']
-       nickname = social_data['nickname']
        email = social_data['email']
+       if !email.nil?
+          user = User.find_by_email(email)
+          if(user.nil?)
+            user = User.new(:email => email,
+                            :provider => social_data['provider'],
+                            :first_name => social_data['name']['first_name'],
+                            :last_name => social_data['name']['last_name'],
+                            :nickname => social_data['nickname'],
+                            :authentication_token => social_data['uid'],
+                            :password => secret_key)
+            user.skip_confirmation!
+            user.save
+          end
+          sign_in user, :bypass => true
+       end
      end
      redirect_to root_path
   end

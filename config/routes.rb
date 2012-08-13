@@ -24,7 +24,7 @@ Homefinance2::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users" }
+  devise_for :users
 
   match 'statistic_date', :to => 'statistics#initStatisticByDate'
   match 'show_statistic_by_date', :to => 'statistics#showStatisticByDate'
@@ -33,6 +33,7 @@ Homefinance2::Application.routes.draw do
 
   match 'edit_user_profile', :to => 'users#edit'
   match 'update_user_profile', :to => 'users#update'
+  match 'social_authentification', :to => 'users#social_authentification'
 
   match 'statistic_weight', :to => 'weights#initStatisticWeight'
   match 'show_statistic_weight', :to => 'weights#showStatisticWeight'

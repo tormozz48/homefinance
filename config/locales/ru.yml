@@ -18,6 +18,18 @@ ru:
     didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
     change_password: "Изменить пароль"
 
+  social:
+    enter_with: "Войти с помощью "
+    facebook: "Facebook"
+    twitter: "Twitter"
+    vkontakte: "Vkontakte"
+    google: "Google"
+    flickr: "Flickr"
+    lastfm: "Lastfm"
+    linkedin: "LinkedIn"
+    livejournal: "LiveJournal"
+
+
   common:
     error: "Ошибка"
     undefined: "Не определено"

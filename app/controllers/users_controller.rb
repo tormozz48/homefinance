@@ -1,4 +1,4 @@
-class UsersController < Devise::OmniauthCallbacksController
+class UsersController < ApplicationController
   def edit
     @user = current_user
     respond_to do |format|
@@ -20,18 +20,19 @@ class UsersController < Devise::OmniauthCallbacksController
     end
   end
 
-  def facebook
-    @user = User.find_for_facebook_oauth request.env["omniauth.auth"]
-    if @user.nil? == false
-      logger.info "user found in database"
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      logger.info "user sign in start"
-      sign_in @user, :bypass => true
-      logger.info "user sign in end"
-      redirect_to root_path
-    end
-  end
-
-  def vkontakte
+  def social_authentification
+     token = params[:token]
+     app_id = "30025"
+     secret_key = "8374210538983a539635429893ff2584"
+     if !token.nil?
+       require 'net/http'
+       url = URI.parse('http://loginza.ru/api/authinfo?token='+token+"&id="+app_id+"&sig="+secret_key)
+       social_data = ActiveSupport::JSON.decode(Net::HTTP.get(url))
+       identity = social_data['identity']
+       provider = social_data['provider']
+       nickname = social_data['nickname']
+       email = social_data['email']
+     end
+     redirect_to root_path
   end
 end

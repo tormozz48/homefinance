@@ -5,7 +5,10 @@
     </span>
   </div>
   <div id="tableWrapperBodyID">
-    <%= link_to t('add.item'), new_category_path, :class => "link" %>
+    <span class="tooltip">
+      <span><%=t('tooltip.record.add')%></span>
+      <%= link_to t('add.item'), new_category_path, :class => "link" %>
+    </span>
     <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
         <div class="category-sorting-form">
            <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>

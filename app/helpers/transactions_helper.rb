@@ -8,7 +8,18 @@ module TransactionsHelper
                 4 => "88FF4D", #thursday
                 5 => "4DE1FF", #friday
                 6 => "4D88FF"  #saturday
-            }[date.to_time().wday]
+    }[date.to_time().wday]
+  end
+
+  def getRowColorByDayOfWeek(dayOfWeek)
+    return "#"+{0 => "C34DFF", #sunday
+                1 => "FF6A4D", #monday
+                2 => "FFC34D", #tuesday
+                3 => "E1FF4D", #wednesday
+                4 => "88FF4D", #thursday
+                5 => "4DE1FF", #friday
+                6 => "4D88FF"  #saturday
+    }[dayOfWeek]
   end
 
   def getIndexTitle(transaction_type)

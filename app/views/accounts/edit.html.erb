@@ -6,7 +6,12 @@
   </div>
   <div class="form-body">
     <%= render 'form' %>
-    <%= link_to t('button.back'), accounts_path(:type => @account.account_type), :class => "link" %>
+    <span class="tooltip">
+        <span>
+          <%=t('tooltip.back')%>
+        </span>
+        <%= link_to t('button.back'), accounts_path(:type => @account.account_type), :class => "link" %>
+    </span>
   </div>
   <div class="form-footer"></div>
 </div>

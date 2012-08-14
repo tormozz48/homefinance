@@ -1,6 +1,12 @@
 <%= form_tag(filter_transactions_path(:type =>@transaction_type), :id =>"transactionFilterSortFormId", :method=>:post, :remote => true) do -%>
-    <%= link_to t('add.item'), new_transaction_path(:type => @transaction_type), :id => "addNewTransactionButtonID", :class => "link link-inline" %>
-    <%= link_to_function t('button.filter'), "transactionsJS.toggleFilter()", :id => "filterButtonId", :class => "link link-inline" %>
+    <span class="tooltip">
+        <span><%=t('tooltip.record.add')%></span>
+        <%= link_to t('add.item'), new_transaction_path(:type => @transaction_type), :id => "addNewTransactionButtonID", :class => "link link-inline" %>
+    </span>
+    <span class="tooltip">
+        <span><%=t('tooltip.filter')%></span>
+        <%= link_to_function t('button.filter'), "transactionsJS.toggleFilter()", :id => "filterButtonId", :class => "link link-inline" %>
+    </span>
     <div id="transactionSortFormId">
       <%=hidden_field_tag 'type', @transaction_type%>
       <%=hidden_field_tag 'page', @page, :id => "pageID"%>

@@ -1,8 +1,10 @@
 <div class="data-item account-data-item">
-  <span class="td-edit">
+  <span class="td-edit tooltip">
+    <span><%=t('tooltip.record.edit')%></span>
     <%= link_to t('button.edit'), edit_account_path(account, :type => @account_type),:class => "link" %>
   </span>
-  <span class="td-delete">
+  <span class="td-delete tooltip">
+    <span><%=t('tooltip.record.delete')%></span>
     <%= link_to t('button.delete'), account,
                 confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
   </span>

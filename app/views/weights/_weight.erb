@@ -1,8 +1,10 @@
 <div class="data-item weight-data-item">
-  <span class="td-edit">
+  <span class="td-edit tooltip">
+    <span><%=t('tooltip.record.edit')%></span>
     <%= link_to t('button.edit'), edit_weight_path(weight),:class => "link" %>
   </span>
-  <span class="td-delete">
+  <span class="td-delete tooltip">
+    <span><%=t('tooltip.record.delete')%></span>
     <%= link_to t('button.delete'), weight, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
   </span>
   <span class="body-weight-date">
@@ -20,7 +22,8 @@
   <span class="body-weight-month-difference">
     <%=weight.month_difference%>
   </span>
-  <span class="td-edit td-add_eating">
+  <span class="td-edit td-add_eating tooltip">
+    <span><%=t('tooltip.record.add')%></span>
     <%= link_to t('add.eating'), new_eating_path(:weight_id => weight.id),:class => "link" %>
   </span>
   <%if weight.eatings.nil? == false && weight.eatings.length > 0 %>

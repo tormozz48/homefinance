@@ -5,7 +5,10 @@
     </span>
   </div>
   <div id="tableWrapperBodyID">
-    <%=getAddButtonLink(@account_type)%>
+    <span class="tooltip">
+        <span><%=t('tooltip.record.add')%></span>
+        <%=getAddButtonLink(@account_type)%>
+    </span>
     <%= form_tag(sort_accounts_path, :id =>"accountSortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
         <div class="category-sorting-form">
           <%= hidden_field_tag "type", @account_type%>

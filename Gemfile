@@ -9,8 +9,9 @@ gem 'heroku'
 gem 'taps'
 
 gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
+#gem 'omniauth-facebook'
+#gem 'omniauth-vkontakte'
+gem 'loginza'
 
  group :assets do
   gem 'sass-rails',   '~> 3.2.3'

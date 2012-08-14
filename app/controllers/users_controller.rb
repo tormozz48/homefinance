@@ -23,14 +23,17 @@ class UsersController < ApplicationController
   end
 
   def social_authentification
+     logger.info('social auth start')
      token = params[:token]
      app_id = "30025"
      secret_key = "8374210538983a539635429893ff2584"
      if !token.nil?
        require 'net/http'
        url = URI.parse('http://loginza.ru/api/authinfo?token='+token+"&id="+app_id+"&sig="+secret_key)
+       logger.info(url)
        social_data = ActiveSupport::JSON.decode(Net::HTTP.get(url))
        email = social_data['email']
+       logger.info(email)
        if !email.nil?
           user = User.find_by_email(email)
           if(user.nil?)

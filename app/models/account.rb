@@ -15,5 +15,6 @@ class Account < ActiveRecord::Base
   ACCOUNT_CARD_TYPE = 0
   ACCOUNT_CASH_TYPE = 1
 
+  ACCOUNT_TYPES = [ACCOUNT_CARD_TYPE, ACCOUNT_CASH_TYPE]
 
 end

@@ -8,10 +8,14 @@ class TransactionsController < ApplicationController
     else
       @transaction_type = @transaction_type.to_i
     end
-    @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
-    @date_from = 1.month.ago.to_date
-    @date_to = Date.today
-    @page = 1
+    if Transaction::TRANSACTION_TYPES.include? @transaction_type
+      @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
+      @date_from = 1.month.ago.to_date
+      @date_to = Date.today
+      @page = 1
+    else
+      render_404
+    end
   end
 
   def load
@@ -81,6 +85,9 @@ class TransactionsController < ApplicationController
   def edit
     @transaction = Transaction.find(params[:id])
     @task_new = false
+    if @transaction.nil?
+      render_404
+    end
   end
 
   def create
@@ -106,6 +113,9 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = Transaction.find(params[:id])
+    if @transaction.nil?
+      render_404
+    end
     p = params[:transaction]
     @transaction.amount = p[:amount]
     valid = @transaction.valid? ? @transaction.calculateTransactionEdit : false
@@ -122,6 +132,9 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction = Transaction.find(params[:id])
+    if @transaction.nil?
+      render_404
+    end
     valid = @transaction.valid? ? @transaction.calculateTransactionDestroy : false
     @transaction.destroy if valid
     respond_to do |format|

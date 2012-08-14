@@ -3,11 +3,13 @@ class AccountsController < ApplicationController
 
   def index
     @account_type = params[:type]
+    if !Account::ACCOUNT_TYPES.include? @account_type.to_i
+      render_404
+    end
   end
 
   def load
     account_type = params[:type]
-
     field = params[:field].nil? ? "name" : params[:field]
     direction = params[:direction].nil? ? "asc" : params[:direction]
     sortStr = field + " " + direction
@@ -57,6 +59,9 @@ class AccountsController < ApplicationController
 
   def update
     @account = Account.find(params[:id])
+    if @account.nil?
+      render_404 and return
+    end
     @account_type = @account.account_type
     if(@account.user_id == current_user.id)
     respond_to do |format|
@@ -74,6 +79,9 @@ class AccountsController < ApplicationController
 
   def destroy
     @account = Account.find(params[:id])
+    if @account.nil?
+      render_404 and return
+    end
     account_type = @account.account_type
     if(@account.user_id == current_user.id)
       @account.update_attribute(:enabled, false)

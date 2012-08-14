@@ -29,9 +29,9 @@ class UsersController < ApplicationController
      secret_key = "8374210538983a539635429893ff2584"
      if !token.nil?
        require 'net/http'
-       url = URI.parse('http://loginza.ru/api/authinfo?token='+token+"&id="+app_id+"&sig="+secret_key)
+       url = URI.parse('http://loginza.ru/api/authinfo')
        logger.info(url)
-       social_data = ActiveSupport::JSON.decode(Net::HTTP.post(url))
+       social_data = ActiveSupport::JSON.decode(Net::HTTP.post_form(url, 'token'=>token, 'id'=>app_id, 'sig'=>secret_key))
        email = social_data['email']
        logger.info(email)
        if !email.nil?

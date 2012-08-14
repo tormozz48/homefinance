@@ -31,7 +31,7 @@ class UsersController < ApplicationController
        require 'net/http'
        url = URI.parse('http://loginza.ru/api/authinfo?token='+token+"&id="+app_id+"&sig="+secret_key)
        logger.info(url)
-       social_data = ActiveSupport::JSON.decode(Net::HTTP.get(url))
+       social_data = ActiveSupport::JSON.decode(Net::HTTP.post(url))
        email = social_data['email']
        logger.info(email)
        if !email.nil?

@@ -29,6 +29,23 @@ ru:
     linkedin: "LinkedIn"
     livejournal: "LiveJournal"
 
+  week:
+    day:
+      sunday: "Воскресенье"
+      monday: "Понедельник"
+      tuesday: "Вторник"
+      wednesday: "Среда"
+      thursday: "Четверг"
+      friday: "Пятница"
+      saturday: "Суббота"
+
+  tooltip:
+    filter: "Показать опции фильтрации записей"
+    back: "Отменить изменения и вернуться на предыдущую страницу"
+    record:
+      add: "Добавить новую запись"
+      edit: "Редактировать запись"
+      delete: "Удалить запись"
 
   common:
     error: "Ошибка"

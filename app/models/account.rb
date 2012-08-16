@@ -17,4 +17,7 @@ class Account < ActiveRecord::Base
 
   ACCOUNT_TYPES = [ACCOUNT_CARD_TYPE, ACCOUNT_CASH_TYPE]
 
+  def name_with_amount
+    "#{name} #{amount}"
+  end
 end

@@ -1,7 +1,7 @@
 <div class="margin-top10">
   <%if @task_new == true%>
       <%= label_tag :account_from_id, t('field.transaction.account_from'), :class => "form-label"%><br/>
-      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name,
+      <%= collection_select(:transaction, :account_from_id, @accounts, :id, :name_with_amount,
                             {:include_blank => t('common.undefined')}, {:id => "account_from_id", :class=>"account-select"})%>
   <%else%>
       <span class="form-label">
@@ -15,7 +15,7 @@
 <div class="margin-top10">
   <%if @task_new == true%>
       <%= label_tag :account_to_id, t('field.transaction.cash_to'), :class => "form-label"%><br/>
-      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name,
+      <%= collection_select(:transaction, :account_to_id, @cashes, :id, :name_with_amount,
                             {:include_blank => t('common.undefined')}, {:id => "account_to_id", :class=>"account-select"})%>
   <%else%>
       <span class="form-label">

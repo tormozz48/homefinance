@@ -8,6 +8,10 @@
   outline: none;
 }
 
+.tooltip-d span{
+  visibility: hidden;
+}
+
 .tooltip span{
   visibility: hidden;
   position: absolute;

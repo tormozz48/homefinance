@@ -1,11 +1,11 @@
 <div id="transaction_"<%=transaction.id%> class="data-item transaction-data-item">
-    <span class="td-edit tooltip">
+    <span class="td-edit tooltip-d">
         <span>
           <%=t('tooltip.record.edit')%>
         </span>
         <%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p),:class => "link" %>
     </span>
-    <span class="td-delete tooltip">
+    <span class="td-delete tooltip-d">
         <span>
           <%=t('tooltip.record.delete')%>
         </span>

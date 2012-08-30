@@ -3,16 +3,18 @@ ru:
     title: "Домашние финансы"
     description: "Удобный сайт для ведения домашней бухгалтерии, отслеживания доходов и расходов."
     user: "Пользователь:"
+    copyright: "Андрей Кузнецов 2012"
 
   categories_display_count: "Показывать категорий без группировки:"
   sorting_by: "Упорядочить по полю:"
   load_more: "Загрузить еще ..."
+  currency: "грн."
 
   link:
     sign:
-      in: "Вход"
-      up: "Регистрация"
-    to_login_page: "Вернуться на страницу логина"
+      in: "Вход в программу"
+      up: "Регистрация нового пользователя"
+    to_login_page: "Вернуться на страницу авторизации"
     forgot_password: "Забыли пароль?"
     resend_confirmation_instructions: "Выслать письмо с подтверждением"
     didnt_receive_confirmation_instructions: "Не получили письмо с подтверждением?"
@@ -98,13 +100,15 @@ ru:
       normal: "Норма:"
 
   button:
-    save: "Сохранить"
+    save: "Сохранить изменения"
     back: "Назад"
     show: "Просмотр"
     edit: "Изменить"
     delete: "Удалить"
     send: "Выслать письмо"
     filter: "Фильтр"
+    action: "Действие"
+    add: "Добавить запись"
 
   list:
     categories: "Список категорий расходов"
@@ -173,6 +177,11 @@ ru:
         category: "Статистика расходов по категориям"
         weight: "График изменения веса"
       login: "Вход в программу"
+      sign_up: "Регистрация нового пользователя"
+      password_recovery: "Восстановление пароля"
+      resend_confirmation_instructions: "Выслать письмо с подтверждением"
+      change_password: "Изменение пароля"
+
   #eating types
   eating:
     type:
@@ -203,6 +212,10 @@ ru:
 
   #menu
   menu:
+      top:
+        main: "На главную"
+        about: "О программе"
+        contacts: "Контакты"
       transaction:
         title: "Переводы"
         to_account: "Начисление на счет"
@@ -281,8 +294,9 @@ ru:
         user:
           attributes:
             email:
+              blank: "Email не может быть пустым"
               invalid: "Неправильный адрес электронной почты"
-              taken: "Пользователь с таким E-Mail адресом уже зарегистрирован"
+              taken: "Такой E-Mail уже используется"
             password:
               blank: "Поле пароля не может быть пустым"
               confirmation: "Поле подтверждения пароля не может быть пустым"

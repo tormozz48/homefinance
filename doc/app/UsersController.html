@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class UsersController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/users_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-social_authentification">#social_authentification</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Account.html">Account</a>
+  
+    <li><a href="./AccountsController.html">AccountsController</a>
+  
+    <li><a href="./AccountsHelper.html">AccountsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
+    <li><a href="./Eating.html">Eating</a>
+  
+    <li><a href="./EatingType.html">EatingType</a>
+  
+    <li><a href="./EatingsController.html">EatingsController</a>
+  
+    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+  
+    <li><a href="./StatisticsController.html">StatisticsController</a>
+  
+    <li><a href="./StatisticsHelper.html">StatisticsHelper</a>
+  
+    <li><a href="./Transaction.html">Transaction</a>
+  
+    <li><a href="./TransactionsController.html">TransactionsController</a>
+  
+    <li><a href="./TransactionsHelper.html">TransactionsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./Weight.html">Weight</a>
+  
+    <li><a href="./WeightsController.html">WeightsController</a>
+  
+    <li><a href="./WeightsHelper.html">WeightsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class UsersController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">'devise/user_profile'</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit-method -->
+
+    
+      <div id="method-i-social_authentification" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">social_authentification</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="social_authentification-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">social_authentification</span>
+   <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-string">'social auth start'</span>)
+   <span class="ruby-identifier">token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
+   <span class="ruby-identifier">app_id</span> = <span class="ruby-string">&quot;30025&quot;</span>
+   <span class="ruby-identifier">secret_key</span> = <span class="ruby-string">&quot;8374210538983a539635429893ff2584&quot;</span>
+   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">token</span>.<span class="ruby-identifier">nil?</span>
+     <span class="ruby-identifier">social_data</span> = <span class="ruby-constant">Loginza</span>.<span class="ruby-identifier">user_data</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>], <span class="ruby-value">:options</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">app_id</span>, <span class="ruby-value">:sig</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">secret_key</span>})
+     <span class="ruby-identifier">email</span> = <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'email'</span>]
+     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-identifier">email</span>)
+     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">email</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">email</span>)
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>)
+          <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">email</span>,
+                          <span class="ruby-value">:provider</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'provider'</span>],
+                          <span class="ruby-value">:first_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'name'</span>][<span class="ruby-string">'first_name'</span>],
+                          <span class="ruby-value">:last_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'name'</span>][<span class="ruby-string">'last_name'</span>],
+                          <span class="ruby-value">:nickname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'nickname'</span>],
+                          <span class="ruby-value">:authentication_token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">social_data</span>[<span class="ruby-string">'uid'</span>],
+                          <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">secret_key</span>)
+          <span class="ruby-identifier">user</span>.<span class="ruby-identifier">skip_confirmation!</span>
+          <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">sign_in</span> <span class="ruby-identifier">user</span>, <span class="ruby-value">:bypass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+     <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- social_authentification-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- social_authentification-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">successfully_updated</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_without_password</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">successfully_updated</span>
+    <span class="ruby-identifier">sign_in</span> <span class="ruby-ivar">@user</span>, <span class="ruby-value">:bypass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">'devise/user_profile'</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> [<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>], <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

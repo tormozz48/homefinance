@@ -1,17 +1,3 @@
-<div class="form form-category">
-  <div class="form-header">
-    <span>
-      <%=getAccountEditTitle(@account.account_type)%>
-    </span>
-  </div>
-  <div class="form-body">
-    <%= render 'form' %>
-    <span class="tooltip">
-        <span>
-          <%=t('tooltip.back')%>
-        </span>
-        <%= link_to t('button.back'), accounts_path(:type => @account.account_type), :class => "link" %>
-    </span>
-  </div>
-  <div class="form-footer"></div>
-</div>
+<%@legend = getAccountEditTitle(@account.account_type)%>
+<%= render 'form' %>
+

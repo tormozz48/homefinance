@@ -61,27 +61,27 @@ module TransactionsHelper
 
   def createTransactionTableHeader(transaction_type)
     if transaction_type == Transaction::TRANSACTION_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID1")
+      return content_tag(:th, I18n.t('field.transaction.account_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.account_from')) +
+             content_tag(:th, I18n.t('field.transaction.account_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.account_from')) +
+             content_tag(:th, I18n.t('field.transaction.cash_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
-      return content_tag(:th, I18n.t('field.transaction.account_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.account_from')) +
+             content_tag(:th, I18n.t('field.transaction.category'))
     elsif transaction_type == Transaction::TRANSACTION_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID1")
+      return content_tag(:th, I18n.t('field.transaction.cash_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.account_to'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
+             content_tag(:th, I18n.t('field.transaction.account_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.cash_to'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
+             content_tag(:th, I18n.t('field.transaction.cash_to'))
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
-      return content_tag(:th, I18n.t('field.transaction.cash_from'), :id => "transactionAccountHeaderID1") +
-             content_tag(:th, I18n.t('field.transaction.category'), :id => "transactionAccountHeaderID2")
+      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
+             content_tag(:th, I18n.t('field.transaction.category'))
     end
   end
 

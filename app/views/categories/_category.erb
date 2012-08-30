@@ -1,27 +1,29 @@
-<div class="data-item category-data-item">
-  <span class="td-edit tooltip-d">
-    <span>
-      <%=t('tooltip.record.edit')%>
-    </span>
-    <%= link_to t('button.edit'), edit_category_path(category),:class => "link" %>
-  </span>
-  <span class="td-delete tooltip-d">
-    <span>
-      <%=t('tooltip.record.delete')%>
-    </span>
-    <%= link_to t('button.delete'), category, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-  </span>
-  <div class="body-category-color">
-    <div style="background-color: <%=getCategoryColor(category)%>;">
-      &nbsp;
-    </div>
-  </div>
-  <span class="body-category-name">
-    <strong>
-      <%=category.name%>
-    </strong>
-  </span>
-  <span class="body-category-description">
-    <%=category.description%>
-  </span>
-</div>
+<tr>
+    <td>
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="icon-circle-arrow-down"></i> <%=t('button.action')%>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to edit_category_path(category) do%>
+                <i class="icon-edit"></i> <%=t('button.edit')%>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to category, confirm: t('message.confirm.delete'), method: :delete do%>
+                <i class="icon-remove"></i> <%=t('button.delete')%>
+            <%end%>
+          </li>
+        </ul>
+      </div>
+    </td>
+    <td>
+      <div class="color-indicator" style="background-color: <%=getCategoryColor(category)%>;">
+        &nbsp;
+      </div>
+    </td>
+    <td><%=category.name%></td>
+    <td><%=category.description%></td>
+</tr>

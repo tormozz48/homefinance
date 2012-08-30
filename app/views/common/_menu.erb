@@ -1,35 +1,34 @@
-<%if user_signed_in?%>
-    <div class="menu-wrapper">
-      <div class="menu">
-        <ul>
-          <li><a href="#" id="transactions"><%=t('menu.transaction.title')%></a>
-            <ul>
-              <li><%= link_to t('menu.transaction.from_cash.to_category'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)%></li>
-              <li><%= link_to t('menu.transaction.from_account.to_cash'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH)%></li>
-              <li><%= link_to t('menu.transaction.to_account'), transactions_path(:type => Transaction::TRANSACTION_TO_ACCOUNT)%></li>
-              <li><%= link_to t('menu.transaction.to_cash'), transactions_path(:type => Transaction::TRANSACTION_TO_CASH)%></li>
-              <li><%= link_to t('menu.transaction.from_cash.to_cash'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_CASH)%></li>
-              <li><%= link_to t('menu.transaction.from_account.to_category'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY)%></li>
-              <li><%= link_to t('menu.transaction.from_account.to_account'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT)%></li>
-              <li><%= link_to t('menu.transaction.from_cash.to_account'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT)%></li>
-            </ul>
-          </li>
-          <li><%= link_to t('menu.accounts'), accounts_path(:type => Account::ACCOUNT_CARD_TYPE)%></li>
-          <li><%= link_to t('menu.cashes'), accounts_path(:type => Account::ACCOUNT_CASH_TYPE) %>
-          <li><%= link_to t('menu.categories'), categories_path %></li>
-          <li><a href="#"><%=t('menu.statistic.title')%></a>
-            <ul>
-              <li><%= link_to t('menu.statistic.date'), statistic_date_path %></li>
-              <li><%= link_to t('menu.statistic.category'), statistic_category_path %></li>
-            </ul>
-          </li>
-          <li><a href="#"><%=t('menu.fooddiary.title')%></a>
-            <ul>
-              <li><%= link_to t('menu.fooddiary.tracker'), weights_path %></li>
-              <li><%= link_to t('menu.fooddiary.statistic'), statistic_weight_path %></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-<%end%>
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header">
+      <%=t('menu.transaction.title')%>
+    </li>
+        <li><%= link_to t('menu.transaction.from_cash.to_category'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)%></li>
+        <li><%= link_to t('menu.transaction.from_account.to_cash'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH)%></li>
+        <li><%= link_to t('menu.transaction.to_account'), transactions_path(:type => Transaction::TRANSACTION_TO_ACCOUNT)%></li>
+        <li><%= link_to t('menu.transaction.to_cash'), transactions_path(:type => Transaction::TRANSACTION_TO_CASH)%></li>
+        <li><%= link_to t('menu.transaction.from_cash.to_cash'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_CASH)%></li>
+        <li><%= link_to t('menu.transaction.from_account.to_category'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY)%></li>
+        <li><%= link_to t('menu.transaction.from_account.to_account'), transactions_path(:type => Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT)%></li>
+        <li><%= link_to t('menu.transaction.from_cash.to_account'), transactions_path(:type => Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT)%></li>
+    <li class="nav-header">
+      <%= link_to t('menu.accounts'), accounts_path(:type => Account::ACCOUNT_CARD_TYPE)%>
+    </li>
+    <li class="nav-header">
+      <%= link_to t('menu.cashes'), accounts_path(:type => Account::ACCOUNT_CASH_TYPE) %>
+    </li>
+    <li class="nav-header">
+      <%= link_to t('menu.categories'), categories_path %>
+    </li>
+    <li class="nav-header">
+      <%=t('menu.statistic.title')%>
+    </li>
+        <li><%= link_to t('menu.statistic.date'), statistic_date_path %></li>
+        <li><%= link_to t('menu.statistic.category'), statistic_category_path %></li>
+    <li class="nav-header">
+      <%=t('menu.fooddiary.title')%>
+    </li>
+        <li><%= link_to t('menu.fooddiary.tracker'), weights_path %></li>
+        <li><%= link_to t('menu.fooddiary.statistic'), statistic_weight_path %></li>
+  </ul>
+</div>

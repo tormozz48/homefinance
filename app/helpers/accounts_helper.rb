@@ -4,11 +4,7 @@ module AccountsHelper
             Account::ACCOUNT_CASH_TYPE.to_s(10) => I18n.t('list.account.cashes')}[type]
   end
 
-  def getAddButtonLink(type)
-    return link_to I18n.t('add.item') , new_account_path(:type => @account_type), :class => "link"
-  end
-
-  def getAddTitle(type)
+  def getAccountAddTitle(type)
       return {Account::ACCOUNT_CARD_TYPE => I18n.t('form.title.new.account.card'),
               Account::ACCOUNT_CASH_TYPE => I18n.t('form.title.new.account.cash')}[type]
   end

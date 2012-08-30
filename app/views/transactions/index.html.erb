@@ -1,28 +1,24 @@
-<div id="tableWrapperID">
-  <div id="tableWrapperHeaderID">
-    <span>
-      <%=getIndexTitle(@transaction_type)%>
-    </span>
-  </div>
-  <div id="tableWrapperBodyID">
+<!--sorting and filter form-->
+<div class="row-fluid">
+  <div class="span12">
     <%= render 'filter'%>
-    <table id="dataTableID">
+  </div>
+</div>
+
+<!--data table-->
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-bordered table-hover table-condensed">
       <thead>
           <tr>
-            <th id="editButtonsHeaderID">&nbsp;</th>
-            <th id="transactionDateHeaderID">
-              <%=t('field.common.date')%>
-            </th>
-            <th id="transactionSumHeaderID">
-              <%=t('field.transaction.summa')%>
-            </th>
+            <th>&nbsp;</th>
+            <th><%=t('field.common.date')%></th>
+            <th><%=t('field.transaction.summa')%></th>
             <%=createTransactionTableHeader(@transaction_type)%>
-            <th></th>
-            <th></th>
           </tr>
       </thead>
+      <tbody id="dataWrapperID"></tbody>
     </table>
-    <div id="dataWrapperID"></div>
   </div>
 </div>
 

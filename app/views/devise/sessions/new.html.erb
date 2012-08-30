@@ -1,33 +1,38 @@
 <script src="http://loginza.ru/js/widget.js" type="text/javascript"></script>
-<div class="form form-login">
-    <div class="form-header">
-        <span>
-          <%=t('form.title.login')%>
-        </span>
-    </div>
-    <div class="form-body">
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-            <div>
-                <%= label_tag :email, t('field.user.email'), :class => "form-label" %><br />
-                <%= f.email_field :email, :id => :email, :class => "login-form-input-field"%>
-            </div>
-            <div>
-                <%= label_tag :password, t('field.user.password'), :class => "form-label" %><br />
-                <%= f.password_field :password, :id => :password, :class => "login-form-input-field" %>
-            </div>
-            <% if devise_mapping.rememberable? -%>
-                <div class="remember-me">
-                    <%= f.check_box :remember_me, :id => :remember_me %>
-                    <%= label_tag :remember_me, t('field.user.remember_me'), :class => "form-label" %>
-                </div>
-            <% end -%>
-            <div class="form-buttons"><%= f.submit "", :class=>"login-button", :title=>t('link.sign.in')%></div>
-        <% end %>
-        <%= render 'social'%>
-      <div style="height: 10px;">&nbsp;</div>
-        <%= link_to t('link.sign.up'), new_registration_path(resource_name), :class => "link" %>
-        <%= link_to t('link.forgot_password'), new_password_path(resource_name), :class=>"link" %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+                            :html => {:id => "signInFormID", :class=> "form-horizontal well application-form"}) do |f| %>
+    <legend><%=t('form.title.login')%></legend>
+    <div class="control-group">
+      <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
+      <div class="controls">
+        <%= f.email_field :email, :id => :email%>
+      </div>
     </div>
-    <div class="form-footer"></div>
-</div>
+    <div class="control-group">
+      <%= label_tag :password, t('field.user.password'), :class => "control-label" %>
+      <div class="controls">
+        <%= f.password_field :password, :id => :password%>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <% if devise_mapping.rememberable? -%>
+            <label class="checkbox">
+                <%= f.check_box :remember_me, :id => :remember_me %> <%=t('field.user.remember_me')%>
+            </label>
+        <% end -%>
+        <%= render 'social'%>
+        <div class="margintop10px">
+            <%= link_to t('link.sign.up'), new_registration_path(resource_name) %>
+        </div>
+        <div class="margintop10px">
+            <%= link_to t('link.forgot_password'), new_password_path(resource_name) %>
+        </div>
+        <div class="margintop10px">
+            <%= f.submit t('link.sign.in'), :class=>"btn btn-primary", :title=>t('link.sign.in')%>
+        </div>
+       </div>
+    </div>
+<% end %>
+

@@ -1,18 +1,4 @@
-<div class="form form-category">
-  <div class="form-header">
-    <span>
-      <%=t('form.title.new.category')%>
-    </span>
-  </div>
-  <div class="form-body">
-    <%= render 'form' %>
-    <span class="tooltip">
-        <span>
-          <%=t('tooltip.back')%>
-        </span>
-        <%= link_to t('button.back'), categories_path, :class=>"link" %>
-    </span>
-  </div>
-  <div class="form-footer"></div>
-</div>
+<%@legend = t('form.title.new.category')%>
+<%= render 'form' %>
+
 

@@ -1,42 +1,36 @@
-<div id="tableWrapperID">
-  <div id="tableWrapperHeaderID">
-    <span>
-      <%=t('list.categories')%>
-    </span>
-  </div>
-  <div id="tableWrapperBodyID">
-    <span class="tooltip">
-      <span><%=t('tooltip.record.add')%></span>
-      <%= link_to t('add.item'), new_category_path, :class => "link" %>
-    </span>
-    <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
-        <div class="category-sorting-form">
-           <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
-           <%= select_tag "field", getCategoriesSortingOptionList.html_safe , :id => "field"%>
-           <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction"%>
-        </div>
+<!--sorting form-->
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_tag(sort_categories_path, :id =>"categorySortingFormId", :method=>:post, :remote => true,
+                 :class => "form-inline well") do -%>
+           <legend><%=t('list.categories')%></legend>
+           <%= link_to new_category_path, :class => "btn btn-success" do%>
+                <i class="icon-plus icon-white"></i> <%=t('button.add')%>
+           <%end%> 
+           <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px"%>
+           <%= select_tag "field", getCategoriesSortingOptionList.html_safe , :id => "field", :class => "span2"%>
+           <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span3"%>
     <% end -%>
-    <table id="dataTableID" >
-      <thead>
-          <tr>
-            <th id="editButtonsHeaderID">&nbsp;</th>
-            <th id="categoryColorHeaderID">
-                <%=t('field.category.color')%>
-            </th>
-            <th id="categoryNameHeaderID">
-                <%=t('field.common.name')%>
-            </th>
-            <th id="categoryDescriptionHeaderID">
-                <%=t('field.common.description')%>
-            </th>
-            <th></th>
-            <th></th>
-          </tr>
-      </thead>
-    </table>
-    <div id="dataWrapperID"></div>
   </div>
 </div>
+
+<!--data table-->
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-bordered table-hover table-condensed">
+      <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th><%=t('field.category.color')%></th>
+            <th><%=t('field.common.name')%></th>
+            <th><%=t('field.common.description')%></th>
+          </tr>
+      </thead>
+      <tbody id="dataWrapperID"></tbody>
+    </table>
+  </div>
+</div>
+
 
 <script type="text/javascript">
     jQuery(document).ready(function(){

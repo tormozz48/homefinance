@@ -10,10 +10,19 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootsrap/bootstrap
+ *= require bootsrap/bootstrap-responsive
+ *= require tooltip
+ *= require datepicker/jqueryui
+ *= require arcticmodal/arcticmodal
+ *= require colorpicker/colorpicker
+ *= require colorpicker/layout
+
 */
 
 /* Global reset (begin) */
 
+/*
 *{
     font-size: 100%;
     margin: 0;
@@ -67,4 +76,5 @@ b{
 i{
     font-style: normal;
 }
+*/
 /* Global reset (end) */

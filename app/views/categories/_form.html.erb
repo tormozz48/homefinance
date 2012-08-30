@@ -1,32 +1,83 @@
-<%= form_for(@category) do |f| %>
-    <% if @category.errors.any? %>
-        <div id="error_explanation">
-            <h2><%= pluralize(@category.errors.count, t('common.error')) %> <%=t('message.error.category.header')%></h2>
-            <ul>
-                <% @category.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-    <%= f.hidden_field :amount%>
-    <%= f.hidden_field :enabled%>
-    <div class="margin-top10">
-        <%= label_tag :name, t('field.common.name'), :class => "form-label" %><br />
-        <%= f.text_field :name, :class => "input-field", :id => "name"%>
-    </div>
-    <div class="margin-top10">
-        <%= label_tag :description, t('field.common.description'), :class => "form-label" %><br />
-        <%= f.text_area :description, :size => "60x6", :class => "text-area", :id => "description"%>
-    </div>
-    <div class="margin-top10">
-        <%= label_tag :colorFieldId, t('field.category.color'), :class => "form-label" %>
-        <%= f.text_field :color, :id => "colorFieldId", :class => "category-color-field", :readOnly => "readOnly"%>
-    </div>
-    <div class="actions form-buttons">
-        <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>
-    </div>
-<% end %>
+<!--categories form-->
+<div class="row-fluid">
+  <div class="span12">
+        <%= form_for(@category, :html => {:class=> "form-horizontal well"}) do |f| %>
+            <%= f.hidden_field :amount%>
+            <%= f.hidden_field :enabled%>
+
+            <legend><%=@legend%></legend>
+            
+            <!--category name field-->
+            <div <% if @category.errors[:name].present? %>
+                    class="control-group error"
+                 <%elsif @category.errors.any?%>
+                    class="control-group success"
+                 <%else%>
+                    class="control-group"
+                 <% end %>>
+                <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
+                <div class="controls">
+                    <%= f.text_field :name, :class => "span8"%>
+                    <% if @category.errors[:name].present? %>
+                      <% @category.errors[:name].each do |msg|%>
+                          <p class="help-block"><%= msg%></p>
+                      <%end%>
+                    <%end%>
+                </div>
+            </div>
+
+            <!--category description field-->
+            <div <% if @category.errors[:description].present? %>
+                    class="control-group error"
+                 <%elsif @category.errors.any?%>
+                    class="control-group success"
+                 <%else%>
+                    class="control-group"
+                 <% end %>>
+              <%= label_tag :description, t('field.common.description'), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_area :description, :size => "60x6", :class => "span8"%>
+                <% if @category.errors[:description].present? %>
+                    <% @category.errors[:description].each do |msg|%>
+                        <p class="help-block"><%= msg%></p>
+                    <%end%>
+                <%end%>
+              </div>
+            </div>
+
+            <!--category color field-->
+            <div <% if @category.errors[:color].present? %>
+                    class="control-group error"
+                 <%elsif @category.errors.any?%>
+                    class="control-group success"
+                 <%else%>
+                    class="control-group"
+                 <% end %>>
+                <%= label_tag :colorFieldId, t('field.category.color'), :class => "control-label" %>
+                <div class="controls">
+                    <%= f.text_field :color, :id => "colorFieldId", :readOnly => "readOnly", :class => "span1"%>
+                    <% if @category.errors[:color].present? %>
+                      <% @category.errors[:color].each do |msg|%>
+                          <p class="help-block"><%= msg%></p>
+                      <%end%>
+                    <%end%>
+                </div>
+            </div>
+
+            <!--form buttons and navigation links-->
+            <div class="control-group">
+                <div class="controls">
+                    <%= link_to categories_path, :class=>"btn" do%>
+                      <i class="icon-arrow-left"></i> <%=t('button.back')%>
+                    <%end%>
+                    <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+                      <i class="icon-ok icon-white"></i> <%=t('button.save')%>
+                    <%end%>
+                </div>
+            </div>
+        <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){

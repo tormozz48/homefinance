@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Transaction - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/transaction.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-addEmptyAccountFromError">#addEmptyAccountFromError</a>
+    
+    <li><a href="#method-i-addEmptyAccountToError">#addEmptyAccountToError</a>
+    
+    <li><a href="#method-i-addEmptyCategoryError">#addEmptyCategoryError</a>
+    
+    <li><a href="#method-i-addNegativeAccountError">#addNegativeAccountError</a>
+    
+    <li><a href="#method-i-calculateTransactionDestroy">#calculateTransactionDestroy</a>
+    
+    <li><a href="#method-i-calculateTransactionEdit">#calculateTransactionEdit</a>
+    
+    <li><a href="#method-i-calculateTransactionNew">#calculateTransactionNew</a>
+    
+    <li><a href="#method-i-changeSumBetweenAccounts">#changeSumBetweenAccounts</a>
+    
+    <li><a href="#method-i-changeSumFromAccountToCategory">#changeSumFromAccountToCategory</a>
+    
+    <li><a href="#method-i-changeSumToAccount">#changeSumToAccount</a>
+    
+    <li><a href="#method-i-checkForAccountFrom">#checkForAccountFrom</a>
+    
+    <li><a href="#method-i-checkForAccountTo">#checkForAccountTo</a>
+    
+    <li><a href="#method-i-checkForCategory">#checkForCategory</a>
+    
+    <li><a href="#method-i-rollbackSumBetweenAccounts">#rollbackSumBetweenAccounts</a>
+    
+    <li><a href="#method-i-rollbackSumFromAccount">#rollbackSumFromAccount</a>
+    
+    <li><a href="#method-i-rollbackSumFromCategory">#rollbackSumFromCategory</a>
+    
+    <li><a href="#method-i-transferSumBetweenAccounts">#transferSumBetweenAccounts</a>
+    
+    <li><a href="#method-i-transferSumFromAccountToCategory">#transferSumFromAccountToCategory</a>
+    
+    <li><a href="#method-i-transferSumToAccount">#transferSumToAccount</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Account.html">Account</a>
+  
+    <li><a href="./AccountsController.html">AccountsController</a>
+  
+    <li><a href="./AccountsHelper.html">AccountsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
+    <li><a href="./Eating.html">Eating</a>
+  
+    <li><a href="./EatingType.html">EatingType</a>
+  
+    <li><a href="./EatingsController.html">EatingsController</a>
+  
+    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+  
+    <li><a href="./StatisticsController.html">StatisticsController</a>
+  
+    <li><a href="./StatisticsHelper.html">StatisticsHelper</a>
+  
+    <li><a href="./Transaction.html">Transaction</a>
+  
+    <li><a href="./TransactionsController.html">TransactionsController</a>
+  
+    <li><a href="./TransactionsHelper.html">TransactionsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./Weight.html">Weight</a>
+  
+    <li><a href="./WeightsController.html">WeightsController</a>
+  
+    <li><a href="./WeightsHelper.html">WeightsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Transaction</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_FROM_ACCOUNT_TO_CASH">TRANSACTION_FROM_ACCOUNT_TO_CASH
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_FROM_ACCOUNT_TO_CATEGORY">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_FROM_CASH_TO_ACCOUNT">TRANSACTION_FROM_CASH_TO_ACCOUNT
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_FROM_CASH_TO_CASH">TRANSACTION_FROM_CASH_TO_CASH
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_FROM_CASH_TO_CATEGORY">TRANSACTION_FROM_CASH_TO_CATEGORY
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_TO_ACCOUNT">TRANSACTION_TO_ACCOUNT
+        
+        <dd class="description"><p>transaction types</p>
+        
+      
+        <dt id="TRANSACTION_TO_CASH">TRANSACTION_TO_CASH
+        
+        <dd class="description">
+        
+      
+        <dt id="TRANSACTION_TYPES">TRANSACTION_TYPES
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-addEmptyAccountFromError" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">addEmptyAccountFromError</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="addEmptyAccountFromError-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">addEmptyAccountFromError</span>
+  <span class="ruby-identifier">errors</span>[<span class="ruby-value">:account_from</span>] = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'message.error.account.empty'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- addEmptyAccountFromError-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- addEmptyAccountFromError-method -->
+
+    
+      <div id="method-i-addEmptyAccountToError" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">addEmptyAccountToError</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="addEmptyAccountToError-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">addEmptyAccountToError</span>
+  <span class="ruby-identifier">errors</span>[<span class="ruby-value">:account_to</span>] = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'message.error.account.empty'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- addEmptyAccountToError-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- addEmptyAccountToError-method -->
+
+    
+      <div id="method-i-addEmptyCategoryError" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">addEmptyCategoryError</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="addEmptyCategoryError-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">addEmptyCategoryError</span>
+  <span class="ruby-identifier">errors</span>[<span class="ruby-value">:category</span>] = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'message.error.category.empty'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- addEmptyCategoryError-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- addEmptyCategoryError-method -->
+
+    
+      <div id="method-i-addNegativeAccountError" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">addNegativeAccountError</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="addNegativeAccountError-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">addNegativeAccountError</span>
+  <span class="ruby-identifier">errors</span>[<span class="ruby-value">:account_from</span>] = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'message.error.account.negative'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- addNegativeAccountError-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- addNegativeAccountError-method -->
+
+    
+      <div id="method-i-calculateTransactionDestroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">calculateTransactionDestroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="calculateTransactionDestroy-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">calculateTransactionDestroy</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rollbackSumFromAccount</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rollbackSumBetweenAccounts</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rollbackSumFromCategory</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- calculateTransactionDestroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- calculateTransactionDestroy-method -->
+
+    
+      <div id="method-i-calculateTransactionEdit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">calculateTransactionEdit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="calculateTransactionEdit-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">calculateTransactionEdit</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeSumToAccount</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeSumBetweenAccounts</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeSumFromAccountToCategory</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- calculateTransactionEdit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- calculateTransactionEdit-method -->
+
+    
+      <div id="method-i-calculateTransactionNew" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">calculateTransactionNew</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="calculateTransactionNew-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">calculateTransactionNew</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transferSumToAccount</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transferSumBetweenAccounts</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> <span class="ruby-operator">||</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transferSumFromAccountToCategory</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- calculateTransactionNew-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- calculateTransactionNew-method -->
+
+    
+      <div id="method-i-changeSumBetweenAccounts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">changeSumBetweenAccounts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="changeSumBetweenAccounts-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changeSumBetweenAccounts</span>
+   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountFrom</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountTo</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">old_transaction</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">diff</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">old_transaction</span>.<span class="ruby-identifier">amount</span>
+
+      <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+      <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">diff</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">valid?</span>
+          <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">diff</span>
+          <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+          <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">else</span>
+     <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- changeSumBetweenAccounts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- changeSumBetweenAccounts-method -->
+
+    
+      <div id="method-i-changeSumFromAccountToCategory" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">changeSumFromAccountToCategory</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="changeSumFromAccountToCategory-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changeSumFromAccountToCategory</span>
+   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountFrom</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForCategory</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+     <span class="ruby-identifier">old_transaction</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+     <span class="ruby-identifier">diff</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">old_transaction</span>.<span class="ruby-identifier">amount</span>
+
+     <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+     <span class="ruby-identifier">category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">category_id</span>)
+     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">nil?</span>
+       <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">diff</span>
+       <span class="ruby-keyword">if</span>(<span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">valid?</span>)
+         <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+         <span class="ruby-identifier">category</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">diff</span>
+         <span class="ruby-identifier">category</span>.<span class="ruby-identifier">save</span>
+         <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+       <span class="ruby-keyword">else</span>
+         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+         <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+       <span class="ruby-keyword">end</span>
+     <span class="ruby-keyword">else</span>
+       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+     <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">else</span>
+     <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- changeSumFromAccountToCategory-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- changeSumFromAccountToCategory-method -->
+
+    
+      <div id="method-i-changeSumToAccount" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">changeSumToAccount</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="changeSumToAccount-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changeSumToAccount</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountTo</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">old_transaction</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">diff</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">old_transaction</span>.<span class="ruby-identifier">amount</span>
+    <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">diff</span>
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- changeSumToAccount-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- changeSumToAccount-method -->
+
+    
+      <div id="method-i-checkForAccountFrom" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">checkForAccountFrom</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="checkForAccountFrom-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">checkForAccountFrom</span>
+  <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addEmptyAccountFromError</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- checkForAccountFrom-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- checkForAccountFrom-method -->
+
+    
+      <div id="method-i-checkForAccountTo" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">checkForAccountTo</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="checkForAccountTo-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">checkForAccountTo</span>
+  <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addEmptyAccountToError</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- checkForAccountTo-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- checkForAccountTo-method -->
+
+    
+      <div id="method-i-checkForCategory" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">checkForCategory</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="checkForCategory-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">checkForCategory</span>
+  <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">category_id</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addEmptyCategoryError</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- checkForCategory-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- checkForCategory-method -->
+
+    
+      <div id="method-i-rollbackSumBetweenAccounts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rollbackSumBetweenAccounts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rollbackSumBetweenAccounts-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rollbackSumBetweenAccounts</span>
+  <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+  <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">valid?</span>)
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+      <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rollbackSumBetweenAccounts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rollbackSumBetweenAccounts-method -->
+
+    
+      <div id="method-i-rollbackSumFromAccount" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rollbackSumFromAccount</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rollbackSumFromAccount-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rollbackSumFromAccount</span>
+  <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">valid?</span>
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rollbackSumFromAccount-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rollbackSumFromAccount-method -->
+
+    
+      <div id="method-i-rollbackSumFromCategory" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rollbackSumFromCategory</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rollbackSumFromCategory-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 232</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rollbackSumFromCategory</span>
+  <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+    <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rollbackSumFromCategory-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rollbackSumFromCategory-method -->
+
+    
+      <div id="method-i-transferSumBetweenAccounts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transferSumBetweenAccounts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="transferSumBetweenAccounts-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">transferSumBetweenAccounts</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountFrom</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountTo</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+    <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">valid?</span>
+        <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+        <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- transferSumBetweenAccounts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- transferSumBetweenAccounts-method -->
+
+    
+      <div id="method-i-transferSumFromAccountToCategory" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transferSumFromAccountToCategory</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="transferSumFromAccountToCategory-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">transferSumFromAccountToCategory</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountFrom</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForCategory</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">account_from</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_from_id</span>)
+    <span class="ruby-identifier">category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">category_id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">-=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+      <span class="ruby-keyword">if</span>(<span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">valid?</span>)
+        <span class="ruby-identifier">account_from</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">category</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+        <span class="ruby-identifier">category</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">addNegativeAccountError</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- transferSumFromAccountToCategory-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- transferSumFromAccountToCategory-method -->
+
+    
+      <div id="method-i-transferSumToAccount" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transferSumToAccount</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="transferSumToAccount-source">
+            <pre><span class="ruby-comment"># File app/models/transaction.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">transferSumToAccount</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checkForAccountTo</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">account_to</span> = <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">account_to_id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">+=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">amount</span>
+      <span class="ruby-identifier">account_to</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- transferSumToAccount-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- transferSumToAccount-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

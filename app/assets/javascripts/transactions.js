@@ -8,9 +8,9 @@ var TransactionJS = function(){
 
       jQuery('#direction')[0].selectedIndex = 1;
 
-      resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
+      //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
       jQuery(window).resize(function(){
-          resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
+          //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
           transactionsJS.resizeColumns();
       });
 
@@ -108,11 +108,12 @@ var TransactionJS = function(){
             jQuery('#dataWrapperID').empty();
           }
           jQuery('#dataWrapperID').append(response.responseText);
-          this.resizeColumns();
+          //this.resizeColumns();
       }
 
   };
 
+  /*
   this.resizeColumns = function(){
       var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
       var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;
@@ -125,6 +126,7 @@ var TransactionJS = function(){
       jQuery('#transactionAccountHeaderID2').css("width", transactionColumnWidth+"px");
       jQuery('.body-transaction-account').css("width", transactionColumnWidth+"px");
   };
+  */
 
   this.formInit = function(){
       jQuery('#date').datepicker({
@@ -140,6 +142,7 @@ var TransactionJS = function(){
       jQuery('#amount').ForceNumericOnly();
   };
 
+  /*
   this.toggleFilter = function(){
       if(jQuery('#transactionFilterFormId').css("display") == "none"){
           jQuery('#transactionFilterFormId').show();
@@ -155,4 +158,5 @@ var TransactionJS = function(){
           });
       }
   };
+  */
 };

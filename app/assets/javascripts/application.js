@@ -13,6 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap/bootstrap
+//= require arcticmodal/arcticmodal
+//= require colorpicker/colorpicker
+//= require colorpicker/eye
+//= require colorpicker/layout
+//= require colorpicker/utils
+//= require datepicker/jqueryui
+//= require hightcharts/highcharts
+//= require hightcharts/iexporting
+
 
 var transactionsJS = new TransactionJS();
 var accountsJS = new AccountsJS();

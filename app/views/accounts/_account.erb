@@ -1,24 +1,25 @@
-<div class="data-item account-data-item">
-  <span class="td-edit tooltip-d">
-    <span><%=t('tooltip.record.edit')%></span>
-    <%= link_to t('button.edit'), edit_account_path(account, :type => @account_type),:class => "link" %>
-  </span>
-  <span class="td-delete tooltip-d">
-    <span><%=t('tooltip.record.delete')%></span>
-    <%= link_to t('button.delete'), account,
-                confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-  </span>
-  <span class="body-account-name">
-    <strong>
-      <%=account.name%>
-    </strong>
-  </span>
-  <span class="body-account-description">
-    <%=account.description%>
-  </span>
-  <span class="body-account-amount">
-    <strong>
-      <%=account.amount%>
-    </strong>
-  </span>
-</div>
+<tr>
+  <td>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="icon-circle-arrow-down"></i> <%=t('button.action')%>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+            <%= link_to edit_account_path(account, :type => @account_type) do%>
+                <i class="icon-edit"></i> <%=t('button.edit')%>
+            <%end%>
+        </li>
+        <li>
+            <%= link_to account, confirm: t('message.confirm.delete'), method: :delete do%>
+                <i class="icon-remove"></i> <%=t('button.delete')%>
+            <%end%>
+        </li>
+      </ul>
+    </div>
+  </td>
+  <td><%=account.amount%></td>
+  <td><%=account.name%></td>
+  <td><%=account.description%></td>
+</tr>

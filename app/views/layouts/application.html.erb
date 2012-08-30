@@ -6,26 +6,52 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name='loginza-verification' content='4ae29a920f04a7d7d6e56d6562a3f1d0' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="viewport">
-        <div id="headerID">
-            <div id="logoImageID"></div>
-            <div id="logoID"><%=t('application.title')%></div>
-            <div id="currentUserID">
-              <%if !current_user.nil? %>
-                <%=t('application.user')%><span><%=link_to user_full_name, edit_user_profile_path%></span>
-                <span>
-                    <%=link_to t('menu.logout'), destroy_user_session_path,
-                             {:method=>"DELETE", :id=>"sign_out", :confirm => t('message.confirm.logout')}%>
-                </span>
-              <%end%>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#"><%=t('application.title')%></a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <%= link_to t('menu.top.main'), root_path %>
+              </li>
+              <li>
+                <a href="#about"><%=t('menu.top.about')%></a>
+              </li>
+              <li>
+                <a href="#contact"><%=t('menu.top.contacts')%></a>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <%if !current_user.nil? %>
+        <div class="row-fluid">
+            <div class="span3">
+                <%= render 'common/menu'%>
+            </div>
+            <div class="span9">
+                <%= yield %>
             </div>
         </div>
-        <%=render 'common/menu'%>
-        <div id="contentID">
-            <%= yield %>
-        </div>
+      <%else%>
+        <%= yield %>
+      <%end%>
+
+      <hr>
+      <footer>
+        <p>&copy; <%=t('application.copyright')%></p>
+      </footer>
     </div>
 </body>
 </html>

@@ -1,80 +1,74 @@
-<div id="transaction_"<%=transaction.id%> class="data-item transaction-data-item">
-    <span class="td-edit tooltip-d">
-        <span>
-          <%=t('tooltip.record.edit')%>
-        </span>
-        <%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p),:class => "link" %>
-    </span>
-    <span class="td-delete tooltip-d">
-        <span>
-          <%=t('tooltip.record.delete')%>
-        </span>
-        <%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete, :class => "link link-delete" %>
-    </span>
-    <span class="body-transaction-date tooltip" style="background-color: <%=getRowColorByDate(transaction.date)%>">
-        <span>
-          <ul>
-            <li style="background-color: <%=getRowColorByDayOfWeek(1)%>"><%=t('week.day.monday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(2)%>"><%=t('week.day.tuesday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(3)%>"><%=t('week.day.wednesday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(4)%>"><%=t('week.day.thursday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(5)%>"><%=t('week.day.friday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(6)%>"><%=t('week.day.saturday')%></li>
-            <li style="background-color: <%=getRowColorByDayOfWeek(0)%>"><%=t('week.day.sunday')%></li>
-          </ul>
-        </span>
-        <%=transaction.date%>
-    </span>
-    <span class="body-transaction-summa">
-        <%=transaction.amount%>
-    </span>
-    <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
+<tr>
+  <td>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <%=t('button.action')%>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p)%></li>
+        <li><%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete%></li>
+      </ul>
+    </div>
+  </td>
+
+  <td><%=transaction.date%></td>
+  <td><%=transaction.amount%></td>
+  <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
           transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
-        <span class="body-transaction-account">
-          <span <%if !transaction.account_to.description.blank?%>class="tooltip"<%end%>>
-            <span><%=transaction.account_to.description%></span>
-            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
-          </span>
-        </span>
-    <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
+      <td>
+        <%if !transaction.account_to.description.blank?%>
+            <span class="no-disp"><%=transaction.account_to.description%></span>
+        <%else%>
+            <span class="no-disp"><%=t('common.undefined')%></span>
+        <%end%>
+        <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+      </td>
+  <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
-        <span class="body-transaction-account">
-          <span <%if !transaction.account_from.description.blank?%>class="tooltip"<%end%>>
-            <span><%=transaction.account_from.description%></span>
-            <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
-          </span>
-        </span>
-        <span class="body-transaction-account">
-          <span <%if !transaction.account_to.description.blank?%>class="tooltip"<%end%>>
-            <span><%=transaction.account_to.description%></span>
-            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
-          </span>
-        </span>
+      <td>
+        <%if !transaction.account_from.description.blank?%>
+            <span class="no-disp"><%=transaction.account_from.description%></span>
+        <%else%>
+            <span class="no-disp"><%=t('common.undefined')%></span>
+        <%end%>
+        <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+      </td>
+      <td>
+        <%if !transaction.account_to.description.blank?%>
+            <span class="no-disp"><%=transaction.account_to.description%></span>
+        <%else%>
+            <span class="no-disp"><%=t('common.undefined')%></span>
+        <%end%>
+        <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+      </td>
     <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
-        <span class="body-transaction-account">
-          <span <%if !transaction.account_from.description.blank?%>class="tooltip"<%end%>>
-            <span><%=transaction.account_from.description%></span>
-            <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
-          </span>
-        </span>
-        <span class="body-transaction-account">
-          <div class="body-category-color-s">
-              <div style="background-color: <%=getCategoryColor(transaction.category)%>;">
-                &nbsp;
-              </div>
-          </div>
-          <span <%if !transaction.category.description.blank?%>class="tooltip"<%end%>>
-            <span><%=transaction.category.description%></span>
-            <%=transaction.category.name%>
-          </span>
-        </span>
+      <td>
+        <%if !transaction.account_from.description.blank?%>
+            <span class="no-disp"><%=transaction.account_from.description%></span>
+        <%else%>
+            <span class="no-disp"><%=t('common.undefined')%></span>
+        <%end%>
+        <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+      </td>
+      <td>
+          <div class="color-indicator-small" style="background-color: <%=getCategoryColor(transaction.category)%>;">&nbsp;</div>
+          <%if !transaction.category.description.blank?%>
+            <span class="no-disp"><%=transaction.category.description%></span>
+          <%else%>
+            <span class="no-disp"><%=t('common.undefined')%></span>
+          <%end%>
+          <%=transaction.category.name%>
+      </td>
     <%end%>
+</tr>
+<tr>
     <%if !transaction.comment.nil? && !transaction.comment.blank?%>
-        <div class="body-transaction-comment">
+        <td colspan="5">
             <%=transaction.comment %>
-        </div>
+        </td>
     <%end%>
-</div>
+</tr>

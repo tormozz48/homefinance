@@ -1,11 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  eating_order: MyString
-  enabled: false
+one: {}
 
-two:
-  name: MyString
-  eating_order: MyString
-  enabled: false
+two: {}

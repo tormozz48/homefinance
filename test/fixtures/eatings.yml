@@ -1,13 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  enabled: false
-  time: 2012-06-10 11:02:30
-  food: MyString
-  overweight: false
+one: {}
 
-two:
-  enabled: false
-  time: 2012-06-10 11:02:30
-  food: MyString
-  overweight: false
+two: {}

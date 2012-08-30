@@ -1,34 +1,82 @@
-<%= form_for(@account) do |f| %>
-    <% if @account.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%if @account.account_type == Account::ACCOUNT_CARD_TYPE.to_s(10)%>
-                <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.card')%>
-            <%elsif @account.account_type == Account::ACCOUNT_CASH_TYPE.to_s(10)%>
-                <%= pluralize(@account.errors.count, t('common.error')) %> <%=t('message.error.account.header.cash')%>
-            <%end%>
-          </h2>
-          <ul>
-            <% @account.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <%= f.hidden_field :account_type%>
-    <div class="margin-top10">
-      <%= label_tag :name, t('field.common.name'), :class => "form-label" %><br />
-      <%= f.text_field :name, :class => "input-field", :id => "name"%>
+<!--categories form-->
+<div class="row-fluid">
+    <div class="span12">
+        <%= form_for(@account, :html => {:class=> "form-horizontal well"}) do |f| %>
+          <%= f.hidden_field :account_type%>
+
+          <legend><%=@legend%></legend>
+          
+          <!--account name field-->
+          <div <% if @account.errors[:name].present? %>
+                class="control-group error"
+               <%elsif @account.errors.any?%>
+                class="control-group success"
+               <%else%>
+                class="control-group"
+               <% end %>>
+            <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :name, :class => "span8"%>
+              <% if @account.errors[:name].present? %>
+                  <% @account.errors[:name].each do |msg|%>
+                      <p class="help-block"><%= msg%></p>
+                  <%end%>
+              <%end%>
+            </div>
+          </div>
+
+          <!--account description field-->
+          <div <% if @account.errors[:description].present? %>
+                class="control-group error"
+               <%elsif @account.errors.any?%>
+                class="control-group success"
+               <%else%>
+                class="control-group"
+               <% end %>>
+            <%= label_tag :description, t('field.common.description'), :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :description, :size => "60x6", :class => "span8"%>
+              <% if @account.errors[:description].present? %>
+                  <% @account.errors[:description].each do |msg|%>
+                      <p class="help-block"><%= msg%></p>
+                  <%end%>
+              <%end%>
+            </div>
+          </div>
+
+          <!--account amount field-->
+          <div <% if @account.errors[:amount].present? %>
+                class="control-group error"
+               <%elsif @account.errors.any?%>
+                class="control-group success"
+               <%else%>
+                class="control-group"
+               <% end %>>
+            <%= label_tag :amount, t('field.account.amount'), :class => "control-label" %>
+            <div class="controls">
+              <div class="input-append">
+                <%= f.text_field :amount, :class => "span4", :readOnly => "readonly"%>
+                <span class="add-on"><%=t('currency')%></span>
+              </div>
+              <% if @account.errors[:amount].present? %>
+                  <% @account.errors[:amount].each do |msg|%>
+                      <p class="help-block"><%= msg%></p>
+                  <%end%>
+              <%end%>
+            </div>
+          </div>
+
+          <!--form buttons and navigation links-->
+          <div class="control-group">
+            <div class="controls">
+                <%= link_to accounts_path(:type => @account.account_type), :class=>"btn" do%>
+                    <i class="icon-arrow-left"></i> <%=t('button.back')%>
+                <%end%>
+                <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+                    <i class="icon-ok icon-white"></i> <%=t('button.save')%>
+                <%end%>
+            </div>
+          </div>
+        <% end %>
     </div>
-    <div class="margin-top10">
-      <%= label_tag :description, t('field.common.description'), :class => "form-label" %><br />
-      <%= f.text_area :description, :size => "60x6", :class => "text-area", :id => "description"%>
-    </div>
-    <div class="margin-top10">
-      <%= label_tag :amount, t('field.account.amount'), :class => "form-label" %><br />
-      <%= f.text_field :amount, :class => "input-field amount-input-field input-field-disabled", :readOnly => "readonly", :id => "amount"%>
-    </div>
-    <div class="actions form-buttons">
-      <%= f.submit "", :class=>"save-button", :title=>t('button.save')%>
-    </div>
-<% end %>
+</div>

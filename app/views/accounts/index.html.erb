@@ -1,41 +1,33 @@
-<div id="tableWrapperID">
-  <div id="tableWrapperHeaderID">
-    <span>
-      <%=getAccountIndexTitle(@account_type)%>
-    </span>
-  </div>
-  <div id="tableWrapperBodyID">
-    <span class="tooltip">
-        <span><%=t('tooltip.record.add')%></span>
-        <%=getAddButtonLink(@account_type)%>
-    </span>
-    <%= form_tag(sort_accounts_path, :id =>"accountSortingFormId", :method=>:post, :remote => true, :class => "category-sorting-form") do -%>
-        <div class="category-sorting-form">
+<!--sorting form-->
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_tag(sort_accounts_path, :id =>"accountSortingFormId", :method=>:post, :remote => true,
+                 :class => "form-inline well") do -%>
           <%= hidden_field_tag "type", @account_type%>
-          <%= label_tag "field", t('sorting_by'), :class => "statistic-date-label", :style => "font-weight: bold;"%>
-          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field"%>
-          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction"%>
-        </div>
+          <legend><%=getAccountIndexTitle(@account_type)%></legend>
+          <%=link_to new_account_path(:type => @account_type), :class => "btn btn-success" do%>
+            <i class="icon-plus icon-white"></i> <%=t('button.add')%>
+          <%end%>  
+          <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px"%>
+          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field", :class => "span2"%>
+          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span3"%>
     <% end -%>
-    <table id="dataTableID">
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-bordered table-hover table-condensed">
       <thead>
-      <tr>
-        <th id="editButtonsHeaderID">&nbsp;</th>
-        <th id="accountNameHeaderID">
-            <%=t('field.common.name')%>
-        </th>
-        <th id="accountDescriptionHeaderID">
-            <%=t('field.common.description')%>
-        </th>
-        <th id="accountAmountHeaderID">
-            <%=t('field.account.amount')%>
-        </th>
-        <th></th>
-        <th></th>
-      </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th><%=t('field.account.amount')%></th>
+            <th><%=t('field.common.name')%></th>
+            <th><%=t('field.common.description')%></th>
+        </tr>
       </thead>
+      <tbody id="dataWrapperID"></tbody>
     </table>
-    <div id="dataWrapperID"></div>
   </div>
 </div>
 

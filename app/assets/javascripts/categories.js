@@ -1,9 +1,9 @@
 var CategoriesJS = function(){
     this.init = function(){
-        resizeDataWrapper();
+        //resizeDataWrapper();
         jQuery(window).resize(function(){
-            resizeDataWrapper();
-            categoriesJS.resizeColumns();
+            //resizeDataWrapper();
+            //categoriesJS.resizeColumns();
         });
 
         jQuery('#field, #direction').change(function(){
@@ -25,9 +25,10 @@ var CategoriesJS = function(){
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
-        this.resizeColumns();
+        //this.resizeColumns();
     };
 
+    /*
     this.resizeColumns = function(){
         var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
         var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;;
@@ -38,6 +39,7 @@ var CategoriesJS = function(){
         jQuery('#categoryDescriptionHeaderID').css("width", descriptionColumnWidth+"px");
         jQuery('.body-category-description').css("width", descriptionColumnWidth+"px");
     };
+    */
 
     this.formInit = function(){
         jQuery('#colorFieldId').css('background-color', '#'+jQuery('#colorFieldId').val());

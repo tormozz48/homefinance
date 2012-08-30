@@ -1,9 +1,9 @@
 var AccountsJS = function(){
     this.init = function(account_type){
-        resizeDataWrapper();
+        //resizeDataWrapper();
         jQuery(window).resize(function(){
-            resizeDataWrapper();
-            accountsJS.resizeColumns();
+            //resizeDataWrapper();
+            //accountsJS.resizeColumns();
         });
 
         jQuery('#field, #direction').change(function(){
@@ -25,9 +25,10 @@ var AccountsJS = function(){
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
-        this.resizeColumns();
+        //this.resizeColumns();
     };
 
+    /*
     this.resizeColumns = function(){
         var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
         var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;
@@ -38,4 +39,5 @@ var AccountsJS = function(){
         jQuery('#accountDescriptionHeaderID').css("width", descriptionColumnWidth+"px");
         jQuery('.body-account-description').css("width", descriptionColumnWidth+"px");
     };
+    */
 };

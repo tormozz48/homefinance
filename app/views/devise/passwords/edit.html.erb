@@ -1,34 +1,64 @@
-<div class="form form-signup">
-  <div class="form-header">
-    <span><%=t('link.change_password')%></span>
-  </div>
-  <div class="form-body">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <%= f.hidden_field :reset_password_token %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name),
+             :html => { :method => :put, :class=> "form-horizontal well application-form" }) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
 
-        <div class="form-info">
-          <%=t('info.change_password')%>
-        </div>
-        <br/>
-        <div>
-          <%= label_tag :password, t('field.user.password_new'), :class => "form-label" %><br />
-          <%= f.password_field :password, :id => :password %>
-        </div>
+    <legend><%=t('form.title.change_password')%></legend>
+    <span class="help-block">
+      <%=t('info.change_password')%>
+    </span>
+    <br/>
 
-        <div>
-          <%= label_tag :password_confirmation, t('field.user.password_confirm'), :class => "form-label" %><br />
-          <%= f.password_field :password_confirmation, :id => :password_confirmation %>
-        </div>
-
-        <div class="form-buttons">
-            <div><%= f.submit "", :class=>"save-button", :title=>t('button.save') %></div>
-        </div>
-    <% end %>
-    <div class="link-wrapper">
-      <%= link_to t('link.to_login_page'), new_session_path(resource_name), :class=>"link" %>
-      <%= link_to t('link.sign.up'), new_registration_path(resource_name), :class => "link" %>
+    <!--password field-->
+    <div <% if resource.errors[:password].present? %>
+         class="control-group error"
+         <%elsif resource.errors.any?%>
+         class="control-group success"
+         <%else%>
+         class="control-group"
+         <% end %>>
+      <%= label_tag :password, t('field.user.password'), :class => "control-label" %>
+      <div class="controls">
+        <%= f.password_field :password, :id => :password, :html => {:maxlength => 128} %>
+        <% if resource.errors[:password].present? %>
+            <% resource.errors[:password].each do |msg|%>
+                <p class="help-block"><%= msg%></p>
+            <%end%>
+        <%end%>
+      </div>
     </div>
-  </div>
-  <div class="form-footer"></div>
-</div>
+
+    <!--confirm password field-->
+    <div <% if resource.errors[:password_confirmation].present? %>
+         class="control-group error"
+         <%elsif resource.errors.any?%>
+         class="control-group success"
+         <%else%>
+         class="control-group"
+         <% end %>>
+      <%= label_tag :password_confirmation, t('field.user.password_confirm'), :class => "control-label" %><br />
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :id => :password_confirmation, :html => {:maxlength => 128} %>
+        <% if resource.errors[:password_confirmation].present? %>
+            <% resource.errors[:password_confirmation].each do |msg|%>
+                <p class="help-block"><%= msg%></p>
+            <%end%>
+        <%end%>
+      </div>
+    </div>
+    
+    <!--navigation links and submit form button-->
+    <div class="control-group">
+      <div class="controls">
+        <div>
+          <%= link_to t('link.to_login_page'), new_session_path(resource_name)%>
+        </div>
+        <div class="margintop10px">
+          <%= link_to t('link.sign.up'), new_registration_path(resource_name)%>
+        </div>
+        <div class="margintop10px">
+          <%= f.submit t('button.save'), :class=>"btn btn-primary", :title=>t('button.save') %>
+        </div>
+      </div>
+    </div>
+<% end %>
+

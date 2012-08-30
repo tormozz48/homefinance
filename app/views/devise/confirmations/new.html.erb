@@ -1,27 +1,40 @@
-<div class="form form-signup">
-  <div class="form-header">
-    <span><%=t('link.resend_confirmation_instructions')%></span>
-  </div>
-  <div class="form-body">
-    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-        <%= devise_error_messages! %>
-        <div class="form-info">
-            <%=t('info.forgot_password')%>
-        </div>
-        <br/>
-        <div>
-          <%= label_tag :email, t('field.user.email'), :class => "form-label" %><br />
-          <%= f.email_field :email, :class => "remember-email-input-field", :id => :email %>
-        </div>
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name),
+             :html => { :method => :post, :class=> "form-horizontal well application-form" }) do |f| %>
+    <legend><%=t('form.title.resend_confirmation_instructions')%></legend>
+    <span class="help-block">
+        <%=t('info.forgot_password')%>
+    </span>
+    <br/>
 
-        <div class="form-buttons">
-            <%= f.submit "", :class=>"send-button", :title=>t('button.send') %>
+    <!--email field-->
+    <div <% if resource.errors[:email].present? %>
+         class="control-group error"
+         <%elsif resource.errors.any?%>
+         class="control-group success"
+         <%else%>
+         class="control-group"
+         <% end %>>
+        <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
+        <div class="controls">
+            <%= f.email_field :email, :id => :email %>
+            <% if resource.errors[:email].present? %>
+                <% resource.errors[:email].each do |msg|%>
+                    <p class="help-block"><%= msg%></p>
+                <%end%>
+            <%end%>
         </div>
-    <% end %>
-    <div class="link-wrapper">
-      <%= link_to t('link.to_login_page'), new_session_path(resource_name), :class=>"link" %>
-      <%= link_to t('link.forgot_password'), new_password_path(resource_name), :class=>"link" %>
     </div>
-  </div>
-  <div class="form-footer"></div>
-</div>
+
+    <!--navigation links and submit form button-->
+    <div class="control-group">
+      <div class="controls">
+        <div>
+          <%= link_to t('link.to_login_page'), new_session_path(resource_name), :class=>"link" %>
+        </div>
+        <div class="margintop10px">
+          <%= f.submit t('button.send'), :class=>"btn btn-primary", :title=>t('button.send') %>
+        </div>
+      </div>
+    </div>
+<% end %>
+

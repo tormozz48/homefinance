@@ -2,17 +2,25 @@
   <td>
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        <%=t('button.action')%>
+        <i class="icon-circle-arrow-down"></i> <span class="hidden-phone"><%=t('button.action')%></span>
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><%= link_to t('button.edit'), edit_transaction_path(transaction, :page => @p)%></li>
-        <li><%= link_to t('button.delete'), transaction, confirm: t('message.confirm.delete'), method: :delete%></li>
+        <li>
+            <%= link_to edit_transaction_path(transaction, :page => @p) do%>
+              <i class="icon-edit"></i> <%=t('button.edit')%>
+            <%end%>
+        </li>
+        <li>
+            <%= link_to transaction, confirm: t('message.confirm.delete'), method: :delete do%>
+              <i class="icon-remove"></i> <%=t('button.delete')%>
+          <%end%>
+        </li>
       </ul>
     </div>
   </td>
 
-  <td><%=transaction.date%></td>
+  <td><div class="badge badge-black-font" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></div></td>
   <td><%=transaction.amount%></td>
   <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
           transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
@@ -64,11 +72,5 @@
           <%=transaction.category.name%>
       </td>
     <%end%>
-</tr>
-<tr>
-    <%if !transaction.comment.nil? && !transaction.comment.blank?%>
-        <td colspan="5">
-            <%=transaction.comment %>
-        </td>
-    <%end%>
+    <td class="hidden-phone"><%=transaction.comment %></td>
 </tr>

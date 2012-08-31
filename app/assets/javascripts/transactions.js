@@ -11,7 +11,11 @@ var TransactionJS = function(){
       //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
       jQuery(window).resize(function(){
           //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
-          transactionsJS.resizeColumns();
+          //transactionsJS.resizeColumns();
+      });
+
+      jQuery('#filterButtonId').click(function(){
+          jQuery('#filterFormID').toggleClass("no-disp");
       });
 
       jQuery.datepicker.setDefaults(jQuery.extend(jQuery.datepicker.regional["ru"]));
@@ -24,7 +28,7 @@ var TransactionJS = function(){
               jQuery('#date_to').datepicker('option', 'minDate', jQuery('#date_from').datepicker('getDate'));
               jQuery('#date_from').datepicker('hide');
               jQuery('#pageID').val(1);
-              jQuery('#transactionFilterFormId').submit();
+              jQuery('#transactionFilterSortFormId').submit();
           }
       });
 
@@ -37,16 +41,16 @@ var TransactionJS = function(){
               jQuery('#date_from').datepicker('option', 'maxDate', jQuery('#date_to').datepicker('getDate'));
               jQuery('#date_to').datepicker('hide');
               jQuery('#pageID').val(1);
-              jQuery('#transactionFilterFormId').submit();
+              jQuery('#transactionFilterSortFormId').submit();
           }
       });
 
       jQuery('#category, #field, #direction').change(function(){
           jQuery('#pageID').val(1);
-          jQuery('#transactionFilterFormId').submit();
+          jQuery('#transactionFilterSortFormId').submit();
       });
 
-      jQuery('#transactionFilterFormId').ajaxSuccess(function(evt, request, settings){
+      jQuery('#transactionFilterSortFormId').ajaxSuccess(function(evt, request, settings){
           transactionsJS.handleResponse(request);
       });
 
@@ -98,7 +102,7 @@ var TransactionJS = function(){
   this.lazyLoad = function(){
       var p = jQuery('#pageID').val();
       jQuery('#pageID').val(++p);
-      jQuery('#transactionFilterFormId').submit();
+      jQuery('#transactionFilterSortFormId').submit();
   };
 
   this.handleResponse = function(response){

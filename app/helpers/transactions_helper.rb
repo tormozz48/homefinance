@@ -60,28 +60,32 @@ module TransactionsHelper
   end
 
   def createTransactionTableHeader(transaction_type)
+
+    width = "20%"
+    double_width = "40%"
+
     if transaction_type == Transaction::TRANSACTION_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.account_to'))
+      return content_tag(:th, I18n.t('field.transaction.account_to'), :width => double_width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.account_from')) +
-             content_tag(:th, I18n.t('field.transaction.account_to'))
+      return content_tag(:th, I18n.t('field.transaction.account_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.account_to'), :width => width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.account_from')) +
-             content_tag(:th, I18n.t('field.transaction.cash_to'))
+      return content_tag(:th, I18n.t('field.transaction.account_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.cash_to'), :width => width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY
-      return content_tag(:th, I18n.t('field.transaction.account_from')) +
-             content_tag(:th, I18n.t('field.transaction.category'))
+      return content_tag(:th, I18n.t('field.transaction.account_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.category'), :width => width)
     elsif transaction_type == Transaction::TRANSACTION_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.cash_to'))
+      return content_tag(:th, I18n.t('field.transaction.cash_to'), :width => double_width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT
-      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
-             content_tag(:th, I18n.t('field.transaction.account_to'))
+      return content_tag(:th, I18n.t('field.transaction.cash_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.account_to'), :width => width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH
-      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
-             content_tag(:th, I18n.t('field.transaction.cash_to'))
+      return content_tag(:th, I18n.t('field.transaction.cash_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.cash_to'), :width => width)
     elsif transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
-      return content_tag(:th, I18n.t('field.transaction.cash_from')) +
-             content_tag(:th, I18n.t('field.transaction.category'))
+      return content_tag(:th, I18n.t('field.transaction.cash_from'), :width => width) +
+             content_tag(:th, I18n.t('field.transaction.category'), :width => width)
     end
   end
 

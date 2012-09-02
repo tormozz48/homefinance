@@ -11,11 +11,11 @@
     <table class="table table-bordered table-hover table-condensed">
       <thead>
           <tr>
-            <th>&nbsp;</th>
-            <th><%=t('field.common.date')%></th>
-            <th><%=t('field.transaction.summa')%></th>
+            <th width="10%">&nbsp;</th>
+            <th width="8%"><%=t('field.common.date')%></th>
+            <th width="5%"><%=t('field.transaction.summa')%></th>
             <%=createTransactionTableHeader(@transaction_type)%>
-            <th class="hidden-phone"><%=t('field.transaction.comment')%></th>
+            <th width="37%" class="hidden-phone"><%=t('field.transaction.comment')%></th>
           </tr>
       </thead>
       <tbody id="dataWrapperID"></tbody>

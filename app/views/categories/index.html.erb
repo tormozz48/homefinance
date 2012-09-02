@@ -7,9 +7,9 @@
            <%= link_to new_category_path, :class => "btn btn-success" do%>
                 <i class="icon-plus icon-white"></i> <%=t('button.add')%>
            <%end%> 
-           <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px"%>
-           <%= select_tag "field", getCategoriesSortingOptionList.html_safe , :id => "field", :class => "span2"%>
-           <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span3"%>
+           <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
+           <%= select_tag "field", getCategoriesSortingOptionList.html_safe , :id => "field", :class => "span2 hidden-phone"%>
+           <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span3 hidden-phone"%>
     <% end -%>
   </div>
 </div>

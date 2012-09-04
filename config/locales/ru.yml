@@ -1,6 +1,7 @@
 ru:
   application:
     title: "Домашние финансы"
+    menu: "Меню"
     description: "Удобный сайт для ведения домашней бухгалтерии, отслеживания доходов и расходов."
     user: "Пользователь:"
     copyright: "Андрей Кузнецов 2012"
@@ -9,6 +10,7 @@ ru:
   sorting_by: "Сортировка:"
   load_more: "Загрузить еще ..."
   currency: "грн."
+  day_color_popup_title: "Цвета для дней недели"
 
   link:
     sign:
@@ -239,8 +241,10 @@ ru:
         title: "Дневник питания"
         tracker: "Трекер"
         statistic: "Статистика"
-      profile: "Профиль"
-      logout: "Выход"
+      user:
+        title: "Пользователь"
+        profile: "Профиль"
+        logout: "Выход"
 
   #messages
   message:

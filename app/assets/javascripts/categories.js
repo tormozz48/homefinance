@@ -1,45 +1,27 @@
 var CategoriesJS = function(){
     this.init = function(){
-        //resizeDataWrapper();
-        jQuery(window).resize(function(){
-            //resizeDataWrapper();
-            //categoriesJS.resizeColumns();
-        });
 
+        //mark category menu item as active
+        markMenuItemById("menuCategoriesID");
+
+        //subscribe elements of sorting form for events
         jQuery('#field, #direction').change(function(){
             jQuery('#categorySortingFormId').submit();
         });
 
+        //subscribe sorting form ajax success event
         jQuery('#categorySortingFormId').ajaxSuccess(function(evt, response, settings){
            categoriesJS.handleResponse(response);
         });
 
-        //load categories after page loading
-        jQuery.ajax({
-            url: '/categories/load'
-        }).done(function (doc, status, jqXHR ) {
-           categoriesJS.handleResponse(jqXHR);
-        });
+        //initial loading of categories by soft submitting sorting form with default parameters
+        jQuery('#categorySortingFormId').submit();
     };
 
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
-        //this.resizeColumns();
     };
-
-    /*
-    this.resizeColumns = function(){
-        var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
-        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;;
-        var colorColumnWidth = jQuery('#categoryColorHeaderID')[0].clientWidth;
-        var nameColumnWidth = jQuery('#categoryNameHeaderID')[0].clientWidth;
-        var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - colorColumnWidth - nameColumnWidth - 40;
-
-        jQuery('#categoryDescriptionHeaderID').css("width", descriptionColumnWidth+"px");
-        jQuery('.body-category-description').css("width", descriptionColumnWidth+"px");
-    };
-    */
 
     this.formInit = function(){
         jQuery('#colorFieldId').css('background-color', '#'+jQuery('#colorFieldId').val());

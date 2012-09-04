@@ -32,6 +32,8 @@
 </div>
 
 <script type="text/javascript">
+    var ACCOUNT_TYPE_CARD = <%=Account::ACCOUNT_CARD_TYPE%>;
+    var ACCOUNT_TYPE_CASH = <%=Account::ACCOUNT_CASH_TYPE%>;
     jQuery(document).ready(function(){
        accountsJS.init(<%=@account_type%>);
     });

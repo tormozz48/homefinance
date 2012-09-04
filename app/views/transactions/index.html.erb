@@ -23,7 +23,42 @@
   </div>
 </div>
 
+<!--dat of week color popup-->
+<div id="dayOfWeekPopupID" class="no-disp">
+  <ul class="no-list-style">
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(1)%>;">&nbsp;</div>
+      <%=t('week.day.monday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(2)%>;">&nbsp;</div>
+      <%=t('week.day.tuesday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(3)%>;">&nbsp;</div>
+      <%=t('week.day.wednesday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(4)%>;">&nbsp;</div>
+      <%=t('week.day.thursday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(5)%>;">&nbsp;</div>
+      <%=t('week.day.friday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(6)%>;">&nbsp;</div>
+      <%=t('week.day.saturday')%>
+    </li>
+    <li>
+      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(0)%>;">&nbsp;</div>
+      <%=t('week.day.sunday')%>
+    </li>
+  </ul>
+</div>
+
 <script type="text/javascript">
+    var dayColorPopupTitle = "<%=t('day_color_popup_title')%>";
     jQuery(document).ready(function(){
         transactionsJS.init(<%=@transaction_type%>);
     });

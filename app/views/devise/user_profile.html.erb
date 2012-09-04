@@ -1,37 +1,78 @@
-<div class="form form-signup">
-  <div class="form-header">
-    <span><%=t('form.title.edit.user.profile')%></span>
-  </div>
-  <div class="form-body">
-    <%= form_for(@user, :url => update_user_profile_path(@user)) do |f| %>
-        <% if @user.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@user.errors.count, t('common.error')) %> <%=t('message.error.user.header')%></h2>
-              <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-        <div>
-          <%= label_tag :email, t('field.user.email'), :class => "form-label" %><br />
-          <%= f.email_field :email, :id => :email %>
-        </div>
-        <div>
-          <%= label_tag :first_name, t('field.user.first_name'), :class => "form-label" %><br />
-          <%= f.text_field :first_name, :id => :first_name %>
-        </div>
-        <div>
-          <%= label_tag :last_name, t('field.user.last_name'), :class => "form-label" %><br />
-          <%= f.text_field :last_name, :id => :last_name %>
-        </div>
-        <div class="form-buttons"><%= f.submit "", :class=>"save-button", :title=>t('button.save') %></div>
-    <% end %>
+<!--edit user profile form-->
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(@user, :url => update_user_profile_path(@user), :html => {:class=> "form-horizontal well"}) do |f| %>
 
-    <div class="link-wrapper">
-      <%= link_to t('button.back'), root_path, :class=>"link" %><br />
-    </div>
+        <legend><%=t('form.title.edit.user.profile')%></legend>
+
+        <!--user email field-->
+        <div <% if @user.errors[:email].present? %>
+                class="control-group error"
+             <%elsif @user.errors.any?%>
+                class="control-group success"
+             <%else%>
+                class="control-group"
+             <% end %>>
+          <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email, :id => :email %>
+            <% if @user.errors[:email].present? %>
+                <% @user.errors[:email].each do |msg|%>
+                    <p class="help-block"><%= msg%></p>
+                <%end%>
+            <%end%>
+          </div>
+        </div>
+
+        <!--user first name field-->
+        <div <% if @user.errors[:first_name].present? %>
+                class="control-group error"
+             <%elsif @user.errors.any?%>
+                class="control-group success"
+             <%else%>
+                class="control-group"
+             <% end %>>
+          <%= label_tag :first_name, t('field.user.first_name'), :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :first_name, :id => :first_name %>
+            <% if @user.errors[:first_name].present? %>
+                <% @user.errors[:first_name].each do |msg|%>
+                    <p class="help-block"><%= msg%></p>
+                <%end%>
+            <%end%>
+          </div>
+        </div>
+
+        <!--user last name field-->
+        <div <% if @user.errors[:last_name].present? %>
+                class="control-group error"
+             <%elsif @user.errors.any?%>
+                class="control-group success"
+             <%else%>
+                class="control-group"
+             <% end %>>
+          <%= label_tag :last_name, t('field.user.last_name'), :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :last_name, :id => :last_name %>
+            <% if @user.errors[:last_name].present? %>
+                <% @user.errors[:last_name].each do |msg|%>
+                    <p class="help-block"><%= msg%></p>
+                <%end%>
+            <%end%>
+          </div>
+        </div>
+
+        <!--form buttons and navigation links-->
+        <div class="control-group">
+          <div class="controls">
+            <%= link_to root_path, :class=>"btn" do%>
+                <i class="icon-arrow-left"></i> <%=t('button.back')%>
+            <%end%>
+            <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+                <i class="icon-ok icon-white"></i> <%=t('button.save')%>
+            <%end%>
+          </div>
+        </div>
+    <% end %>
   </div>
-  <div class="form-footer"></div>
 </div>

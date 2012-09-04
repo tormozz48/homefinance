@@ -22,6 +22,7 @@
 
   <td><div class="badge badge-black-font" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></div></td>
   <td><%=transaction.amount%></td>
+
   <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
           transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
       <td>

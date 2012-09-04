@@ -1,43 +1,29 @@
 var AccountsJS = function(){
     this.init = function(account_type){
-        //resizeDataWrapper();
-        jQuery(window).resize(function(){
-            //resizeDataWrapper();
-            //accountsJS.resizeColumns();
-        });
 
+        //mark menu items cards or cashes as active depending on account type
+        if(account_type == ACCOUNT_TYPE_CARD){
+            markMenuItemById("menuAccountsID");
+        }else if(account_type == ACCOUNT_TYPE_CASH){
+            markMenuItemById("menuCashesID");
+        }
+
+        //subscribe sorting form ajax success event
         jQuery('#field, #direction').change(function(){
             jQuery('#accountSortingFormId').submit();
         });
 
+        //subscribe sorting form ajax success event
         jQuery('#accountSortingFormId').ajaxSuccess(function(evt, response, settings){
             accountsJS.handleResponse(response);
         });
 
-        //load accounts after page loading
-        jQuery.ajax({
-            url: '/accounts/load?type='+account_type
-        }).done(function (doc, status, jqXHR ) {
-            accountsJS.handleResponse(jqXHR);
-        });
+        //initial loading of categories by soft submitting sorting form with default parameters
+        jQuery('#accountSortingFormId').submit();
     };
 
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
-        //this.resizeColumns();
     };
-
-    /*
-    this.resizeColumns = function(){
-        var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
-        var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;
-        var amountColumnWidth = jQuery('#accountAmountHeaderID')[0].clientWidth;
-        var nameColumnWidth = jQuery('#accountNameHeaderID')[0].clientWidth;
-        var descriptionColumnWidth = dataItemWidth - buttonsColumnWidth - amountColumnWidth - nameColumnWidth - 35;
-
-        jQuery('#accountDescriptionHeaderID').css("width", descriptionColumnWidth+"px");
-        jQuery('.body-account-description').css("width", descriptionColumnWidth+"px");
-    };
-    */
 };

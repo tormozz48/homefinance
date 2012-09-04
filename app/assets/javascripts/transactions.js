@@ -1,18 +1,13 @@
 var TransactionJS = function(){
 
-   this.DATA_WRAPPER_HEIGHT = 180;
-   this.DATA_WRAPPER_HEIGHT_WITH_FILTER = 212;
    this.editMode = false;
 
    this.init = function(type){
 
-      jQuery('#direction')[0].selectedIndex = 1;
+      //mark category menu item as active
+      markMenuItemById("menuTransactionID");
 
-      //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
-      jQuery(window).resize(function(){
-          //resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
-          //transactionsJS.resizeColumns();
-      });
+      jQuery('#direction')[0].selectedIndex = 1;
 
       jQuery('#filterButtonId').click(function(){
           jQuery('#filterFormID').toggleClass("no-disp");
@@ -54,31 +49,6 @@ var TransactionJS = function(){
           transactionsJS.handleResponse(request);
       });
 
-      /*
-       jQuery('#addNewTransactionButtonID').click(function(){
-           var url = jQuery(this).attr('href');
-           jQuery.ajax({
-               url: url,
-               beforeSend: function ( xhr ) {
-                   var c = '<div class="b-modal" id="loadingIndicatorID"></div>';
-                   jQuery.arcticmodal({
-                       content: c
-                   });
-               }
-           }).done(function (doc, status, jqXHR ) {
-               transactionsJS.editMode = true;
-               var c =  '<div class="b-modal"><div class="b-modal_close arcticmodal-close">X</div>'+jqXHR.responseText+'</div>';
-               jQuery.arcticmodal('close');
-               jQuery.arcticmodal({
-                   content: c,
-                   closeOnEsc: false,
-                   closeOnOverlayClick: false
-               });
-           });
-          return false;
-       });
-       */
-
       // actions after page loading
       jQuery.ajax({
           url: '/transactions/load?type='+type,
@@ -99,12 +69,6 @@ var TransactionJS = function(){
       });
   };
 
-  this.lazyLoad = function(){
-      var p = jQuery('#pageID').val();
-      jQuery('#pageID').val(++p);
-      jQuery('#transactionFilterSortFormId').submit();
-  };
-
   this.handleResponse = function(response){
       if(transactionsJS.editMode == false){
           var p = jQuery('#pageID').val();
@@ -112,25 +76,18 @@ var TransactionJS = function(){
             jQuery('#dataWrapperID').empty();
           }
           jQuery('#dataWrapperID').append(response.responseText);
-          //this.resizeColumns();
+
+          jQuery(".badge-black-font").popover({
+              animation: true,
+              html: true,
+              placement: 'right',
+              trigger: 'hover',
+              title: dayColorPopupTitle,
+              content: jQuery("#dayOfWeekPopupID").html()
+          });
       }
 
   };
-
-  /*
-  this.resizeColumns = function(){
-      var dataItemWidth = jQuery('#dataTableID')[0].clientWidth;
-      var buttonsColumnWidth = jQuery('#editButtonsHeaderID')[0].clientWidth;
-      var dateColumnWidth = jQuery('#transactionDateHeaderID')[0].clientWidth;
-      var sumColumnWidth = jQuery('#transactionSumHeaderID')[0].clientWidth;
-      var transactionColumnWidth =
-          (dataItemWidth - buttonsColumnWidth - dateColumnWidth - sumColumnWidth - 45)/2;
-
-      jQuery('#transactionAccountHeaderID1').css("width", transactionColumnWidth+"px");
-      jQuery('#transactionAccountHeaderID2').css("width", transactionColumnWidth+"px");
-      jQuery('.body-transaction-account').css("width", transactionColumnWidth+"px");
-  };
-  */
 
   this.formInit = function(){
       jQuery('#date').datepicker({
@@ -145,22 +102,4 @@ var TransactionJS = function(){
 
       jQuery('#amount').ForceNumericOnly();
   };
-
-  /*
-  this.toggleFilter = function(){
-      if(jQuery('#transactionFilterFormId').css("display") == "none"){
-          jQuery('#transactionFilterFormId').show();
-          resizeDataWrapper(this.DATA_WRAPPER_HEIGHT_WITH_FILTER);
-          jQuery(window).resize(function(){
-              resizeDataWrapper(this.DATA_WRAPPER_HEIGHT_WITH_FILTER);
-          });
-      }else{
-          jQuery('#transactionFilterFormId').hide();
-          resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
-          jQuery(window).resize(function(){
-              resizeDataWrapper(this.DATA_WRAPPER_HEIGHT);
-          });
-      }
-  };
-  */
 };

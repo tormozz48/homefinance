@@ -28,16 +28,13 @@ var transactionsJS = new TransactionJS();
 var accountsJS = new AccountsJS();
 var categoriesJS = new CategoriesJS();
 
-function resizeDataWrapper(v){
-    if(v == null){
-        v = 180;
-    }
-    var h = document.body.offsetHeight - v;
-    jQuery("#dataWrapperID").css("height", h+"px");
-};
+function markMenuItemById(menu_id){
+   jQuery('ul.nav > li').removeClass("active");
+    jQuery('ul.nav > li#'+menu_id).addClass("active");
+}
 
 function resizeChartWrapper(){
-    var h = document.body.offsetHeight - 170;
+    var h = document.body.offsetHeight;
     jQuery(".statistic-graph-wrapper").css("height", h+"px");
 };
 

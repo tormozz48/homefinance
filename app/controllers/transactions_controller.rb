@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
     end
     if Transaction::TRANSACTION_TYPES.include? @transaction_type
       @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
-      @date_from = 1.month.ago.to_date
+      @date_from = 1.week.ago.to_date
       @date_to = Date.today
       @page = 1
     else
@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
 
   def load
     transaction_type = params[:type]
-    date_from = params[:date_from].nil? ? 1.month.ago.to_date : params[:date_from]
+    date_from = params[:date_from].nil? ? 1.week.ago.to_date : params[:date_from]
     date_to = params[:date_to].nil? ? Date.today : params[:date_to]
     category_id = params[:category]
 

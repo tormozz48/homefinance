@@ -100,8 +100,9 @@ function initCategoryChartOptions(title, other){
 };
 
 function statisticInit(){
+    markMenuItemById("menuStatisticID");
+
     resizeChartWrapper();
-    jQuery(window).resize(function(){resizeChartWrapper();});
 
     jQuery.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
     jQuery('#date_from_id').datepicker({

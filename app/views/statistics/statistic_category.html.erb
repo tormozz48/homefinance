@@ -1,27 +1,31 @@
-<div id="tableWrapperID">
-  <div id="tableWrapperHeaderID">
-    <span>
-      <%=t('form.title.statistic.category')%>
-    </span>
-  </div>
-  <div id="tableWrapperBodyID" class="statistic-table-wrapper-body">
-    <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true, :class => "statisticForm") do -%>
-        <div class="statistic-form-wrapper">
-          <%= label_tag "date_from_id", t('field.common.date_from')%>
-          <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "statistic-date-field"%>
-          <%= label_tag "date_to_id", t('field.common.date_to'), :class => "statistic-date-label"%>
-          <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "statistic-date-field"%>
-          <%= label_tag "transaction_type_id", t('field.transaction.type'), :class => "statistic-date-label"%>
-          <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :id => "transaction_type_id"%>
-          <span>
-            <%= label_tag "categories_count_id", t(:categories_display_count), :class => "statistic-date-label"%>
-            <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id"%>
-          </span>
-        </div>
+<!--statistic setting form-->
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true, :class => "form-inline well statisticForm") do -%>
+        <legend><%=t('form.title.statistic.category')%></legend>
+
+        <%= label_tag "date_from_id", t('field.common.date_from'), :class => "control-label marginleft10px"%>
+        <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "uneditable-input span2"%>
+
+        <%= label_tag "date_to_id", t('field.common.date_to'), :class => "control-label marginleft10px"%>
+        <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "uneditable-input span2"%>
+
+        <%= label_tag "transaction_type_id", t('field.transaction.type'), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
+        <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :id => "transaction_type_id", :class => "span2 hidden-phone hidden-tablet" %>
+
+        <%= label_tag "categories_count_id", t(:categories_display_count), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
+        <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id", :class => "span1 hidden-phone hidden-tablet"%>
+
     <% end -%>
   </div>
 </div>
-<div id="chartContainer" class="statistic-graph-wrapper"></div>
+
+<!--chart container-->
+<div class="row-fluid">
+  <div class="span12">
+    <div id="chartContainer"></div>
+  </div>
+</div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){

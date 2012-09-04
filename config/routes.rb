@@ -24,7 +24,9 @@ Homefinance2::Application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users do
+    get 'logout' => 'devise/sessions#destroy'
+  end
 
   match 'statistic_date', :to => 'statistics#initStatisticByDate'
   match 'show_statistic_by_date', :to => 'statistics#showStatisticByDate'

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 gem 'devise'
+gem 'sqlite3'
 gem 'pg'
 gem 'date_validator'
 gem 'kaminari'
@@ -9,8 +10,6 @@ gem 'heroku'
 gem 'taps'
 
 gem 'omniauth'
-#gem 'omniauth-facebook'
-#gem 'omniauth-vkontakte'
 gem 'loginza'
 
  group :assets do

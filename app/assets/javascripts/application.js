@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap/bootstrap
-//= require arcticmodal/arcticmodal
 //= require colorpicker/colorpicker
 //= require colorpicker/eye
 //= require colorpicker/layout

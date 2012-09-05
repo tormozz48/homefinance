@@ -17,10 +17,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def load
-
-  end
-
   def filter
       transaction_type = params[:type]
       date_from = params[:date_from].nil? ? 1.week.ago.to_date : params[:date_from]
@@ -34,29 +30,17 @@ class TransactionsController < ApplicationController
       if !category_id.nil? && !category_id.blank? &&
           (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
               transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
-        @transactions = Transaction.where("transaction_type = :transaction_type and
-                                           user_id = :user_id and
-                                           enabled = :enabled and
-                                           category_id = :category_id and
-                                           date between :date_from and :date_to",
-                                          {:transaction_type => transaction_type,
-                                           :user_id => current_user.id,
-                                           :enabled => true,
-                                           :category_id => category_id,
-                                           :date_from => date_from,
-                                           :date_to => date_to
-                                          }).order(sortStr)
+        @transactions = Transaction.where("transaction_type = :transaction_type and user_id = :user_id and
+          enabled = :enabled and category_id = :category_id and date between :date_from and :date_to",
+          {:transaction_type => transaction_type, :user_id => current_user.id, :enabled => true,
+           :category_id => category_id, :date_from => date_from, :date_to => date_to
+          }).order(sortStr)
       else
-        @transactions = Transaction.where("transaction_type = :transaction_type and
-                                           user_id = :user_id and
-                                           enabled = :enabled and
-                                           date between :date_from and :date_to",
-                                          {:transaction_type => transaction_type,
-                                           :user_id => current_user.id,
-                                           :enabled => true,
-                                           :date_from => date_from,
-                                           :date_to => date_to
-                                          }).order(sortStr)
+        @transactions = Transaction.where("transaction_type = :transaction_type and user_id = :user_id and
+          enabled = :enabled and date between :date_from and :date_to",
+          {:transaction_type => transaction_type, :user_id => current_user.id, :enabled => true,
+           :date_from => date_from, :date_to => date_to
+          }).order(sortStr)
       end
       render :partial => 'transactions/transactions'
   end

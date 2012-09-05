@@ -2,7 +2,6 @@
              :method=>:post, :remote => true, :class => "well") do -%>
     <legend><%=getIndexTitle(@transaction_type)%></legend>
     <%=hidden_field_tag 'type', @transaction_type%>
-    <%=hidden_field_tag 'page', @page, :id => "pageID"%>
 
     <div class="form-inline">
         <%= link_to new_transaction_path(:type => @transaction_type), :class => "btn btn-success" do%>
@@ -18,8 +17,10 @@
     <div id="filterFormID" class="form-inline margintop10px no-disp">
         <%= label_tag "date_from", t('field.common.date_from'), :class => "control-label"%>
         <%= text_field_tag "date_from", @date_from, :id=>"date_from", :readonly => true, :class => "span2"%>
+
         <%= label_tag "date_to", t('field.common.date_to'), :class => "control-label marginleft10px"%>
         <%= text_field_tag "date_to", @date_to, :id=>"date_to", :readonly => true, :class => "span2"%>
+
         <%= label_tag "category", t('field.transaction.category'), :class => "control-label marginleft10px"%>
         <%if @transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
               @transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>

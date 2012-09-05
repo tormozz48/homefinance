@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  paginates_per 30
+  #paginates_per 30
 
   validates :amount, :date, :transaction_type,  :presence => true
   validates :amount, :numericality => {:greater_than_or_equal_to => 0 }

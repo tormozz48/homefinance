@@ -12,66 +12,53 @@ class TransactionsController < ApplicationController
       @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
       @date_from = 1.week.ago.to_date
       @date_to = Date.today
-      @page = 1
     else
       render_404
     end
   end
 
   def load
-    transaction_type = params[:type]
-    date_from = params[:date_from].nil? ? 1.week.ago.to_date : params[:date_from]
-    date_to = params[:date_to].nil? ? Date.today : params[:date_to]
-    category_id = params[:category]
 
-    field = params[:field].nil? ? "date" : params[:field]
-    direction = params[:direction].nil? ? "desc" : params[:direction]
-    sortStr = field + " " + direction + ", id DESC"
-
-    session[:page] = params[:page].nil? ? 1 : params[:page]
-
-    if !category_id.nil? && !category_id.blank? &&
-        (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
-         transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
-      @transactions = Transaction.where("transaction_type = :transaction_type and
-                                         user_id = :user_id and
-                                         enabled = :enabled and
-                                         category_id = :category_id and
-                                         date between :date_from and :date_to",
-                                        {:transaction_type => transaction_type,
-                                         :user_id => current_user.id,
-                                         :enabled => true,
-                                         :category_id => category_id,
-                                         :date_from => date_from,
-                                         :date_to => date_to
-                                        }).order(sortStr)#.page(session[:page])
-    else
-      @transactions = Transaction.where("transaction_type = :transaction_type and
-                                         user_id = :user_id and
-                                         enabled = :enabled and
-                                         date between :date_from and :date_to",
-                                        {:transaction_type => transaction_type,
-                                         :user_id => current_user.id,
-                                         :enabled => true,
-                                         :date_from => date_from,
-                                         :date_to => date_to
-                                        }).order(sortStr)#.page(session[:page])
-    end
-    @page = session[:page]
-    render :partial => 'transactions/transactions'
   end
 
   def filter
-    respond_to do |format|
-      format.html { redirect_to load_transactions_path(
-                                    :type => params[:type],
-                                    :date_from => params[:date_from],
-                                    :date_to => params[:date_to],
-                                    :category => params[:category],
-                                    :field => params[:field],
-                                    :direction => params[:direction],
-                                    :page => params[:page])}
-    end
+      transaction_type = params[:type]
+      date_from = params[:date_from].nil? ? 1.week.ago.to_date : params[:date_from]
+      date_to = params[:date_to].nil? ? Date.today : params[:date_to]
+      category_id = params[:category]
+
+      field = params[:field].nil? ? "date" : params[:field]
+      direction = params[:direction].nil? ? "desc" : params[:direction]
+      sortStr = field + " " + direction + ", id DESC"
+
+      if !category_id.nil? && !category_id.blank? &&
+          (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
+              transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10))
+        @transactions = Transaction.where("transaction_type = :transaction_type and
+                                           user_id = :user_id and
+                                           enabled = :enabled and
+                                           category_id = :category_id and
+                                           date between :date_from and :date_to",
+                                          {:transaction_type => transaction_type,
+                                           :user_id => current_user.id,
+                                           :enabled => true,
+                                           :category_id => category_id,
+                                           :date_from => date_from,
+                                           :date_to => date_to
+                                          }).order(sortStr)
+      else
+        @transactions = Transaction.where("transaction_type = :transaction_type and
+                                           user_id = :user_id and
+                                           enabled = :enabled and
+                                           date between :date_from and :date_to",
+                                          {:transaction_type => transaction_type,
+                                           :user_id => current_user.id,
+                                           :enabled => true,
+                                           :date_from => date_from,
+                                           :date_to => date_to
+                                          }).order(sortStr)
+      end
+      render :partial => 'transactions/transactions'
   end
 
   def new
@@ -84,6 +71,9 @@ class TransactionsController < ApplicationController
 
   def edit
     @transaction = Transaction.find(params[:id])
+    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
+    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
+    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
     @task_new = false
     if @transaction.nil?
       render_404

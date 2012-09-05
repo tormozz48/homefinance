@@ -1,5 +1,5 @@
 <tr>
-  <td>
+  <td class="td-center">
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="icon-circle-arrow-down"></i> <span class="hidden-phone"><%=t('button.action')%></span>
@@ -26,11 +26,6 @@
   <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
           transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
       <td>
-        <%if !transaction.account_to.description.blank?%>
-            <span class="no-disp"><%=transaction.account_to.description%></span>
-        <%else%>
-            <span class="no-disp"><%=t('common.undefined')%></span>
-        <%end%>
         <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
       </td>
   <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
@@ -38,11 +33,6 @@
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
       <td>
-        <%if !transaction.account_from.description.blank?%>
-            <span class="no-disp"><%=transaction.account_from.description%></span>
-        <%else%>
-            <span class="no-disp"><%=t('common.undefined')%></span>
-        <%end%>
         <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
       </td>
       <td>
@@ -53,23 +43,13 @@
         <%end%>
         <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
       </td>
-    <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
+  <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
       <td>
-        <%if !transaction.account_from.description.blank?%>
-            <span class="no-disp"><%=transaction.account_from.description%></span>
-        <%else%>
-            <span class="no-disp"><%=t('common.undefined')%></span>
-        <%end%>
         <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
       </td>
       <td>
           <div class="color-indicator-small" style="background-color: <%=getCategoryColor(transaction.category)%>;">&nbsp;</div>
-          <%if !transaction.category.description.blank?%>
-            <span class="no-disp"><%=transaction.category.description%></span>
-          <%else%>
-            <span class="no-disp"><%=t('common.undefined')%></span>
-          <%end%>
           <%=transaction.category.name%>
       </td>
     <%end%>

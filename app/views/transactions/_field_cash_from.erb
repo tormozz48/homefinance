@@ -1,19 +1,16 @@
 <!--cash from field-->
 <div <% if @transaction.errors[:account_from_id].present? %>
-     class="control-group error"
+        class="control-group error"
      <%elsif @transaction.errors.any?%>
-     class="control-group success"
+        class="control-group success"
      <%else%>
-     class="control-group"
+        class="control-group"
      <% end %>>
   <%= label_tag :account_from_id, t('field.transaction.cash_from'), :class => "control-label" %>
   <div class="controls">
-    <%if @task_new == true%>
-        <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name_with_amount,
-                              {:include_blank => t('common.undefined')}, {:id => "account_from_id"})%>
-    <%else%>
-        <p class="help-block span4"> <%= @transaction.account_from.name%></p>
-    <%end%>
+    <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name_with_amount,
+                              {:include_blank => t('common.undefined')}, {:id => "account_from_id", :disabled => !@task_new})%>
+
     <% if @transaction.errors[:account_from_id].present? %>
         <% @transaction.errors[:account_from_id].each do |msg|%>
             <p class="help-block"><%= msg%></p>

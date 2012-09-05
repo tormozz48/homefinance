@@ -1,7 +1,5 @@
 var TransactionJS = function(){
 
-   this.editMode = false;
-
    this.init = function(type){
 
       //mark category menu item as active
@@ -49,44 +47,22 @@ var TransactionJS = function(){
           transactionsJS.handleResponse(request);
       });
 
-      // actions after page loading
-      jQuery.ajax({
-          url: '/transactions/load?type='+type,
-          beforeSend: function ( xhr ) {
-              var c = '<div class="b-modal" id="loadingIndicatorID"></div>';
-              jQuery.arcticmodal({
-                  content: c,
-                  closeOnEsc: false,
-                  closeOnOverlayClick: false,
-                  afterClose: function(data, el) {
-                      transactionsJS.editMode = false;
-                  }
-              });
-          }
-      }).done(function (doc, status, jqXHR ) {
-          transactionsJS.handleResponse(jqXHR);
-          jQuery.arcticmodal('close');
-      });
+       jQuery('#transactionFilterSortFormId').submit();
   };
 
   this.handleResponse = function(response){
-      if(transactionsJS.editMode == false){
-          var p = jQuery('#pageID').val();
-          if(p == 1){
-            jQuery('#dataWrapperID').empty();
-          }
-          jQuery('#dataWrapperID').append(response.responseText);
 
-          jQuery(".badge-black-font").popover({
-              animation: true,
-              html: true,
-              placement: 'right',
-              trigger: 'hover',
-              title: dayColorPopupTitle,
-              content: jQuery("#dayOfWeekPopupID").html()
-          });
-      }
+      jQuery('#dataWrapperID').empty();
+      jQuery('#dataWrapperID').append(response.responseText);
 
+      jQuery(".badge-black-font").popover({
+          animation: true,
+          html: true,
+          placement: 'right',
+          trigger: 'hover',
+          title: dayColorPopupTitle,
+          content: jQuery("#dayOfWeekPopupID").html()
+      });
   };
 
   this.formInit = function(){

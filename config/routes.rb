@@ -6,7 +6,6 @@ Homefinance2::Application.routes.draw do
   resources :transactions do
     collection do
       post 'filter'
-      get 'load'
     end
   end
 

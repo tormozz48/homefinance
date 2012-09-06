@@ -6,28 +6,28 @@
     <div class="control-group">
       <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
       <div class="controls">
-        <%= f.email_field :email, :id => :email%>
+        <%= f.email_field :email, :id => :email, :title => t('tooltip.input.email')%>
       </div>
     </div>
     <div class="control-group">
       <%= label_tag :password, t('field.user.password'), :class => "control-label" %>
       <div class="controls">
-        <%= f.password_field :password, :id => :password%>
+        <%= f.password_field :password, :id => :password, :title => t('tooltip.input.password')%>
       </div>
     </div>
     <div class="control-group">
       <div class="controls">
         <% if devise_mapping.rememberable? -%>
             <label class="checkbox">
-                <%= f.check_box :remember_me, :id => :remember_me %> <%=t('field.user.remember_me')%>
+                <%= f.check_box :remember_me, :id => :remember_me, :title => t('tooltip.input.rememberme') %> <%=t('field.user.remember_me')%>
             </label>
         <% end -%>
         <%= render 'social'%>
         <div class="margintop10px">
-            <%= link_to t('link.sign.up'), new_registration_path(resource_name) %>
+            <%= link_to t('link.sign.up'), new_registration_path(resource_name), :title => t('tooltip.link.register'), :class => "link"  %>
         </div>
         <div class="margintop10px">
-            <%= link_to t('link.forgot_password'), new_password_path(resource_name) %>
+            <%= link_to t('link.forgot_password'), new_password_path(resource_name), :title => t('tooltip.link.forgot_password'), :class => "link" %>
         </div>
         <div class="margintop10px">
             <%= f.submit t('link.sign.in'), :class=>"btn btn-primary", :title=>t('link.sign.in')%>
@@ -35,4 +35,12 @@
        </div>
     </div>
 <% end %>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.btn, .link, .link > img, .checkbox > input').tooltip();
+        jQuery('.controls > input').tooltip({placement: 'right'});
+    });
+</script>
 

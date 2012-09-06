@@ -16,7 +16,7 @@
          <% end %>>
         <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
         <div class="controls">
-            <%= f.email_field :email, :id => :email %>
+            <%= f.email_field :email, :id => :email, :title => t('tooltip.input.email') %>
             <% if resource.errors[:email].present? %>
               <% resource.errors[:email].each do |msg|%>
                   <p class="help-block"><%= msg%></p>
@@ -35,7 +35,7 @@
          <% end %>>
         <%= label_tag :password, t('field.user.password'), :class => "control-label" %>
         <div class="controls">
-            <%= f.password_field :password, :id => :password, :html => {:maxlength => 128} %>
+            <%= f.password_field :password, :id => :password, :html => {:maxlength => 128}, :title => t('tooltip.input.password_extended') %>
             <% if resource.errors[:password].present? %>
               <% resource.errors[:password].each do |msg|%>
                   <p class="help-block"><%= msg%></p>
@@ -54,7 +54,7 @@
          <% end %>>
         <%= label_tag :password_confirmation, t('field.user.password_confirm'), :class => "control-label" %><br />
         <div class="controls">
-            <%= f.password_field :password_confirmation, :id => :password_confirmation, :html => {:maxlength => 128} %>
+            <%= f.password_field :password_confirmation, :id => :password_confirmation, :html => {:maxlength => 128}, :title => t('tooltip.input.password_confirm') %>
             <% if resource.errors[:password_confirmation].present? %>
                 <% resource.errors[:password_confirmation].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -67,10 +67,10 @@
     <div class="control-group">
       <div class="controls">
         <div>
-          <%= link_to t('link.to_login_page'), new_session_path(resource_name)%>
+          <%= link_to t('link.to_login_page'), new_session_path(resource_name), :title => t('tooltip.link.return_to_login_page'), :class => "link"%>
         </div>
         <div class="margintop10px">
-          <%= link_to t('link.forgot_password'), new_password_path(resource_name) %>
+          <%= link_to t('link.forgot_password'), new_password_path(resource_name), :title => t('tooltip.link.forgot_password'), :class => "link"%>
         </div>
         <div class="margintop10px">
           <%= f.submit t('link.sign.up'), :class=>"btn btn-primary", :title=>t('link.sign.up') %>
@@ -79,3 +79,9 @@
     </div>
 <% end %>
 
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.btn, .link').tooltip();
+        jQuery('.controls > input').tooltip({placement: 'right'});
+    });
+</script>

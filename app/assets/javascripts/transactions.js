@@ -63,6 +63,8 @@ var TransactionJS = function(){
           title: dayColorPopupTitle,
           content: jQuery("#dayOfWeekPopupID").html()
       });
+
+      jQuery('.btn, #field, #direction, td > span, td > div').tooltip();
   };
 
   this.formInit = function(){

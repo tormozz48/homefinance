@@ -26,32 +26,37 @@
   <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
           transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
       <td>
-        <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+          <span title="<%=transaction.account_to.description%>">
+            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+          </span>
       </td>
   <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
       <td>
-        <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+         <span title="<%=transaction.account_from.description%>">
+            <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+         </span>
       </td>
       <td>
-        <%if !transaction.account_to.description.blank?%>
-            <span class="no-disp"><%=transaction.account_to.description%></span>
-        <%else%>
-            <span class="no-disp"><%=t('common.undefined')%></span>
-        <%end%>
-        <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+         <span title="<%=transaction.account_to.description%>">
+            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+         </span>
       </td>
   <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
             transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
       <td>
-        <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+         <span title="<%=transaction.account_from.description%>">
+           <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+         </span>
       </td>
       <td>
-          <div class="color-indicator-small" style="background-color: <%=getCategoryColor(transaction.category)%>;">&nbsp;</div>
-          <%=transaction.category.name%>
+         <div class="color-indicator-small" style="background-color: <%=getCategoryColor(transaction.category)%>;">&nbsp;</div>
+         <span title="<%=transaction.category.description%>">
+            <%=transaction.category.name%>
+        </span>
       </td>
-    <%end%>
-    <td class="hidden-phone"><%=transaction.comment %></td>
+  <%end%>
+  <td class="hidden-phone"><%=transaction.comment %></td>
 </tr>

@@ -1,6 +1,8 @@
 var AccountsJS = function(){
     this.init = function(account_type){
 
+        jQuery('.btn, #field, #direction').tooltip();
+
         //mark menu items cards or cashes as active depending on account type
         if(account_type == ACCOUNT_TYPE_CARD){
             markMenuItemById("menuAccountsID");

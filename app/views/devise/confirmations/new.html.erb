@@ -16,7 +16,7 @@
          <% end %>>
         <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
         <div class="controls">
-            <%= f.email_field :email, :id => :email %>
+            <%= f.email_field :email, :id => :email, :title => t('tooltip.input.email') %>
             <% if resource.errors[:email].present? %>
                 <% resource.errors[:email].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -29,7 +29,7 @@
     <div class="control-group">
       <div class="controls">
         <div>
-          <%= link_to t('link.to_login_page'), new_session_path(resource_name), :class=>"link" %>
+          <%= link_to t('link.to_login_page'), new_session_path(resource_name), :title => t('tooltip.link.return_to_login_page'), :class => "link"  %>
         </div>
         <div class="margintop10px">
           <%= f.submit t('button.send'), :class=>"btn btn-primary", :title=>t('button.send') %>
@@ -38,3 +38,9 @@
     </div>
 <% end %>
 
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.btn, .link').tooltip();
+        jQuery('.controls > input').tooltip({placement: 'right'});
+    });
+</script>

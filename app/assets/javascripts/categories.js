@@ -1,6 +1,8 @@
 var CategoriesJS = function(){
     this.init = function(){
 
+        jQuery('.btn, #field, #direction').tooltip();
+
         //mark category menu item as active
         markMenuItemById("menuCategoriesID");
 
@@ -24,6 +26,11 @@ var CategoriesJS = function(){
     };
 
     this.formInit = function(){
+        //mark category menu item as active
+        markMenuItemById("menuCategoriesID");
+
+        jQuery('.controls > input, .controls > textarea').tooltip({placement: 'right'});
+
         jQuery('#colorFieldId').css('background-color', '#'+jQuery('#colorFieldId').val());
         jQuery('#colorFieldId').css('color', '#'+jQuery('#colorFieldId').val());
 

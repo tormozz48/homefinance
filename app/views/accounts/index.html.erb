@@ -5,12 +5,14 @@
                  :class => "form-inline well") do -%>
           <%= hidden_field_tag "type", @account_type%>
           <legend><%=getAccountIndexTitle(@account_type)%></legend>
-          <%=link_to new_account_path(:type => @account_type), :class => "btn btn-success" do%>
+          <%=link_to new_account_path(:type => @account_type), :class => "btn btn-success", :title => t('button.add') do%>
             <i class="icon-plus icon-white"></i> <%=t('button.add')%>
           <%end%>  
           <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
-          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field", :class => "span2 hidden-phone"%>
-          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span3 hidden-phone"%>
+          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field",
+                         :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_field')%>
+          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
+                         :class => "span3 hidden-phone", :title => t('tooltip.input.sorting_direction')%>
     <% end -%>
   </div>
 </div>

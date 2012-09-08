@@ -4,15 +4,17 @@
     <%=hidden_field_tag 'type', @transaction_type%>
 
     <div class="form-inline">
-        <%= link_to new_transaction_path(:type => @transaction_type), :class => "btn btn-success" do%>
+        <%= link_to new_transaction_path(:type => @transaction_type), :class => "btn btn-success", :title => t('button.add') do%>
             <i class="icon-plus icon-white"></i> <%=t('button.add')%>
         <%end%>
         <%= link_to "#", :id => "filterButtonId", :class => "btn btn-info hidden-phone" do%>
             <i class="icon-filter icon-white"></i> <%=t('button.filter')%>
         <%end%>
         <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
-        <%= select_tag "field", getTransactionsSortingOptionList(@transaction_type).html_safe , :id => "field", :class => "span2 hidden-phone"%>
-        <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction", :class => "span2 hidden-phone"%>
+        <%= select_tag "field", getTransactionsSortingOptionList(@transaction_type).html_safe , :id => "field",
+                       :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_field')%>
+        <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
+                       :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_direction')%>
     </div>
     <div id="filterFormID" class="form-inline margintop10px no-disp">
         <%= label_tag "date_from", t('field.common.date_from'), :class => "control-label"%>

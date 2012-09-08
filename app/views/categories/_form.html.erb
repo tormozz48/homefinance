@@ -1,7 +1,7 @@
 <!--categories form-->
 <div class="row-fluid">
-  <div class="span12">
-        <%= form_for(@category, :html => {:class=> "form-horizontal well"}) do |f| %>
+  <div class="span8">
+        <%= form_for(@category, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
             <%= f.hidden_field :amount%>
             <%= f.hidden_field :enabled%>
 
@@ -17,7 +17,7 @@
                  <% end %>>
                 <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
                 <div class="controls">
-                    <%= f.text_field :name, :class => "span8"%>
+                    <%= f.text_field :name, :class => "input-xlarge", :title => t('tooltip.input.category_name')%>
                     <% if @category.errors[:name].present? %>
                       <% @category.errors[:name].each do |msg|%>
                           <p class="help-block"><%= msg%></p>
@@ -36,7 +36,7 @@
                  <% end %>>
               <%= label_tag :description, t('field.common.description'), :class => "control-label" %>
               <div class="controls">
-                <%= f.text_area :description, :size => "60x6", :class => "span8"%>
+                <%= f.text_area :description, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.category_description')%>
                 <% if @category.errors[:description].present? %>
                     <% @category.errors[:description].each do |msg|%>
                         <p class="help-block"><%= msg%></p>
@@ -55,7 +55,7 @@
                  <% end %>>
                 <%= label_tag :colorFieldId, t('field.category.color'), :class => "control-label" %>
                 <div class="controls">
-                    <%= f.text_field :color, :id => "colorFieldId", :readOnly => "readOnly", :class => "span1"%>
+                    <%= f.text_field :color, :id => "colorFieldId", :readOnly => "readOnly", :class => "input-mini", :title => t('tooltip.input.category_color')%>
                     <% if @category.errors[:color].present? %>
                       <% @category.errors[:color].each do |msg|%>
                           <p class="help-block"><%= msg%></p>

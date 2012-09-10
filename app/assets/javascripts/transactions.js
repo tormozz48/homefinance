@@ -8,7 +8,7 @@ var TransactionJS = function(){
       jQuery('#direction')[0].selectedIndex = 1;
 
       jQuery('#filterButtonId').click(function(){
-          jQuery('#filterFormID').toggleClass("no-disp");
+          jQuery('#date_from_button, #date_to_button, #category').toggleClass("no-disp");
       });
 
       jQuery.datepicker.setDefaults(jQuery.extend(jQuery.datepicker.regional["ru"]));
@@ -20,7 +20,7 @@ var TransactionJS = function(){
           onSelect: function(dateText, inst) {
               jQuery('#date_to').datepicker('option', 'minDate', jQuery('#date_from').datepicker('getDate'));
               jQuery('#date_from').datepicker('hide');
-              jQuery('#pageID').val(1);
+              jQuery('#date_from_button').html("<i class=\"icon-calendar\"></i> " + dateText);
               jQuery('#transactionFilterSortFormId').submit();
           }
       });
@@ -33,10 +33,18 @@ var TransactionJS = function(){
           onSelect: function(dateText, inst) {
               jQuery('#date_from').datepicker('option', 'maxDate', jQuery('#date_to').datepicker('getDate'));
               jQuery('#date_to').datepicker('hide');
-              jQuery('#pageID').val(1);
+              jQuery('#date_to_button').html("<i class=\"icon-calendar\"></i> " + dateText);
               jQuery('#transactionFilterSortFormId').submit();
           }
       });
+
+       jQuery('#date_from_button').click(function(){
+           jQuery('#date_from').datepicker( "show" )
+       });
+
+       jQuery('#date_to_button').click(function(){
+           jQuery('#date_to').datepicker( "show" )
+       });
 
       jQuery('#category, #field, #direction').change(function(){
           jQuery('#pageID').val(1);
@@ -48,9 +56,9 @@ var TransactionJS = function(){
       });
 
        jQuery('#transactionFilterSortFormId').submit();
-  };
+   };
 
-  this.handleResponse = function(response){
+   this.handleResponse = function(response){
 
       jQuery('#dataWrapperID').empty();
       jQuery('#dataWrapperID').append(response.responseText);
@@ -64,20 +72,31 @@ var TransactionJS = function(){
           content: jQuery("#dayOfWeekPopupID").html()
       });
 
-      jQuery('.btn, #field, #direction, td > span, td > div').tooltip();
-  };
+      jQuery('.btn, #field, #direction, #category, td > span, td > div').tooltip();
+   };
 
-  this.formInit = function(){
+   this.formInit = function(){
+      //mark category menu item as active
+      markMenuItemById("menuTransactionID");
+
+      jQuery('.controls > .input-append > input, .controls > button, .controls > textarea, .controls > select').tooltip({placement: 'right'});
+      jQuery('.btn').tooltip();
+
+      jQuery('#button-date').click(function(){
+          jQuery('#date').datepicker( "show" )
+      });
+
       jQuery('#date').datepicker({
           dateFormat: 'yy-mm-dd',
           maxDate: new Date(),
           changeMonth: true,
           changeYear: true,
           onSelect: function(dateText, inst) {
-              jQuery('#date').datepicker('hide')
+              jQuery('#button-date').html("<i class=\"icon-calendar\"></i> " + dateText);
+              jQuery('#date').datepicker('hide');
           }
       });
 
       jQuery('#amount').ForceNumericOnly();
-  };
+   };
 };

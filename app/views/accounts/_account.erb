@@ -1,6 +1,6 @@
 <tr>
   <td class="td-center">
-    <div class="btn-group">
+    <div class="btn-group hidden-phone hidden-tablet">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="icon-circle-arrow-down"></i> <%=t('button.action')%>
         <span class="caret"></span>
@@ -17,6 +17,14 @@
             <%end%>
         </li>
       </ul>
+    </div>
+    <div class="hidden-desktop">
+      <%= link_to edit_account_path(account, :type => @account_type) do%>
+          <%=t('button.edit')%>
+      <%end%>
+      <%= link_to account, confirm: t('message.confirm.delete'), method: :delete do%>
+          <%=t('button.delete')%>
+      <%end%>
     </div>
   </td>
   <td><%=account.amount%></td>

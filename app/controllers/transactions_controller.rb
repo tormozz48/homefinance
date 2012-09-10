@@ -71,7 +71,7 @@ class TransactionsController < ApplicationController
       valid = @transaction.valid? ? @transaction.calculateTransactionNew : false
       respond_to do |format|
         if valid == true && @transaction.save
-          format.html {redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
+          format.html {redirect_to transactions_path(:type => @transaction.transaction_type)}
         else
           @task_new = true
           @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
@@ -95,7 +95,7 @@ class TransactionsController < ApplicationController
     valid = @transaction.valid? ? @transaction.calculateTransactionEdit : false
     respond_to do |format|
       if valid == true && @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page])}
+        format.html { redirect_to transactions_path(:type => @transaction.transaction_type)}
       else
         @task_new = false
         format.html { render action: "edit" }

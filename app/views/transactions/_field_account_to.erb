@@ -1,5 +1,5 @@
 <!--account to field-->
-<div <% if @transaction.errors[:account_to_id].present? %>
+<div <% if @transaction.errors[:account_to].present? %>
         class="control-group error"
      <%elsif @transaction.errors.any?%>
         class="control-group success"
@@ -9,10 +9,10 @@
   <%= label_tag :account_to_id, t('field.transaction.account_to'), :class => "control-label" %>
   <div class="controls">
     <%= collection_select(:transaction, :account_to_id, @accounts, :id, :name_with_amount,
-                              {:include_blank => t('common.undefined')}, {:id => "account_to_id", :disabled => !@task_new})%>
+                              {:include_blank => t('common.undefined')}, {:id => "account_to_id", :disabled => !@task_new, :title => t('tooltip.input.transaction.account_to')})%>
 
-    <% if @transaction.errors[:account_to_id].present? %>
-        <% @transaction.errors[:account_to_id].each do |msg|%>
+    <% if @transaction.errors[:account_to].present? %>
+        <% @transaction.errors[:account_to].each do |msg|%>
             <p class="help-block"><%= msg%></p>
         <%end%>
     <%end%>

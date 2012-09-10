@@ -3,7 +3,7 @@ body {padding-top: 60px; padding-bottom: 40px;}
 .application-form{min-width: 250px; max-width: 500px;}
 .margintop10px{margin-top: 10px;}
 .marginleft10px{margin-left: 10px;}
-.no-disp{display: none;}
+.no-disp{display: none !important;}
 
 .color-indicator{
   width: 30px;

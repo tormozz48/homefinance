@@ -7,28 +7,35 @@
         <%= link_to new_transaction_path(:type => @transaction_type), :class => "btn btn-success", :title => t('button.add') do%>
             <i class="icon-plus icon-white"></i> <%=t('button.add')%>
         <%end%>
-        <%= link_to "#", :id => "filterButtonId", :class => "btn btn-info hidden-phone" do%>
+        <%= link_to "#", :id => "filterButtonId", :class => "btn btn-info hidden-phone", :title => t('tooltip.filter') do%>
             <i class="icon-filter icon-white"></i> <%=t('button.filter')%>
         <%end%>
         <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
         <%= select_tag "field", getTransactionsSortingOptionList(@transaction_type).html_safe , :id => "field",
-                       :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_field')%>
+                       :class => "input-small hidden-phone", :title => t('tooltip.input.sorting_field')%>
         <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
-                       :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_direction')%>
-    </div>
-    <div id="filterFormID" class="form-inline margintop10px no-disp">
-        <%= label_tag "date_from", t('field.common.date_from'), :class => "control-label"%>
-        <%= text_field_tag "date_from", @date_from, :id=>"date_from", :readonly => true, :class => "span2"%>
+                       :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_direction')%>
 
-        <%= label_tag "date_to", t('field.common.date_to'), :class => "control-label marginleft10px"%>
-        <%= text_field_tag "date_to", @date_to, :id=>"date_to", :readonly => true, :class => "span2"%>
+        <!--%= label_tag "date_from", t('field.common.date_from'), :class => "control-label"%-->
+        <%= hidden_field_tag "date_from", @date_from, :id=>"date_from"%>
+        <%= button_tag :type => "button", :id =>"date_from_button", :class => "btn marginleft10px no-disp", :title => t('tooltip.input.transaction.filter.date.from') do%>
+            <i class="icon-calendar"></i> <%= @date_from%>
+        <%end%>
 
-        <%= label_tag "category", t('field.transaction.category'), :class => "control-label marginleft10px"%>
+        <!--%= label_tag "date_to", t('field.common.date_to'), :class => "control-label marginleft10px"%-->
+        <%= hidden_field_tag "date_to", @date_to, :id=>"date_to"%>
+        <%= button_tag @date_to, :type => "button", :id =>"date_to_button", :class => "btn no-disp", :title => t('tooltip.input.transaction.filter.date.to') do%>
+            <i class="icon-calendar"></i> <%= @date_to%>
+        <%end%>
+
+        <!--%= label_tag "category", t('field.transaction.category'), :class => "control-label marginleft10px"%-->
         <%if @transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
               @transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
-            <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category", :class => "span3"%>
+            <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id),
+                           :include_blank => true, :id => "category", :class => "input-medium no-disp", :title => t('tooltip.input.transaction.filter.category')%>
         <%else%>
-            <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id), :include_blank => true, :id => "category", :disabled => true, :class => "span3"%>
+            <%= select_tag "category",  options_from_collection_for_select(@categories, "id", "name", @category_id),
+                           :include_blank => true, :id => "category", :disabled => true, :class => "input-medium no-disp", :title => t('tooltip.input.transaction.filter.category')%>
         <%end%>
     </div>
 <% end -%>

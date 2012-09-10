@@ -1,8 +1,8 @@
 <tr>
   <td class="td-center">
-    <div class="btn-group">
+    <div class="btn-group hidden-phone hidden-tablet">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="icon-circle-arrow-down"></i> <span class="hidden-phone"><%=t('button.action')%></span>
+        <i class="icon-circle-arrow-down"></i> <span><%=t('button.action')%></span>
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
@@ -14,10 +14,19 @@
         <li>
             <%= link_to transaction, confirm: t('message.confirm.delete'), method: :delete do%>
               <i class="icon-remove"></i> <%=t('button.delete')%>
-          <%end%>
+            <%end%>
         </li>
       </ul>
     </div>
+    <div class="hidden-desktop">
+      <%= link_to edit_transaction_path(transaction, :page => @p) do%>
+          <%=t('button.edit')%>
+      <%end%>
+      <%= link_to transaction, confirm: t('message.confirm.delete'), method: :delete do%>
+          <%=t('button.delete')%>
+      <%end%>
+    </div>
+
   </td>
 
   <td><div class="badge badge-black-font" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></div></td>

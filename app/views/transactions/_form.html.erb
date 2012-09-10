@@ -1,7 +1,7 @@
 <!--transaction form-->
 <div class="row-fluid">
-  <div class="span12">
-        <%= form_for(@transaction, :html => {:class=> "form-horizontal well"}) do |f| %>
+  <div class="span8">
+        <%= form_for(@transaction, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
           <%= f.hidden_field :transaction_type%>
 
           <legend><%=@legend%></legend>
@@ -17,7 +17,7 @@
             <%= label_tag :amount, t('field.transaction.summa'), :class => "control-label" %>
             <div class="controls">
               <div class="input-append">
-                <%= f.number_field :amount, :id => "amount"%>
+                <%= f.number_field :amount, :id => "amount", :class => "input-small", :title => t('tooltip.input.transaction.summa')%>
                 <span class="add-on"><%=t('currency')%></span>
               </div>
                 <% if @transaction.errors[:amount].present? %>
@@ -38,7 +38,10 @@
              <% end %>>
           <%= label_tag :amount, t('field.common.date'), :class => "control-label" %>
           <div class="controls">
-            <%= f.text_field :date, :id => "date", :readOnly => "readonly"%>
+            <%= f.hidden_field :date, :id => "date"%>
+            <%= button_tag :type => 'button', :id => "button-date", :class => "btn", :title => t('tooltip.input.transaction.date') do%>
+                <i class="icon-calendar"></i> <%= @transaction.date%>
+            <%end%>
             <% if @transaction.errors[:date].present? %>
                 <% @transaction.errors[:date].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -81,7 +84,7 @@
              <% end %>>
           <%= label_tag :comment, t('field.transaction.comment'), :class => "control-label" %>
           <div class="controls">
-            <%= f.text_area :comment, :size => "60x6", :class => "span8"%>
+            <%= f.text_area :comment, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.transaction.comment')%>
             <% if @transaction.errors[:comment].present? %>
                 <% @transaction.errors[:comment].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -93,10 +96,10 @@
         <!--form buttons and navigation links-->
         <div class="control-group">
           <div class="controls">
-            <%= link_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]), :class=>"btn" do%>
+            <%= link_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]), :class=>"btn", :title => t('tooltip.back') do%>
                 <i class="icon-arrow-left"></i> <%=t('button.back')%>
             <%end%>
-            <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+            <%= link_to "#", class: "btn btn-primary", :title => t('button.save'), :onclick=>"$('form').submit()" do%>
                 <i class="icon-ok icon-white"></i> <%=t('button.save')%>
             <%end%>
           </div>

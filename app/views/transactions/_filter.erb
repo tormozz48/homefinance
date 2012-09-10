@@ -16,13 +16,11 @@
         <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
                        :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_direction')%>
 
-        <!--%= label_tag "date_from", t('field.common.date_from'), :class => "control-label"%-->
         <%= hidden_field_tag "date_from", @date_from, :id=>"date_from"%>
         <%= button_tag :type => "button", :id =>"date_from_button", :class => "btn marginleft10px no-disp", :title => t('tooltip.input.transaction.filter.date.from') do%>
             <i class="icon-calendar"></i> <%= @date_from%>
         <%end%>
 
-        <!--%= label_tag "date_to", t('field.common.date_to'), :class => "control-label marginleft10px"%-->
         <%= hidden_field_tag "date_to", @date_to, :id=>"date_to"%>
         <%= button_tag @date_to, :type => "button", :id =>"date_to_button", :class => "btn no-disp", :title => t('tooltip.input.transaction.filter.date.to') do%>
             <i class="icon-calendar"></i> <%= @date_to%>

@@ -73,6 +73,8 @@ var TransactionJS = function(){
       });
 
       jQuery('.btn, #field, #direction, #category, td > span, td > div').tooltip();
+
+      jQuery(".alert-success, .alert-error").fadeOut(5000);
    };
 
    this.formInit = function(){

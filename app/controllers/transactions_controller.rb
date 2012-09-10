@@ -4,14 +4,22 @@ class TransactionsController < ApplicationController
   def index
     @transaction_type = params[:type]
     if @transaction_type.nil?
-      @transaction_type = Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
+      @transaction_type = session["transaction_type"]
+      if @transaction_type.nil?
+        @transaction_type = Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY
+      else
+        @transaction_type = @transaction_type.to_i
+      end
     else
       @transaction_type = @transaction_type.to_i
     end
     if Transaction::TRANSACTION_TYPES.include? @transaction_type
       @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
-      @date_from = 1.week.ago.to_date
-      @date_to = Date.today
+      @date_from = session["date_from"].nil? ? 1.week.ago.to_date : session["date_from"]
+      @date_to = session["date_to"].nil? ? Date.today : session["date_to"]
+      @field = session["field"]
+      @direction = session["direction"]
+      @category_id = session["category_id"]
     else
       render_404
     end
@@ -23,8 +31,17 @@ class TransactionsController < ApplicationController
       date_to = params[:date_to].nil? ? Date.today : params[:date_to]
       category_id = params[:category]
 
+      session["transaction_type"] = transaction_type
+      session["date_from"] = date_from
+      session["date_to"] = date_to
+      session["category_id"] = category_id
+
       field = params[:field].nil? ? "date" : params[:field]
       direction = params[:direction].nil? ? "desc" : params[:direction]
+
+      session["field"] = field
+      session["direction"] = direction
+
       sortStr = field + " " + direction + ", id DESC"
 
       if !category_id.nil? && !category_id.blank? &&
@@ -47,21 +64,17 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new(:transaction_type => params[:type], :amount => 0, :date => Date.today)
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
-    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
-    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
+    getParamsForSelectors
     @task_new = true
   end
 
   def edit
     @transaction = Transaction.find(params[:id])
-    @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
-    @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
-    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
-    @task_new = false
     if @transaction.nil?
-      render_404
+      render_404 and return
     end
+    getParamsForSelectors
+    @task_new = false
   end
 
   def create
@@ -71,15 +84,12 @@ class TransactionsController < ApplicationController
       valid = @transaction.valid? ? @transaction.calculateTransactionNew : false
       respond_to do |format|
         if valid == true && @transaction.save
-          format.html {redirect_to transactions_path(:type => @transaction.transaction_type)}
+          flash[:notice] = I18n.t('notice.transaction.added')
+          format.html {redirect_to transactions_path}
         else
+          getParamsForSelectors
           @task_new = true
-          @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
-          @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
-          @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
-
-          format.html { render action: "new" }
-          format.json { render json: [@transaction.errors, @task_new, @accounts, @cashes, @categories], status: :unprocessable_entity }
+          format.html { render :action => "new"}
         end
       end
     end
@@ -95,11 +105,12 @@ class TransactionsController < ApplicationController
     valid = @transaction.valid? ? @transaction.calculateTransactionEdit : false
     respond_to do |format|
       if valid == true && @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to transactions_path(:type => @transaction.transaction_type)}
+        flash[:notice] = I18n.t('notice.transaction.changed')
+        format.html {redirect_to transactions_path}
       else
+        getParamsForSelectors
         @task_new = false
-        format.html { render action: "edit" }
-        format.json { render json: [@transaction.errors, @task_new], status: :unprocessable_entity }
+        format.html { render :action => "edit"}
       end
     end
   end
@@ -110,9 +121,18 @@ class TransactionsController < ApplicationController
       render_404
     end
     valid = @transaction.valid? ? @transaction.calculateTransactionDestroy : false
-    @transaction.destroy if valid
-    respond_to do |format|
-      format.html { redirect_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]) }
+    if valid
+      @transaction.destroy
+      flash[:notice] = I18n.t('notice.transaction.deleted')
+    else
+      flash[:error] = I18n.t('error.transaction.deleted')
     end
+    redirect_to transactions_path
   end
+end
+
+def getParamsForSelectors
+  @accounts = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CARD_TYPE, current_user.id, true)
+  @cashes = Account.order("name ASC").find_all_by_account_type_and_user_id_and_enabled(Account::ACCOUNT_CASH_TYPE, current_user.id, true)
+  @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
 end

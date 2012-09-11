@@ -1,7 +1,7 @@
 <!--categories form-->
 <div class="row-fluid">
-    <div class="span12">
-        <%= form_for(@account, :html => {:class=> "form-horizontal well"}) do |f| %>
+    <div class="span8">
+        <%= form_for(@account, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
           <%= f.hidden_field :account_type%>
 
           <legend><%=@legend%></legend>
@@ -16,7 +16,7 @@
                <% end %>>
             <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
             <div class="controls">
-              <%= f.text_field :name, :class => "span8"%>
+              <%= f.text_field :name, :class => "input-xlarge", :title => t('tooltip.input.account.name')%>
               <% if @account.errors[:name].present? %>
                   <% @account.errors[:name].each do |msg|%>
                       <p class="help-block"><%= msg%></p>
@@ -33,9 +33,9 @@
                <%else%>
                 class="control-group"
                <% end %>>
-            <%= label_tag :description, t('field.common.description'), :class => "control-label" %>
+            <%= label_tag :description, t('field.common.description'), :class => "control-label"%>
             <div class="controls">
-              <%= f.text_area :description, :size => "60x6", :class => "span8"%>
+              <%= f.text_area :description, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.account.description')%>
               <% if @account.errors[:description].present? %>
                   <% @account.errors[:description].each do |msg|%>
                       <p class="help-block"><%= msg%></p>
@@ -52,10 +52,10 @@
                <%else%>
                 class="control-group"
                <% end %>>
-            <%= label_tag :amount, t('field.account.amount'), :class => "control-label" %>
+            <%= label_tag :amount, t('field.account.amount'), :class => "control-label"%>
             <div class="controls">
               <div class="input-append">
-                <%= f.text_field :amount, :class => "span4", :readOnly => "readonly"%>
+                <%= f.text_field :amount, :class => "input-small", :readOnly => "readonly", :title => t('tooltip.input.account.amount')%>
                 <span class="add-on"><%=t('currency')%></span>
               </div>
               <% if @account.errors[:amount].present? %>
@@ -69,10 +69,10 @@
           <!--form buttons and navigation links-->
           <div class="control-group">
             <div class="controls">
-                <%= link_to accounts_path(:type => @account.account_type), :class=>"btn" do%>
+                <%= link_to accounts_path(:type => @account.account_type), :title => t('tooltip.back'), :class=>"btn" do%>
                     <i class="icon-arrow-left"></i> <%=t('button.back')%>
                 <%end%>
-                <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+                <%= link_to "#", class: "btn btn-primary", :title => t('button.save'), :onclick=>"$('form').submit()" do%>
                     <i class="icon-ok icon-white"></i> <%=t('button.save')%>
                 <%end%>
             </div>
@@ -80,3 +80,11 @@
         <% end %>
     </div>
 </div>
+
+<script type="text/javascript">
+    var ACCOUNT_TYPE_CARD = <%=Account::ACCOUNT_CARD_TYPE%>;
+    var ACCOUNT_TYPE_CASH = <%=Account::ACCOUNT_CASH_TYPE%>;
+    jQuery(document).ready(function(){
+        accountsJS.formInit(<%=@account_type%>);
+    });
+</script>

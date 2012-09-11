@@ -1,0 +1,15 @@
+<!--notification block-->
+<% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<!--errors block-->
+<% if flash[:error] %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <%= flash[:error] %>
+    </div>
+<% end %>

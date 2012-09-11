@@ -3,28 +3,25 @@ class AccountsController < ApplicationController
 
   def index
     @account_type = params[:type]
+    @field = session["account_field"]
+    @direction = session["account_direction"]
     if !Account::ACCOUNT_TYPES.include? @account_type.to_i
       render_404
     end
   end
 
-  def load
+  def sort
     account_type = params[:type]
     field = params[:field].nil? ? "name" : params[:field]
     direction = params[:direction].nil? ? "asc" : params[:direction]
+
+    session["category_field"] = field
+    session["category_direction"] = direction
+
     sortStr = field + " " + direction
 
     @accounts = Account.order(sortStr).find_all_by_account_type_and_user_id_and_enabled(account_type, current_user.id, true)
     render :partial => "accounts"
-  end
-
-  def sort
-    respond_to do |format|
-      format.html { redirect_to load_accounts_path(
-                                    :type => params[:type],
-                                    :field => params[:field],
-                                    :direction => params[:direction])}
-    end
   end
 
   def new
@@ -44,15 +41,14 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(params[:account])
     @account_type = @account.account_type
-    if(current_user.nil? == false)
-      @account.user = current_user
-      respond_to do |format|
-        if @account.save
-          format.html {redirect_to accounts_path(:type=> @account_type)}
-        else
-          format.html { render action: "new" }
-          format.json { render json: [@account.errors, @account_type], status: :unprocessable_entity }
-        end
+    @account.user = current_user
+    respond_to do |format|
+      if @account.save
+        flash[:notice] = @account_type == Account::ACCOUNT_CARD_TYPE ?
+            I18n.t('notice.account.added') : I18n.t('notice.cash.added')
+        format.html {redirect_to accounts_path(:type=> @account_type)}
+      else
+        format.html { render action: "new" }
       end
     end
   end
@@ -66,10 +62,11 @@ class AccountsController < ApplicationController
     if(@account.user_id == current_user.id)
     respond_to do |format|
         if @account.update_attributes(params[:account])
+          flash[:notice] = @account_type == Account::ACCOUNT_CARD_TYPE ?
+              I18n.t('notice.account.changed') : I18n.t('notice.cash.changed')
           format.html {redirect_to accounts_path(:type=> @account_type)}
         else
           format.html { render action: "edit" }
-          format.json { render json: [@account.errors, @account_type], status: :unprocessable_entity }
         end
       end
     else
@@ -85,13 +82,17 @@ class AccountsController < ApplicationController
     account_type = @account.account_type
     if(@account.user_id == current_user.id)
       @account.update_attribute(:enabled, false)
-      @account.save
-      respond_to do |format|
-        format.html { redirect_to accounts_url(:type => account_type) }
-        format.json { head :no_content }
+      if @account.save
+        flash[:notice] = account_type == Account::ACCOUNT_CARD_TYPE ?
+            I18n.t('notice.account.deleted') : I18n.t('notice.cash.deleted')
+      else
+        flash[:notice] = account_type == Account::ACCOUNT_CARD_TYPE ?
+            I18n.t('error.account.deleted') : I18n.t('error.cash.deleted')
       end
     else
-       redirect_to :back and return
+      flash[:error] = account_type == Account::ACCOUNT_CARD_TYPE ?
+          I18n.t('error.account.deleted') : I18n.t('error.cash.deleted')
     end
+    redirect_to :back and return
   end
 end

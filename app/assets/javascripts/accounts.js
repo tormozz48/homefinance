@@ -27,5 +27,17 @@ var AccountsJS = function(){
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
+        jQuery(".alert-success, .alert-error").fadeOut(5000);
+    };
+
+    this.formInit = function(account_type){
+        //mark menu items cards or cashes as active depending on account type
+        if(account_type == ACCOUNT_TYPE_CARD){
+            markMenuItemById("menuAccountsID");
+        }else if(account_type == ACCOUNT_TYPE_CASH){
+            markMenuItemById("menuCashesID");
+        }
+        jQuery('.controls > .input-append > input, .controls > input, .controls > textarea').tooltip({placement: 'right'});
+        jQuery('.btn').tooltip();
     };
 };

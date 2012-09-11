@@ -15,9 +15,9 @@ module AccountsHelper
 
   end
 
-  def getAccountsSortingOptionList
-      return content_tag(:option, I18n.t('field.common.name'), :value =>"name") +
-             content_tag(:option, I18n.t('field.common.description'), :value =>"description") +
-             content_tag(:option, I18n.t('field.account.amount'), :value =>"amount")
+  def getAccountsSortingOptionList(v)
+      return content_tag(:option, I18n.t('field.common.name'), :value =>"name", :selected => v == "name" ? "selected" : false) +
+             content_tag(:option, I18n.t('field.common.description'), :value =>"description", :selected => v == "description" ? "selected" : false) +
+             content_tag(:option, I18n.t('field.account.amount'), :value =>"amount", :selected => v == "amount" ? "selected" : false)
   end
 end

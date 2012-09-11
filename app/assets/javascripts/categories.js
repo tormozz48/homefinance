@@ -23,6 +23,7 @@ var CategoriesJS = function(){
     this.handleResponse = function(response){
         jQuery('#dataWrapperID').empty();
         jQuery('#dataWrapperID').html(response.responseText);
+        jQuery(".alert-success, .alert-error").fadeOut(5000);
     };
 
     this.formInit = function(){
@@ -30,6 +31,7 @@ var CategoriesJS = function(){
         markMenuItemById("menuCategoriesID");
 
         jQuery('.controls > input, .controls > textarea').tooltip({placement: 'right'});
+        jQuery('.btn').tooltip();
 
         jQuery('#colorFieldId').css('background-color', '#'+jQuery('#colorFieldId').val());
         jQuery('#colorFieldId').css('color', '#'+jQuery('#colorFieldId').val());

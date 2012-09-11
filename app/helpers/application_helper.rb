@@ -10,8 +10,8 @@ module ApplicationHelper
     end
   end
 
-  def getSortingDirectionOptionList
-      return content_tag(:option, I18n.t('common.sorting.asc'), :value =>"asc") +
-             content_tag(:option, I18n.t('common.sorting.desc'), :value =>"desc")
+  def getSortingDirectionOptionList(v)
+      return content_tag(:option, I18n.t('common.sorting.asc'), :value =>"asc", :selected => v == "asc" ? "selected" : false) +
+             content_tag(:option, I18n.t('common.sorting.desc'), :value =>"desc", :selected => v == "desc" ? "selected" : false)
   end
 end

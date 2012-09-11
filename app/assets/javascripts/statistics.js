@@ -113,6 +113,7 @@ function statisticInit(){
         onSelect: function(dateText, inst) {
             jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
             jQuery('#date_from_id').datepicker('hide');
+            jQuery('#date_from_button').html("<i class=\"icon-calendar\"></i> " + dateText);
             jQuery('.statisticForm').submit();
         }
     });
@@ -124,9 +125,20 @@ function statisticInit(){
         onSelect: function(dateText, inst) {
             jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
             jQuery('#date_to_id').datepicker('hide');
+            jQuery('#date_to_button').html("<i class=\"icon-calendar\"></i> " + dateText);
             jQuery('.statisticForm').submit();
         }
     });
+
+    jQuery('#date_from_button').click(function(){
+        jQuery('#date_from_id').datepicker( "show" )
+    });
+
+    jQuery('#date_to_button').click(function(){
+        jQuery('#date_to_id').datepicker( "show" )
+    });
+
+    jQuery('.btn, select').tooltip();
 
     jQuery('#statisticDateFormId').ajaxSuccess(function(evt, request, settings){
         var data = jQuery.parseJSON(request.responseText);
@@ -148,6 +160,7 @@ function statisticInit(){
         chart = new Highcharts.Chart(lineChartOptions);
     });
 
+    /*
     jQuery('#statisticWeightFormId').ajaxSuccess(function(evt, request, settings){
         var data = jQuery.parseJSON(request.responseText);
         var cat_ser = null;
@@ -166,6 +179,7 @@ function statisticInit(){
         }
         chart = new Highcharts.Chart(lineChartOptions);
     });
+    */
 
     jQuery('#statisticCategoryFormId').ajaxSuccess(function(evt, request, settings){
         var data = jQuery.parseJSON(request.responseText);

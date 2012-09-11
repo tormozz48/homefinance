@@ -1,3 +1,5 @@
+<%=render '/notifications'%>
+
 <!--sorting form-->
 <div class="row-fluid">
   <div class="span12">
@@ -9,10 +11,10 @@
             <i class="icon-plus icon-white"></i> <%=t('button.add')%>
           <%end%>  
           <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
-          <%= select_tag "field", getAccountsSortingOptionList.html_safe , :id => "field",
-                         :class => "span2 hidden-phone", :title => t('tooltip.input.sorting_field')%>
-          <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
-                         :class => "span3 hidden-phone", :title => t('tooltip.input.sorting_direction')%>
+          <%= select_tag "field", getAccountsSortingOptionList(@field).html_safe , :id => "field",
+                         :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_field')%>
+          <%= select_tag "direction", getSortingDirectionOptionList(@direction).html_safe , :id => "direction",
+                         :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_direction')%>
     <% end -%>
   </div>
 </div>

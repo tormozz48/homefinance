@@ -5,7 +5,9 @@ var TransactionJS = function(){
       //mark category menu item as active
       markMenuItemById("menuTransactionID");
 
-      jQuery('#direction')[0].selectedIndex = 1;
+      if(jQuery('#direction')[0].selectedIndex == -1){
+        jQuery('#direction')[0].selectedIndex = 1;
+      }
 
       jQuery('#filterButtonId').click(function(){
           jQuery('#date_from_button, #date_to_button, #category').toggleClass("no-disp");

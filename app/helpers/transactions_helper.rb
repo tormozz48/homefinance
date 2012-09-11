@@ -89,9 +89,9 @@ module TransactionsHelper
     end
   end
 
-  def getTransactionsSortingOptionList(transaction_type)
-    return content_tag(:option, I18n.t('field.common.date'), :value =>"date") +
-           content_tag(:option, I18n.t('field.transaction.summa'), :value =>"amount") +
-           content_tag(:option, I18n.t('field.transaction.comment'), :value =>"comment")
+  def getTransactionsSortingOptionList(v)
+    return content_tag(:option, I18n.t('field.common.date'), :value =>"date", :selected => v == "date" ? "selected" : false) +
+           content_tag(:option, I18n.t('field.transaction.summa'), :value =>"amount", :selected => v == "amount" ? "selected" : false) +
+           content_tag(:option, I18n.t('field.transaction.comment'), :value =>"comment", :selected => v == "comment" ? "selected" : false)
   end
 end

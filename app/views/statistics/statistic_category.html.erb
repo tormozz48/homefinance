@@ -4,17 +4,23 @@
     <%= form_tag('/show_statistic_by_category', :id =>"statisticCategoryFormId", :remote => true, :class => "form-inline well statisticForm") do -%>
         <legend><%=t('form.title.statistic.category')%></legend>
 
-        <%= label_tag "date_from_id", t('field.common.date_from'), :class => "control-label marginleft10px"%>
-        <%= text_field_tag "date_from", Date.today-1.month, :id=>"date_from_id", :readonly => true, :class => "uneditable-input span2"%>
+        <%= label_tag "date_from_id", t('field.common.date_from'), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
+        <%= hidden_field_tag "date_from", Date.today-1.month, :id=>"date_from_id"%>
+        <%= button_tag :type => "button", :id =>"date_from_button", :class => "btn", :title => t('tooltip.input.transaction.filter.date.from') do%>
+            <i class="icon-calendar"></i> <%= Date.today-1.month%>
+        <%end%>
 
-        <%= label_tag "date_to_id", t('field.common.date_to'), :class => "control-label marginleft10px"%>
-        <%= text_field_tag "date_to", Date.today, :id=>"date_to_id", :readonly => true, :class => "uneditable-input span2"%>
+        <%= label_tag "date_to_id", t('field.common.date_to'), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
+        <%= hidden_field_tag "date_to", Date.today, :id=>"date_to_id"%>
+        <%= button_tag :type => "button", :id =>"date_to_button", :class => "btn", :title => t('tooltip.input.transaction.filter.date.to') do%>
+            <i class="icon-calendar"></i> <%= Date.today%>
+        <%end%>
 
         <%= label_tag "transaction_type_id", t('field.transaction.type'), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
-        <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :id => "transaction_type_id", :class => "span2 hidden-phone hidden-tablet" %>
-
-        <%= label_tag "categories_count_id", t(:categories_display_count), :class => "control-label marginleft10px hidden-phone hidden-tablet"%>
-        <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :id => "categories_count_id", :class => "span1 hidden-phone hidden-tablet"%>
+        <%= select_tag "transaction_type", getTransactionTypesWithCategoriesOptionList.html_safe, :title => t('tooltip.input.statistic.transaction_type'),
+                       :id => "transaction_type_id", :class => "input-large hidden-phone" %>
+        <%= select_tag "categories_count", getCategoriesDisplayCountOptionList.html_safe, :title => t('tooltip.input.statistic.display_number'),
+                       :id => "categories_count_id", :class => "input-mini marginleft10px hidden-phone"%>
 
     <% end -%>
   </div>

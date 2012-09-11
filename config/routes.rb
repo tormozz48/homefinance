@@ -11,14 +11,12 @@ Homefinance2::Application.routes.draw do
 
   resources :categories do
     collection do
-      get 'load'
       post 'sort'
     end
   end
 
   resources :accounts do
     collection do
-      get 'load'
       post 'sort'
     end
   end

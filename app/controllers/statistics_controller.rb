@@ -2,7 +2,7 @@ class StatisticsController < ApplicationController
   before_filter :authenticate_user!
 
   def initStatisticByDate
-    @categories = Category.where("enabled = true").order("name asc")
+    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
     respond_to do |format|
       format.html {render 'statistics/statistic_date'}
     end

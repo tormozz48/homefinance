@@ -11,9 +11,9 @@
             <i class="icon-filter icon-white"></i> <%=t('button.filter')%>
         <%end%>
         <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
-        <%= select_tag "field", getTransactionsSortingOptionList(@transaction_type).html_safe , :id => "field",
+        <%= select_tag "field", getTransactionsSortingOptionList(@field).html_safe , :id => "field",
                        :class => "input-small hidden-phone", :title => t('tooltip.input.sorting_field')%>
-        <%= select_tag "direction", getSortingDirectionOptionList.html_safe , :id => "direction",
+        <%= select_tag "direction", getSortingDirectionOptionList(@direction).html_safe , :id => "direction",
                        :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_direction')%>
 
         <%= hidden_field_tag "date_from", @date_from, :id=>"date_from"%>

@@ -12,6 +12,13 @@ ru:
   currency: "грн."
   day_color_popup_title: "Цвета для дней недели"
 
+  contacts:
+    role: "Роль в проекте"
+    work: "Место работы"
+    post: "Должность"
+    fio: "Ф.И.О."
+    blog: "Блог"
+
   link:
     sign:
       in: "Вход в программу"

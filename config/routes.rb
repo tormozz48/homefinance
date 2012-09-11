@@ -37,5 +37,8 @@ Homefinance2::Application.routes.draw do
   match 'statistic_weight', :to => 'weights#initStatisticWeight'
   match 'show_statistic_weight', :to => 'weights#showStatisticWeight'
 
+  match 'about', :to => 'application#about'
+  match 'contacts', :to => 'application#contacts'
+
   root :to => 'transactions#index'
 end

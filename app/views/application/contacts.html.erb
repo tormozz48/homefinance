@@ -1,0 +1,38 @@
+<div class="row-fluid">
+    <div class="span8 well">
+       <legend><%=t('menu.top.contacts')%></legend>
+       <div class="row-fluid">
+         <div class="span3">
+            <%=image_tag(image_path('andrey_kuznetsov.png'), :class => "img-rounded")%>
+         </div>
+         <div class="span9">
+            <p><strong><%=t('contacts.role')%>:</strong> Автор идеи и разработчик</p>
+            <p><strong><%=t('contacts.fio')%>:</strong> Кузнецов Андрей Сергеевич</p>
+            <p><strong><%=t('contacts.work')%>:</strong> IonIdea Ukraine</p>
+            <p><strong><%=t('contacts.post')%>:</strong> Java и Ruby on Rails разработчик</p>
+            <p><strong>E-Mail:</strong> <%= link_to "tormozz48@gmail.com"%></p>
+            <p><strong>Skype:</strong> boomer4848</p>
+            <p><strong><%=t('contacts.blog')%>:</strong> <%= link_to "http://boedj48.blogspot.com"%></p>
+         </div>
+       </div>
+       <hr/>
+       <div class="row-fluid">
+        <div class="span3">
+          <%=image_tag(image_path('olyuwik_kuznetsova.png'), :class => "img-rounded")%>
+        </div>
+        <div class="span9">
+          <p><strong><%=t('contacts.role')%>:</strong> Тестировщик и основной пользователь</p>
+          <p><strong><%=t('contacts.fio')%>:</strong> Кузнецова Ольга Викторовна</p>
+          <p><strong><%=t('contacts.work')%>:</strong> Yandex Симферополь</p>
+          <p><strong><%=t('contacts.post')%>:</strong> Разработчик интерфейсов</p>
+          <p><strong>E-Mail:</strong> <%= link_to "olyuwik@yandex.ru"%></p>
+          <p><strong>Skype:</strong> olyuwik</p>
+        </div>
+       </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        markMenuItemById("menuContactsID");
+    });
+</script>

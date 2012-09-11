@@ -68,10 +68,10 @@
                   </ul>
               <%else%>
                   <li id="menuAboutID">
-                    <a href="#about"><%=t('menu.top.about')%></a>
+                    <%= link_to t('menu.top.about'), about_path%>
                   </li>
                   <li id="menuContactsID">
-                    <a href="#contact"><%=t('menu.top.contacts')%></a>
+                    <%= link_to t('menu.top.contacts'), contacts_path%>
                   </li>
               <%end%>
             </ul>

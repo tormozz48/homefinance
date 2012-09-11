@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def about
+     render 'application/about'
+  end
+
+  def contacts
+     render 'application/contacts'
+  end
+
   def render_404
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404.html", :layout => nil, :status => :not_found }

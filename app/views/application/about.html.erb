@@ -3,3 +3,15 @@
         markMenuItemById("menuAboutID");
     });
 </script>
+
+<div class="row-fluid">
+    <div class="span8 well">
+      <legend><%=t('menu.top.about')%></legend>
+      <div class="row-fluid">
+        <div class="span12">
+            <%= render 'application/about_history'%>
+            <%= render 'application/about_features'%>
+        </div>
+      </div>
+    </div>
+</div>

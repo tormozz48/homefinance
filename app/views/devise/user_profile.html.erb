@@ -1,7 +1,7 @@
 <!--edit user profile form-->
 <div class="row-fluid">
-  <div class="span12">
-    <%= form_for(@user, :url => update_user_profile_path(@user), :html => {:class=> "form-horizontal well"}) do |f| %>
+  <div class="span8">
+    <%= form_for(@user, :url => update_user_profile_path(@user), :html => {:class=> "form-horizontal well application-form"}) do |f| %>
 
         <legend><%=t('form.title.edit.user.profile')%></legend>
 
@@ -15,7 +15,7 @@
              <% end %>>
           <%= label_tag :email, t('field.user.email'), :class => "control-label" %>
           <div class="controls">
-            <%= f.email_field :email, :id => :email %>
+            <%= f.email_field :email, :id => :email, :title => t('tooltip.input.email') %>
             <% if @user.errors[:email].present? %>
                 <% @user.errors[:email].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -34,7 +34,7 @@
              <% end %>>
           <%= label_tag :first_name, t('field.user.first_name'), :class => "control-label" %>
           <div class="controls">
-            <%= f.email_field :first_name, :id => :first_name %>
+            <%= f.text_field :first_name, :id => :first_name, :title => t('tooltip.input.first_name') %>
             <% if @user.errors[:first_name].present? %>
                 <% @user.errors[:first_name].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -53,7 +53,7 @@
              <% end %>>
           <%= label_tag :last_name, t('field.user.last_name'), :class => "control-label" %>
           <div class="controls">
-            <%= f.email_field :last_name, :id => :last_name %>
+            <%= f.text_field :last_name, :id => :last_name, :title => t('tooltip.input.last_name') %>
             <% if @user.errors[:last_name].present? %>
                 <% @user.errors[:last_name].each do |msg|%>
                     <p class="help-block"><%= msg%></p>
@@ -65,10 +65,10 @@
         <!--form buttons and navigation links-->
         <div class="control-group">
           <div class="controls">
-            <%= link_to root_path, :class=>"btn" do%>
+            <%= link_to root_path, :class=>"btn", :title => t('button.back') do%>
                 <i class="icon-arrow-left"></i> <%=t('button.back')%>
             <%end%>
-            <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()" do%>
+            <%= link_to "#", class: "btn btn-primary", :onclick=>"$('form').submit()", :title => t('button.save') do%>
                 <i class="icon-ok icon-white"></i> <%=t('button.save')%>
             <%end%>
           </div>
@@ -76,3 +76,10 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.controls > input').tooltip({placement: 'right'});
+        jQuery('.btn').tooltip();
+    });
+</script>

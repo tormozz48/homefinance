@@ -1,5 +1,7 @@
 <script src="http://loginza.ru/js/widget.js" type="text/javascript"></script>
 
+<%= render '/notifications'%>
+
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
                             :html => {:id => "signInFormID", :class=> "form-horizontal well application-form"}) do |f| %>
     <legend><%=t('form.title.login')%></legend>

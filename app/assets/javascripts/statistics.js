@@ -156,7 +156,7 @@ function statisticInit(){
            chart.destroy();
         }
         chart = new Highcharts.Chart(lineChartOptions);
-        resizeChartWrapper();
+        //resizeChartWrapper();
     });
 
     /*
@@ -205,7 +205,7 @@ function statisticInit(){
             chart.destroy();
         }
         chart = new Highcharts.Chart(pieChartOptions);
-        resizeChartWrapper();
+        //resizeChartWrapper();
     });
 
     jQuery('.statisticForm').submit();

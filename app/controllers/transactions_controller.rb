@@ -15,10 +15,13 @@ class TransactionsController < ApplicationController
     end
     if Transaction::TRANSACTION_TYPES.include? @transaction_type
       @categories = Category.where("enabled = true and user_id = ?", current_user.id).order("name asc")
-      @date_from = session["date_from"].nil? ? 1.week.ago.to_date : session["date_from"]
-      @date_to = session["date_to"].nil? ? Date.today : session["date_to"]
+      #@date_from = session["date_from"].nil? ? 1.week.ago.to_date : session["date_from"]
+      #@date_to = session["date_to"].nil? ? Date.today : session["date_to"]
+      @date_from = 1.week.ago.to_date
+      @date_to = Date.today
       @field = session["field"]
-      @direction = session["direction"]
+      #@direction = session["direction"]
+      @direction = "desc"
       @category_id = session["category_id"]
     else
       render_404
@@ -79,20 +82,19 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(params[:transaction])
-    if(current_user.nil? == false)
-      @transaction.user = current_user
-      valid = @transaction.valid? ? @transaction.calculateTransactionNew : false
-      respond_to do |format|
-        if valid == true && @transaction.save
-          flash[:notice] = I18n.t('notice.transaction.added')
-          format.html {redirect_to transactions_path}
-        else
-          getParamsForSelectors
-          @task_new = true
-          format.html { render :action => "new"}
-        end
+    @transaction.user = current_user
+    valid = @transaction.valid? ? @transaction.calculateTransactionNew : false
+    respond_to do |format|
+      if valid == true && @transaction.save
+        flash[:notice] = I18n.t('notice.transaction.added')
+        format.html {redirect_to transactions_path}
+      else
+        getParamsForSelectors
+        @task_new = true
+        format.html { render :action => "new"}
       end
     end
+
   end
 
   def update

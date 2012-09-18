@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: test
+  database: homefinance_test
   pool: 5
   username: postgres
   password: 12345
@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: homefinance
+  database: homefinance_production
   pool: 5
   username: postgres
   password: 12345

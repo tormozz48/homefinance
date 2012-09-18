@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  caches_page :about, :contacts
+  #caches_page :about, :contacts
 
   def about
      render 'application/about'

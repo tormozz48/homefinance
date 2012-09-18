@@ -77,7 +77,12 @@
                     </li>
                   </ul>
               <%else%>
-
+                  <li id="menuAboutID">
+                    <%= link_to t('menu.top.about'), about_path%>
+                  </li>
+                  <li id="menuContactsID">
+                    <%= link_to t('menu.top.contacts'), contacts_path%>
+                  </li>
               <%end%>
             </ul>
             <% if user_signed_in? %>

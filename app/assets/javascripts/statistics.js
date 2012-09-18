@@ -102,8 +102,6 @@ function initCategoryChartOptions(title, other){
 function statisticInit(){
     markMenuItemById("menuStatisticID");
 
-    resizeChartWrapper();
-
     jQuery.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
     jQuery('#date_from_id').datepicker({
         dateFormat: 'yy-mm-dd',
@@ -158,6 +156,7 @@ function statisticInit(){
            chart.destroy();
         }
         chart = new Highcharts.Chart(lineChartOptions);
+        resizeChartWrapper();
     });
 
     /*
@@ -206,6 +205,7 @@ function statisticInit(){
             chart.destroy();
         }
         chart = new Highcharts.Chart(pieChartOptions);
+        resizeChartWrapper();
     });
 
     jQuery('.statisticForm').submit();

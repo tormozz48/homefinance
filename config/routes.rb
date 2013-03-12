@@ -1,41 +1,30 @@
 Homefinance2::Application.routes.draw do
-
-  resources :weights
-  resources :eatings
-
-  resources :transactions do
-    collection do
-      post 'filter'
-    end
-  end
-
-  resources :categories do
-    collection do
-      post 'sort'
-    end
-  end
-
-  resources :accounts do
-    collection do
-      post 'sort'
-    end
-  end
-
   devise_for :users do
     get 'logout' => 'devise/sessions#destroy'
   end
 
-  match 'statistic_date', :to => 'statistics#initStatisticByDate'
-  match 'show_statistic_by_date', :to => 'statistics#showStatisticByDate'
-  match 'statistic_category', :to => 'statistics#initStatisticByCategory'
-  match 'show_statistic_by_category', :to => 'statistics#showStatisticByCategory'
+  resources :transactions, :except => [:show] do
+    post 'filter', :on => :collection
+  end
+
+  resources :categories, :except => [:show] do
+    post 'sort', :on => :collection
+  end
+
+  resources :accounts, :except => [:show] do
+    post 'sort', :on => :collection
+  end
+
+  resources :statistics, :except => [:index, :show, :new, :edit, :create, :update, :destroy] do
+    get 'statistic_date', :on => :collection
+    get 'statistic_category', :on => :collection
+    post 'show_statistic_by_date', :on => :collection
+    post 'show_statistic_by_category', :on => :collection
+  end
 
   match 'edit_user_profile', :to => 'users#edit'
   match 'update_user_profile', :to => 'users#update'
   match 'social_authentification', :to => 'users#social_authentification'
-
-  match 'statistic_weight', :to => 'weights#initStatisticWeight'
-  match 'show_statistic_weight', :to => 'weights#showStatisticWeight'
 
   match 'about', :to => 'application#about'
   match 'contacts', :to => 'application#contacts'

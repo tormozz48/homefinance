@@ -1,146 +1,172 @@
 class Transaction < ActiveRecord::Base
   #paginates_per 30
 
-  validates :amount, :date, :transaction_type,  :presence => true
+  validates :amount,  :presence => true
+  validates :date,  :presence => true
+  validates :transaction_type,  :presence => true
+  validates :user_id,  :presence => true
+
+  validates :user_id, :numericality => {:only_integer => true,
+                                        :greater_than_or_equal_to => 0 }
   validates :amount, :numericality => {:greater_than_or_equal_to => 0 }
+
   validates :comment, :length => {:maximum => 255}
-  validates :transaction_type, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 7}
+  validates :transaction_type, :numericality => {:only_integer => true,
+                                                 :greater_than_or_equal_to => 0,
+                                                 :less_than_or_equal_to => 7}
+
   validate :enabled, :inclusion => { :in => [true, false] }
 
   belongs_to :user, :readonly => true
   belongs_to :category, :readonly => true
-  belongs_to :account_from,  :readonly => true, :class_name => "Account"
-  belongs_to :account_to, :readonly => true, :class_name => "Account"
+  belongs_to :account_from,  :readonly => true, :class_name => 'Account'
+  belongs_to :account_to, :readonly => true, :class_name => 'Account'
 
   #transaction types
-  TRANSACTION_TO_ACCOUNT = 0
-  TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT = 1
-  TRANSACTION_FROM_ACCOUNT_TO_CASH = 2
-  TRANSACTION_FROM_ACCOUNT_TO_CATEGORY = 3
-  TRANSACTION_TO_CASH = 4
-  TRANSACTION_FROM_CASH_TO_ACCOUNT = 5
-  TRANSACTION_FROM_CASH_TO_CASH = 6
-  TRANSACTION_FROM_CASH_TO_CATEGORY = 7
+  TR_TO_ACCOUNT = 0
+  TR_FROM_ACCOUNT_TO_ACCOUNT = 1
+  TR_FROM_ACCOUNT_TO_CASH = 2
+  TR_FROM_ACCOUNT_TO_CATEGORY = 3
+  TR_TO_CASH = 4
+  TR_FROM_CASH_TO_ACCOUNT = 5
+  TR_FROM_CASH_TO_CASH = 6
+  TR_FROM_CASH_TO_CATEGORY = 7
 
-  TRANSACTION_TYPES = [TRANSACTION_TO_ACCOUNT, TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT, TRANSACTION_FROM_ACCOUNT_TO_CASH,
-                       TRANSACTION_FROM_ACCOUNT_TO_CATEGORY, TRANSACTION_TO_CASH, TRANSACTION_FROM_CASH_TO_ACCOUNT,
-                       TRANSACTION_FROM_CASH_TO_CASH, TRANSACTION_FROM_CASH_TO_CATEGORY]
+  TR_TYPES = [TR_TO_ACCOUNT,
+              TR_FROM_ACCOUNT_TO_ACCOUNT,
+              TR_FROM_ACCOUNT_TO_CASH,
+              TR_FROM_ACCOUNT_TO_CATEGORY,
+              TR_TO_CASH,
+              TR_FROM_CASH_TO_ACCOUNT,
+              TR_FROM_CASH_TO_CASH,
+              TR_FROM_CASH_TO_CATEGORY]
 
-  def checkForAccountFrom
-    if(self.account_from_id.nil?)
-      self.addEmptyAccountFromError
-      return false
+  TR_GROUP_TO = [TR_TO_ACCOUNT,
+                 TR_TO_CASH]
+
+  TR_GROUP_TO_CATEGORY = [TR_FROM_ACCOUNT_TO_CATEGORY,
+                          TR_FROM_CASH_TO_CATEGORY]
+
+  TR_GROUP_FROM_TO = [TR_FROM_ACCOUNT_TO_ACCOUNT,
+                      TR_FROM_ACCOUNT_TO_CASH,
+                      TR_FROM_CASH_TO_ACCOUNT,
+                      TR_FROM_CASH_TO_CASH]
+
+  def check_for_account_from
+    if account_from_id.nil?
+      add_empty_account_from_error
+      false
     else
-      return true
+      true
     end
   end
 
-  def checkForAccountTo
-    if(self.account_to_id.nil?)
-      self.addEmptyAccountToError
-      return false
+  def check_for_account_to
+    if account_to_id.nil?
+      add_empty_account_to_error
+      false
     else
-      return true
+      true
     end
   end
 
-  def checkForCategory
-    if(self.category_id.nil?)
-      self.addEmptyCategoryError
-      return false
+  def check_for_category
+    if category_id.nil?
+      add_empty_category_error
+      false
     else
-      return true
+      true
     end
   end
 
-  def addNegativeAccountError
+  def add_negative_account_error
     errors[:account_from] = I18n.t('message.error.account.negative')
   end
 
-  def addEmptyAccountFromError
+  def add_empty_account_from_error
     errors[:account_from] = I18n.t('message.error.account.empty')
   end
 
-  def addEmptyAccountToError
+  def add_empty_account_to_error
     errors[:account_to] = I18n.t('message.error.account.empty')
   end
 
-  def addEmptyCategoryError
+  def add_empty_category_error
     errors[:category] = I18n.t('message.error.category.empty')
   end
 
-  def transferSumToAccount
-    if self.checkForAccountTo == true
-      account_to = Account.find(self.account_to_id)
-      if !account_to.nil?
-        account_to.amount += self.amount
+  def transfer_sum_to_account
+    if check_for_account_to
+      account_to = Account.find(account_to_id)
+      unless account_to.nil?
+        account_to.amount += amount
         account_to.save
       end
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
-  def changeSumToAccount
-    if self.checkForAccountTo == true
-      old_transaction = Transaction.find(self.id)
-      diff = self.amount - old_transaction.amount
-      account_to = Account.find(self.account_to_id)
-      if !account_to.nil?
+  def change_sum_to_account
+    if check_for_account_to
+      old_transaction = Transaction.find(id)
+      diff = amount - old_transaction.amount
+      account_to = Account.find(account_to_id)
+      unless account_to.nil?
         account_to.amount += diff
         account_to.save
       end
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
-  def rollbackSumFromAccount
-    account_to = Account.find(self.account_to_id)
-    if !account_to.nil?
-      account_to.amount -= self.amount
+  def rollback_sum_from_account
+    if check_for_account_to
+      account_to = Account.find(account_to_id)
+      account_to.amount -= amount
       if account_to.valid?
         account_to.save
       else
-        self.addNegativeAccountError
+        add_negative_account_error
         return false
       end
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
-  def transferSumBetweenAccounts
-    if self.checkForAccountFrom == true && self.checkForAccountTo == true
-      account_from = Account.find(self.account_from_id)
-      account_to = Account.find(self.account_to_id)
+  def transfer_sum_between_accounts
+    if check_for_account_from && check_for_account_to
+      account_from = Account.find(account_from_id)
+      account_to = Account.find(account_to_id)
       if !account_from.nil? && !account_to.nil?
-        account_from.amount -= self.amount
+        account_from.amount -= amount
         if account_from.valid?
           account_from.save
-          account_to.amount += self.amount
+          account_to.amount += amount
           account_to.save
         else
-          self.addNegativeAccountError
+          add_negative_account_error
           return false
         end
       end
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
-  def changeSumBetweenAccounts
-     if self.checkForAccountFrom == true && self.checkForAccountTo == true
-        old_transaction = Transaction.find(self.id)
-        diff = self.amount - old_transaction.amount
+  def change_sum_between_accounts
+     if check_for_account_from && check_for_account_to
+        old_transaction = Transaction.find(id)
+        diff = amount - old_transaction.amount
 
-        account_from = Account.find(self.account_from_id)
-        account_to = Account.find(self.account_to_id)
+        account_from = Account.find(account_from_id)
+        account_to = Account.find(account_to_id)
 
         if !account_from.nil? && !account_to.nil?
           account_from.amount -= diff
@@ -148,140 +174,123 @@ class Transaction < ActiveRecord::Base
             account_from.save
             account_to.amount += diff
             account_to.save
-            return true
           else
-            self.addNegativeAccountError
+            add_negative_account_error
             return false
           end
-        else
-          return false
         end
+        true
      else
-       return false
+       false
      end
   end
 
-  def rollbackSumBetweenAccounts
-    account_from = Account.find(self.account_from_id)
-    account_to = Account.find(self.account_to_id)
-    if !account_from.nil? && !account_to.nil?
-      account_to.amount -= self.amount
-      if(account_to.valid?)
-        account_to.save
-        account_from.amount += self.amount
-        account_from.save
-        return true
-      else
-        self.addNegativeAccountError
-        return false
-      end
-    else
-      return false
-    end
-  end
-
-  def transferSumFromAccountToCategory
-    if self.checkForAccountFrom == true && self.checkForCategory == true
-      account_from = Account.find(self.account_from_id)
-      category = Category.find(self.category_id)
-      if !account_from.nil? && !category.nil?
-        account_from.amount -= self.amount
-        if(account_from.valid?)
+  def rollback_sum_between_accounts
+    if check_for_account_from && check_for_account_to
+      account_from = Account.find(account_from_id)
+      account_to = Account.find(account_to_id)
+      if !account_from.nil? && !account_to.nil?
+        account_to.amount -= amount
+        if account_to.valid?
+          account_to.save
+          account_from.amount += amount
           account_from.save
-          category.amount += self.amount
-          category.save
-          return true
         else
-          self.addNegativeAccountError
+          add_negative_account_error
           return false
         end
-      else
-        return false
+        true
       end
     else
-      return false
+      false
     end
   end
 
-  def changeSumFromAccountToCategory
-     if self.checkForAccountFrom == true && self.checkForCategory == true
-       old_transaction = Transaction.find(self.id)
-       diff = self.amount - old_transaction.amount
+  def transfer_sum_from_account_to_category
+    if check_for_account_from && check_for_category
+      account_from = Account.find(account_from_id)
+      category = Category.find(category_id)
+      if !account_from.nil? && !category.nil?
+        account_from.amount -= amount
+        if account_from.valid?
+          account_from.save
+          category.amount += amount
+          category.save
+        else
+          add_negative_account_error
+          return false
+        end
+        true
+      end
+    else
+      false
+    end
+  end
 
-       account_from = Account.find(self.account_from_id)
-       category = Category.find(self.category_id)
+  def change_sum_from_account_to_category
+     if check_for_account_from && check_for_category
+       old_transaction = Transaction.find(id)
+       diff = amount - old_transaction.amount
+
+       account_from = Account.find(account_from_id)
+       category = Category.find(category_id)
        if !account_from.nil? && !category.nil?
          account_from.amount -= diff
-         if(account_from.valid?)
+         if account_from.valid?
            account_from.save
            category.amount += diff
            category.save
-           return true
          else
-           self.addNegativeAccountError
+           add_negative_account_error
            return false
          end
-       else
-         return false
+         true
        end
      else
-       return false
+       false
      end
   end
 
-  def rollbackSumFromCategory
-    account_from = Account.find(self.account_from_id)
-    if !account_from.nil?
-      account_from.amount += self.amount
-      account_from.save
-      return true
+  def rollback_sum_from_category
+    if check_for_account_from && check_for_category
+      account_from = Account.find(self.account_from_id)
+      if !account_from.nil?
+        account_from.amount += amount
+        account_from.save
+      end
+      true
     else
-      return false
+      false
     end
   end
 
-  def calculateTransactionNew
-    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
-      return self.transferSumToAccount
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
-      return self.transferSumBetweenAccounts
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
-      return self.transferSumFromAccountToCategory
+  def calculate_transaction_new
+    if transaction_type.in?(TR_GROUP_TO)
+      transfer_sum_to_account
+    elsif transaction_type.in?(TR_GROUP_FROM_TO)
+      transfer_sum_between_accounts
+    elsif transaction_type.in?(TR_GROUP_TO_CATEGORY)
+      transfer_sum_from_account_to_category
     end
   end
 
-  def calculateTransactionEdit
-    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
-      return self.changeSumToAccount
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
-      return self.changeSumBetweenAccounts
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
-      return self.changeSumFromAccountToCategory
+  def calculate_transaction_edit
+    if transaction_type.in?(TR_GROUP_TO)
+      change_sum_to_account
+    elsif transaction_type.in?(TR_GROUP_FROM_TO)
+      change_sum_between_accounts
+    elsif transaction_type.in?(TR_GROUP_TO_CATEGORY)
+      change_sum_from_account_to_category
     end
   end
 
-  def calculateTransactionDestroy
-    if (self.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_TO_CASH)
-      return self.rollbackSumFromAccount
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH)
-      return self.rollbackSumBetweenAccounts
-    elsif (self.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-        self.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY)
-      return self.rollbackSumFromCategory
+  def calculate_transaction_destroy
+    if transaction_type.in?(TR_GROUP_TO)
+      rollback_sum_from_account
+    elsif transaction_type.in?(TR_GROUP_FROM_TO)
+      rollback_sum_between_accounts
+    elsif transaction_type.in?(TR_GROUP_TO_CATEGORY)
+      rollback_sum_from_category
     end
   end
 end

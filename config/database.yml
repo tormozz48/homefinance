@@ -1,17 +1,17 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: homefinance
+  database: development_homefinance
   pool: 5
-  username: postgres
+  username: andrey
   password: 12345
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: test
+  database: test_homefinance
   pool: 5
-  username: postgres
+  username: andrey
   password: 12345
 
 production:

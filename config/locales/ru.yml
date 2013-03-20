@@ -369,6 +369,8 @@ ru:
 
   activerecord:
     errors:
+      messages:
+        record_invalid: "record invalid"
       models:
         user:
           attributes:

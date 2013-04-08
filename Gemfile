@@ -17,9 +17,9 @@ end
 group :development do
   gem 'bullet'
   gem 'hirb'
-  gem 'rack-mini-profiler'
-  gem 'binding_of_caller'
-  gem 'better_errors'
+  #gem 'rack-mini-profiler'
+  #gem 'binding_of_caller'
+  #gem 'better_errors'
 end
 
 group :test do
@@ -38,5 +38,6 @@ gem 'omniauth'
 gem 'loginza'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'chosen-rails'
 
 

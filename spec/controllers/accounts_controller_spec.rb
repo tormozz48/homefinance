@@ -4,7 +4,6 @@ describe AccountsController do
 
   before(:each) do
     @user = FactoryGirl.create(:user1)
-    sign_in @user
   end
 
   it 'should go to index action' do

@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require bootstrap/bootstrap
 //= require colorpicker/colorpicker
 //= require colorpicker/eye
@@ -21,13 +20,14 @@
 //= require datepicker/jqueryui
 //= require hightcharts/highcharts
 //= require hightcharts/iexporting
+//= require chosen-jquery
+//= require_tree .
 
 
 var transactionsJS = new TransactionJS();
 var accountsJS = new AccountsJS();
-var categoriesJS = new CategoriesJS();
 
-function markMenuItemById(menu_id){
+function mark_menu(menu_id){
    jQuery('ul.nav > li').removeClass("active");
     jQuery('ul.nav > li#'+menu_id).addClass("active");
 }

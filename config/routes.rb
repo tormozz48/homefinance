@@ -8,7 +8,7 @@ Homefinance2::Application.routes.draw do
   end
 
   resources :categories, :except => [:show] do
-    post 'sort', :on => :collection
+    get 'load', :on => :collection
   end
 
   resources :accounts, :except => [:show] do

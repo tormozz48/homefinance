@@ -9,15 +9,15 @@ body {padding-top: 60px; padding-bottom: 40px;}
   width: 30px;
   height: 30px;
 
-  -moz-border-radius: 15px; /* FF1+ */
-  -webkit-border-radius: 15px; /* Saf3-4 */
-  border-radius: 15px;
+  -moz-border-radius: 5px; /* FF1+ */
+  -webkit-border-radius: 5px; /* Saf3-4 */
+  border-radius: 5px;
 
-  -moz-box-shadow:inset 0px -5px 8px #000; /* FF3.5+ */
-  -webkit-box-shadow:inset 0px -5px 8px #000; /* Saf3.0+*/
-  box-shadow:inset 0px -5px 8px #000; /* Opera 10.5, IE 9 */
-
-  -webkit-mask-box-image:url(image_path("circle60pxglow.png"))
+  //-moz-box-shadow:inset 0px -5px 8px #000; /* FF3.5+ */
+  //-webkit-box-shadow:inset 0px -5px 8px #000; /* Saf3.0+*/
+  //box-shadow:inset 0px -5px 8px #000; /* Opera 10.5, IE 9 */
+  //
+  //-webkit-mask-box-image:url(image_path("circle60pxglow.png"))
 }
 .color-indicator-small{
   display: inline-block;

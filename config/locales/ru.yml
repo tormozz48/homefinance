@@ -147,8 +147,8 @@ ru:
 
   field:
     common:
-      name: "Название:"
-      description: "Описание:"
+      name: "Название"
+      description: "Описание"
       date: "Дата:"
       date_from: "От:"
       date_to: "До:"
@@ -161,9 +161,9 @@ ru:
       password_confirm: "Подтверждение пароля:"
       remember_me: "Запомнить меня"
     account:
-      amount: "Баланс:"
+      amount: "Баланс"
     category:
-      color: "Цвет:"
+      color: "Цвет"
     transaction:
       comment: "Комментарий:"
       summa: "Сумма:"

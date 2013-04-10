@@ -18,9 +18,21 @@
                   <i class="icon-plus icon-white"></i> <%=t('button.add')%>
               <%end%>
             </th>
-            <th width="10%"><%=t('field.account.amount')%></th>
-            <th width="30%"><%=t('field.common.name')%></th>
-            <th width="50%"><%=t('field.common.description')%></th>
+            <th width="10%">
+              <%=link_to t('field.account.amount'), '#', :class => 'sorting-header', :data_field => 'amount'%>
+              <i class="icon-arrow-up no-disp"></i>
+              <i class="icon-arrow-down no-disp"></i>
+            </th>
+            <th width="30%">
+              <%=link_to t('field.common.name'), '#', :class => 'sorting-header', :data_field => 'name'%>
+              <i class="icon-arrow-up"></i>
+              <i class="icon-arrow-down no-disp"></i>
+            </th>
+            <th width="50%">
+              <%=link_to t('field.common.description'), '#', :class => 'sorting-header', :data_field => 'description'%>
+              <i class="icon-arrow-up no-disp"></i>
+              <i class="icon-arrow-down no-disp"></i>
+            </th>
         </tr>
       </thead>
       <tbody id="data_wrapper"></tbody>

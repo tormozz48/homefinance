@@ -5,7 +5,29 @@
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-      <li><%= link_to t('menu.user.profile'), edit_user_profile_path %></li>
-      <li><%= link_to t('menu.user.logout'), logout_path, :confirm => t('message.confirm.logout') %></li>
+      <li>
+        <%= link_to edit_user_profile_path do%>
+            <i class="icon-user"></i>
+            <%=t('menu.user.profile')%>
+        <%end%>
+      </li>
+      <li id="menu_about">
+        <%= link_to about_path do%>
+            <i class="icon-info-sign"></i>
+            <%= t('menu.top.about') %>
+        <%end%>
+      </li>
+      <li id="menu_contacts">
+        <%= link_to contacts_path do%>
+            <i class="icon-book"></i>
+            <%=t('menu.top.contacts')%>
+        <%end%>
+      </li>
+      <li>
+        <%= link_to logout_path, :confirm => t('message.confirm.logout') do%>
+            <i class="icon-off"></i>
+            <%=t('menu.user.logout')%>
+        <%end%>
+      </li>
     </ul>
   </li>

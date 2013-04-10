@@ -9,8 +9,8 @@ CategoriesIndex.prototype = {
     SORT_DESC: 'desc',
 
     $data_wrapper: null,
-    sort_field: 'name',
-    sort_direction: this.SORT_ASC,
+    sort_field: null,
+    sort_direction: null,
 
 	init: function(config){
 		this.config = config;
@@ -20,6 +20,9 @@ CategoriesIndex.prototype = {
         this.init_tooltip();
 
         mark_menu("menuCategoriesID");
+
+        this.sort_field = 'name';
+        this.sort_direction = this.SORT_ASC;
 
         var self = this;
         jQuery('.sorting-header').click(function(){

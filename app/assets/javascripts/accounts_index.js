@@ -9,8 +9,8 @@ AccountsIndex.prototype = {
     SORT_DESC: 'desc',
 
     $data_wrapper: null,
-    sort_field: 'name',
-    sort_direction: this.SORT_ASC,
+    sort_field: null,
+    sort_direction: null,
 
     init: function(config){
         this.config = config;
@@ -23,6 +23,9 @@ AccountsIndex.prototype = {
         }else if(this.config.account_type == this.config.ACCOUNT_TYPE_CASH){
             mark_menu("menuCashesID");
         }
+
+        this.sort_field = 'name';
+        this.sort_direction = this.SORT_ASC;
 
         var self = this;
         jQuery('.sorting-header').click(function(){

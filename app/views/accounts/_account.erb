@@ -1,10 +1,10 @@
 <tr>
   <td class="td-center">
     <%= link_to edit_account_path(account, :type => @account_type), :class => 'btn' do%>
-        <i class="icon-edit"></i>
+        <i class="icon-pencil"></i>
     <%end%>
     <%= link_to account, confirm: t('message.confirm.delete'), method: :delete, :class => 'btn' do%>
-        <i class="icon-remove"></i>
+        <i class="icon-trash"></i>
     <%end%>
   </td>
   <td><%=account.amount%></td>

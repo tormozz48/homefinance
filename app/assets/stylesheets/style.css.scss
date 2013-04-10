@@ -1,48 +1,82 @@
-body {padding-top: 60px; padding-bottom: 40px;}
+body{
+  padding-top: 60px;
+  padding-bottom: 40px;
 
-.application-form{min-width: 250px; max-width: 500px;}
-.margintop10px{margin-top: 10px;}
-.marginleft10px{margin-left: 10px;}
-.no-disp{display: none !important;}
+  background-color: #036;
+}
+
+.application-form{
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.margintop10px{
+  margin-top: 10px;
+}
+
+.marginleft10px{
+  margin-left: 10px;
+}
+
+.no-disp{
+  display: none !important;
+}
+
+.color-indicator-small,
+.color-indicator{
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #aaa;
+}
 
 .color-indicator{
   width: 30px;
   height: 30px;
-
-  -moz-border-radius: 5px; /* FF1+ */
-  -webkit-border-radius: 5px; /* Saf3-4 */
-  border-radius: 5px;
-
-  //-moz-box-shadow:inset 0px -5px 8px #000; /* FF3.5+ */
-  //-webkit-box-shadow:inset 0px -5px 8px #000; /* Saf3.0+*/
-  //box-shadow:inset 0px -5px 8px #000; /* Opera 10.5, IE 9 */
-  //
-  //-webkit-mask-box-image:url(image_path("circle60pxglow.png"))
 }
+
 .color-indicator-small{
   display: inline-block;
 
   width: 20px;
   height: 20px;
-
-  -moz-border-radius: 10px; /* FF1+ */
-  -webkit-border-radius: 10px; /* Saf3-4 */
-  border-radius: 10px;
-
-  -moz-box-shadow:inset 0px -3px 5px #000; /* FF3.5+ */
-  -webkit-box-shadow:inset 0px -3px 5px #000; /* Saf3.0+*/
-  box-shadow:inset 0px -3px 5px #000; /* Opera 10.5, IE 9 */
-
-  -webkit-mask-box-image:url(image_path("circle60pxglow.png"))
 }
-.badge-black-font{color: #333 !important; text-align: center;}
-.no-list-style{list-style: none;}
 
-.td-center{text-align: center !important;}
-.copyright{color: #fff !important;}
+.badge-black-font{
+  color: #333 !important;
+  text-align: center;
+}
+
+.no-list-style{
+  list-style: none;
+}
+
+.td-center{
+  text-align: center !important;
+}
 
 #history > p{
   text-align: justify;
   text-indent: 30px;
+}
+
+table{
+  background-color: #fff;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: 20px;
+
+  padding: 5px 0 5px 10px;
+
+  background-color: #FAFAFA;
+  background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+  background-repeat: repeat-x;
+
+  border: 1px solid #D4D4D4;
+
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
 

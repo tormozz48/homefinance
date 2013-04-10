@@ -1,0 +1,18 @@
+<!--account description field-->
+<div <% if @account.errors[:description].present? %>
+        class="control-group error"
+     <%elsif @account.errors.any?%>
+        class="control-group success"
+     <%else%>
+        class="control-group"
+     <% end %>>
+  <%= label_tag :description, t('field.common.description'), :class => 'control-label'%>
+  <div class="controls">
+    <%= f.text_area :description, :size => '60x6', :class => 'input-xlarge', :title => t('tooltip.input.account.description')%>
+    <% if @account.errors[:description].present? %>
+        <% @account.errors[:description].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

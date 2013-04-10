@@ -1,86 +1,24 @@
 <!--categories form-->
 <div class="row-fluid">
   <div class="span8">
-        <%= form_for(@category, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
+        <%= form_for(@category, :html => {:class=> 'form-horizontal well application-form'}) do |f| %>
             <%= f.hidden_field :amount%>
             <%= f.hidden_field :enabled%>
+            <%= f.hidden_field :user_id%>
 
             <legend><%=@legend%></legend>
             
-            <!--category name field-->
-            <div <% if @category.errors[:name].present? %>
-                    class="control-group error"
-                 <%elsif @category.errors.any?%>
-                    class="control-group success"
-                 <%else%>
-                    class="control-group"
-                 <% end %>>
-                <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
-                <div class="controls">
-                    <%= f.text_field :name, :class => "input-xlarge", :title => t('tooltip.input.category.name')%>
-                    <% if @category.errors[:name].present? %>
-                      <% @category.errors[:name].each do |msg|%>
-                          <p class="help-block"><%= msg%></p>
-                      <%end%>
-                    <%end%>
-                </div>
-            </div>
+            <%= render :partial => 'categories/category_name_field', :locals => {:f => f}%>
+            <%= render :partial => 'categories/category_description_field', :locals => {:f => f}%>
+            <%= render :partial => 'categories/category_color_field', :locals => {:f => f}%>
 
-            <!--category description field-->
-            <div <% if @category.errors[:description].present? %>
-                    class="control-group error"
-                 <%elsif @category.errors.any?%>
-                    class="control-group success"
-                 <%else%>
-                    class="control-group"
-                 <% end %>>
-              <%= label_tag :description, t('field.common.description'), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_area :description, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.category.description')%>
-                <% if @category.errors[:description].present? %>
-                    <% @category.errors[:description].each do |msg|%>
-                        <p class="help-block"><%= msg%></p>
-                    <%end%>
-                <%end%>
-              </div>
-            </div>
-
-            <!--category color field-->
-            <div <% if @category.errors[:color].present? %>
-                    class="control-group error"
-                 <%elsif @category.errors.any?%>
-                    class="control-group success"
-                 <%else%>
-                    class="control-group"
-                 <% end %>>
-                <%= label_tag :colorFieldId, t('field.category.color'), :class => "control-label" %>
-                <div class="controls">
-                    <%= f.text_field :color, :id => "colorFieldId", :readOnly => "readOnly", :class => "input-mini", :title => t('tooltip.input.category.color')%>
-                    <% if @category.errors[:color].present? %>
-                      <% @category.errors[:color].each do |msg|%>
-                          <p class="help-block"><%= msg%></p>
-                      <%end%>
-                    <%end%>
-                </div>
-            </div>
-
-            <!--form buttons and navigation links-->
-            <div class="control-group">
-                <div class="controls">
-                    <%= link_to categories_path, :class=>"btn", :title => t('tooltip.back') do%>
-                      <i class="icon-arrow-left"></i> <%=t('button.back')%>
-                    <%end%>
-                    <%= link_to "#", class: "btn btn-primary", :title => t('button.save'), :onclick=>"$('form').submit()" do%>
-                      <i class="icon-ok icon-white"></i> <%=t('button.save')%>
-                    <%end%>
-                </div>
-            </div>
+            <%= render :partial => 'categories/form_buttons'%>
         <% end %>
   </div>
 </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        categoriesJS.formInit();
+        new CategoriesForm({});
     });
 </script>

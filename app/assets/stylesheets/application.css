@@ -9,71 +9,14 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
- *= require bootsrap/bootstrap
- *= require bootsrap/bootstrap-responsive
+ *= require twitter-bootstrap-static/bootstrap
+ *= require twitter-bootstrap-static/fontawesome
+ *= require twitter-bootstrap-static/sprites
+ *= require style
+ *= require less
  *= require datepicker/jqueryui
  *= require colorpicker/colorpicker
  *= require colorpicker/layout
  *= require chosen
-
 */
 
-/* Global reset (begin) */
-
-/*
-*{
-    font-size: 100%;
-    margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6{
-    font-weight: normal;
-    padding: 0;
-}
-
-table{
-    border-collapse: collapse;
-}
-
-th, td{
-    padding: 0;
-    text-align: left;
-    vertical-align: top;
-    border-collapse: collapse;
-}
-
-ol, ul{
-    list-style: none;
-}
-
-ol, ul, li{
-    padding: 0;
-}
-
-code, input, textarea{
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-a{
-    text-decoration: none;
-}
-
-:link,
-:visited{
-    text-decoration: underline;
-}
-
-a img, fieldset{
-    border: 0;
-}
-
-b{
-    font-weight: normal;
-}
-
-i{
-    font-style: normal;
-}
-*/
-/* Global reset (end) */

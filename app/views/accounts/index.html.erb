@@ -1,44 +1,39 @@
 <%=render '/notifications'%>
 
 <!--sorting form-->
-<div class="row-fluid">
-  <div class="span12">
-    <%= form_tag(sort_accounts_path, :id =>"accountSortingFormId", :method=>:post, :remote => true,
-                 :class => "form-inline well") do -%>
-          <%= hidden_field_tag "type", @account_type%>
-          <legend><%=getAccountIndexTitle(@account_type)%></legend>
-          <%=link_to new_account_path(:type => @account_type), :class => "btn btn-success", :title => t('button.add') do%>
-            <i class="icon-plus icon-white"></i> <%=t('button.add')%>
-          <%end%>  
-          <%= label_tag "field", t('sorting_by'), :class => "control-label marginleft10px hidden-phone"%>
-          <%= select_tag "field", getAccountsSortingOptionList(@field).html_safe , :id => "field",
-                         :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_field')%>
-          <%= select_tag "direction", getSortingDirectionOptionList(@direction).html_safe , :id => "direction",
-                         :class => "input-medium hidden-phone", :title => t('tooltip.input.sorting_direction')%>
-    <% end -%>
-  </div>
-</div>
+<!--<div class="row-fluid">-->
+  <!--<div class="span12">-->
+     <!--<%#= render :partial => 'accounts/filter'%>-->
+  <!--</div>-->
+<!--</div>-->
 
+<!--data table-->
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-bordered table-hover table-condensed">
+    <table class="table table-hover table-condensed">
       <thead>
         <tr class="well">
-            <th width="10%">&nbsp;</th>
+            <th>
+              <%=link_to new_account_path(:type => @account_type), :class => 'btn btn-success', :title => t('button.add') do%>
+                  <i class="icon-plus icon-white"></i> <%=t('button.add')%>
+              <%end%>
+            </th>
             <th width="10%"><%=t('field.account.amount')%></th>
             <th width="30%"><%=t('field.common.name')%></th>
             <th width="50%"><%=t('field.common.description')%></th>
         </tr>
       </thead>
-      <tbody id="dataWrapperID"></tbody>
+      <tbody id="data_wrapper"></tbody>
     </table>
   </div>
 </div>
 
 <script type="text/javascript">
-    var ACCOUNT_TYPE_CARD = <%=Account::ACCOUNT_CARD_TYPE%>;
-    var ACCOUNT_TYPE_CASH = <%=Account::ACCOUNT_CASH_TYPE%>;
     jQuery(document).ready(function(){
-       accountsJS.init(<%=@account_type%>);
+       new AccountsIndex({
+           account_type: <%=@account_type%>,
+           ACCOUNT_TYPE_CARD: <%=Account::ACCOUNT_CARD_TYPE%>,
+           ACCOUNT_TYPE_CASH: <%=Account::ACCOUNT_CASH_TYPE%>
+       });
     });
 </script>

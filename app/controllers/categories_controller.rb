@@ -12,12 +12,12 @@ class CategoriesController < ApplicationController
 
     sort_str = "#{session['category_field']} #{session['category_direction']}"
 
-    @categories = Category.order(sort_str).find_all_by_user_id_and_enabled(current_user.id, true)
+    @categories = Category.order(sort_str).where('user_id = ? AND enabled = ?', current_user.id, true)
     render :partial => 'categories'
   end
 
   def new
-    @category = Category.new({:amount => 0, :enabled => true})
+    @category = Category.new({:amount => 0, :enabled => true, :user_id => current_user.id})
   end
 
   def edit
@@ -26,7 +26,6 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(params[:category])
-    @category.user = current_user
     respond_to do |format|
       if @category.save
         flash[:notice] = I18n.t('notice.category.added')

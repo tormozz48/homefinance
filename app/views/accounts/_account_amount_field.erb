@@ -1,0 +1,21 @@
+<!--account amount field-->
+<div <% if @account.errors[:amount].present? %>
+     class="control-group error"
+     <%elsif @account.errors.any?%>
+     class="control-group success"
+     <%else%>
+     class="control-group"
+     <% end %>>
+  <%= label_tag :amount, t('field.account.amount'), :class => "control-label"%>
+  <div class="controls">
+    <div class="input-append">
+      <%= f.text_field :amount, :class => "input-small", :readOnly => "readonly", :title => t('tooltip.input.account.amount')%>
+      <span class="add-on"><%=t('currency')%></span>
+    </div>
+    <% if @account.errors[:amount].present? %>
+        <% @account.errors[:amount].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

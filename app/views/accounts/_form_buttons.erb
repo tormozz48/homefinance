@@ -1,0 +1,11 @@
+<!--form buttons and navigation links-->
+<div class="control-group">
+  <div class="controls">
+    <%= link_to accounts_path(:type => @account.account_type), :title => t('tooltip.back'), :class=>'btn' do%>
+        <i class="icon-arrow-left"></i> <%=t('button.back')%>
+    <%end%>
+    <%= link_to '#', class: 'btn btn-primary', :id => 'submit', :title => t('button.save') do%>
+        <i class="icon-ok icon-white"></i> <%=t('button.save')%>
+    <%end%>
+  </div>
+</div>

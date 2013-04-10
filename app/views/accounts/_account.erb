@@ -1,31 +1,11 @@
 <tr>
   <td class="td-center">
-    <div class="btn-group hidden-phone hidden-tablet">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="icon-circle-arrow-down"></i> <%=t('button.action')%>
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-            <%= link_to edit_account_path(account, :type => @account_type) do%>
-                <i class="icon-edit"></i> <%=t('button.edit')%>
-            <%end%>
-        </li>
-        <li>
-            <%= link_to account, confirm: t('message.confirm.delete'), method: :delete do%>
-                <i class="icon-remove"></i> <%=t('button.delete')%>
-            <%end%>
-        </li>
-      </ul>
-    </div>
-    <div class="hidden-desktop">
-      <%= link_to edit_account_path(account, :type => @account_type) do%>
-          <%=t('button.edit')%>
-      <%end%>
-      <%= link_to account, confirm: t('message.confirm.delete'), method: :delete do%>
-          <%=t('button.delete')%>
-      <%end%>
-    </div>
+    <%= link_to edit_account_path(account, :type => @account_type), :class => 'btn' do%>
+        <i class="icon-edit"></i>
+    <%end%>
+    <%= link_to account, confirm: t('message.confirm.delete'), method: :delete, :class => 'btn' do%>
+        <i class="icon-remove"></i>
+    <%end%>
   </td>
   <td><%=account.amount%></td>
   <td><%=account.name%></td>

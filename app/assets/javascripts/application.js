@@ -12,7 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/bootstrap
+//= require twitter/bootstrap
+//= require twitter/bootstrap/bootstrap-affix
+//= require twitter/bootstrap/bootstrap-alert
+//= require twitter/bootstrap/bootstrap-button
+//= require twitter/bootstrap/bootstrap-carousel
+//= require twitter/bootstrap/bootstrap-collapse
+//= require twitter/bootstrap/bootstrap-dropdown
+//= require twitter/bootstrap/bootstrap-modal
+//= require twitter/bootstrap/bootstrap-popover
+//= require twitter/bootstrap/bootstrap-scrollspy
+//= require twitter/bootstrap/bootstrap-tab
+//= require twitter/bootstrap/bootstrap-tooltip
+//= require twitter/bootstrap/bootstrap-transition
+//= require twitter/bootstrap/bootstrap-typeahead
 //= require colorpicker/colorpicker
 //= require colorpicker/eye
 //= require colorpicker/layout
@@ -21,21 +34,17 @@
 //= require hightcharts/highcharts
 //= require hightcharts/iexporting
 //= require chosen-jquery
+
 //= require_tree .
 
-
-var transactionsJS = new TransactionJS();
-var accountsJS = new AccountsJS();
-
 function mark_menu(menu_id){
-   jQuery('ul.nav > li').removeClass("active");
-    jQuery('ul.nav > li#'+menu_id).addClass("active");
+    jQuery('ul.nav > li').removeClass("active");
+    jQuery('ul.nav > li#' + menu_id).addClass("active");
 }
 
 function resizeChartWrapper(){
-    var h = document.body.offsetHeight;
-    jQuery(".statistic-graph-wrapper").css("height", h+"px");
-};
+    jQuery(".statistic-graph-wrapper").css("height", document.body.offsetHeight + "px");
+}
 
 jQuery.fn.ForceNumericOnly =function(){
     return this.each(function(){

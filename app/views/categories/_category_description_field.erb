@@ -1,0 +1,18 @@
+<!--category description field-->
+<div <% if @category.errors[:description].present? %>
+        class="control-group error"
+     <%elsif @category.errors.any?%>
+        class="control-group success"
+     <%else%>
+        class="control-group"
+     <% end %>>
+  <%= label_tag :description, t('field.common.description'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_area :description, :size => '60x6', :class => 'input-xlarge', :title => t('tooltip.input.category.description')%>
+    <% if @category.errors[:description].present? %>
+        <% @category.errors[:description].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

@@ -4,7 +4,7 @@ Homefinance2::Application.routes.draw do
   end
 
   resources :transactions, :except => [:show] do
-    post 'filter', :on => :collection
+    get 'load', :on => :collection
   end
 
   resources :categories, :except => [:show] do
@@ -12,7 +12,7 @@ Homefinance2::Application.routes.draw do
   end
 
   resources :accounts, :except => [:show] do
-    post 'sort', :on => :collection
+    get 'load', :on => :collection
   end
 
   resources :statistics, :except => [:index, :show, :new, :edit, :create, :update, :destroy] do

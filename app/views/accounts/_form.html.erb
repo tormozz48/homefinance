@@ -6,85 +6,21 @@
 
           <legend><%=@legend%></legend>
           
-          <!--account name field-->
-          <div <% if @account.errors[:name].present? %>
-                class="control-group error"
-               <%elsif @account.errors.any?%>
-                class="control-group success"
-               <%else%>
-                class="control-group"
-               <% end %>>
-            <%= label_tag :name, t('field.common.name'), :class => "control-label" %>
-            <div class="controls">
-              <%= f.text_field :name, :class => "input-xlarge", :title => t('tooltip.input.account.name')%>
-              <% if @account.errors[:name].present? %>
-                  <% @account.errors[:name].each do |msg|%>
-                      <p class="help-block"><%= msg%></p>
-                  <%end%>
-              <%end%>
-            </div>
-          </div>
+          <%= render :partial =>  'accounts/account_name_field', :locals => {:f => f}%>
+          <%= render :partial => 'accounts/account_description_field', :locals => {:f => f}%>
+          <%= render :partial => 'accounts/account_amount_field', :locals => {:f => f}%>
 
-          <!--account description field-->
-          <div <% if @account.errors[:description].present? %>
-                class="control-group error"
-               <%elsif @account.errors.any?%>
-                class="control-group success"
-               <%else%>
-                class="control-group"
-               <% end %>>
-            <%= label_tag :description, t('field.common.description'), :class => "control-label"%>
-            <div class="controls">
-              <%= f.text_area :description, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.account.description')%>
-              <% if @account.errors[:description].present? %>
-                  <% @account.errors[:description].each do |msg|%>
-                      <p class="help-block"><%= msg%></p>
-                  <%end%>
-              <%end%>
-            </div>
-          </div>
-
-          <!--account amount field-->
-          <div <% if @account.errors[:amount].present? %>
-                class="control-group error"
-               <%elsif @account.errors.any?%>
-                class="control-group success"
-               <%else%>
-                class="control-group"
-               <% end %>>
-            <%= label_tag :amount, t('field.account.amount'), :class => "control-label"%>
-            <div class="controls">
-              <div class="input-append">
-                <%= f.text_field :amount, :class => "input-small", :readOnly => "readonly", :title => t('tooltip.input.account.amount')%>
-                <span class="add-on"><%=t('currency')%></span>
-              </div>
-              <% if @account.errors[:amount].present? %>
-                  <% @account.errors[:amount].each do |msg|%>
-                      <p class="help-block"><%= msg%></p>
-                  <%end%>
-              <%end%>
-            </div>
-          </div>
-
-          <!--form buttons and navigation links-->
-          <div class="control-group">
-            <div class="controls">
-                <%= link_to accounts_path(:type => @account.account_type), :title => t('tooltip.back'), :class=>"btn" do%>
-                    <i class="icon-arrow-left"></i> <%=t('button.back')%>
-                <%end%>
-                <%= link_to "#", class: "btn btn-primary", :title => t('button.save'), :onclick=>"$('form').submit()" do%>
-                    <i class="icon-ok icon-white"></i> <%=t('button.save')%>
-                <%end%>
-            </div>
-          </div>
+          <%= render :partial => 'accounts/form_buttons'%>
         <% end %>
     </div>
 </div>
 
 <script type="text/javascript">
-    var ACCOUNT_TYPE_CARD = <%=Account::ACCOUNT_CARD_TYPE%>;
-    var ACCOUNT_TYPE_CASH = <%=Account::ACCOUNT_CASH_TYPE%>;
     jQuery(document).ready(function(){
-        accountsJS.formInit(<%=@account_type%>);
+        new AccountsForm({
+            account_type: <%=@account.account_type.to_i%>,
+            ACCOUNT_TYPE_CARD: <%=Account::ACCOUNT_CARD_TYPE%>,
+            ACCOUNT_TYPE_CASH: <%=Account::ACCOUNT_CASH_TYPE%>
+        });
     });
 </script>

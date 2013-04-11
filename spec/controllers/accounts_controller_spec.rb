@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AccountsController do
 
   before(:each) do
-    @user = FactoryGirl.create(:user1)
+    #@user = FactoryGirl.create(:user1)
   end
 
   it 'should go to index action' do

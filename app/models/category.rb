@@ -22,6 +22,9 @@ class Category < ActiveRecord::Base
   attr_accessible :name, :amount, :description, :color, :user, :user_id, :enabled
   attr_readonly :id, :created_at, :updated_at
 
+  scope :order_by_name, -> { order(:name) }
+  scope :enabled, -> { where('enabled = true')}
+
   def reserve_name
     errors.add(:name, I18n.t('message.error.category.reserved')) if [I18n.t('common.undefined')].include? self.name
   end

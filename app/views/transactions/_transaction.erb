@@ -32,36 +32,31 @@
   <td><div class="badge badge-black-font" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></div></td>
   <td><%=transaction.amount%></td>
 
-  <%if transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT ||
-          transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
+  <%if Transaction::TR_GROUP_TO.include?(transaction.transaction_type)%>
       <td>
           <span title="<%=transaction.account_to.description%>">
-            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+            <%=transaction.account_to.name%> (<%=round_float(transaction.account_to.amount)%>)
           </span>
       </td>
-  <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT ||
-            transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH ||
-            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT ||
-            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
+  <%elsif Transaction::TR_GROUP_FROM_TO.include?(transaction.transaction_type)%>
       <td>
          <span title="<%=transaction.account_from.description%>">
-            <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+            <%=transaction.account_from.name%> (<%=round_float(transaction.account_from.amount)%>)
          </span>
       </td>
       <td>
          <span title="<%=transaction.account_to.description%>">
-            <%=transaction.account_to.name%> (<%=roundFloatTwoDigits(transaction.account_to.amount)%>)
+            <%=transaction.account_to.name%> (<%=round_float(transaction.account_to.amount)%>)
          </span>
       </td>
-  <%elsif transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY ||
-            transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
+  <%elsif Transaction::TR_GROUP_TO_CATEGORY.include?(transaction.transaction_type)%>
       <td>
          <span title="<%=transaction.account_from.description%>">
-           <%=transaction.account_from.name%> (<%=roundFloatTwoDigits(transaction.account_from.amount)%>)
+           <%=transaction.account_from.name%> (<%=round_float(transaction.account_from.amount)%>)
          </span>
       </td>
       <td>
-         <div class="color-indicator-small" style="background-color: <%=getCategoryColor(transaction.category)%>;">&nbsp;</div>
+         <div class="color-indicator-small" style="background-color: <%=get_color(transaction.category)%>;">&nbsp;</div>
          <span title="<%=transaction.category.description%>">
             <%=transaction.category.name%>
         </span>

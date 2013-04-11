@@ -1,11 +1,11 @@
 <%=render '/notifications'%>
 
 <!--sorting and filter form-->
-<div class="row-fluid">
-  <div class="span12">
-    <%= render 'filter'%>
-  </div>
-</div>
+<!--<div class="row-fluid">-->
+  <!--<div class="span12">-->
+    <!--<%#= render 'filter'%>-->
+  <!--</div>-->
+<!--</div>-->
 
 <!--data table-->
 <div class="row-fluid">
@@ -16,7 +16,7 @@
             <th width="10%">&nbsp;</th>
             <th width="8%"><%=t('field.common.date')%></th>
             <th width="5%"><%=t('field.transaction.summa')%></th>
-            <%=createTransactionTableHeader(@transaction_type)%>
+            <%=create_table_header(@transaction_type)%>
             <th width="37%" class="hidden-phone"><%=t('field.transaction.comment')%></th>
           </tr>
       </thead>
@@ -29,31 +29,31 @@
 <div id="dayOfWeekPopupID" class="no-disp">
   <ul class="no-list-style">
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(1)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(1)%>;">&nbsp;</div>
       <%=t('week.day.monday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(2)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(2)%>;">&nbsp;</div>
       <%=t('week.day.tuesday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(3)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(3)%>;">&nbsp;</div>
       <%=t('week.day.wednesday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(4)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(4)%>;">&nbsp;</div>
       <%=t('week.day.thursday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(5)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(5)%>;">&nbsp;</div>
       <%=t('week.day.friday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(6)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(6)%>;">&nbsp;</div>
       <%=t('week.day.saturday')%>
     </li>
     <li>
-      <div class="color-indicator-small" style="background-color: <%=getRowColorByDayOfWeek(0)%>;">&nbsp;</div>
+      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(0)%>;">&nbsp;</div>
       <%=t('week.day.sunday')%>
     </li>
   </ul>
@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
     var dayColorPopupTitle = "<%=t('day_color_popup_title')%>";
-    jQuery(document).ready(function(){
-        transactionsJS.init(<%=@transaction_type%>);
-    });
+//    jQuery(document).ready(function(){
+//        transactionsJS.init(<%=@transaction_type%>);
+//    });
 </script>

@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
   attr_accessible :nickname, :provider, :url, :username, :authentication_token
   attr_readonly :id, :created_at, :updated_at
+
+  def full_name
+    if  !first_name.nil? && !last_name.nil?
+      "#{first_name} #{last_name}"
+    else
+      email
+    end
+  end
 end

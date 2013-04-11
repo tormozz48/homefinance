@@ -8,7 +8,7 @@ describe AccountsController do
     end
 
     it 'sort' do
-      post('/accounts/sort').should route_to('accounts#sort')
+      get('/accounts/load').should route_to('accounts#load')
     end
 
     it 'new' do

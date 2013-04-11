@@ -8,7 +8,7 @@ describe CategoriesController do
     end
 
     it 'sort' do
-      post('/categories/sort').should route_to('categories#sort')
+      get('/categories/load').should route_to('categories#load')
     end
 
     it 'new' do

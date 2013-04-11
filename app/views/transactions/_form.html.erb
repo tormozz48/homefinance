@@ -50,26 +50,26 @@
           </div>
         </div>
 
-        <%if  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_ACCOUNT%>
+        <%if  @transaction.transaction_type.to_i == Transaction::TR_TO_ACCOUNT%>
             <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT%>
             <%=render :partial => 'transactions/field_account_from'%>
             <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CASH%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CASH%>
             <%=render :partial => 'transactions/field_account_from'%>
             <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CATEGORY%>
             <%=render :partial => 'transactions/field_account_from'%>
             <%=render :partial => 'transactions/field_category'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_TO_CASH%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_TO_CASH%>
             <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_ACCOUNT%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_ACCOUNT%>
             <%=render :partial => 'transactions/field_cash_from'%>
             <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CASH%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CASH%>
             <%=render :partial => 'transactions/field_cash_from'%>
             <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10) ||  @transaction.transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY%>
+        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CATEGORY%>
             <%=render :partial => 'transactions/field_cash_from'%>
             <%=render :partial => 'transactions/field_category'%>
         <%end%>

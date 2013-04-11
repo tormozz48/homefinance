@@ -8,7 +8,7 @@ describe TransactionsController do
     end
 
     it 'filter' do
-      post('/transactions/filter').should route_to('transactions#filter')
+      get('/transactions/load').should route_to('transactions#load')
     end
 
     it 'new' do

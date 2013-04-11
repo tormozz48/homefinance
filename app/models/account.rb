@@ -26,6 +26,11 @@ class Account < ActiveRecord::Base
 
   belongs_to :user, :readonly => true
 
+  scope :order_by_name, -> { order(:name) }
+  scope :enabled, -> { where('enabled = true')}
+  scope :accounts, -> { where('account_type = ?', ACCOUNT_CARD_TYPE)}
+  scope :cashes, -> { where('account_type = ?', ACCOUNT_CASH_TYPE)}
+
   #account types
   ACCOUNT_CARD_TYPE = 0
   ACCOUNT_CASH_TYPE = 1

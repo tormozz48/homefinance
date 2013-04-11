@@ -15,12 +15,19 @@ class Transaction < ActiveRecord::Base
                                                  :greater_than_or_equal_to => 0,
                                                  :less_than_or_equal_to => 7}
 
-  validate :enabled, :inclusion => { :in => [true, false] }
+  #validate :enabled, :inclusion => { :in => [true, false] }
 
   belongs_to :user, :readonly => true
   belongs_to :category, :readonly => true
   belongs_to :account_from,  :readonly => true, :class_name => 'Account'
   belongs_to :account_to, :readonly => true, :class_name => 'Account'
+
+  scope :enabled, -> { where('enabled = true')}
+  scope :by_transaction_type, ->(type) { where('transaction_type = ?', type) }
+  scope :by_user, ->(id) { where('user_id = ?', id) }
+  scope :by_category, ->(id) { where('category_id = ?', id) }
+  scope :between_dates, ->(date_from, date_to) { where('date between ? and ?', date_from, date_to) }
+
 
   #transaction types
   TR_TO_ACCOUNT = 0

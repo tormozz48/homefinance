@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
 
   def load
       transaction_type = params[:type]
-      date_from = params[:date_from].nil? ? 1.week.ago.to_date : params[:date_from]
+      date_from = params[:date_from].nil? ? 1.year.ago.to_date : params[:date_from]
       date_to = params[:date_to].nil? ? Date.today : params[:date_to]
       category_id = params[:category]
 
@@ -47,14 +47,11 @@ class TransactionsController < ApplicationController
       sort_str = "#{field} #{direction}, id DESC"
 
       if !category_id.nil? && !category_id.blank? && transaction_type.to_i.in?(Transaction::TR_GROUP_TO_CATEGORY)
-        @transactions = Transaction.enabled.by_transaction_type(transaction_type)
-                                   .by_user(current_user.id)
-                                   .by_category(category_id)
-                                   .between_dates(date_from, date_to).order(sort_str)
+        @transactions = Transaction.includes(:account_from, :account_to, :category).enabled.by_transaction_type(transaction_type)
+                             .by_user(current_user.id).by_category(category_id).between_dates(date_from, date_to).order(sort_str)
       else
-        @transactions = Transaction.enabled.by_transaction_type(transaction_type)
-                                           .by_user(current_user.id)
-                                           .between_dates(date_from, date_to).order(sort_str)
+        @transactions = Transaction.includes(:account_from, :account_to, :category).enabled.by_transaction_type(transaction_type)
+                             .by_user(current_user.id).between_dates(date_from, date_to).order(sort_str)
       end
       render :partial => 'transactions/transactions'
   end

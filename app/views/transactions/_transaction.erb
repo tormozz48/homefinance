@@ -1,35 +1,15 @@
 <tr>
   <td class="td-center">
-    <div class="btn-group hidden-phone hidden-tablet">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="icon-circle-arrow-down"></i> <span><%=t('button.action')%></span>
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-            <%= link_to edit_transaction_path(transaction, :page => @p) do%>
-              <i class="icon-edit"></i> <%=t('button.edit')%>
-            <%end%>
-        </li>
-        <li>
-            <%= link_to transaction, confirm: t('message.confirm.delete'), method: :delete do%>
-              <i class="icon-remove"></i> <%=t('button.delete')%>
-            <%end%>
-        </li>
-      </ul>
-    </div>
-    <div class="hidden-desktop">
-      <%= link_to edit_transaction_path(transaction, :page => @p) do%>
-          <%=t('button.edit')%>
-      <%end%>
-      <%= link_to transaction, confirm: t('message.confirm.delete'), method: :delete do%>
-          <%=t('button.delete')%>
-      <%end%>
-    </div>
-
+    <%= link_to edit_transaction_path(transaction, :page => @p), :class => 'btn transaction_edit' do%>
+        <i class="icon-pencil"></i>
+    <%end%>
+    <%= link_to transaction, method: :delete, :class => 'btn transaction_delete' do%>
+        <i class="icon-trash"></i>
+    <%end%>
   </td>
 
-  <td><div class="badge badge-black-font" style="background-color: <%=getRowColorByDate(transaction.date)%>"><%=transaction.date%></div></td>
+  <td><div class="badge badge-black-font"
+           style="background-color: <%=get_row_color_by_date(transaction.date)%>"><%=transaction.date%></div></td>
   <td><%=transaction.amount%></td>
 
   <%if Transaction::TR_GROUP_TO.include?(transaction.transaction_type)%>

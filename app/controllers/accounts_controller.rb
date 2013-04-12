@@ -3,8 +3,6 @@ class AccountsController < ApplicationController
 
   def index
     @account_type = params[:type]
-    @field = session['account_field']
-    @direction = session['account_direction']
     unless Account::ACCOUNT_TYPES.include? @account_type.to_i
       render_404
     end
@@ -15,17 +13,15 @@ class AccountsController < ApplicationController
     field = params[:field].nil? ? 'name' : params[:field]
     direction = params[:direction].nil? ? 'asc' : params[:direction]
 
-    session['category_field'] = field
-    session['category_direction'] = direction
-
     sort_str = "#{field} #{direction}"
 
-    @accounts = Account.order(sort_str).where('account_type = ? AND user_id = ? AND enabled = true', account_type, current_user.id)
+    @accounts = Account.by_user(current_user.id).enabled.order(sort_str).where('account_type = ?', account_type)
     render :partial => 'accounts'
   end
 
   def new
-    @account = Account.new({:account_type => params[:type], :amount => 0})
+    @account = Account.new({:account_type => params[:type], :amount => 0,
+                            :user_id => current_user.id})
   end
 
   def edit
@@ -35,14 +31,13 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(params[:account])
     @account_type = @account.account_type
-    @account.user = current_user
     respond_to do |format|
       if @account.save
         flash[:notice] = @account_type == Account::ACCOUNT_CARD_TYPE ?
             I18n.t('notice.account.added') : I18n.t('notice.cash.added')
         format.html {redirect_to accounts_path(:type=> @account_type)}
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
       end
     end
   end
@@ -68,10 +63,10 @@ class AccountsController < ApplicationController
       flash[:notice] = account_type == Account::ACCOUNT_CARD_TYPE ?
           I18n.t('notice.account.deleted') : I18n.t('notice.cash.deleted')
     else
-      flash[:notice] = account_type == Account::ACCOUNT_CARD_TYPE ?
+      flash[:error] = account_type == Account::ACCOUNT_CARD_TYPE ?
           I18n.t('error.account.deleted') : I18n.t('error.cash.deleted')
     end
 
-    redirect_to :back
+    render :json => {:delete => true}
   end
 end

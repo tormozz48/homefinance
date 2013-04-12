@@ -1,67 +1,56 @@
 <%=render '/notifications'%>
 
-<!--sorting and filter form-->
-<!--<div class="row-fluid">-->
-  <!--<div class="span12">-->
-    <!--<%#= render 'filter'%>-->
-  <!--</div>-->
-<!--</div>-->
-
 <!--data table-->
 <div class="row-fluid">
   <div class="span12">
     <table class="table table-bordered table-hover table-condensed">
       <thead>
           <tr class="well">
-            <th width="10%">&nbsp;</th>
-            <th width="8%"><%=t('field.common.date')%></th>
-            <th width="5%"><%=t('field.transaction.summa')%></th>
+            <th width="10%">
+              <%= link_to new_transaction_path(:type => @transaction_type), :class => 'btn btn-success', :title => t('button.add') do%>
+                  <i class="icon-plus icon-white"></i> <%=t('button.add')%>
+              <%end%>
+            </th>
+            <th width="10%">
+              <%=link_to t('field.common.date'), '#', :class => 'sorting-header', :data_field => 'date'%>
+              <i class="icon-arrow-up"></i>
+              <i class="icon-arrow-down no-disp"></i>
+              <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
+                  <i class="icon-filter icon-white"></i>
+              <%end%>
+            </th>
+            <th width="10%">
+              <%=link_to t('field.transaction.summa'), '#', :class => 'sorting-header', :data_field => 'amount'%>
+              <i class="icon-arrow-up no-disp"></i>
+              <i class="icon-arrow-down no-disp"></i>
+              <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
+                  <i class="icon-filter icon-white"></i>
+              <%end%>
+            </th>
             <%=create_table_header(@transaction_type)%>
-            <th width="37%" class="hidden-phone"><%=t('field.transaction.comment')%></th>
+            <th width="30%" class="hidden-phone">
+              <%=link_to t('field.transaction.comment'), '#', :class => 'sorting-header', :data_field => 'comment'%>
+              <i class="icon-arrow-up no-disp"></i>
+              <i class="icon-arrow-down no-disp"></i>
+            </th>
           </tr>
       </thead>
-      <tbody id="dataWrapperID"></tbody>
+      <tbody id="data_wrapper"></tbody>
     </table>
   </div>
 </div>
 
-<!--dat of week color popup-->
-<div id="dayOfWeekPopupID" class="no-disp">
-  <ul class="no-list-style">
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(1)%>;">&nbsp;</div>
-      <%=t('week.day.monday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(2)%>;">&nbsp;</div>
-      <%=t('week.day.tuesday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(3)%>;">&nbsp;</div>
-      <%=t('week.day.wednesday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(4)%>;">&nbsp;</div>
-      <%=t('week.day.thursday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(5)%>;">&nbsp;</div>
-      <%=t('week.day.friday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(6)%>;">&nbsp;</div>
-      <%=t('week.day.saturday')%>
-    </li>
-    <li>
-      <div class="color-indicator-small" style="background-color: <%=get_row_color_by_day(0)%>;">&nbsp;</div>
-      <%=t('week.day.sunday')%>
-    </li>
-  </ul>
-</div>
+<%= render :partial => 'day_popup'%>
 
 <script type="text/javascript">
-    var dayColorPopupTitle = "<%=t('day_color_popup_title')%>";
-//    jQuery(document).ready(function(){
-//        transactionsJS.init(<%=@transaction_type%>);
-//    });
+    jQuery(document).ready(function(){
+        new Transactions({
+            transaction_type: <%=@transaction_type%>,
+            color_popup_title: '<%=t('day_color_popup_title')%>',
+            delete_confirm: t('message.confirm.delete'),
+            errors: {
+                transaction_delete: '<%=I18n.t('error.transaction.deleted')%>'
+            }
+        });
+    });
 </script>

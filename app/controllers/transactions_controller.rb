@@ -57,15 +57,15 @@ class TransactionsController < ApplicationController
   end
 
   def new
+    @task_new = true
     @transaction = Transaction.new({:transaction_type => params[:type], :amount => 0, :date => Date.today})
     load_advanced_data
-    @task_new = true
   end
 
   def edit
+    @task_new = false
     @transaction = Transaction.find(params[:id])
     load_advanced_data
-    @task_new = false
   end
 
   def create

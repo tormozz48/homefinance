@@ -44,7 +44,7 @@ describe AccountsController do
     response.should be_success
   end
 
-  it 'should go to sort action with default params' do
+  it 'should go to load action with default params' do
     sign_in @user
 
     FactoryGirl.create(:account1)
@@ -187,5 +187,7 @@ describe AccountsController do
     FactoryGirl.create(:account1)
     delete :destroy, {id: 1}
     Account.find(1).enabled.should eq(false)
+
+    response.should be_success
   end
 end

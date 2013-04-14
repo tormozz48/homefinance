@@ -3,7 +3,7 @@
         <%= link_to edit_category_path(category), :class => 'btn' do%>
             <i class="icon-pencil"></i>
         <%end%>
-        <%= link_to category, confirm: t('message.confirm.delete'), method: :delete, :class => 'btn' do%>
+        <%= link_to category, method: :delete, :class => 'btn link-delete' do%>
             <i class="icon-trash"></i>
         <%end%>
     </td>

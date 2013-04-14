@@ -3,7 +3,7 @@
     <%= link_to edit_account_path(account, :type => @account_type), :class => 'btn' do%>
         <i class="icon-pencil"></i>
     <%end%>
-    <%= link_to account, confirm: t('message.confirm.delete'), method: :delete, :class => 'btn' do%>
+    <%= link_to account, method: :delete, :class => 'btn link-delete' do%>
         <i class="icon-trash"></i>
     <%end%>
   </td>

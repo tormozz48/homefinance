@@ -39,6 +39,7 @@ CategoriesIndex.prototype = {
             self.load_data();
         });
 
+
         this.load_data();
 	},
 
@@ -64,12 +65,38 @@ CategoriesIndex.prototype = {
         });
     },
 
-	init_tooltip: function(){
-		jQuery('.btn, #field, #direction').tooltip();
-	},
-
     handleResponse: function(data){
         this.$data_wrapper.empty();
         this.$data_wrapper.html(data);
+
+        var self = this;
+
+        jQuery('.link-delete').unbind('click').on('click', function(){
+            self.del(this);
+            return false;
+        });
+    },
+
+    init_tooltip: function(){
+        jQuery('.btn, #field, #direction').tooltip();
+    },
+
+    del: function(obj){
+        if(!confirm(this.config.delete_confirm)){
+            return false;
+        }
+
+        jQuery.ajax({
+            type: 'DELETE',
+            url: jQuery(obj).attr('href'),
+            success: function(data, textStatus, jqXHR){
+                var row = jQuery(obj).parents('tr');
+                row.hide(400, function(){
+                    row.remove();
+                });
+            }
+        });
+
+        return true;
     }
-}
+};

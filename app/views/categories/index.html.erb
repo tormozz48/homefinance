@@ -38,7 +38,11 @@
 
 
 <script type="text/javascript">
-    jQuery(document).ready(function(){new CategoriesIndex({})});
+    jQuery(document).ready(function(){
+        new CategoriesIndex({
+            delete_confirm: '<%=t('message.confirm.delete')%>'
+        })
+    });
 </script>
 
 

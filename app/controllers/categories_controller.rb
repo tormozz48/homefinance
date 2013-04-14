@@ -2,17 +2,16 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @field = session['category_field']
-    @direction = session['category_direction']
+
   end
 
   def load
-    session['category_field'] = params[:field].nil? ? 'name' : params[:field]
-    session['category_direction'] = params[:direction].nil? ? 'asc' : params[:direction]
+    field = params[:field].nil? ? 'name' : params[:field]
+    direction = params[:direction].nil? ? 'asc' : params[:direction]
 
-    sort_str = "#{session['category_field']} #{session['category_direction']}"
+    sort_str = "#{field} #{direction}"
 
-    @categories = Category.order(sort_str).where('user_id = ? AND enabled = ?', current_user.id, true)
+    @categories = Category.enabled.order(sort_str).where('user_id = ?', current_user.id)
     render :partial => 'categories'
   end
 
@@ -54,6 +53,7 @@ class CategoriesController < ApplicationController
     else
       flash[:error] = I18n.t('error.category.deleted')
     end
-    redirect_to :back
+
+    render :json => {:delete => true}
   end
 end

@@ -45,7 +45,8 @@
        new AccountsIndex({
            account_type: <%=@account_type%>,
            ACCOUNT_TYPE_CARD: <%=Account::ACCOUNT_CARD_TYPE%>,
-           ACCOUNT_TYPE_CASH: <%=Account::ACCOUNT_CASH_TYPE%>
+           ACCOUNT_TYPE_CASH: <%=Account::ACCOUNT_CASH_TYPE%>,
+           delete_confirm: '<%=t('message.confirm.delete')%>'
        });
     });
 </script>

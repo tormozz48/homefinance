@@ -40,5 +40,6 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'chosen-rails'
 gem 'twitter-bootstrap-rails'
-
+#gem 'bootstrap-datepicker-rails'
+gem 'jquery_datepicker'
 

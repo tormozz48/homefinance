@@ -1,0 +1,21 @@
+<!--transaction amount field-->
+<div <% if @transaction.errors[:amount].present? %>
+        class="control-group error"
+     <%elsif @transaction.errors.any?%>
+        class="control-group success"
+     <%else%>
+        class="control-group"
+     <% end %>>
+  <%= label_tag :amount, t('field.transaction.summa'), :class => 'control-label' %>
+  <div class="controls">
+    <div class="input-append">
+      <%= f.number_field :amount, :id => 'amount', :class => 'input-small', :title => t('tooltip.input.transaction.summa')%>
+      <span class="add-on"><%=t('currency')%></span>
+    </div>
+    <% if @transaction.errors[:amount].present? %>
+        <% @transaction.errors[:amount].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

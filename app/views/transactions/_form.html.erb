@@ -1,114 +1,52 @@
-<!--transaction form-->
-<div class="row-fluid">
-  <div class="span8">
-        <%= form_for(@transaction, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
-          <%= f.hidden_field :transaction_type%>
+<div class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3><%=@task_new ?
+                       get_new_title(@transaction.transaction_type) :
+                       get_edit_title(@transaction.transaction_type)%>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <%= form_for(@transaction, :html => {:class=> 'form-horizontal well application-form'}) do |f| %>
+            <%= f.hidden_field :transaction_type%>
+            <%= f.hidden_field :user_id%>
 
-          <legend><%=@legend%></legend>
+            <%= render :partial => 'transaction_amount_field', :locals => {:f => f}%>
+            <%= render :partial => 'transaction_date_field', :locals => {:f => f}%>
 
-          <!--transaction amount field-->
-          <div <% if @transaction.errors[:amount].present? %>
-                class="control-group error"
-             <%elsif @transaction.errors.any?%>
-                class="control-group success"
-             <%else%>
-                class="control-group"
-             <% end %>>
-            <%= label_tag :amount, t('field.transaction.summa'), :class => "control-label" %>
-            <div class="controls">
-              <div class="input-append">
-                <%= f.number_field :amount, :id => "amount", :class => "input-small", :title => t('tooltip.input.transaction.summa')%>
-                <span class="add-on"><%=t('currency')%></span>
-              </div>
-                <% if @transaction.errors[:amount].present? %>
-                    <% @transaction.errors[:amount].each do |msg|%>
-                        <p class="help-block"><%= msg%></p>
-                    <%end%>
-                <%end%>
-            </div>
-          </div>
-
-        <!--transaction date field-->
-        <div <% if @transaction.errors[:date].present? %>
-                class="control-group error"
-             <%elsif @transaction.errors.any?%>
-                class="control-group success"
-             <%else%>
-                class="control-group"
-             <% end %>>
-          <%= label_tag :amount, t('field.common.date'), :class => "control-label" %>
-          <div class="controls">
-            <%= f.hidden_field :date, :id => "date"%>
-            <%= button_tag :type => 'button', :id => "button-date", :class => "btn", :title => t('tooltip.input.transaction.date') do%>
-                <i class="icon-calendar"></i> <%= @transaction.date%>
+            <%if  @transaction.transaction_type.to_i == Transaction::TR_TO_ACCOUNT%>
+                <%=render :partial => 'transactions/field_account_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT%>
+                <%=render :partial => 'transactions/field_account_from'%>
+                <%=render :partial => 'transactions/field_account_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CASH%>
+                <%=render :partial => 'transactions/field_account_from'%>
+                <%=render :partial => 'transactions/field_cash_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CATEGORY%>
+                <%=render :partial => 'transactions/field_account_from'%>
+                <%=render :partial => 'transactions/field_category'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_TO_CASH%>
+                <%=render :partial => 'transactions/field_cash_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_ACCOUNT%>
+                <%=render :partial => 'transactions/field_cash_from'%>
+                <%=render :partial => 'transactions/field_account_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CASH%>
+                <%=render :partial => 'transactions/field_cash_from'%>
+                <%=render :partial => 'transactions/field_cash_to'%>
+            <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CATEGORY%>
+                <%=render :partial => 'transactions/field_cash_from'%>
+                <%=render :partial => 'transactions/field_category'%>
             <%end%>
-            <% if @transaction.errors[:date].present? %>
-                <% @transaction.errors[:date].each do |msg|%>
-                    <p class="help-block"><%= msg%></p>
-                <%end%>
-            <%end%>
-          </div>
-        </div>
 
-        <%if  @transaction.transaction_type.to_i == Transaction::TR_TO_ACCOUNT%>
-            <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT%>
-            <%=render :partial => 'transactions/field_account_from'%>
-            <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CASH%>
-            <%=render :partial => 'transactions/field_account_from'%>
-            <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CATEGORY%>
-            <%=render :partial => 'transactions/field_account_from'%>
-            <%=render :partial => 'transactions/field_category'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_TO_CASH%>
-            <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_ACCOUNT%>
-            <%=render :partial => 'transactions/field_cash_from'%>
-            <%=render :partial => 'transactions/field_account_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CASH%>
-            <%=render :partial => 'transactions/field_cash_from'%>
-            <%=render :partial => 'transactions/field_cash_to'%>
-        <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CATEGORY%>
-            <%=render :partial => 'transactions/field_cash_from'%>
-            <%=render :partial => 'transactions/field_category'%>
-        <%end%>
-
-        <!--transaction comment field-->
-        <div <% if @transaction.errors[:comment].present? %>
-                class="control-group error"
-             <%elsif @transaction.errors.any?%>
-                class="control-group success"
-             <%else%>
-                class="control-group"
-             <% end %>>
-          <%= label_tag :comment, t('field.transaction.comment'), :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_area :comment, :size => "60x6", :class => "input-xlarge", :title => t('tooltip.input.transaction.comment')%>
-            <% if @transaction.errors[:comment].present? %>
-                <% @transaction.errors[:comment].each do |msg|%>
-                    <p class="help-block"><%= msg%></p>
-                <%end%>
-            <%end%>
-          </div>
-        </div>
-
-        <!--form buttons and navigation links-->
-        <div class="control-group">
-          <div class="controls">
-            <%= link_to transactions_path(:type => @transaction.transaction_type, :page => session[:page]), :class=>"btn", :title => t('tooltip.back') do%>
-                <i class="icon-arrow-left"></i> <%=t('button.back')%>
-            <%end%>
-            <%= link_to "#", class: "btn btn-primary", :title => t('button.save'), :onclick=>"$('form').submit()" do%>
-                <i class="icon-ok icon-white"></i> <%=t('button.save')%>
-            <%end%>
-          </div>
-        </div>
+            <%= render :partial => 'transaction_comment_field', :locals => {:f => f}%>
       <% end %>
-  </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">
+        <%=t('button.back')%>
+      </button>
+      <%= link_to '#', class: 'btn btn-primary', :title => t('button.save'), :onclick=>"$('form').submit()" do%>
+          <i class="icon-ok icon-white"></i> <%=t('button.save')%>
+      <%end%>
+    </div>
 </div>
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        transactionsJS.formInit();
-    });
-</script>

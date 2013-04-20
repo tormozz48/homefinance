@@ -13,9 +13,9 @@
  *= require twitter-bootstrap-static/fontawesome
  *= require style
  *= require less
- *= require datepicker/jqueryui
  *= require colorpicker/colorpicker
  *= require colorpicker/layout
  *= require chosen
+ *= require datepicker/jqueryui
 */
 

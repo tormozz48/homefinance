@@ -7,7 +7,7 @@
       <thead>
           <tr class="well">
             <th width="10%">
-              <%= link_to new_transaction_path(:type => @transaction_type), :class => 'btn btn-success', :title => t('button.add') do%>
+              <%= link_to new_transaction_path(:type => @transaction_type), :class => 'btn btn-success link-add', :title => t('button.add') do%>
                   <i class="icon-plus icon-white"></i> <%=t('button.add')%>
               <%end%>
             </th>
@@ -40,6 +40,8 @@
   </div>
 </div>
 
+<div class="form-container"></div>
+
 <%= render :partial => 'day_popup'%>
 
 <script type="text/javascript">
@@ -47,7 +49,7 @@
         new Transactions({
             transaction_type: <%=@transaction_type%>,
             color_popup_title: '<%=t('day_color_popup_title')%>',
-            delete_confirm: t('message.confirm.delete'),
+            delete_confirm: '<%=t('message.confirm.delete')%>',
             errors: {
                 transaction_delete: '<%=I18n.t('error.transaction.deleted')%>'
             }

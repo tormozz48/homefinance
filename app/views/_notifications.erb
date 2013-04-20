@@ -1,15 +1,14 @@
 <!--notification block-->
-<% if flash[:notice] %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      <%= flash[:notice] %>
-    </div>
-<% end %>
+<div class="alert alert-success" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <span class="message"></span>
+  <!--dynamically content-->
+</div>
 
 <!--errors block-->
-<% if flash[:error] %>
-    <div class="alert alert-error">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      <%= flash[:error] %>
-    </div>
-<% end %>
+<div class="alert alert-error no-disp" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <span class="message"></span>
+  <!--dynamically content-->
+</div>
+

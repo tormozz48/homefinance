@@ -1,0 +1,18 @@
+<!--transaction comment field-->
+<div <% if @transaction.errors[:comment].present? %>
+        class="control-group error"
+     <%elsif @transaction.errors.any?%>
+        class="control-group success"
+     <%else%>
+        class="control-group"
+     <% end %>>
+  <%= label_tag :comment, t('field.transaction.comment'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_area :comment, :size => '60x6', :class => 'input-xlarge', :title => t('tooltip.input.transaction.comment')%>
+    <% if @transaction.errors[:comment].present? %>
+        <% @transaction.errors[:comment].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

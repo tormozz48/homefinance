@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require twitter/bootstrap
 //= require twitter/bootstrap/bootstrap-affix
 //= require twitter/bootstrap/bootstrap-alert
@@ -30,7 +31,6 @@
 //= require colorpicker/eye
 //= require colorpicker/layout
 //= require colorpicker/utils
-//= require datepicker/jqueryui
 //= require hightcharts/highcharts
 //= require hightcharts/iexporting
 //= require chosen-jquery

@@ -24,6 +24,7 @@ class Category < ActiveRecord::Base
 
   scope :order_by_name, -> { order(:name) }
   scope :enabled, -> { where('enabled = true')}
+  scope :by_user, ->(id) { where('user_id = ?', id) }
 
   def reserve_name
     errors.add(:name, I18n.t('message.error.category.reserved')) if [I18n.t('common.undefined')].include? self.name

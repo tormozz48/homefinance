@@ -1,9 +1,9 @@
 <tr>
   <td class="td-center">
-    <%= link_to edit_transaction_path(transaction, :page => @p), :class => 'btn transaction_edit' do%>
+    <%= link_to edit_transaction_path(transaction, :page => @p), :class => 'btn link-add' do%>
         <i class="icon-pencil"></i>
     <%end%>
-    <%= link_to transaction, method: :delete, :class => 'btn transaction_delete' do%>
+    <%= link_to transaction, method: :delete, :class => 'btn link-delete' do%>
         <i class="icon-trash"></i>
     <%end%>
   </td>

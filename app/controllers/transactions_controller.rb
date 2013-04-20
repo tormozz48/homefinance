@@ -3,26 +3,7 @@ class TransactionsController < ApplicationController
 
   def index
     @transaction_type = params[:type]
-    if @transaction_type.nil?
-      @transaction_type = session['transaction_type']
-      if @transaction_type.nil?
-        @transaction_type = Transaction::TR_FROM_CASH_TO_CATEGORY
-      else
-        @transaction_type = @transaction_type.to_i
-      end
-    else
-      @transaction_type = @transaction_type.to_i
-    end
-    if Transaction::TR_TYPES.include? @transaction_type
-      @categories = Category.order_by_name.enabled.where('user_id = ?', current_user.id)
-
-      @date_from = session['date_from'].nil? ? 1.week.ago.to_date : session['date_from']
-      @date_to = session['date_to'].nil? ? Date.today : session['date_to']
-      @category_id = session['category_id']
-
-      @field = session['field']
-      @direction = session['direction']
-    else
+    unless Transaction::TR_TYPES.include? @transaction_type.to_i
       render_404
     end
   end
@@ -33,16 +14,8 @@ class TransactionsController < ApplicationController
       date_to = params[:date_to].nil? ? Date.today : params[:date_to]
       category_id = params[:category]
 
-      session['transaction_type'] = transaction_type
-      session['date_from'] = date_from
-      session['date_to'] = date_to
-      session['category_id'] = category_id
-
       field = params[:field].nil? ? 'date' : params[:field]
       direction = params[:direction].nil? ? 'desc' : params[:direction]
-
-      session['field'] = field
-      session['direction'] = direction
 
       sort_str = "#{field} #{direction}, id DESC"
 
@@ -58,19 +31,26 @@ class TransactionsController < ApplicationController
 
   def new
     @task_new = true
-    @transaction = Transaction.new({:transaction_type => params[:type], :amount => 0, :date => Date.today})
+    @transaction = Transaction.new({
+               :transaction_type => params[:type],
+               :amount => 0,
+               :date => Date.today,
+               :user_id => current_user.id})
     load_advanced_data
+
+    render :partial => 'transactions/form'
   end
 
   def edit
     @task_new = false
     @transaction = Transaction.find(params[:id])
     load_advanced_data
+
+    render :partial => 'transactions/form'
   end
 
   def create
     @transaction = Transaction.new(params[:transaction])
-    @transaction.user = current_user
     valid = @transaction.valid? ? @transaction.calculate_transaction_new : false
     respond_to do |format|
       if valid && @transaction.save
@@ -105,16 +85,15 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     valid = @transaction.valid? ? @transaction.calculate_transaction_destroy : false
     if valid && @transaction.destroy
-      flash[:notice] = I18n.t('notice.transaction.deleted')
+      render :json => {:message => I18n.t('notice.transaction.deleted'), :type => 'success'}
     else
-      flash[:error] = I18n.t('error.transaction.deleted')
+      render :json => {:message => I18n.t('error.transaction.deleted'), :type => 'error'}
     end
-    redirect_to transactions_path
   end
 end
 
 def load_advanced_data
-  @accounts = Account.order_by_name.accounts.enabled.where('user_id = ?', current_user.id)
-  @cashes = Account.order_by_name.cashes.enabled.where('user_id = ?', current_user.id)
-  @categories = Category.order_by_name.enabled.where('user_id = ?', current_user.id)
+  @accounts = Account.order_by_name.accounts.enabled.by_user(current_user.id)
+  @cashes = Account.order_by_name.cashes.enabled.by_user(current_user.id)
+  @categories = Category.order_by_name.enabled.by_user(current_user.id)
 end

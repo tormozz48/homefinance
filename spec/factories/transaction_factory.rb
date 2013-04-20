@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :transaction1, class: Transaction do
+    id 1
     user_id 1
     account_from_id nil
     account_to_id 1
@@ -14,6 +15,7 @@ FactoryGirl.define do
   end
 
   factory :transaction2, class: Transaction do
+    id 2
     user_id 1
     account_from_id 1
     account_to_id 3
@@ -26,6 +28,7 @@ FactoryGirl.define do
   end
 
   factory :transaction3, class: Transaction do
+    id 3
     user_id 1
     account_from_id 1
     account_to_id 2
@@ -38,6 +41,7 @@ FactoryGirl.define do
   end
 
   factory :transaction4, class: Transaction do
+    id 4
     user_id 1
     account_from_id 1
     account_to_id nil
@@ -50,6 +54,7 @@ FactoryGirl.define do
   end
 
   factory :transaction5, class: Transaction do
+    id 5
     user_id 1
     account_from_id nil
     account_to_id 2
@@ -62,6 +67,7 @@ FactoryGirl.define do
   end
 
   factory :transaction6, class: Transaction do
+    id 6
     user_id 1
     account_from_id 2
     account_to_id 1
@@ -74,6 +80,7 @@ FactoryGirl.define do
   end
 
   factory :transaction7, class: Transaction do
+    id 7
     user_id 1
     account_from_id 2
     account_to_id 4
@@ -86,6 +93,7 @@ FactoryGirl.define do
   end
 
   factory :transaction8, class: Transaction do
+    id 8
     user_id 1
     account_from_id 2
     account_to_id nil

@@ -8,32 +8,60 @@ Transactions.prototype = {
   SORT_ASC: 'asc',
   SORT_DESC: 'desc',
 
+  SORT_FIELD_DATE: 'date',
+
   MODE_EDIT: 'edit',
   MODE_VIEW: 'view',
 
-  $data_wrapper: null,
   sort_field: null,
   sort_direction: null,
 
+  type: null,
   mode: null,
 
   init: function(config){
       this.config = config;
-
-      this.$data_wrapper = jQuery('#data_wrapper');
+      var self = this;
 
       mark_menu("menuTransactionID");
 
-      this.sort_field = 'date';
+      this.sort_field = this.SORT_FIELD_DATE;
       this.sort_direction = this.SORT_DESC;
 
+      jQuery('.nav-pills > li > a').click(function(){
+          jQuery('.nav-pills > li > a').removeClass('btn-primary').addClass('btn-info');
+          jQuery(this).removeClass('btn-info').addClass('btn-primary');
+          self.switch_transaction_type(this);
+          return false;
+      });
+
+      jQuery('.nav-pills > li:first > a').triggerHandler('click');
+  },
+
+  switch_transaction_type: function(obj){
+     var self = this;
+     var url = jQuery(obj).attr('href');
+     jQuery.get(url).done(function(data){
+         jQuery('.table-container').html(data);
+         self.after_switch();
+     });
+  },
+
+  after_switch: function(){
+      this.type = jQuery('.table-container > table').attr('data-type');
+
+      jQuery('.link-add').unbind('click').on('click', function(){
+          self.show_form(this);
+          return false;
+      });
 
       var self = this;
-      jQuery('.sorting-header').click(function(){
+      jQuery('.sorting-header').unbind('click').click(function(){
           var sort_field = jQuery(this).attr('data_field');
 
           if(self.sort_field == sort_field){
-              self.sort_direction = self.sort_direction == self.SORT_ASC ? self.SORT_DESC : self.SORT_ASC;
+              self.sort_direction =
+                  self.sort_direction == self.SORT_ASC ? self.SORT_DESC : self.SORT_ASC;
           }else{
               self.sort_direction = self.SORT_ASC;
           }
@@ -50,7 +78,7 @@ Transactions.prototype = {
     var self = this;
     jQuery.ajax({
         url: "/transactions/load",
-        data: {field: this.sort_field, direction: this.sort_direction, type: this.config.transaction_type},
+        data: {field: this.sort_field, direction: this.sort_direction, type: +this.type},
         success: function(data){
             self.handle_response(data);
         }
@@ -58,14 +86,17 @@ Transactions.prototype = {
   },
 
   handle_response: function(data){
-    this.$data_wrapper.empty();
-    this.$data_wrapper.html(data);
+    jQuery('#data_wrapper').empty().html(data);
 
     var self = this;
 
-    jQuery('.link-add').unbind('click').on('click', function(){
-        self.show_form(this);
-        return false;
+    jQuery(".badge-black-font").popover({
+      animation: true,
+      html: true,
+      placement: 'right',
+      trigger: 'hover',
+      title: this.config.color_popup_title,
+      content: jQuery("#day_popup").html()
     });
 
     jQuery('.link-edit').unbind('click').on('click', function(){
@@ -77,23 +108,15 @@ Transactions.prototype = {
         self.del(this);
         return false;
     });
-
-    jQuery(".badge-black-font").popover({
-      animation: true,
-      html: true,
-      placement: 'right',
-      trigger: 'hover',
-      title: this.config.color_popup_title,
-      content: jQuery("#day_popup").html()
-    });
   },
 
     show_form: function(obj){
         jQuery.get(jQuery(obj).attr('href')).done(function(data){
-            jQuery('.form-container').html(data);
+            jQuery('.form-container').empty().html(data);
             var modal_form = jQuery('.modal');
             modal_form.modal({
-                keyboard: true
+                keyboard: true,
+                show: true
             });
             modal_form.on('shown', function(){
                   jQuery('#account_from_id, #account_to_id, #category_id').chosen();
@@ -122,9 +145,8 @@ Transactions.prototype = {
                     row.remove();
                 });
             });
-        }else{
-            return false;
         }
+        return false;
     },
 
     toggle_arrows: function(){

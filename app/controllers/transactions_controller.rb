@@ -2,30 +2,40 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @transaction_type = params[:type]
-    unless Transaction::TR_TYPES.include? @transaction_type.to_i
-      render_404
-    end
+
+  end
+
+  def switch
+    @transaction_type = params[:type] || Transaction::TR_FROM_CASH_TO_CATEGORY
+    render :partial => 'transactions/transactions_table'
   end
 
   def load
-      transaction_type = params[:type]
-      date_from = params[:date_from].nil? ? 1.year.ago.to_date : params[:date_from]
-      date_to = params[:date_to].nil? ? Date.today : params[:date_to]
+      transaction_type = params[:type] || Transaction::TR_FROM_CASH_TO_CATEGORY
+      date_from = params[:date_from] || 1.year.ago.to_date
+      date_to = params[:date_to] || Date.today
+
+      summa_min = params[:summa_min] || 0
+      summa_max = params[:summa_max] || 999999
+
       category_id = params[:category]
 
-      field = params[:field].nil? ? 'date' : params[:field]
-      direction = params[:direction].nil? ? 'desc' : params[:direction]
+      field = params[:field] || 'date'
+      direction = params[:direction] || 'desc'
 
       sort_str = "#{field} #{direction}, id DESC"
 
-      if !category_id.nil? && !category_id.blank? && transaction_type.to_i.in?(Transaction::TR_GROUP_TO_CATEGORY)
-        @transactions = Transaction.includes(:account_from, :account_to, :category).enabled.by_transaction_type(transaction_type)
-                             .by_user(current_user.id).by_category(category_id).between_dates(date_from, date_to).order(sort_str)
-      else
-        @transactions = Transaction.includes(:account_from, :account_to, :category).enabled.by_transaction_type(transaction_type)
-                             .by_user(current_user.id).between_dates(date_from, date_to).order(sort_str)
+      @transactions = Transaction.includes(:account_from, :account_to, :category)
+            .enabled.by_transaction_type(transaction_type).by_user(current_user.id)
+            .between_dates(date_from, date_to).between_amount(summa_min, summa_max)
+
+      if !(category_id.nil? || category_id.blank?) &&
+          transaction_type.to_i.in?(Transaction::TR_GROUP_TO_CATEGORY)
+        @transactions = @transactions.by_category(category_id)
       end
+
+      @transactions = @transactions.order(sort_str)
+
       render :partial => 'transactions/transactions'
   end
 

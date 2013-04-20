@@ -27,7 +27,7 @@ class Transaction < ActiveRecord::Base
   scope :by_user, ->(id) { where('user_id = ?', id) }
   scope :by_category, ->(id) { where('category_id = ?', id) }
   scope :between_dates, ->(date_from, date_to) { where('date between ? and ?', date_from, date_to) }
-
+  scope :between_amount, ->(summa_min, summa_max) { where('amount between ? and ?', summa_min, summa_max) }
 
   #transaction types
   TR_TO_ACCOUNT = 0

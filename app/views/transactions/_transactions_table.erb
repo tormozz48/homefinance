@@ -1,0 +1,51 @@
+<table class="table table-hover table-condensed" data-type="<%=@transaction_type%>">
+    <thead>
+        <tr class="well">
+            <th width="10%">
+                <%= link_to new_transaction_path(:type => @transaction_type),
+                          :class => 'btn btn-success link-add', :title => t('button.add') do%>
+                    <i class="icon-plus icon-white"></i> <%=t('button.add')%>
+                <%end%>
+            </th>
+
+            <!--field date header-->
+            <th width="10%">
+                <%=link_to t('field.common.date'), '#',
+                             :class => 'sorting-header', :data_field => 'date'%>
+
+                <i class="icon-arrow-up"></i>
+                <i class="icon-arrow-down no-disp"></i>
+
+                <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
+                  <i class="icon-filter icon-white"></i>
+                <%end%>
+            </th>
+
+            <!--field summa header-->
+            <th width="10%">
+                <%=link_to t('field.transaction.summa'), '#',
+                             :class => 'sorting-header', :data_field => 'amount'%>
+
+                <i class="icon-arrow-up no-disp"></i>
+                <i class="icon-arrow-down no-disp"></i>
+
+                <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
+                    <i class="icon-filter icon-white"></i>
+                <%end%>
+            </th>
+
+            <%=create_table_header(@transaction_type)%>
+
+            <!--field comment header-->
+            <th width="30%" class="hidden-phone">
+                <%=link_to t('field.transaction.comment'), '#',
+                             :class => 'sorting-header', :data_field => 'comment'%>
+
+                <i class="icon-arrow-up no-disp"></i>
+                <i class="icon-arrow-down no-disp"></i>
+            </th>
+          </tr>
+      </thead>
+
+      <tbody id="data_wrapper"></tbody>
+</table>

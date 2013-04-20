@@ -1,53 +1,18 @@
-<%=render '/notifications'%>
-
-<!--data table-->
-<div class="row-fluid">
-  <div class="span12">
-    <table class="table table-bordered table-hover table-condensed">
-      <thead>
-          <tr class="well">
-            <th width="10%">
-              <%= link_to new_transaction_path(:type => @transaction_type), :class => 'btn btn-success link-add', :title => t('button.add') do%>
-                  <i class="icon-plus icon-white"></i> <%=t('button.add')%>
-              <%end%>
-            </th>
-            <th width="10%">
-              <%=link_to t('field.common.date'), '#', :class => 'sorting-header', :data_field => 'date'%>
-              <i class="icon-arrow-up"></i>
-              <i class="icon-arrow-down no-disp"></i>
-              <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
-                  <i class="icon-filter icon-white"></i>
-              <%end%>
-            </th>
-            <th width="10%">
-              <%=link_to t('field.transaction.summa'), '#', :class => 'sorting-header', :data_field => 'amount'%>
-              <i class="icon-arrow-up no-disp"></i>
-              <i class="icon-arrow-down no-disp"></i>
-              <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
-                  <i class="icon-filter icon-white"></i>
-              <%end%>
-            </th>
-            <%=create_table_header(@transaction_type)%>
-            <th width="30%" class="hidden-phone">
-              <%=link_to t('field.transaction.comment'), '#', :class => 'sorting-header', :data_field => 'comment'%>
-              <i class="icon-arrow-up no-disp"></i>
-              <i class="icon-arrow-down no-disp"></i>
-            </th>
-          </tr>
-      </thead>
-      <tbody id="data_wrapper"></tbody>
-    </table>
-  </div>
-</div>
+<%= render :partial => 'transactions_menu'%>
+<%= render :partial => 'day_popup'%>
 
 <div class="form-container"></div>
 
-<%= render :partial => 'day_popup'%>
+<!--data table-->
+<div class="row-fluid">
+  <div class="span12 table-container">
+
+  </div>
+</div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
         new Transactions({
-            transaction_type: <%=@transaction_type%>,
             color_popup_title: '<%=t('day_color_popup_title')%>',
             delete_confirm: '<%=t('message.confirm.delete')%>',
             errors: {

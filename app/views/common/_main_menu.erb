@@ -8,44 +8,8 @@
       <div class="nav-collapse">
         <ul class="nav">
           <% if user_signed_in? %>
-              <li class="dropdown" id="menuTransactionID">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%=t('menu.transaction.title')%>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <%= link_to t('menu.transaction.from_cash.to_category'),
-                                transactions_path(:type => Transaction::TR_FROM_CASH_TO_CATEGORY)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.from_account.to_cash'),
-                                transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CASH)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.to_account'),
-                                transactions_path(:type => Transaction::TR_TO_ACCOUNT)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.to_cash'),
-                                transactions_path(:type => Transaction::TR_TO_CASH)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.from_cash.to_cash'),
-                                transactions_path(:type => Transaction::TR_FROM_CASH_TO_CASH)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.from_account.to_category'),
-                                transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CATEGORY)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.from_account.to_account'),
-                                transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT)%>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.transaction.from_cash.to_account'),
-                                transactions_path(:type => Transaction::TR_FROM_CASH_TO_ACCOUNT)%></li>
-                </ul>
+              <li id="menuTransactionID">
+                <%=link_to t('menu.transaction.title'), transactions_path%>
               </li>
               <li class="dropdown" id="menuStatisticID">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

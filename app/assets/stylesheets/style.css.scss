@@ -85,3 +85,15 @@ table{
   top:  0 !important;
 }
 
+.nav-pills > li{
+  margin-right: 10px;
+}
+
+.nav-pills > li.double{
+  margin-left: 40px;
+}
+
+.nav-pills{
+  list-style: none;
+}
+

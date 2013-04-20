@@ -6,7 +6,7 @@
      <%else%>
         class="control-group"
      <% end %>>
-  <%= label_tag :amount, t('field.common.date'), :class => 'control-label' %>
+  <%= label_tag :date, t('field.common.date'), :class => 'control-label' %>
   <div class="controls">
     <%= f.datepicker :date, :dateFormat => 'yy-mm-dd', :readOnly => 'readonly', :minDate => '-1M', :maxDate => '+0D'%>
     <% if @transaction.errors[:date].present? %>

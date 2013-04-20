@@ -1,0 +1,58 @@
+<ul class="nav-pills">
+  <li><%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_CATEGORY),
+                  :title => t('menu.transaction.from_cash.to_category'), :class => 'btn btn-info' do%>
+        <icon class="icon-shopping-cart"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CASH),
+                :title => t('menu.transaction.from_account.to_cash'), :class => 'btn btn-info' do%>
+        <icon class="icon-download"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_TO_ACCOUNT),
+                :title => t('menu.transaction.to_account'), :class => 'btn btn-info' do%>
+        <icon class="icon-inbox"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_TO_CASH),
+                :title => t('menu.transaction.to_cash'), :class => 'btn btn-info' do%>
+        <icon class="icon-gift"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CATEGORY),
+                :title => t('menu.transaction.from_account.to_category'), :class => 'btn btn-info' do%>
+        <icon class="icon-barcode"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_ACCOUNT),
+                :title => t('menu.transaction.from_cash.to_account'), :class => 'btn btn-info' do%>
+        <icon class="icon-upload"></icon>
+    <%end%>
+  </li>
+
+  <li class="double">
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_CASH),
+                :title => t('menu.transaction.from_cash.to_cash'), :class => 'btn btn-info' do%>
+        <icon class="icon-hand-right"></icon>
+        <icon class="icon-hand-left"></icon>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT),
+                :title => t('menu.transaction.from_account.to_account'), :class => 'btn btn-info' do%>
+        <icon class="icon-resize-horizontal"></icon>
+        <icon class="icon-list-alt"></icon>
+    <%end%>
+  </li>
+</ul>

@@ -173,20 +173,13 @@ ru:
       cash_to: "В наличные:"
       category: "Категория расходов:"
       type: "Тип транзакции:"
-    weight:
-      weight: "Вес:"
-      training: "Тренировка:"
-      day_difference: "день:"
-      week_difference: "неделя:"
-      month_difference: "месяц:"
-    eating:
-      eating_type: "Тип приема пищи:"
-      time: "Время:"
-      food: "Еда:"
-      overweight: "Переедание:"
-      violation: "Нарушение:"
-      normal: "Норма:"
-
+    filter:
+      transaction:
+        date_from: "Дата от:"
+        date_to: "Дата до:"
+        amount_from: "Сумма мин.:"
+        amount_to: "Сумма макс.:"
+        category: "Категория:"
   button:
     save: "Сохранить изменения"
     back: "Назад"
@@ -238,8 +231,6 @@ ru:
             to_account: "Добавление нового перевода наличных на счет"
             to_cash: "Добавление новой процедуры обмена наличными"
             to_category: "Добавление нового расхода наличных"
-        weight: "Добавление новой записи веса"
-        eating: "Добавление новой записи приема пищи"
       edit:
         category: "Редактирование категории расходов"
         account:
@@ -256,8 +247,6 @@ ru:
             to_account: "Редактирование перевода наличных на счет"
             to_cash: "Редактирование процедуры обмена наличными"
             to_category: "Редактирование расхода наличных"
-        weight: "Редактирование записи веса"
-        eating: "Редактирование записи приема пищи"
         user:
           profile: "Редактирование профиля пользователя"
       statistic:
@@ -269,16 +258,7 @@ ru:
       password_recovery: "Восстановление пароля"
       resend_confirmation_instructions: "Выслать письмо с подтверждением"
       change_password: "Изменение пароля"
-
-  #eating types
-  eating:
-    type:
-      breakfast: "Завтрак"
-      lunch1: "Ланч"
-      afternoon: "Обед"
-      dinner: "Ужин"
-      lunch2: "Полдник"
-      additional: "Перекус"
+      filter: "Фильтр"
 
   #mail messages
   mail:
@@ -344,8 +324,6 @@ ru:
       category:
         empty: "Не выбрана категория расходов"
         reserved: "Такое название зарезервировано в системе"
-
-
 
   info:
     registration: "Заполните поля формы и нажмите на кнопку регистрации. После этого на ваш E-Mail будет
@@ -416,20 +394,3 @@ ru:
             amount:
               blank: "Сумма не может быть пустой"
               not_a_number: "Сумма не является числом"
-        weight:
-          attributes:
-            weight:
-              blank: "Поле веса не может быть пустым"
-              not_a_number: "Вес не является числом"
-            date:
-              blank: "Поле даты не может быть пустой"
-              taken: "Запись с такой датой уже существует"
-        eating:
-          attributes:
-            overweight:
-              blank: "Поле переедания не может быть пустым"
-            food:
-              blank: "Поле еды не может быть пустым"
-              too_long: "Длина поля еды должна быть меньше 255 символов"
-            eating_type_id:
-              blank: "Не выбран тип питания"

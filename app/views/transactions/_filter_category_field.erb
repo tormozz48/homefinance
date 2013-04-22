@@ -1,0 +1,7 @@
+<div class="control-group">
+  <%= label_tag :category, t('field.transaction.category'), :class => 'control-label' %>
+  <div class="controls">
+    <%=select_tag :category, options_from_collection_for_select(@categories, :id, :name, @category),
+                  {:include_blank => true}%>
+  </div>
+</div>

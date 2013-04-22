@@ -5,6 +5,7 @@ Homefinance2::Application.routes.draw do
 
   resources :transactions, :except => [:show] do
     get 'switch', :on => :collection
+    get 'show_filter', :on => :collection
     get 'load', :on => :collection
   end
 

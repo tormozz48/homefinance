@@ -11,34 +11,34 @@
             <%= f.hidden_field :transaction_type%>
             <%= f.hidden_field :user_id%>
 
-            <%= render :partial => 'transaction_amount_field', :locals => {:f => f}%>
-            <%= render :partial => 'transaction_date_field', :locals => {:f => f}%>
+            <%= render :partial => 'form_amount_field', :locals => {:f => f}%>
+            <%= render :partial => 'form_date_field', :locals => {:f => f}%>
 
             <%if  @transaction.transaction_type.to_i == Transaction::TR_TO_ACCOUNT%>
-                <%=render :partial => 'transactions/field_account_to'%>
+                <%=render :partial => 'transactions/form_account_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT%>
-                <%=render :partial => 'transactions/field_account_from'%>
-                <%=render :partial => 'transactions/field_account_to'%>
+                <%=render :partial => 'transactions/form_account_from_field'%>
+                <%=render :partial => 'transactions/form_account_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CASH%>
-                <%=render :partial => 'transactions/field_account_from'%>
-                <%=render :partial => 'transactions/field_cash_to'%>
+                <%=render :partial => 'transactions/form_account_from_field'%>
+                <%=render :partial => 'transactions/form_cash_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_ACCOUNT_TO_CATEGORY%>
-                <%=render :partial => 'transactions/field_account_from'%>
-                <%=render :partial => 'transactions/field_category'%>
+                <%=render :partial => 'transactions/form_account_from_field'%>
+                <%=render :partial => 'transactions/form_category_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_TO_CASH%>
-                <%=render :partial => 'transactions/field_cash_to'%>
+                <%=render :partial => 'transactions/form_cash_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_ACCOUNT%>
-                <%=render :partial => 'transactions/field_cash_from'%>
-                <%=render :partial => 'transactions/field_account_to'%>
+                <%=render :partial => 'transactions/form_cash_from_field'%>
+                <%=render :partial => 'transactions/form_account_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CASH%>
-                <%=render :partial => 'transactions/field_cash_from'%>
-                <%=render :partial => 'transactions/field_cash_to'%>
+                <%=render :partial => 'transactions/form_cash_from_field'%>
+                <%=render :partial => 'transactions/form_cash_to_field'%>
             <%elsif  @transaction.transaction_type.to_i == Transaction::TR_FROM_CASH_TO_CATEGORY%>
-                <%=render :partial => 'transactions/field_cash_from'%>
-                <%=render :partial => 'transactions/field_category'%>
+                <%=render :partial => 'transactions/form_cash_from_field'%>
+                <%=render :partial => 'transactions/form_category_field'%>
             <%end%>
 
-            <%= render :partial => 'transaction_comment_field', :locals => {:f => f}%>
+            <%= render :partial => 'form_comment_field', :locals => {:f => f}%>
       <% end %>
     </div>
     <div class="modal-footer">

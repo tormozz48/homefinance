@@ -1,0 +1,20 @@
+<!--category field-->
+<div <% if @transaction.errors[:category].present? %>
+        class="control-group error"
+     <%elsif @transaction.errors.any?%>
+        class="control-group success"
+     <%else%>
+        class="control-group"
+     <% end %>>
+  <%= label_tag :category_id, t('field.transaction.category'), :class => "control-label" %>
+  <div class="controls">
+    <%= collection_select(:transaction, :category_id, @categories, :id, :name,
+      {:include_blank => t('common.undefined')},  {:id => "category_id", :disabled => !@task_new, :title => t('tooltip.input.transaction.category')})%>
+
+    <% if @transaction.errors[:category].present? %>
+        <% @transaction.errors[:category].each do |msg|%>
+            <p class="help-block"><%= msg%></p>
+        <%end%>
+    <%end%>
+  </div>
+</div>

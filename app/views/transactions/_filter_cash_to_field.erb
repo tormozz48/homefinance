@@ -1,0 +1,7 @@
+<div class="control-group">
+  <%= label_tag :cash_to, t('field.transaction.cash_to'), :class => 'control-label' %>
+  <div class="controls">
+    <%=select_tag :cash_to, options_from_collection_for_select(@cashes, :id, :name, @account_to),
+                  {:include_blank => true}%>
+  </div>
+</div>

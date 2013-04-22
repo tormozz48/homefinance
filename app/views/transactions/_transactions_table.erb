@@ -1,6 +1,6 @@
 <table class="table table-hover table-condensed" data-type="<%=@transaction_type%>">
     <thead>
-        <tr class="well">
+        <tr class="">
             <th width="10%">
                 <%= link_to new_transaction_path(:type => @transaction_type),
                           :class => 'btn btn-success link-add', :title => t('button.add') do%>
@@ -15,10 +15,6 @@
 
                 <i class="icon-arrow-up"></i>
                 <i class="icon-arrow-down no-disp"></i>
-
-                <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
-                  <i class="icon-filter icon-white"></i>
-                <%end%>
             </th>
 
             <!--field summa header-->
@@ -28,10 +24,6 @@
 
                 <i class="icon-arrow-up no-disp"></i>
                 <i class="icon-arrow-down no-disp"></i>
-
-                <%= link_to '#', :class => 'btn', :title => t('button.filter') do%>
-                    <i class="icon-filter icon-white"></i>
-                <%end%>
             </th>
 
             <%=create_table_header(@transaction_type)%>

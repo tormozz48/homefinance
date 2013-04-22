@@ -1,58 +1,74 @@
 <ul class="nav-pills">
-  <li><%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_CATEGORY),
-                  :title => t('menu.transaction.from_cash.to_category'), :class => 'btn btn-info' do%>
+  <li class="navigation-item">
+    <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_CATEGORY),
+                  :title => t('menu.transaction.from_cash.to_category'), :class => 'btn btn-info',
+                  :type => Transaction::TR_FROM_CASH_TO_CATEGORY do%>
         <icon class="icon-shopping-cart"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CASH),
-                :title => t('menu.transaction.from_account.to_cash'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.from_account.to_cash'), :class => 'btn btn-info',
+                :type => Transaction::TR_FROM_ACCOUNT_TO_CASH do%>
         <icon class="icon-download"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_TO_ACCOUNT),
-                :title => t('menu.transaction.to_account'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.to_account'), :class => 'btn btn-info',
+                :type => Transaction::TR_TO_ACCOUNT do%>
         <icon class="icon-inbox"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_TO_CASH),
-                :title => t('menu.transaction.to_cash'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.to_cash'), :class => 'btn btn-info',
+                :type => Transaction::TR_TO_CASH do%>
         <icon class="icon-gift"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_CATEGORY),
-                :title => t('menu.transaction.from_account.to_category'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.from_account.to_category'), :class => 'btn btn-info',
+                :type => Transaction::TR_FROM_ACCOUNT_TO_CATEGORY do%>
         <icon class="icon-barcode"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_ACCOUNT),
-                :title => t('menu.transaction.from_cash.to_account'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.from_cash.to_account'), :class => 'btn btn-info',
+                :type => Transaction::TR_FROM_CASH_TO_ACCOUNT do%>
         <icon class="icon-upload"></icon>
     <%end%>
   </li>
 
-  <li class="double">
+  <li class="double navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_CASH_TO_CASH),
-                :title => t('menu.transaction.from_cash.to_cash'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.from_cash.to_cash'), :class => 'btn btn-info',
+                :type => Transaction::TR_FROM_CASH_TO_CASH do%>
         <icon class="icon-hand-right"></icon>
         <icon class="icon-hand-left"></icon>
     <%end%>
   </li>
 
-  <li>
+  <li class="navigation-item">
     <%= link_to switch_transactions_path(:type => Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT),
-                :title => t('menu.transaction.from_account.to_account'), :class => 'btn btn-info' do%>
+                :title => t('menu.transaction.from_account.to_account'), :class => 'btn btn-info',
+                :type => Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT do%>
         <icon class="icon-resize-horizontal"></icon>
         <icon class="icon-list-alt"></icon>
+    <%end%>
+  </li>
+
+  <li class="double filter-item">
+    <%= link_to show_filter_transactions_path, :class => 'btn', :title => t('button.filter') do%>
+        <i class="icon-search icon-white"></i>
+        <%=t('button.filter')%>
     <%end%>
   </li>
 </ul>

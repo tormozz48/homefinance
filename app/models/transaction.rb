@@ -25,6 +25,8 @@ class Transaction < ActiveRecord::Base
   scope :enabled, -> { where('enabled = true')}
   scope :by_transaction_type, ->(type) { where('transaction_type = ?', type) }
   scope :by_user, ->(id) { where('user_id = ?', id) }
+  scope :by_account_from, ->(id) { where('account_from_id = ?', id) }
+  scope :by_account_to, ->(id) { where('account_to_id = ?', id) }
   scope :by_category, ->(id) { where('category_id = ?', id) }
   scope :between_dates, ->(date_from, date_to) { where('date between ? and ?', date_from, date_to) }
   scope :between_amount, ->(summa_min, summa_max) { where('amount between ? and ?', summa_min, summa_max) }

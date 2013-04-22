@@ -64,7 +64,7 @@ module TransactionsHelper
     width = '20%'
     double_width = '40%'
 
-    case type
+    case type.to_i
     when Transaction::TR_TO_ACCOUNT
        content_tag(:th, I18n.t('field.transaction.account_to'), :width => double_width)
     when Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT
@@ -87,6 +87,22 @@ module TransactionsHelper
     else Transaction::TR_FROM_CASH_TO_CATEGORY
        content_tag(:th, I18n.t('field.transaction.cash_from'), :width => width) +
        content_tag(:th, I18n.t('field.transaction.category'), :width => width)
+    end
+  end
+
+  def get_row_class(transaction)
+    unless transaction.transaction_type.in?(Transaction::TR_GROUP_TO_CATEGORY)
+      return
+    end
+    amount = transaction.amount
+    if amount <= 100
+       'info'
+    elsif amount > 100 && amount <= 1000
+       'success'
+    elsif amount > 1000 && amount <= 5000
+       'warning'
+    else
+       'error'
     end
   end
 

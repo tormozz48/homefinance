@@ -1,4 +1,4 @@
-<tr сlass class="<%=get_row_class(transaction)%>">
+<tr class="<%=get_row_class(transaction)%>">
   <td class="td-center">
     <%= link_to edit_transaction_path(transaction, :page => @p), :class => 'btn link-edit' do%>
         <i class="icon-pencil"></i>
@@ -44,3 +44,4 @@
   <%end%>
   <td class="hidden-phone"><%=transaction.comment %></td>
 </tr>
+

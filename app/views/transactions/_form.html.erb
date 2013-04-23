@@ -7,7 +7,8 @@
         </h3>
     </div>
     <div class="modal-body">
-        <%= form_for(@transaction, :html => {:class=> 'form-horizontal well application-form'}) do |f| %>
+        <%= form_for(@transaction, :remote =>true, :html => {:id =>'transaction_form',
+                     :class=> 'form-horizontal well application-form'}) do |f| %>
             <%= f.hidden_field :transaction_type%>
             <%= f.hidden_field :user_id%>
 
@@ -45,7 +46,7 @@
       <button class="btn" data-dismiss="modal" aria-hidden="true">
         <%=t('button.back')%>
       </button>
-      <%= link_to '#', class: 'btn btn-primary', :title => t('button.save'), :onclick=>"$('form').submit()" do%>
+      <%= link_to '#', :id => 'form_submit', class: 'btn btn-primary', :title => t('button.save') do%>
           <i class="icon-ok icon-white"></i> <%=t('button.save')%>
       <%end%>
     </div>

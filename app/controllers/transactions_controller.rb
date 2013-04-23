@@ -50,6 +50,7 @@ class TransactionsController < ApplicationController
             .enabled.by_transaction_type(transaction_type.to_i).by_user(current_user.id)
             .between_dates(date_from, date_to).between_amount(sum_min, sum_max)
 
+      #add account from query
       if params[:account_from].present? || params[:cash_from].present?
          account_from = Account.find(params[:account_from] || params[:cash_from])
          @transactions = @transactions.by_account_from(account_from.id)
@@ -57,6 +58,7 @@ class TransactionsController < ApplicationController
          session[:account_from] = account_from.id
       end
 
+      #add account to query
       if params[:account_to].present? || params[:cash_to].present?
          account_to = Account.find(params[:account_to] || params[:cash_to])
          @transactions = @transactions.by_account_to(account_to.id)
@@ -64,6 +66,7 @@ class TransactionsController < ApplicationController
          session[:account_to] = account_to.id
       end
 
+      #add categories query
       if params[:category].present?
          category = Category.find(params[:category])
          @transactions = @transactions.by_category(category.id)
@@ -81,6 +84,7 @@ class TransactionsController < ApplicationController
 
       render :partial => 'transactions/transactions',
              :content_type => 'text/html'
+      #render :json => @transactions, :content_type => 'application/json'
   end
 
   def new
@@ -106,18 +110,17 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(params[:transaction])
-    valid = @transaction.valid? ? @transaction.calculate_transaction_new : false
-    respond_to do |format|
-      if valid && @transaction.save
-        flash[:notice] = I18n.t('notice.transaction.added')
-        format.html {redirect_to transactions_path}
-      else
-        @task_new = true
-        load_advanced_data
-        format.html { render :action => 'new'}
-      end
+    transaction = Transaction.new(params[:transaction])
+    valid = transaction.valid? ? transaction.calculate_transaction_new : false
+
+    if valid && transaction.save
+      render :nothing => true, :status => 200
+    else
+      render :json => transaction.errors,
+             :content_type => 'application/json',
+             :status => 206
     end
+
   end
 
   def update
@@ -127,12 +130,11 @@ class TransactionsController < ApplicationController
     valid = @transaction.valid? ? @transaction.calculate_transaction_edit : false
     respond_to do |format|
       if valid && @transaction.update_attributes(p)
-        flash[:notice] = I18n.t('notice.transaction.changed')
-        format.html {redirect_to transactions_path}
+        render :nothing => true, :status => 200
       else
-        @task_new = false
-        load_advanced_data
-        format.html { render :action => 'edit'}
+        render :json => @transaction.errors,
+               :content_type => 'application/json',
+               :status => 206
       end
     end
   end
@@ -141,9 +143,11 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     valid = @transaction.valid? ? @transaction.calculate_transaction_destroy : false
     if valid && @transaction.destroy
-      render :json => {:message => I18n.t('notice.transaction.deleted'), :type => 'success'}
+      render :nothing => true,
+             :status => 200
     else
-      render :json => {:message => I18n.t('error.transaction.deleted'), :type => 'error'}
+      render :nothing => true,
+             :status => 206
     end
   end
 end

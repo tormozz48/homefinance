@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before(:each) do
-    #@user = FactoryGirl.create(:user1)
+    @user = FactoryGirl.create(:user1)
   end
 
   describe 'shoulda validation' do
@@ -38,5 +38,14 @@ describe User do
     it { should have_readonly_attribute(:created_at) }
 
     it { should have_readonly_attribute(:updated_at) }
+
+    it 'should return display name 1' do
+       @user.full_name.should eq('Test First Name Test Last Name')
+    end
+
+    it 'should return display name 2' do
+      @user.first_name = nil
+      @user.full_name.should eq('john_smith@gmail.com')
+    end
   end
 end

@@ -6,31 +6,44 @@ CategoriesForm.prototype = {
 
     config: null,
 
-    $color_field: null,
-
     init: function(config){
         this.config = config;
-        this.$color_field = jQuery('#category_color');
 
         mark_menu("menuCategoriesID");
 
-        jQuery('#submit').click(function(){
-           jQuery('form').submit();
+        this.bind_submit_button();
+        this.init_color_picker();
+    },
+
+    /**
+     * Bind accounts form submitting on submit button click event
+     */
+    bind_submit_button: function(){
+        var submit_button = jQuery('#submit');
+        var form = jQuery('form');
+
+        submit_button.click(function(){
+            form.submit();
         });
+    },
 
-        //jQuery('.controls > input, .controls > textarea').tooltip({placement: 'right'});
-        //jQuery('.btn').tooltip();
+    /**
+     * Init color picker widget for category color field
+     */
+    init_color_picker: function(){
+        var color_field = jQuery('#category_color');
 
-        this.$color_field.css('background-color', '#'+ this.$color_field.val());
-        this.$color_field.css('color', '#'+ this.$color_field.val());
+        color_field.css('background-color', '#'+ color_field.val());
+        color_field.css('color', '#'+ color_field.val());
 
-        this.$color_field.ColorPicker({
+        color_field.ColorPicker({
             flat: false,
             onSubmit: function(hsb, hex, rgb, el) {
-                jQuery(el).val(hex);
-                jQuery(el).css('color', '#'+hex);
-                jQuery(el).css('background-color', '#'+hex);
-                jQuery(el).ColorPickerHide();
+                var _el = jQuery(el);
+                _el.val(hex);
+                _el.css('color', '#'+hex);
+                _el.css('background-color', '#'+hex);
+                _el.ColorPickerHide();
             },
             onBeforeShow: function () {
                 jQuery(this).ColorPickerSetColor(this.value);

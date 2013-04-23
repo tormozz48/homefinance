@@ -4,11 +4,11 @@ describe TransactionsHelper do
 
   describe 'color by date' do
     it 'should return color by date (monday)' do
-      get_row_color_by_date(Date.new(2013, 4, 8)).should eq('#FF6A4D')
+      get_row_color_by_date(Date.new(2013, 4, 8)).should eq('#FFCCCC')
     end
 
     it 'should return color by date (tuesday)' do
-      get_row_color_by_date(Date.new(2013, 4, 9)).should eq('#FFC34D')
+      get_row_color_by_date(Date.new(2013, 4, 9)).should eq('#FFCC88')
     end
 
     it 'should return color by date (wednesday)' do
@@ -16,7 +16,7 @@ describe TransactionsHelper do
     end
 
     it 'should return color by date (thursday)' do
-      get_row_color_by_date(Date.new(2013, 4, 11)).should eq('#88FF4D')
+      get_row_color_by_date(Date.new(2013, 4, 11)).should eq('#BBFFBB')
     end
 
     it 'should return color by date (friday)' do
@@ -24,21 +24,21 @@ describe TransactionsHelper do
     end
 
     it 'should return color by date (saturday)' do
-      get_row_color_by_date(Date.new(2013, 4, 13)).should eq('#4D88FF')
+      get_row_color_by_date(Date.new(2013, 4, 13)).should eq('#66AAFF')
     end
 
     it 'should return color by date (sunday)' do
-      get_row_color_by_date(Date.new(2013, 4, 14)).should eq('#C34DFF')
+      get_row_color_by_date(Date.new(2013, 4, 14)).should eq('#FF66FF')
     end
   end
 
   describe 'color by day' do
     it 'should return color by day (monday)' do
-      get_row_color_by_day(1).should eq('#FF6A4D')
+      get_row_color_by_day(1).should eq('#FFCCCC')
     end
 
     it 'should return color by day (tuesday)' do
-      get_row_color_by_day(2).should eq('#FFC34D')
+      get_row_color_by_day(2).should eq('#FFCC88')
     end
 
     it 'should return color by day (wednesday)' do
@@ -46,7 +46,7 @@ describe TransactionsHelper do
     end
 
     it 'should return color by day (thursday)' do
-      get_row_color_by_day(4).should eq('#88FF4D')
+      get_row_color_by_day(4).should eq('#BBFFBB')
     end
 
     it 'should return color by day (friday)' do
@@ -54,45 +54,11 @@ describe TransactionsHelper do
     end
 
     it 'should return color by day (saturday)' do
-      get_row_color_by_day(6).should eq('#4D88FF')
+      get_row_color_by_day(6).should eq('#66AAFF')
     end
 
     it 'should return color by day (sunday)' do
-      get_row_color_by_day(0).should eq('#C34DFF')
-    end
-  end
-
-  describe 'get index title' do
-    it 'should return index title for TR_TO_ACCOUNT' do
-      get_index_title(0).should eq(I18n.t('list.transactions.to_account'))
-    end
-
-    it 'should return index title for TR_FROM_ACCOUNT_TO_ACCOUNT' do
-      get_index_title(1).should eq(I18n.t('list.transactions.from_account.to_account'))
-    end
-
-    it 'should return index title for TR_FROM_ACCOUNT_TO_CASH' do
-      get_index_title(2).should eq(I18n.t('list.transactions.from_account.to_cash'))
-    end
-
-    it 'should return index title for TR_FROM_ACCOUNT_TO_CATEGORY' do
-      get_index_title(3).should eq(I18n.t('list.transactions.from_account.to_category'))
-    end
-
-    it 'should return index title for TR_TO_CASH' do
-      get_index_title(4).should eq(I18n.t('list.transactions.to_cash'))
-    end
-
-    it 'should return index title for TR_FROM_CASH_TO_ACCOUNT' do
-      get_index_title(5).should eq(I18n.t('list.transactions.from_cash.to_account'))
-    end
-
-    it 'should return index title for TR_FROM_CASH_TO_CASH' do
-      get_index_title(6).should eq(I18n.t('list.transactions.from_cash.to_cash'))
-    end
-
-    it 'should return index title for TR_FROM_CASH_TO_CATEGORY' do
-      get_index_title(7).should eq(I18n.t('list.transactions.from_cash.to_category'))
+      get_row_color_by_day(0).should eq('#FF66FF')
     end
   end
 
@@ -205,6 +171,32 @@ describe TransactionsHelper do
     it 'should create table header for TR_FROM_CASH_TO_CATEGORY' do
       create_table_header(7).should eq('<th width="20%">' + I18n.t('field.transaction.cash_from') + '</th>' +
                                        '<th width="20%">' + I18n.t('field.transaction.category') + '</th>')
+    end
+  end
+
+  describe 'get row class' do
+    it 'should return info class' do
+      transaction = FactoryGirl.create(:transaction8)
+      transaction.amount = 10
+      get_row_class(transaction).should eq('info')
+    end
+
+    it 'should return success class' do
+      transaction = FactoryGirl.create(:transaction8)
+      transaction.amount = 500
+      get_row_class(transaction).should eq('success')
+    end
+
+    it 'should return warning class' do
+      transaction = FactoryGirl.create(:transaction8)
+      transaction.amount = 1500
+      get_row_class(transaction).should eq('warning')
+    end
+
+    it 'should return error class' do
+      transaction = FactoryGirl.create(:transaction8)
+      transaction.amount = 10000
+      get_row_class(transaction).should eq('error')
     end
   end
 end

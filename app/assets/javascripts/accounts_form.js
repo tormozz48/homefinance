@@ -14,10 +14,18 @@ AccountsForm.prototype ={
             mark_menu("menuCashesID");
         }
 
-        jQuery('#submit').click(function(){
-            jQuery('form').submit();
+        this.bind_submit_button();
+    },
+
+    /**
+     * Bind accounts form submitting on submit button click event
+     */
+    bind_submit_button: function(){
+        var submit_button = jQuery('#submit');
+        var form = jQuery('form');
+
+        submit_button.click(function(){
+            form.submit();
         });
-        //jQuery('.controls > .input-append > input, .controls > input, .controls > textarea').tooltip({placement: 'right'});
-        //jQuery('.btn').tooltip();
     }
 };

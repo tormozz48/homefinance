@@ -1,18 +1,8 @@
 <!--transaction date field-->
-<div <% if @transaction.errors[:date].present? %>
-        class="control-group error"
-     <%elsif @transaction.errors.any?%>
-        class="control-group success"
-     <%else%>
-        class="control-group"
-     <% end %>>
+<div class="control-group">
   <%= label_tag :date, t('field.common.date'), :class => 'control-label' %>
   <div class="controls">
-    <%= f.datepicker :date, :dateFormat => 'yy-mm-dd', :readOnly => 'readonly', :minDate => '-1M', :maxDate => '+0D'%>
-    <% if @transaction.errors[:date].present? %>
-        <% @transaction.errors[:date].each do |msg|%>
-            <p class="help-block"><%= msg%></p>
-        <%end%>
-    <%end%>
+    <%= f.datepicker :date, :dateFormat => 'yy-mm-dd',
+                     :readOnly => 'readonly', :minDate => '-1M', :maxDate => '+0D'%>
   </div>
 </div>

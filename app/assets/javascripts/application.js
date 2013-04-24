@@ -34,6 +34,7 @@
 //= require hightcharts/highcharts
 //= require hightcharts/iexporting
 //= require chosen-jquery
+//= require turbolinks
 
 //= require_tree .
 

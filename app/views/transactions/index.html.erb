@@ -17,8 +17,33 @@
             color_popup_title: '<%=t('day_color_popup_title')%>',
             delete_confirm: '<%=t('message.confirm.delete')%>',
             errors: {
-                transaction_delete: '<%=I18n.t('error.transaction.deleted')%>'
-            }
+                transaction_delete: '<%=I18n.t('error.transaction.deleted')%>',
+                transaction:{
+                    amount: {
+                        blank: '<%=I18n.t('activerecord.errors.models.transaction.attributes.amount.blank')%>',
+                        format: '<%=I18n.t('activerecord.errors.models.transaction.attributes.amount.not_a_number')%>',
+                        negative: '<%=I18n.t('activerecord.errors.models.transaction.attributes.amount.negative')%>',
+                    },
+                    comment:{
+                        length: '<%=I18n.t('activerecord.errors.models.transaction.attributes.comment.too_long')%>'
+                    },
+                    account:{
+                        blank: '<%=I18n.t('message.error.account.empty')%>',
+                        negative: '<%=I18n.t('message.error.account.negative')%>'
+                    },
+                    category:{
+                        blank: '<%=I18n.t('message.error.category.empty')%>'
+                    }
+                }
+            },
+            TR_TO_ACCOUNT: '<%=Transaction::TR_TO_ACCOUNT%>',
+            TR_FROM_ACCOUNT_TO_ACCOUNT: '<%=Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT%>',
+            TR_FROM_ACCOUNT_TO_CASH: '<%=Transaction::TR_FROM_ACCOUNT_TO_CASH%>',
+            TR_FROM_ACCOUNT_TO_CATEGORY: '<%=Transaction::TR_FROM_ACCOUNT_TO_CATEGORY%>',
+            TR_TO_CASH: '<%=Transaction::TR_TO_CASH%>',
+            TR_FROM_CASH_TO_ACCOUNT: '<%=Transaction::TR_FROM_CASH_TO_ACCOUNT%>',
+            TR_FROM_CASH_TO_CASH: '<%=Transaction::TR_FROM_CASH_TO_CASH%>',
+            TR_FROM_CASH_TO_CATEGORY: '<%=Transaction::TR_FROM_CASH_TO_CATEGORY%>'
         });
     });
 </script>

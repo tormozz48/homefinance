@@ -6,11 +6,18 @@
                        get_edit_title(@transaction.transaction_type)%>
         </h3>
     </div>
+
     <div class="modal-body">
         <%= form_for(@transaction, :remote =>true, :html => {:id =>'transaction_form',
                      :class=> 'form-horizontal well application-form'}) do |f| %>
             <%= f.hidden_field :transaction_type%>
             <%= f.hidden_field :user_id%>
+
+            <div class="alert alert-error form-errors no-disp">
+              <ul>
+
+              </ul>
+            </div>
 
             <%= render :partial => 'form_amount_field', :locals => {:f => f}%>
             <%= render :partial => 'form_date_field', :locals => {:f => f}%>
@@ -42,6 +49,7 @@
             <%= render :partial => 'form_comment_field', :locals => {:f => f}%>
       <% end %>
     </div>
+
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">
         <%=t('button.back')%>

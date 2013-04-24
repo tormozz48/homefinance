@@ -13,6 +13,12 @@ Transactions.prototype = {
     MODE_EDIT: 'edit',
     MODE_VIEW: 'view',
 
+    FORM_ERRORS_SELECTOR: '.form-errors',
+    CONTROL_GROUP_SELECTOR: '.control-group',
+    CLASS_SUCCESS: 'success',
+    CLASS_ERROR: 'error',
+
+
     sort_field: null,
     sort_direction: null,
 
@@ -242,6 +248,9 @@ Transactions.prototype = {
             });
             modal_form.on('shown', function(){
                 jQuery('#transaction_form')
+                .on("ajax:beforeSend", function(){
+                    return self.validate();
+                })
                 .on("ajax:success", function(evt, data, status, xhr) {
                     if(xhr.status == 200){
                         self.load_data();
@@ -255,7 +264,7 @@ Transactions.prototype = {
                 });
 
                 //amount field should accept only numbers
-                jQuery('#amount').ForceNumericOnly();
+                //jQuery('#amount').ForceNumericOnly();
 
                 //bind click event to form submit button for form submitting
                 //we should return false for preventing link action
@@ -295,6 +304,145 @@ Transactions.prototype = {
             });
         }
         return false;
+    },
+
+    /**
+     * JS validation for transaction form before submitting it to server
+     * @returns {boolean} - status of form validation
+     */
+    validate: function(){
+        jQuery(this.FORM_ERRORS_SELECTOR).children('ul').empty();
+
+        var v1 = this.validate_amount();
+        var v2 = this.validate_account_from();
+        var v3 = this.validate_account_to();
+        var v4 = this.validate_category();
+
+        var result =  v1 && v2 && v3 && v4;
+
+        if(!result){
+            jQuery(this.FORM_ERRORS_SELECTOR).removeClass('no-disp');
+        }else{
+            jQuery(this.FORM_ERRORS_SELECTOR).addClass('no-disp');
+        }
+        return result;
+    },
+
+    /**
+     * Validates value of amount form field
+     * @returns {boolean} - status of form validation
+     */
+    validate_amount: function(){
+        var valid = true;
+        var amount_field = jQuery('#transaction_amount');
+        var amount_group = amount_field.parents(this.CONTROL_GROUP_SELECTOR);
+        var amount = jQuery.trim(amount_field.val());
+        var form_errors = jQuery(this.FORM_ERRORS_SELECTOR);
+
+        amount_group.removeClass(this.CLASS_SUCCESS).removeClass(this.CLASS_ERROR);
+        if(amount.length == 0 || !jQuery.isNumeric(amount) || !(amount > 0)){
+            valid = false;
+            amount_group.addClass(this.CLASS_ERROR);
+            if(amount.length == 0){
+                this.append_error_message(this.config.errors.transaction.amount.blank);
+            }
+            if(!jQuery.isNumeric(amount)){
+                this.append_error_message(this.config.errors.transaction.amount.format);
+            }
+            if(!(amount > 0)){
+                this.append_error_message(this.config.errors.transaction.amount.negative);
+            }
+        }else{
+            amount_group.addClass(this.CLASS_SUCCESS);
+        }
+        return valid;
+    },
+
+    /**
+     * Validates value of account from select form field
+     * @returns {boolean} - status of form validation
+     */
+    validate_account_from: function(){
+        var valid = true;
+        if([this.config.TR_FROM_ACCOUNT_TO_ACCOUNT,
+            this.config.TR_FROM_ACCOUNT_TO_CASH,
+            this.config.TR_FROM_ACCOUNT_TO_CATEGORY,
+            this.config.TR_FROM_CASH_TO_ACCOUNT,
+            this.config.TR_FROM_CASH_TO_CASH,
+            this.config.TR_FROM_CASH_TO_CATEGORY].indexOf(this.type) > -1){
+
+            var account_from_field = jQuery('#account_from_id');
+            var account_from_group = account_from_field.parents(this.CONTROL_GROUP_SELECTOR);
+            var account_from = account_from_field.val();
+
+            account_from_group.removeClass(this.CLASS_SUCCESS).removeClass(this.CLASS_ERROR);
+            if(account_from == null || account_from.length == 0){
+                valid = false;
+                account_from_group.addClass(this.CLASS_ERROR);
+                this.append_error_message(this.config.errors.transaction.account.blank);
+            }else{
+                account_from_group.addClass(this.CLASS_SUCCESS);
+            }
+        }
+        return valid;
+    },
+
+    /**
+     * Validates value of account to select form field
+     * @returns {boolean} - status of form validation
+     */
+    validate_account_to: function(){
+        var valid = true;
+        if([this.config.TR_FROM_ACCOUNT_TO_ACCOUNT,
+            this.config.TR_FROM_ACCOUNT_TO_CASH,
+            this.config.TR_FROM_CASH_TO_ACCOUNT,
+            this.config.TR_FROM_CASH_TO_CASH].indexOf(this.type) > -1){
+
+            var account_to_field = jQuery('#account_to_id');
+            var account_to_group = account_to_field.parents(this.CONTROL_GROUP_SELECTOR);
+            var account_to = account_to_field.val();
+
+            account_to_group.removeClass(this.CLASS_SUCCESS).removeClass(this.CLASS_ERROR);
+            if(account_to == null || account_to.length == 0){
+                valid = false;
+                account_to_group.addClass(this.CLASS_ERROR);
+                this.append_error_message(this.config.errors.transaction.account.blank);
+            }else{
+                account_to_group.addClass(this.CLASS_SUCCESS);
+            }
+        }
+        return valid;
+    },
+
+    /**
+     * Validates value of category select form field
+     * @returns {boolean} - status of form validation
+     */
+    validate_category: function(){
+        var valid = true;
+        if([this.config.TR_FROM_ACCOUNT_TO_CATEGORY,
+            this.config.TR_FROM_CASH_TO_CATEGORY].indexOf(this.type) > -1){
+
+            var category_field = jQuery('#category_id');
+            var category_group = category_field.parents(this.CONTROL_GROUP_SELECTOR);
+            var category = category_field.val();
+
+            category_group.removeClass(this.CLASS_SUCCESS).removeClass(this.CLASS_ERROR);
+            if(category == null || category.length == 0){
+                valid = false;
+                category_group.addClass(this.CLASS_ERROR);
+                this.append_error_message(this.config.errors.transaction.category.blank);
+            }else{
+                category_group.addClass(this.CLASS_SUCCESS);
+            }
+        }
+        return valid;
+    },
+
+    append_error_message: function(message){
+        jQuery(this.FORM_ERRORS_SELECTOR).children('ul').append(
+            '<li>' + message + '</li>'
+        );
     }
 };
 

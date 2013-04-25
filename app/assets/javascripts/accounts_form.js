@@ -15,6 +15,11 @@ AccountsForm.prototype ={
         }
 
         this.bind_submit_button();
+
+        jQuery('.controls').click(function(){
+             jQuery('.controls > .help-block').addClass('no-disp');
+             jQuery(this).children('.help-block').removeClass('no-disp');
+        });
     },
 
     /**

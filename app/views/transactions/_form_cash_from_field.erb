@@ -6,15 +6,10 @@
      <%else%>
         class="control-group"
      <% end %>>
-  <%= label_tag :account_from_id, t('field.transaction.cash_from'), :class => "control-label" %>
+  <%= label_tag :account_from_id, t('field.transaction.cash_from'), :class => 'control-label' %>
   <div class="controls">
     <%= collection_select(:transaction, :account_from_id, @cashes, :id, :name_with_amount,
-                              {:include_blank => t('common.undefined')}, {:id => "account_from_id", :disabled => !@task_new, :title => t('tooltip.input.transaction.cash_from')})%>
-
-    <% if @transaction.errors[:account_from].present? %>
-        <% @transaction.errors[:account_from].each do |msg|%>
-            <p class="help-block"><%= msg%></p>
-        <%end%>
-    <%end%>
+        {:include_blank => t('common.undefined')},
+        {:id => 'account_from', :disabled => !@task_new, :title => t('tooltip.input.transaction.cash_from')})%>
   </div>
 </div>

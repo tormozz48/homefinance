@@ -13,6 +13,11 @@ CategoriesForm.prototype = {
 
         this.bind_submit_button();
         this.init_color_picker();
+
+        jQuery('.controls').click(function(){
+            jQuery('.controls > .help-block').addClass('no-disp');
+            jQuery(this).children('.help-block').removeClass('no-disp');
+        });
     },
 
     /**

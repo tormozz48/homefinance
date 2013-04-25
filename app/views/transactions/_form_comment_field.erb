@@ -2,7 +2,7 @@
 <div class="control-group">
   <%= label_tag :comment, t('field.transaction.comment'), :class => 'control-label' %>
   <div class="controls">
-    <%= f.text_area :comment, :size => '60x6',
+    <%= f.text_area :comment, :size => '60x6', :id => 'comment',
                     :class => 'input-xlarge', :title => t('tooltip.input.transaction.comment')%>
   </div>
 </div>

@@ -8,11 +8,10 @@
      <% end %>>
   <%= label_tag :colorFieldId, t('field.category.color'), :class => 'control-label' %>
   <div class="controls">
-    <%= f.text_field :color, :readOnly => 'readOnly', :class => 'input-mini', :title => t('tooltip.input.category.color')%>
-    <% if @category.errors[:color].present? %>
-        <% @category.errors[:color].each do |msg|%>
-            <p class="help-block"><%= msg%></p>
-        <%end%>
-    <%end%>
+    <%= f.text_field :color, :readOnly => 'readOnly', :class => 'input-mini'%>
+
+    <p class="help-block no-disp">
+      <%=t('tooltip.input.category.color')%>
+    </p>
   </div>
 </div>

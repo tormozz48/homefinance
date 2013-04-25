@@ -1,0 +1,15 @@
+<% unless @account.errors.empty?%>
+    <div class="alert alert-error">
+      <ul>
+        <% @account.errors[:name].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+        <% @account.errors[:description].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+        <% @account.errors[:amount].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+      </ul>
+    </div>
+<%end%>

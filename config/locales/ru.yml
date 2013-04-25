@@ -6,9 +6,6 @@ ru:
     user: "Пользователь:"
     copyright: "Андрей Кузнецов 2012"
 
-  categories_display_count: "Показывать категорий без группировки:"
-  sorting_by: "Сортировка:"
-  load_more: "Загрузить еще ..."
   currency: "грн."
   day_color_popup_title: "Цвета для дней недели"
 
@@ -183,12 +180,8 @@ ru:
   button:
     save: "Сохранить изменения"
     back: "Назад"
-    show: "Просмотр"
-    edit: "Изменить"
-    delete: "Удалить"
     send: "Выслать письмо"
     filter: "Фильтр"
-    action: "Действие"
     add: "Добавить запись"
 
   list:
@@ -196,22 +189,9 @@ ru:
     account:
       cards:  "Список банковских счетов"
       cashes: "Список кошельков с наличными"
-    transactions:
-      to_account: "Список поступлений на банковский счет"
-      from_account:
-        to_account: "Список переводов между счетами"
-        to_cash: "Список процедур обналичивания"
-        to_category: "Список прямых оплат со счетов"
-      to_cash: "Список поступления наличных"
-      from_cash:
-        to_account: "Список переводов наличных на счета"
-        to_cash: "Список процедур обмена наличными"
-        to_category: "Список расходов наличных"
-    weights: "Список записей веса"
 
   add:
     item: "Добавить"
-    eating: "+Прием пищи"
 
   form:
     title:
@@ -331,15 +311,6 @@ ru:
   errors:
     messages:
       not_saved: "Ошибка сохранения данных"
-
-  views:
-    pagination:
-      dummy: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-      first: "Перейти на первую страницу"
-      previous: "Перейти на предыдущую страницу"
-      next: "Перейти на следующую страницу"
-      last: "Перейти на последнюю страницу"
-      truncate: "..."
 
   activerecord:
     errors:

@@ -3,7 +3,7 @@
   <%= label_tag :amount, t('field.transaction.summa'), :class => 'control-label' %>
   <div class="controls">
     <div class="input-append">
-      <%= f.number_field :amount, :class => 'input-small',
+      <%= f.number_field :amount, :class => 'input-small', :id => 'amount',
                          :title => t('tooltip.input.transaction.summa')%>
       <span class="add-on"><%=t('currency')%></span>
     </div>

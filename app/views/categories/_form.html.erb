@@ -8,6 +8,8 @@
 
             <legend><%=@legend%></legend>
 
+            <%= render :partial => 'categories/category_error_block'%>
+
             <%= render :partial => 'categories/category_name_field', :locals => {:f => f}%>
             <%= render :partial => 'categories/category_description_field', :locals => {:f => f}%>
             <%= render :partial => 'categories/category_color_field', :locals => {:f => f}%>

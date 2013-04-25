@@ -114,7 +114,8 @@ class TransactionsController < ApplicationController
     valid = transaction.valid? ? transaction.calculate_transaction_new : false
 
     if valid && transaction.save
-      render :nothing => true, :status => 200
+      render :nothing => true,
+             :status => 200
     else
       render :json => transaction.errors,
              :content_type => 'application/json',
@@ -128,15 +129,16 @@ class TransactionsController < ApplicationController
     p = params[:transaction]
     @transaction.amount = p[:amount]
     valid = @transaction.valid? ? @transaction.calculate_transaction_edit : false
-    respond_to do |format|
-      if valid && @transaction.update_attributes(p)
-        render :nothing => true, :status => 200
-      else
-        render :json => @transaction.errors,
-               :content_type => 'application/json',
-               :status => 206
-      end
+
+    if valid && @transaction.update_attributes(p)
+      render :nothing => true,
+             :status => 200
+    else
+      render :json => @transaction.errors,
+             :content_type => 'application/json',
+             :status => 206
     end
+
   end
 
   def destroy

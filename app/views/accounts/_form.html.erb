@@ -1,13 +1,15 @@
 <!--categories form-->
 <div class="row-fluid">
     <div class="span8">
-        <%= form_for(@account, :html => {:class=> "form-horizontal well application-form"}) do |f| %>
+        <%= form_for(@account, :html => {:class=> 'form-horizontal well application-form'}) do |f| %>
           <%= f.hidden_field :account_type%>
           <%= f.hidden_field :user_id%>
 
           <legend><%=@legend%></legend>
-          
-          <%= render :partial =>  'accounts/account_name_field', :locals => {:f => f}%>
+
+          <%= render :partial => 'accounts/account_error_block'%>
+
+          <%= render :partial => 'accounts/account_name_field', :locals => {:f => f}%>
           <%= render :partial => 'accounts/account_description_field', :locals => {:f => f}%>
           <%= render :partial => 'accounts/account_amount_field', :locals => {:f => f}%>
 

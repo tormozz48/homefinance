@@ -150,7 +150,7 @@ Transactions.prototype = {
                         if(xhr.status == 200){
                             self.handle_response(data);
                         }else{
-
+                             alert(data);
                         }
                     })
                     .on("ajax:error", function(xhr, data, status) {
@@ -200,9 +200,8 @@ Transactions.prototype = {
     handle_response: function(data){
         var self = this;
         //append data to tbody DOM elemen
-        jQuery('#data_wrapper').hide(0, function(){
-            jQuery('#data_wrapper').empty().html(data).fadeIn(500);
-        });
+
+        jQuery('#data_wrapper').html(data)
 
         //bind popover to date color labels
         jQuery(".badge-black-font").popover({
@@ -256,15 +255,19 @@ Transactions.prototype = {
                         self.load_data();
                         jQuery('.form-container > .modal').modal('hide');
                     }else{
-                        alert(data);
+                        jQuery(this.FORM_ERRORS_SELECTOR).children('ul').empty();
+                        for(var field in data){
+                            jQuery('#'+field).parents(self.CONTROL_GROUP_SELECTOR)
+                                .removeClass(self.CLASS_SUCCESS).addClass(self.CLASS_ERROR);
+                            self.append_error_message(data[field]);
+                        }
+                        jQuery(self.FORM_ERRORS_SELECTOR).removeClass('no-disp');
+
                     }
                 })
                 .on("ajax:error", function(xhr, data, status) {
                     alert(data);
                 });
-
-                //amount field should accept only numbers
-                //jQuery('#amount').ForceNumericOnly();
 
                 //bind click event to form submit button for form submitting
                 //we should return false for preventing link action
@@ -334,7 +337,7 @@ Transactions.prototype = {
      */
     validate_amount: function(){
         var valid = true;
-        var amount_field = jQuery('#transaction_amount');
+        var amount_field = jQuery('#amount');
         var amount_group = amount_field.parents(this.CONTROL_GROUP_SELECTOR);
         var amount = jQuery.trim(amount_field.val());
         var form_errors = jQuery(this.FORM_ERRORS_SELECTOR);
@@ -371,7 +374,7 @@ Transactions.prototype = {
             this.config.TR_FROM_CASH_TO_CASH,
             this.config.TR_FROM_CASH_TO_CATEGORY].indexOf(this.type) > -1){
 
-            var account_from_field = jQuery('#account_from_id');
+            var account_from_field = jQuery('#account_from');
             var account_from_group = account_from_field.parents(this.CONTROL_GROUP_SELECTOR);
             var account_from = account_from_field.val();
 
@@ -398,7 +401,7 @@ Transactions.prototype = {
             this.config.TR_FROM_CASH_TO_ACCOUNT,
             this.config.TR_FROM_CASH_TO_CASH].indexOf(this.type) > -1){
 
-            var account_to_field = jQuery('#account_to_id');
+            var account_to_field = jQuery('#account_to');
             var account_to_group = account_to_field.parents(this.CONTROL_GROUP_SELECTOR);
             var account_to = account_to_field.val();
 
@@ -423,7 +426,7 @@ Transactions.prototype = {
         if([this.config.TR_FROM_ACCOUNT_TO_CATEGORY,
             this.config.TR_FROM_CASH_TO_CATEGORY].indexOf(this.type) > -1){
 
-            var category_field = jQuery('#category_id');
+            var category_field = jQuery('#category');
             var category_group = category_field.parents(this.CONTROL_GROUP_SELECTOR);
             var category = category_field.val();
 

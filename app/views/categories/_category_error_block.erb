@@ -1,0 +1,15 @@
+<% unless @category.errors.empty?%>
+    <div class="alert alert-error">
+      <ul>
+        <% @category.errors[:name].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+        <% @category.errors[:description].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+        <% @category.errors[:color].each do |msg|%>
+            <li><%= msg%></li>
+        <%end%>
+      </ul>
+    </div>
+<%end%>

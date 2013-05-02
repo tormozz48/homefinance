@@ -2,7 +2,6 @@
 <div class="control-group">
   <%= label_tag :date, t('field.common.date'), :class => 'control-label' %>
   <div class="controls">
-    <%= f.datepicker :date, :dateFormat => 'yy-mm-dd',
-                     :readOnly => 'readonly', :minDate => '-1M', :maxDate => '+0D'%>
+    <%= f.datepicker :date, :dateFormat => 'yy-mm-dd', :minDate => '-1M', :maxDate => '+0D'%>
   </div>
 </div>

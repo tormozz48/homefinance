@@ -1,57 +1,54 @@
 class StatisticsController < ApplicationController
   before_filter :authenticate_user!
 
-  def initStatisticByDate
-    @categories = Category.order("name ASC").find_all_by_user_id_and_enabled(current_user.id, true)
-    respond_to do |format|
-      format.html {render 'statistics/statistic_date'}
-    end
+  DATE_FROM_DEFAULT = 1.month.ago.to_date
+
+  def index
+    @date_from = session[:date_from] || DATE_FROM_DEFAULT
+    @date_to = session[:date_to] || Date.today
   end
 
-  def initStatisticByCategory
-    respond_to do |format|
-      format.html {render 'statistics/statistic_category'}
-    end
-  end
-
-  def showStatisticByDate
+  def load_by_category
     date_from = params[:date_from]
     date_to = params[:date_to]
-    transaction_type = params[:transaction_type]
-    category_id = params[:category]
-    if(!category_id.blank? &&
-       (transaction_type == Transaction::TRANSACTION_FROM_ACCOUNT_TO_CATEGORY.to_s(10) ||
-        transaction_type == Transaction::TRANSACTION_FROM_CASH_TO_CATEGORY.to_s(10)))
-          transactions = Transaction.where(
-            :date => (date_from.to_date)..(date_to.to_date),
-            :transaction_type => transaction_type,
-            :enabled => true,
-            :category_id => category_id,
-            :user_id => current_user.id).select("date(date) as transaction_date, sum(amount) as transaction_amount")
-              .group("date(date)").order("date asc").having("sum(amount) > 0")
-    else
-      transactions = Transaction.where(
-          :date => (date_from.to_date)..(date_to.to_date),
-          :transaction_type => transaction_type,
-          :enabled => true,
-          :user_id => current_user.id).select("date(date) as transaction_date, sum(amount) as transaction_amount")
-                          .group("date(date)").order("date asc")
 
+    transactions = Transaction
+    .where(:date => (date_from.to_date)..(date_to.to_date),
+           :enabled => true,
+           :user_id => current_user.id)
+    .select('categories.name, categories.color, sum(transactions.amount) as amount')
+    .joins('inner join categories on categories.id = transactions.category_id')
+    .group('categories.name, categories.color')
+    .having('sum(transactions.amount) > 0')
+    .order('amount desc').collect do |tr|{
+          category: tr.name,
+          value: tr.amount,
+          color: "##{tr.color}"}
     end
-    render :json=>[transactions]  and return
+
+    session[:date_from] = date_from
+    session[:date_to] = date_to
+
+    render :json => transactions, :content_type => 'application/json'
   end
 
-  def showStatisticByCategory
+  def load_by_date
     date_from = params[:date_from]
     date_to = params[:date_to]
-    transaction_type = params[:transaction_type]
+
+    type = params[:type] || Transaction::TR_FROM_CASH_TO_CATEGORY
+
     transactions = Transaction.where(
-        :date => (date_from.to_date)..(date_to.to_date),
-        :transaction_type => transaction_type,
-        :enabled => true,
-        :user_id => current_user.id).select("categories.name as category_name, categories.color as category_color, sum(transactions.amount) as transaction_amount").
-        joins('inner join categories on categories.id = transactions.category_id').group("categories.name, categories.color").order("transaction_amount desc").having("sum(transactions.amount) > 0")
-    render :json=>[transactions]  and return
-  end
+                  :date => (date_from.to_date)..(date_to.to_date),
+                  :transaction_type => type,
+                  :enabled => true,
+                  :user_id => current_user.id)
+    .select('date(date), sum(amount) as value')
+    .group('date(date)').order('date asc').having('sum(amount) > 0')
 
+    session[:date_from] = date_from
+    session[:date_to] = date_to
+
+    render :json => transactions, :content_type => 'application/json'
+  end
 end

@@ -3,20 +3,16 @@ require 'spec_helper'
 describe StatisticsController do
   describe 'routing' do
 
-    it 'statistic date' do
-      get('/statistics/statistic_date').should route_to('statistics#statistic_date')
-    end
-
-    it 'statistic category' do
-      get('/statistics/statistic_category').should route_to('statistics#statistic_category')
+    it 'statistic index' do
+      get('/statistics').should route_to('statistics#index')
     end
 
     it 'show statistic by date' do
-      post('/statistics/show_statistic_by_date').should route_to('statistics#show_statistic_by_date')
+      get('/statistics/load_by_date').should route_to('statistics#load_by_date')
     end
 
     it 'show statistic by category' do
-      post('/statistics/show_statistic_by_category').should route_to('statistics#show_statistic_by_category')
+      get('/statistics/load_by_category').should route_to('statistics#load_by_category')
     end
   end
 end

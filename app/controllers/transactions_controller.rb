@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   MAX_SUM = 10000
-  DATE_FROM_DEFAULT = 2.month.ago.to_date
+  DATE_FROM_DEFAULT = 2.week.ago.to_date
 
   def index
 

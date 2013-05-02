@@ -1,0 +1,9 @@
+<div class = "form-inline well">
+  <%= label_tag :date_from, t('field.filter.transaction.date_from'), :class => 'control-label' %>
+  <%= text_field_tag :date_from, @date_from, :readOnly => 'readonly', :class =>'input-small'%>
+  <%= label_tag :date_to, t('field.filter.transaction.date_to'), :class => 'control-label' %>
+  <%= text_field_tag :date_to, @date_to, :readOnly => 'readonly', :class =>'input-small'%>
+  <%= link_to '#', :id => 'filter_submit', :class => 'btn btn-primary', :title => t('button.filter') do%>
+      <i class="icon-search icon-white"></i> <%=t('button.filter')%>
+  <%end%>
+</div>

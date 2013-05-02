@@ -11,15 +11,8 @@
               <li id="menuTransactionID">
                 <%=link_to t('menu.transaction.title'), transactions_path%>
               </li>
-              <li class="dropdown" id="menuStatisticID">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%=t('menu.statistic.title')%>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to t('menu.statistic.date'), statistic_date_statistics_path %></li>
-                  <li><%= link_to t('menu.statistic.category'), statistic_category_statistics_path %></li>
-                </ul>
+              <li id="menuStatisticID" class="hidden-phone hidden-tablet">
+                <%=link_to t('menu.statistic.title'), statistics_path%>
               </li>
               <li id="menuAccountsID">
                 <%= link_to t('menu.accounts'), accounts_path(:type => Account::ACCOUNT_CARD_TYPE)%>

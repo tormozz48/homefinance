@@ -8,8 +8,8 @@ FactoryGirl.define do
     account_to_id 1
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 0
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_TO_ACCOUNT
     comment 'transaction to account comment'
     enabled true
   end
@@ -21,8 +21,8 @@ FactoryGirl.define do
     account_to_id 3
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 1
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_ACCOUNT_TO_ACCOUNT
     comment 'transaction from account to account comment'
     enabled true
   end
@@ -34,8 +34,8 @@ FactoryGirl.define do
     account_to_id 2
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 2
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_ACCOUNT_TO_CASH
     comment 'transaction from account to cash comment'
     enabled true
   end
@@ -47,8 +47,8 @@ FactoryGirl.define do
     account_to_id nil
     category_id 1
     amount 10
-    date '2013-03-09'
-    transaction_type 3
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_ACCOUNT_TO_CATEGORY
     comment 'transaction from account to category comment'
     enabled true
   end
@@ -60,8 +60,8 @@ FactoryGirl.define do
     account_to_id 2
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 4
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_TO_CASH
     comment 'transaction to cash comment'
     enabled true
   end
@@ -73,8 +73,8 @@ FactoryGirl.define do
     account_to_id 1
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 5
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_CASH_TO_ACCOUNT
     comment 'transaction from cash to account comment'
     enabled true
   end
@@ -86,8 +86,8 @@ FactoryGirl.define do
     account_to_id 4
     category_id nil
     amount 10
-    date '2013-03-09'
-    transaction_type 6
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_CASH_TO_CASH
     comment 'transaction from cash to cash comment'
     enabled true
   end
@@ -99,8 +99,8 @@ FactoryGirl.define do
     account_to_id nil
     category_id 1
     amount 10
-    date '2013-03-09'
-    transaction_type 7
+    date 1.week.ago.to_date
+    transaction_type Transaction::TR_FROM_CASH_TO_CATEGORY
     comment 'transaction from cash to category comment'
     enabled true
   end

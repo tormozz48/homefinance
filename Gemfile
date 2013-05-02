@@ -17,9 +17,9 @@ end
 group :development do
   gem 'bullet'
   gem 'hirb'
-  #gem 'rack-mini-profiler'
-  #gem 'binding_of_caller'
-  #gem 'better_errors'
+  gem 'rack-mini-profiler'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 group :test do
@@ -43,4 +43,5 @@ gem 'twitter-bootstrap-rails'
 gem 'jquery_datepicker'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'amcharts-rails', '~> 2.7.7.1.0'
 

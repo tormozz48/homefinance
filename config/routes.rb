@@ -17,11 +17,9 @@ Homefinance2::Application.routes.draw do
     get 'load', :on => :collection
   end
 
-  resources :statistics, :except => [:index, :show, :new, :edit, :create, :update, :destroy] do
-    get 'statistic_date', :on => :collection
-    get 'statistic_category', :on => :collection
-    post 'show_statistic_by_date', :on => :collection
-    post 'show_statistic_by_category', :on => :collection
+  resources :statistics, :except => [:show, :new, :edit, :create, :update, :destroy] do
+    get 'load_by_category', :on => :collection
+    get 'load_by_date', :on => :collection
   end
 
   match 'edit_user_profile', :to => 'users#edit'

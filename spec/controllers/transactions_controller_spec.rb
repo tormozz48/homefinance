@@ -300,7 +300,7 @@ describe TransactionsController do
     db_transaction_updated.date.should eq(transaction.date)
     db_transaction_updated.comment.should eq(transaction.comment)
 
-    response.status.should eq(406)
+    response.status.should eq(206)
   end
 
   it 'should go to destroy action' do

@@ -1,212 +1,70 @@
-/**
- * Created by JetBrains RubyMine.
- * User: Andrey
- * Date: 5/19/12
- * Time: 9:23 AM
- * To change this template use File | Settings | File Templates.
- */
-
-var chart = null;
-var lineChartOptions = null;
-var pieChartOptions = null;
-
-function initStatisticByDateChartOptions(title, x_title, y_title){
-    lineChartOptions = {
-        chart: {
-            renderTo: 'chartContainer',
-            type: 'spline',
-            borderRadius: 0
-        },
-        colors:[],
-        title: {text: title},
-        subtitle: {text: ''},
-        xAxis: {
-            title: {text: x_title},
-            type: 'line',
-            gridLineWidth: 1,
-            labels: {
-                rotation: -90,
-                align: 'right',
-                style: {
-                    font: 'normal 11px Verdana, sans-serif'
-                }
-            },
-            categories: []
-        },
-        legend: {enabled: false},
-        yAxis: {
-            title: {text: y_title},
-            gridLineWidth: 1
-        },
-        tooltip: {
-            enabled: true,
-            formatter: function() {
-                return '<b></b>'+
-                    this.x +': '+ this.y;
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {enabled: true},
-                enableMouseTracking: true
-            }
-        },
-        series: []
-    };
+Statistics = function(config){
+    this.init(config);
 };
 
-function initCategoryChartOptions(title, other){
-    pieChartOptions = {
-        categoryOtherTitle: other,
-        chart: {
-            renderTo: 'chartContainer',
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            borderRadius: 0
-        },
-        title: {
-            text: title
-        },
-        tooltip: {
-            formatter: function() {
-                return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*100)/100 +' %';
+Statistics.prototype = {
+    config: null,
+
+    date_charts: null,
+    category_chart: null,
+
+    date_from_selector: null,
+    date_to_selector: null,
+
+    init: function(config){
+        this.config = config;
+        this.init_filter();
+        this.category_chart = category_chart(this.date_from_selector, this.date_to_selector);
+        this.category_chart.create();
+
+        this.date_charts = [];
+        for(var i = 0; i < 8; i++){
+            this.date_charts[i] = date_chart(i, this.date_from_selector, this.date_to_selector);
+            this.date_charts[i].create();
+        }
+    },
+
+    init_filter: function(){
+        var self = this;
+
+        this.date_from_selector = jQuery('#date_from');
+        this.date_to_selector = jQuery('#date_to');
+
+        //bind date picker for date from field
+        this.date_from_selector.datepicker({
+            dateFormat: 'yy-mm-dd',
+            maxDate: new Date(),
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(dateText, inst) {
+                self.date_to_selector.datepicker('option', 'minDate', self.date_from_selector.datepicker('getDate'));
+                self.date_from_selector.datepicker('hide');
             }
-        },
-        legend:{
-            align: "left",
-            layout: "vertical",
-            verticalAlign: 'top',
-            x: 0,
-            y: 50
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    color: '#000000',
-                    connectorColor: '#000000',
-                    formatter: function() {
-                        return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*100)/100 +' %';
-                    }
-                },
-                showInLegend: true
+        });
+
+        //bind date picker for date to field
+        self.date_to_selector.datepicker({
+            dateFormat: 'yy-mm-dd',
+            maxDate: new Date(),
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(dateText, inst) {
+                self.date_from_selector.datepicker('option', 'maxDate', self.date_to_selector.datepicker('getDate'));
+                self.date_to_selector.datepicker('hide');
             }
-        },
-        series: []
-    };
+        });
+
+        jQuery('#filter_submit').click(function(){
+            self.reload();
+            return false;
+        })
+    },
+
+    reload: function(){
+        this.category_chart.reload();
+        for(var i = 0; i < 8; i++){
+            this.date_charts[i].reload();
+        }
+    }
 };
 
-function statisticInit(){
-    markMenuItemById("menuStatisticID");
-
-    resizeChartWrapper();
-
-    jQuery.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
-    jQuery('#date_from_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_to_id').datepicker('option', 'minDate', jQuery('#date_from_id').datepicker('getDate'));
-            jQuery('#date_from_id').datepicker('hide');
-            jQuery('#date_from_button').html("<i class=\"icon-calendar\"></i> " + dateText);
-            jQuery('.statisticForm').submit();
-        }
-    });
-    jQuery('#date_to_id').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date(),
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(dateText, inst) {
-            jQuery('#date_from_id').datepicker('option', 'maxDate', jQuery('#date_to_id').datepicker('getDate'));
-            jQuery('#date_to_id').datepicker('hide');
-            jQuery('#date_to_button').html("<i class=\"icon-calendar\"></i> " + dateText);
-            jQuery('.statisticForm').submit();
-        }
-    });
-
-    jQuery('#date_from_button').click(function(){
-        jQuery('#date_from_id').datepicker( "show" )
-    });
-
-    jQuery('#date_to_button').click(function(){
-        jQuery('#date_to_id').datepicker( "show" )
-    });
-
-    jQuery('.btn, select').tooltip();
-
-    jQuery('#statisticDateFormId').ajaxSuccess(function(evt, request, settings){
-        var data = jQuery.parseJSON(request.responseText);
-        var cat_ser = null;
-        lineChartOptions.yAxis.min = 0;
-        lineChartOptions.xAxis.categories = new Array();
-        lineChartOptions.series = new Array();
-        if(data.length > 0  && data[0].length > 0){
-            cat_ser = {data: []};
-            for(var i = 0; i < data[0].length ; i++){
-                lineChartOptions.xAxis.categories.push(data[0][i]['transaction_date'])
-                cat_ser.data.push(parseFloat(data[0][i]['transaction_amount']));
-            }
-            lineChartOptions.series.push(cat_ser);
-        }
-        if(chart != null){
-           chart.destroy();
-        }
-        chart = new Highcharts.Chart(lineChartOptions);
-    });
-
-    /*
-    jQuery('#statisticWeightFormId').ajaxSuccess(function(evt, request, settings){
-        var data = jQuery.parseJSON(request.responseText);
-        var cat_ser = null;
-        lineChartOptions.xAxis.categories = new Array();
-        lineChartOptions.series = new Array();
-        if(data.length > 0  && data[0].length > 0){
-            cat_ser = {data: []};
-            for(var i = 0; i < data[0].length ; i++){
-                lineChartOptions.xAxis.categories.push(data[0][i]['date'])
-                cat_ser.data.push(parseFloat(data[0][i]['weight']));
-            }
-            lineChartOptions.series.push(cat_ser);
-        }
-        if(chart != null){
-            chart.destroy();
-        }
-        chart = new Highcharts.Chart(lineChartOptions);
-    });
-    */
-
-    jQuery('#statisticCategoryFormId').ajaxSuccess(function(evt, request, settings){
-        var data = jQuery.parseJSON(request.responseText);
-        var items = new Array();
-        var series = {type: 'pie', name: '',data: []};
-        if(data.length > 0  && data[0].length > 0){
-            var count = jQuery('#categories_count_id').val();
-            var sum = 0;
-            for(var i = 0; i < data[0].length ; i++){
-                if(i<count){
-                    items.push({name: data[0][i]['category_name'], color: '#'+data[0][i]['category_color'], y: parseFloat(data[0][i]['transaction_amount'])});
-                }else{
-                    sum += parseFloat(data[0][i]['transaction_amount']);
-                }
-            }
-            if(sum > 0){
-                items.push({name: pieChartOptions.categoryOtherTitle, color: '#999', y: sum});
-            }
-        }
-        series.data = items;
-        pieChartOptions.series = new Array();
-        pieChartOptions.series.push(series);
-        if(chart != null){
-            chart.destroy();
-        }
-        chart = new Highcharts.Chart(pieChartOptions);
-    });
-
-    jQuery('.statisticForm').submit();
-};

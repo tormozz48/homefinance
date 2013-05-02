@@ -10,8 +10,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    successfully_updated = @user.update_without_password(params[:user])
-    if successfully_updated
+    if @user.update_without_password(params[:user])
       sign_in @user, :bypass => true
       redirect_to root_path
     else
@@ -23,17 +22,17 @@ class UsersController < ApplicationController
   end
 
   def social_authentification
-     logger.info('social auth start')
      token = params[:token]
-     app_id = "30025"
-     secret_key = "8374210538983a539635429893ff2584"
-     if !token.nil?
-       social_data = Loginza.user_data(params[:token], :options => {:id => app_id, :sig => secret_key})
+     app_id = '30025'
+     secret_key = '8374210538983a539635429893ff2584'
+     unless token.nil?
+       social_data = Loginza.user_data(token,
+                                       :options => {:id => app_id, :sig => secret_key})
        email = social_data['email']
        logger.info(email)
-       if !email.nil?
+       unless email.nil?
           user = User.find_by_email(email)
-          if(user.nil?)
+          unless user.nil?
             user = User.new(:email => email,
                             :provider => social_data['provider'],
                             :first_name => social_data['name']['first_name'],

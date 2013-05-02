@@ -1,23 +1,15 @@
 Homefinance2::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
-
-  # Code is not reloaded between requests
   config.cache_classes = true
 
-  # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
 
-  # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = true
 
-  # Generate digests for assets URLs
   config.assets.digest = true
 
   # Defaults to Rails.root.join("public/assets")
@@ -65,17 +57,17 @@ Homefinance2::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => 'homefinance.herokuapp.com' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :domain               => 'homefinance.herokuapp.com',
-      :user_name            => 'tormozoid48@gmail.com',
-      :password             => 'tormozoid',
-      :authentication       => 'plain',
-      :enable_starttls_auto => true  }
+  #config.action_mailer.default_url_options = { :host => 'homefinance.herokuapp.com' }
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.perform_deliveries = true
+  #config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.default :charset => "utf-8"
+  #config.action_mailer.smtp_settings = {
+  #    :address              => "smtp.gmail.com",
+  #    :port                 => 587,
+  #    :domain               => 'homefinance.herokuapp.com',
+  #    :user_name            => 'tormozoid48@gmail.com',
+  #    :password             => 'tormozoid',
+  #    :authentication       => 'plain',
+  #    :enable_starttls_auto => true  }
 end

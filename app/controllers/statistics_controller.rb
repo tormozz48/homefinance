@@ -12,7 +12,7 @@ class StatisticsController < ApplicationController
     date_from = params[:date_from]
     date_to = params[:date_to]
 
-    transactions = Transaction
+    @transactions = Transaction
     .where(:date => (date_from.to_date)..(date_to.to_date),
            :enabled => true,
            :user_id => current_user.id)
@@ -29,7 +29,7 @@ class StatisticsController < ApplicationController
     session[:date_from] = date_from
     session[:date_to] = date_to
 
-    render :json => transactions, :content_type => 'application/json'
+    render :json => @transactions, :content_type => 'application/json'
   end
 
   def load_by_date
@@ -38,7 +38,7 @@ class StatisticsController < ApplicationController
 
     type = params[:type] || Transaction::TR_FROM_CASH_TO_CATEGORY
 
-    transactions = Transaction.where(
+    @transactions = Transaction.where(
                   :date => (date_from.to_date)..(date_to.to_date),
                   :transaction_type => type,
                   :enabled => true,
@@ -49,6 +49,6 @@ class StatisticsController < ApplicationController
     session[:date_from] = date_from
     session[:date_to] = date_to
 
-    render :json => transactions, :content_type => 'application/json'
+    render :json => @transactions, :content_type => 'application/json'
   end
 end

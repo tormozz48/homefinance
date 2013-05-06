@@ -7,6 +7,7 @@ ru:
     copyright: "Андрей Кузнецов 2012"
 
   currency: "грн."
+  total: "Итоговая сумма"
   day_color_popup_title: "Цвета для дней недели"
 
   contacts:

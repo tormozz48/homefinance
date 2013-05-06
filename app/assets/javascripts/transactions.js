@@ -224,6 +224,12 @@ Transactions.prototype = {
         jQuery('.link-delete').unbind('click').on('click', function(){
             return self.del(this);
         });
+
+        var sum = 0;
+        jQuery('.td-amount').each(function(){
+            sum += +jQuery(this).html();
+        });
+        jQuery('.total-amount > span').html(sum)
     },
 
     /**

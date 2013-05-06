@@ -85,6 +85,10 @@ table{
   background-color: #ff0000 !important;
 }
 
+.total-amount > span{
+  font-weight: bold;
+}
+
 /*twitter bootstrap overrides*/
 .modal{
   top:  0 !important;

@@ -10,7 +10,9 @@
 
   <td><div class="badge badge-black-font"
            style="background-color: <%=get_row_color_by_date(transaction.date)%>"><%=transaction.date%></div></td>
-  <td><%=transaction.amount%></td>
+  <td class='td-amount'>
+    <%=transaction.amount%>
+  </td>
 
   <%if Transaction::TR_GROUP_TO.include?(transaction.transaction_type)%>
       <td>

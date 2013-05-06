@@ -70,13 +70,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-initStatisticByCategory">#initStatisticByCategory</a>
+    <li><a href="#method-i-index">#index</a>
     
-    <li><a href="#method-i-initStatisticByDate">#initStatisticByDate</a>
+    <li><a href="#method-i-load_by_category">#load_by_category</a>
     
-    <li><a href="#method-i-showStatisticByCategory">#showStatisticByCategory</a>
-    
-    <li><a href="#method-i-showStatisticByDate">#showStatisticByDate</a>
+    <li><a href="#method-i-load_by_date">#load_by_date</a>
     
   </ul>
 </nav>
@@ -115,13 +113,7 @@
   
     <li><a href="./Category.html">Category</a>
   
-    <li><a href="./Eating.html">Eating</a>
-  
-    <li><a href="./EatingType.html">EatingType</a>
-  
-    <li><a href="./EatingsController.html">EatingsController</a>
-  
-    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+    <li><a href="./Object.html">Object</a>
   
     <li><a href="./StatisticsController.html">StatisticsController</a>
   
@@ -138,12 +130,6 @@
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
-  
-    <li><a href="./Weight.html">Weight</a>
-  
-    <li><a href="./WeightsController.html">WeightsController</a>
-  
-    <li><a href="./WeightsHelper.html">WeightsHelper</a>
   
   </ul>
 </nav>
@@ -167,6 +153,19 @@
     
 
     
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="DATE_FROM_DEFAULT">DATE_FROM_DEFAULT
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
 
     
 
@@ -176,10 +175,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-initStatisticByCategory" class="method-detail ">
+      <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">initStatisticByCategory</span><span
+          <span class="method-name">index</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -191,99 +190,76 @@
           
 
           
-          <div class="method-source-code" id="initStatisticByCategory-source">
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@date_from</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_from</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATE_FROM_DEFAULT</span>
+  <span class="ruby-ivar">@date_to</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_to</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
+
+    
+      <div id="method-i-load_by_category" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_by_category</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_by_category-source">
             <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initStatisticByCategory</span>
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">'statistics/statistic_category'</span>}
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- initStatisticByCategory-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- initStatisticByCategory-method -->
-
-    
-      <div id="method-i-initStatisticByDate" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initStatisticByDate</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="initStatisticByDate-source">
-            <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initStatisticByDate</span>
-  <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;enabled = true&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;name asc&quot;</span>)
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">'statistics/statistic_date'</span>}
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- initStatisticByDate-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- initStatisticByDate-method -->
-
-    
-      <div id="method-i-showStatisticByCategory" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">showStatisticByCategory</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="showStatisticByCategory-source">
-            <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">showStatisticByCategory</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_by_category</span>
   <span class="ruby-identifier">date_from</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:date_from</span>]
   <span class="ruby-identifier">date_to</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:date_to</span>]
-  <span class="ruby-identifier">transaction_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:transaction_type</span>]
-  <span class="ruby-identifier">transactions</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">where</span>(
-      <span class="ruby-value">:date</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">to_date</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">date_to</span>.<span class="ruby-identifier">to_date</span>),
-      <span class="ruby-value">:transaction_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">transaction_type</span>,
-      <span class="ruby-value">:enabled</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-      <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;categories.name as category_name, categories.color as category_color, sum(transactions.amount) as transaction_amount&quot;</span>).
-      <span class="ruby-identifier">joins</span>(<span class="ruby-string">'inner join categories on categories.id = transactions.category_id'</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;categories.name, categories.color&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;transaction_amount desc&quot;</span>).<span class="ruby-identifier">having</span>(<span class="ruby-string">&quot;sum(transactions.amount) &gt; 0&quot;</span>)
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:json=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">transactions</span>]  <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+
+  <span class="ruby-ivar">@transactions</span> = <span class="ruby-constant">Transaction</span>
+  .<span class="ruby-identifier">where</span>(<span class="ruby-value">:date</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">to_date</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">date_to</span>.<span class="ruby-identifier">to_date</span>),
+         <span class="ruby-value">:enabled</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
+         <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  .<span class="ruby-identifier">select</span>(<span class="ruby-string">'categories.name, categories.color, sum(transactions.amount) as amount'</span>)
+  .<span class="ruby-identifier">joins</span>(<span class="ruby-string">'inner join categories on categories.id = transactions.category_id'</span>)
+  .<span class="ruby-identifier">group</span>(<span class="ruby-string">'categories.name, categories.color'</span>)
+  .<span class="ruby-identifier">having</span>(<span class="ruby-string">'sum(transactions.amount) &gt; 0'</span>)
+  .<span class="ruby-identifier">order</span>(<span class="ruby-string">'amount desc'</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tr</span><span class="ruby-operator">|</span>{
+        <span class="ruby-identifier">category</span><span class="ruby-operator">:</span> <span class="ruby-identifier">tr</span>.<span class="ruby-identifier">name</span>,
+        <span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">tr</span>.<span class="ruby-identifier">amount</span>,
+        <span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;##{tr.color}&quot;</span>}
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_from</span>] = <span class="ruby-identifier">date_from</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_to</span>] = <span class="ruby-identifier">date_to</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@transactions</span>, <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'application/json'</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- showStatisticByCategory-source -->
+          </div><!-- load_by_category-source -->
           
         </div>
 
         
 
         
-      </div><!-- showStatisticByCategory-method -->
+      </div><!-- load_by_category-method -->
 
     
-      <div id="method-i-showStatisticByDate" class="method-detail ">
+      <div id="method-i-load_by_date" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">showStatisticByDate</span><span
+          <span class="method-name">load_by_date</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -295,42 +271,35 @@
           
 
           
-          <div class="method-source-code" id="showStatisticByDate-source">
-            <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">showStatisticByDate</span>
+          <div class="method-source-code" id="load_by_date-source">
+            <pre><span class="ruby-comment"># File app/controllers/statistics_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_by_date</span>
   <span class="ruby-identifier">date_from</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:date_from</span>]
   <span class="ruby-identifier">date_to</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:date_to</span>]
-  <span class="ruby-identifier">transaction_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:transaction_type</span>]
-  <span class="ruby-identifier">category_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:category</span>]
-  <span class="ruby-keyword">if</span>(<span class="ruby-operator">!</span><span class="ruby-identifier">category_id</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span>
-     (<span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>) <span class="ruby-operator">||</span>
-      <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)))
-        <span class="ruby-identifier">transactions</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">where</span>(
-          <span class="ruby-value">:date</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">to_date</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">date_to</span>.<span class="ruby-identifier">to_date</span>),
-          <span class="ruby-value">:transaction_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">transaction_type</span>,
-          <span class="ruby-value">:enabled</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-          <span class="ruby-value">:category_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">category_id</span>,
-          <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;date(date) as transaction_date, sum(amount) as transaction_amount&quot;</span>)
-            .<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;date(date)&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;date asc&quot;</span>).<span class="ruby-identifier">having</span>(<span class="ruby-string">&quot;sum(amount) &gt; 0&quot;</span>)
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">transactions</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">where</span>(
-        <span class="ruby-value">:date</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">to_date</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">date_to</span>.<span class="ruby-identifier">to_date</span>),
-        <span class="ruby-value">:transaction_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">transaction_type</span>,
-        <span class="ruby-value">:enabled</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-        <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;date(date) as transaction_date, sum(amount) as transaction_amount&quot;</span>)
-                        .<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;date(date)&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;date asc&quot;</span>)
 
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:json=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-identifier">transactions</span>]  <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CATEGORY</span>
+
+  <span class="ruby-ivar">@transactions</span> = <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">where</span>(
+                <span class="ruby-value">:date</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">to_date</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">date_to</span>.<span class="ruby-identifier">to_date</span>),
+                <span class="ruby-value">:transaction_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+                <span class="ruby-value">:enabled</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
+                <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  .<span class="ruby-identifier">select</span>(<span class="ruby-string">'date(date), sum(amount) as value'</span>)
+  .<span class="ruby-identifier">group</span>(<span class="ruby-string">'date(date)'</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">'date asc'</span>).<span class="ruby-identifier">having</span>(<span class="ruby-string">'sum(amount) &gt; 0'</span>)
+
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_from</span>] = <span class="ruby-identifier">date_from</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:date_to</span>] = <span class="ruby-identifier">date_to</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@transactions</span>, <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'application/json'</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- showStatisticByDate-source -->
+          </div><!-- load_by_date-source -->
           
         </div>
 
         
 
         
-      </div><!-- showStatisticByDate-method -->
+      </div><!-- load_by_date-method -->
 
     
     </section><!-- public-instance-method-details -->
@@ -342,7 +311,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

@@ -64,9 +64,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-getCategoriesSortingOptionList">#getCategoriesSortingOptionList</a>
-    
-    <li><a href="#method-i-getCategoryColor">#getCategoryColor</a>
+    <li><a href="#method-i-get_color">#get_color</a>
     
   </ul>
 </nav>
@@ -105,13 +103,7 @@
   
     <li><a href="./Category.html">Category</a>
   
-    <li><a href="./Eating.html">Eating</a>
-  
-    <li><a href="./EatingType.html">EatingType</a>
-  
-    <li><a href="./EatingsController.html">EatingsController</a>
-  
-    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+    <li><a href="./Object.html">Object</a>
   
     <li><a href="./StatisticsController.html">StatisticsController</a>
   
@@ -128,12 +120,6 @@
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
-  
-    <li><a href="./Weight.html">Weight</a>
-  
-    <li><a href="./WeightsController.html">WeightsController</a>
-  
-    <li><a href="./WeightsHelper.html">WeightsHelper</a>
   
   </ul>
 </nav>
@@ -166,42 +152,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-getCategoriesSortingOptionList" class="method-detail ">
+      <div id="method-i-get_color" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getCategoriesSortingOptionList</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getCategoriesSortingOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/categories_helper.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getCategoriesSortingOptionList</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.common.name'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;name&quot;</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.common.description'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;description&quot;</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.category.color'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;color&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getCategoriesSortingOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getCategoriesSortingOptionList-method -->
-
-    
-      <div id="method-i-getCategoryColor" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getCategoryColor</span><span
+          <span class="method-name">get_color</span><span
             class="method-args">(category)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -213,19 +167,19 @@
           
 
           
-          <div class="method-source-code" id="getCategoryColor-source">
+          <div class="method-source-code" id="get_color-source">
             <pre><span class="ruby-comment"># File app/helpers/categories_helper.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getCategoryColor</span>(<span class="ruby-identifier">category</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">color</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">'#fff'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'#'</span><span class="ruby-operator">+</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">color</span>;
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_color</span>(<span class="ruby-identifier">category</span>)
+  <span class="ruby-identifier">category</span>.<span class="ruby-identifier">color</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">'#fff'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'#'</span><span class="ruby-operator">+</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">color</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getCategoryColor-source -->
+          </div><!-- get_color-source -->
           
         </div>
 
         
 
         
-      </div><!-- getCategoryColor-method -->
+      </div><!-- get_color-method -->
 
     
     </section><!-- public-instance-method-details -->
@@ -237,7 +191,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

@@ -13,6 +13,9 @@ Statistics.prototype = {
 
     init: function(config){
         this.config = config;
+
+        mark_menu("menuStatisticID");
+
         this.init_filter();
         this.category_chart = category_chart(this.date_from_selector, this.date_to_selector);
         this.category_chart.create();
@@ -26,6 +29,8 @@ Statistics.prototype = {
 
     init_filter: function(){
         var self = this;
+
+        jQuery.datepicker.initialized = false;
 
         this.date_from_selector = jQuery('#date_from');
         this.date_to_selector = jQuery('#date_to');

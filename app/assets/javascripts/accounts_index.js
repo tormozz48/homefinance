@@ -5,12 +5,7 @@ AccountsIndex = function(config){
 AccountsIndex.prototype = {
     config: null,
 
-    SORT_ASC: 'asc',
-    SORT_DESC: 'desc',
-
     $data_wrapper: null,
-    sort_field: null,
-    sort_direction: null,
 
     init: function(config){
         this.config = config;
@@ -23,11 +18,14 @@ AccountsIndex.prototype = {
             mark_menu("menuCashesID");
         }
 
-        this.sort_field = 'name';
-        this.sort_direction = this.SORT_ASC;
+        var _as = sort('name', this, this.load_data);
+        jQuery('.sorting-header').unbind('click').click(function(){
+            _as.sort(this);
+            return false;
+        });
 
-        this.bind_sorting();
-        this.load_data();
+        this.load_data(_as.get_field(), _as.get_direction());
+
     },
 
     /**
@@ -35,13 +33,13 @@ AccountsIndex.prototype = {
      * with server-side sorting and
      * pastes received data into table body
      */
-    load_data: function(){
+    load_data: function(field, direction){
         var self = this;
         jQuery.ajax({
             url: "/accounts/load",
             data: {
-                    field: this.sort_field,
-                    direction: this.sort_direction,
+                    field: field,
+                    direction: direction,
                     type: this.config.account_type
                   }
         }).done(function(data){
@@ -69,42 +67,5 @@ AccountsIndex.prototype = {
             });
         }
         return false;
-    },
-
-
-    /**
-     * Binds sorting functionality to table column headers
-     */
-    bind_sorting: function(){
-        var self = this;
-        jQuery('.sorting-header').click(function(){
-            var sort_field = jQuery(this).attr('data_field');
-
-            if(self.sort_field == sort_field){
-                self.sort_direction =
-                    self.sort_direction == self.SORT_ASC ? self.SORT_DESC : self.SORT_ASC;
-            }else{
-                self.sort_direction = self.SORT_ASC;
-            }
-
-            self.sort_field = sort_field;
-            self.toggle_arrows();
-            self.load_data();
-        });
-    },
-
-    /**
-     * Shows and hides sorting arrow indicators
-     * on every column header click
-     */
-    toggle_arrows: function(){
-        jQuery('th > i').addClass('no-disp');
-
-        var sorted_header = jQuery('[data_field = "' + this.sort_field + '"]');
-        if(this.sort_direction == this.SORT_ASC){
-            sorted_header.parent().children('.icon-arrow-up').removeClass('no-disp');
-        }else{
-            sorted_header.parent().children('.icon-arrow-down').removeClass('no-disp');
-        }
     }
 };

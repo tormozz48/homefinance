@@ -64,21 +64,19 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-createTransactionTableHeader">#createTransactionTableHeader</a>
+    <li><a href="#method-i-create_table_header">#create_table_header</a>
     
-    <li><a href="#method-i-getEditTitle">#getEditTitle</a>
+    <li><a href="#method-i-get_edit_title">#get_edit_title</a>
     
-    <li><a href="#method-i-getIndexTitle">#getIndexTitle</a>
+    <li><a href="#method-i-get_new_title">#get_new_title</a>
     
-    <li><a href="#method-i-getNewTitle">#getNewTitle</a>
+    <li><a href="#method-i-get_row_class">#get_row_class</a>
     
-    <li><a href="#method-i-getRowColorByDate">#getRowColorByDate</a>
+    <li><a href="#method-i-get_row_color_by_date">#get_row_color_by_date</a>
     
-    <li><a href="#method-i-getRowColorByDayOfWeek">#getRowColorByDayOfWeek</a>
+    <li><a href="#method-i-get_row_color_by_day">#get_row_color_by_day</a>
     
-    <li><a href="#method-i-getTransactionsSortingOptionList">#getTransactionsSortingOptionList</a>
-    
-    <li><a href="#method-i-roundFloatTwoDigits">#roundFloatTwoDigits</a>
+    <li><a href="#method-i-round_float">#round_float</a>
     
   </ul>
 </nav>
@@ -117,13 +115,7 @@
   
     <li><a href="./Category.html">Category</a>
   
-    <li><a href="./Eating.html">Eating</a>
-  
-    <li><a href="./EatingType.html">EatingType</a>
-  
-    <li><a href="./EatingsController.html">EatingsController</a>
-  
-    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+    <li><a href="./Object.html">Object</a>
   
     <li><a href="./StatisticsController.html">StatisticsController</a>
   
@@ -140,12 +132,6 @@
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
-  
-    <li><a href="./Weight.html">Weight</a>
-  
-    <li><a href="./WeightsController.html">WeightsController</a>
-  
-    <li><a href="./WeightsHelper.html">WeightsHelper</a>
   
   </ul>
 </nav>
@@ -178,11 +164,11 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-createTransactionTableHeader" class="method-detail ">
+      <div id="method-i-create_table_header" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">createTransactionTableHeader</span><span
-            class="method-args">(transaction_type)</span>
+          <span class="method-name">create_table_header</span><span
+            class="method-args">(type)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -193,48 +179,53 @@
           
 
           
-          <div class="method-source-code" id="createTransactionTableHeader-source">
-            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">createTransactionTableHeader</span>(<span class="ruby-identifier">transaction_type</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.category'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">transaction_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID1&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.category'</span>), <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;transactionAccountHeaderID2&quot;</span>)
+          <div class="method-source-code" id="create_table_header-source">
+            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_table_header</span>(<span class="ruby-identifier">type</span>)
+
+  <span class="ruby-identifier">width</span> = <span class="ruby-string">'20%'</span>
+  <span class="ruby-identifier">double_width</span> = <span class="ruby-string">'40%'</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_ACCOUNT</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">double_width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_ACCOUNT</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CASH</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CATEGORY</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.category'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_CASH</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">double_width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_ACCOUNT</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.account_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CASH</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_to'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
+  <span class="ruby-keyword">else</span> <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CATEGORY</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.cash_from'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>) <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.category'</span>), <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- createTransactionTableHeader-source -->
+          </div><!-- create_table_header-source -->
           
         </div>
 
         
 
         
-      </div><!-- createTransactionTableHeader-method -->
+      </div><!-- create_table_header-method -->
 
     
-      <div id="method-i-getEditTitle" class="method-detail ">
+      <div id="method-i-get_edit_title" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getEditTitle</span><span
-            class="method-args">(transaction_type)</span>
+          <span class="method-name">get_edit_title</span><span
+            class="method-args">(type)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -245,106 +236,111 @@
           
 
           
-          <div class="method-source-code" id="getEditTitle-source">
-            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 47</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getEditTitle</span>(<span class="ruby-identifier">transaction_type</span>)
-  <span class="ruby-keyword">return</span> {<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_category'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_category'</span>)}[<span class="ruby-identifier">transaction_type</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getEditTitle-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getEditTitle-method -->
-
-    
-      <div id="method-i-getIndexTitle" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getIndexTitle</span><span
-            class="method-args">(transaction_type)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getIndexTitle-source">
-            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getIndexTitle</span>(<span class="ruby-identifier">transaction_type</span>)
-  <span class="ruby-keyword">return</span> {<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_account.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_account.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_account.to_category'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_cash.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_cash.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.transactions.from_cash.to_category'</span>)}[<span class="ruby-identifier">transaction_type</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getIndexTitle-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getIndexTitle-method -->
-
-    
-      <div id="method-i-getNewTitle" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getNewTitle</span><span
-            class="method-args">(transaction_type)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getNewTitle-source">
+          <div class="method-source-code" id="get_edit_title-source">
             <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getNewTitle</span>(<span class="ruby-identifier">transaction_type</span>)
-  <span class="ruby-keyword">return</span> {<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_ACCOUNT_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_category'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_account'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_cash'</span>),
-          <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TRANSACTION_FROM_CASH_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_category'</span>)}[<span class="ruby-identifier">transaction_type</span>]
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_edit_title</span>(<span class="ruby-identifier">type</span>)
+  {<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_account.to_category'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.transaction.from_cash.to_category'</span>)}[<span class="ruby-identifier">type</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getNewTitle-source -->
+          </div><!-- get_edit_title-source -->
           
         </div>
 
         
 
         
-      </div><!-- getNewTitle-method -->
+      </div><!-- get_edit_title-method -->
 
     
-      <div id="method-i-getRowColorByDate" class="method-detail ">
+      <div id="method-i-get_new_title" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getRowColorByDate</span><span
+          <span class="method-name">get_new_title</span><span
+            class="method-args">(type)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_new_title-source">
+            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_new_title</span>(<span class="ruby-identifier">type</span>)
+  {<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_ACCOUNT_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_account.to_category'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_ACCOUNT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_account'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CASH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_cash'</span>),
+   <span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_FROM_CASH_TO_CATEGORY</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.transaction.from_cash.to_category'</span>)}[<span class="ruby-identifier">type</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_new_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_new_title-method -->
+
+    
+      <div id="method-i-get_row_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_row_class</span><span
+            class="method-args">(transaction)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_row_class-source">
+            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_row_class</span>(<span class="ruby-identifier">transaction</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">transaction</span>.<span class="ruby-identifier">transaction_type</span>.<span class="ruby-identifier">in?</span>(<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">TR_GROUP_TO_CATEGORY</span>)
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">amount</span> = <span class="ruby-identifier">transaction</span>.<span class="ruby-identifier">amount</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">amount</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">100</span>
+     <span class="ruby-string">'info'</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">amount</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">amount</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">1000</span>
+     <span class="ruby-string">'success'</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">amount</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1000</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">amount</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">5000</span>
+     <span class="ruby-string">'warning'</span>
+  <span class="ruby-keyword">else</span>
+     <span class="ruby-string">'error'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_row_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_row_class-method -->
+
+    
+      <div id="method-i-get_row_color_by_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_row_color_by_date</span><span
             class="method-args">(date)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -356,33 +352,33 @@
           
 
           
-          <div class="method-source-code" id="getRowColorByDate-source">
+          <div class="method-source-code" id="get_row_color_by_date-source">
             <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getRowColorByDate</span>(<span class="ruby-identifier">date</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#&quot;</span><span class="ruby-operator">+</span>{<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;C34DFF&quot;</span>, <span class="ruby-comment">#sunday</span>
-              <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FF6A4D&quot;</span>, <span class="ruby-comment">#monday</span>
-              <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFC34D&quot;</span>, <span class="ruby-comment">#tuesday</span>
-              <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;E1FF4D&quot;</span>, <span class="ruby-comment">#wednesday</span>
-              <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;88FF4D&quot;</span>, <span class="ruby-comment">#thursday</span>
-              <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4DE1FF&quot;</span>, <span class="ruby-comment">#friday</span>
-              <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4D88FF&quot;</span>  <span class="ruby-comment">#saturday</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_row_color_by_date</span>(<span class="ruby-identifier">date</span>)
+  <span class="ruby-string">'#'</span> <span class="ruby-operator">+</span> {<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FF66FF'</span>, <span class="ruby-comment">#sunday</span>
+         <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FFCCCC'</span>, <span class="ruby-comment">#monday</span>
+         <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FFCC88'</span>, <span class="ruby-comment">#tuesday</span>
+         <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'E1FF4D'</span>, <span class="ruby-comment">#wednesday</span>
+         <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'BBFFBB'</span>, <span class="ruby-comment">#thursday</span>
+         <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'4DE1FF'</span>, <span class="ruby-comment">#friday</span>
+         <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'66AAFF'</span>  <span class="ruby-comment">#saturday</span>
   }[<span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_time</span>().<span class="ruby-identifier">wday</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getRowColorByDate-source -->
+          </div><!-- get_row_color_by_date-source -->
           
         </div>
 
         
 
         
-      </div><!-- getRowColorByDate-method -->
+      </div><!-- get_row_color_by_date-method -->
 
     
-      <div id="method-i-getRowColorByDayOfWeek" class="method-detail ">
+      <div id="method-i-get_row_color_by_day" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getRowColorByDayOfWeek</span><span
-            class="method-args">(dayOfWeek)</span>
+          <span class="method-name">get_row_color_by_day</span><span
+            class="method-args">(day)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -393,64 +389,32 @@
           
 
           
-          <div class="method-source-code" id="getRowColorByDayOfWeek-source">
+          <div class="method-source-code" id="get_row_color_by_day-source">
             <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getRowColorByDayOfWeek</span>(<span class="ruby-identifier">dayOfWeek</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#&quot;</span><span class="ruby-operator">+</span>{<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;C34DFF&quot;</span>, <span class="ruby-comment">#sunday</span>
-              <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FF6A4D&quot;</span>, <span class="ruby-comment">#monday</span>
-              <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFC34D&quot;</span>, <span class="ruby-comment">#tuesday</span>
-              <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;E1FF4D&quot;</span>, <span class="ruby-comment">#wednesday</span>
-              <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;88FF4D&quot;</span>, <span class="ruby-comment">#thursday</span>
-              <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4DE1FF&quot;</span>, <span class="ruby-comment">#friday</span>
-              <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4D88FF&quot;</span>  <span class="ruby-comment">#saturday</span>
-  }[<span class="ruby-identifier">dayOfWeek</span>]
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_row_color_by_day</span>(<span class="ruby-identifier">day</span>)
+  <span class="ruby-string">'#'</span><span class="ruby-operator">+</span> {<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FF66FF'</span>, <span class="ruby-comment">#sunday</span>
+        <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FFCCCC'</span>, <span class="ruby-comment">#monday</span>
+        <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'FFCC88'</span>, <span class="ruby-comment">#tuesday</span>
+        <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'E1FF4D'</span>, <span class="ruby-comment">#wednesday</span>
+        <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'BBFFBB'</span>, <span class="ruby-comment">#thursday</span>
+        <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'4DE1FF'</span>, <span class="ruby-comment">#friday</span>
+        <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'66AAFF'</span>  <span class="ruby-comment">#saturday</span>
+  }[<span class="ruby-identifier">day</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getRowColorByDayOfWeek-source -->
+          </div><!-- get_row_color_by_day-source -->
           
         </div>
 
         
 
         
-      </div><!-- getRowColorByDayOfWeek-method -->
+      </div><!-- get_row_color_by_day-method -->
 
     
-      <div id="method-i-getTransactionsSortingOptionList" class="method-detail ">
+      <div id="method-i-round_float" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getTransactionsSortingOptionList</span><span
-            class="method-args">(transaction_type)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getTransactionsSortingOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 88</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getTransactionsSortingOptionList</span>(<span class="ruby-identifier">transaction_type</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.common.date'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;date&quot;</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.summa'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;amount&quot;</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.transaction.comment'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;comment&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getTransactionsSortingOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getTransactionsSortingOptionList-method -->
-
-    
-      <div id="method-i-roundFloatTwoDigits" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">roundFloatTwoDigits</span><span
+          <span class="method-name">round_float</span><span
             class="method-args">(number)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -462,19 +426,19 @@
           
 
           
-          <div class="method-source-code" id="roundFloatTwoDigits-source">
-            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">roundFloatTwoDigits</span>(<span class="ruby-identifier">number</span>)
-  <span class="ruby-keyword">return</span> (<span class="ruby-identifier">number</span> * <span class="ruby-value">100</span>).<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">100</span>
+          <div class="method-source-code" id="round_float-source">
+            <pre><span class="ruby-comment"># File app/helpers/transactions_helper.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">round_float</span>(<span class="ruby-identifier">number</span>)
+  (<span class="ruby-identifier">number</span> * <span class="ruby-value">100</span>).<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">100</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- roundFloatTwoDigits-source -->
+          </div><!-- round_float-source -->
           
         </div>
 
         
 
         
-      </div><!-- roundFloatTwoDigits-method -->
+      </div><!-- round_float-method -->
 
     
     </section><!-- public-instance-method-details -->
@@ -486,7 +450,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

@@ -64,15 +64,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-getAccountEditTitle">#getAccountEditTitle</a>
+    <li><a href="#method-i-get_account_add_title">#get_account_add_title</a>
     
-    <li><a href="#method-i-getAccountIndexTitle">#getAccountIndexTitle</a>
+    <li><a href="#method-i-get_account_edit_title">#get_account_edit_title</a>
     
-    <li><a href="#method-i-getAccountsSortingOptionList">#getAccountsSortingOptionList</a>
-    
-    <li><a href="#method-i-getAddButtonLink">#getAddButtonLink</a>
-    
-    <li><a href="#method-i-getAddTitle">#getAddTitle</a>
+    <li><a href="#method-i-get_account_index_title">#get_account_index_title</a>
     
   </ul>
 </nav>
@@ -111,13 +107,7 @@
   
     <li><a href="./Category.html">Category</a>
   
-    <li><a href="./Eating.html">Eating</a>
-  
-    <li><a href="./EatingType.html">EatingType</a>
-  
-    <li><a href="./EatingsController.html">EatingsController</a>
-  
-    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+    <li><a href="./Object.html">Object</a>
   
     <li><a href="./StatisticsController.html">StatisticsController</a>
   
@@ -134,12 +124,6 @@
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
-  
-    <li><a href="./Weight.html">Weight</a>
-  
-    <li><a href="./WeightsController.html">WeightsController</a>
-  
-    <li><a href="./WeightsHelper.html">WeightsHelper</a>
   
   </ul>
 </nav>
@@ -172,10 +156,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-getAccountEditTitle" class="method-detail ">
+      <div id="method-i-get_account_add_title" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getAccountEditTitle</span><span
+          <span class="method-name">get_account_add_title</span><span
             class="method-args">(type)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -187,120 +171,26 @@
           
 
           
-          <div class="method-source-code" id="getAccountEditTitle-source">
-            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getAccountEditTitle</span>(<span class="ruby-identifier">type</span>)
-    <span class="ruby-keyword">return</span> {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.account.card'</span>),
-            <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.account.cash'</span>)}[<span class="ruby-identifier">type</span>]
-
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getAccountEditTitle-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getAccountEditTitle-method -->
-
-    
-      <div id="method-i-getAccountIndexTitle" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getAccountIndexTitle</span><span
-            class="method-args">(type)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getAccountIndexTitle-source">
-            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getAccountIndexTitle</span>(<span class="ruby-identifier">type</span>)
-  <span class="ruby-keyword">return</span> {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.account.cards'</span>),
-          <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.account.cashes'</span>)}[<span class="ruby-identifier">type</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getAccountIndexTitle-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getAccountIndexTitle-method -->
-
-    
-      <div id="method-i-getAccountsSortingOptionList" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getAccountsSortingOptionList</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getAccountsSortingOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getAccountsSortingOptionList</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.common.name'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;name&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.common.description'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;description&quot;</span>) <span class="ruby-operator">+</span>
-           <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'field.account.amount'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;amount&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getAccountsSortingOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getAccountsSortingOptionList-method -->
-
-    
-      <div id="method-i-getAddButtonLink" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getAddButtonLink</span><span
-            class="method-args">(type)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getAddButtonLink-source">
+          <div class="method-source-code" id="get_account_add_title-source">
             <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getAddButtonLink</span>(<span class="ruby-identifier">type</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'add.item'</span>) , <span class="ruby-identifier">new_account_path</span>(<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@account_type</span>), <span class="ruby-value">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;link&quot;</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_account_add_title</span>(<span class="ruby-identifier">type</span>)
+    {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.account.card'</span>),
+     <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.account.cash'</span>)}[<span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_i</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getAddButtonLink-source -->
+          </div><!-- get_account_add_title-source -->
           
         </div>
 
         
 
         
-      </div><!-- getAddButtonLink-method -->
+      </div><!-- get_account_add_title-method -->
 
     
-      <div id="method-i-getAddTitle" class="method-detail ">
+      <div id="method-i-get_account_edit_title" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getAddTitle</span><span
+          <span class="method-name">get_account_edit_title</span><span
             class="method-args">(type)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -312,20 +202,51 @@
           
 
           
-          <div class="method-source-code" id="getAddTitle-source">
-            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getAddTitle</span>(<span class="ruby-identifier">type</span>)
-    <span class="ruby-keyword">return</span> {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.account.card'</span>),
-            <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.new.account.cash'</span>)}[<span class="ruby-identifier">type</span>]
+          <div class="method-source-code" id="get_account_edit_title-source">
+            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_account_edit_title</span>(<span class="ruby-identifier">type</span>)
+    {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.account.card'</span>),
+     <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'form.title.edit.account.cash'</span>)}[<span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_i</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getAddTitle-source -->
+          </div><!-- get_account_edit_title-source -->
           
         </div>
 
         
 
         
-      </div><!-- getAddTitle-method -->
+      </div><!-- get_account_edit_title-method -->
+
+    
+      <div id="method-i-get_account_index_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_account_index_title</span><span
+            class="method-args">(type)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_account_index_title-source">
+            <pre><span class="ruby-comment"># File app/helpers/accounts_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_account_index_title</span>(<span class="ruby-identifier">type</span>)
+    {<span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CARD_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.account.cards'</span>),
+     <span class="ruby-constant">Account</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCOUNT_CASH_TYPE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'list.account.cashes'</span>)}[<span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_i</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_account_index_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_account_index_title-method -->
 
     
     </section><!-- public-instance-method-details -->
@@ -337,7 +258,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

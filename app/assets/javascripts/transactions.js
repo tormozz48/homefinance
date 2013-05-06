@@ -35,6 +35,8 @@ Transactions.prototype = {
 
         this.bind_switch_type_event();
         this.bind_filter_button_event();
+
+        jQuery.datepicker.initialized = false;
     },
 
     /**
@@ -201,7 +203,7 @@ Transactions.prototype = {
         var self = this;
         //append data to tbody DOM elemen
 
-        jQuery('#data_wrapper').html(data)
+        jQuery('#data_wrapper').html(data);
 
         //bind popover to date color labels
         jQuery(".badge-black-font").popover({

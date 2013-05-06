@@ -58,21 +58,7 @@
     
     
     
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
     
-    <li><a href="#method-i-getCategoriesDisplayCountOptionList">#getCategoriesDisplayCountOptionList</a>
-    
-    <li><a href="#method-i-getTransactionTypesOptionList">#getTransactionTypesOptionList</a>
-    
-    <li><a href="#method-i-getTransactionTypesWithCategoriesOptionList">#getTransactionTypesWithCategoriesOptionList</a>
-    
-  </ul>
-</nav>
-
   </div>
 
   <div id="project-metadata">
@@ -107,13 +93,7 @@
   
     <li><a href="./Category.html">Category</a>
   
-    <li><a href="./Eating.html">Eating</a>
-  
-    <li><a href="./EatingType.html">EatingType</a>
-  
-    <li><a href="./EatingsController.html">EatingsController</a>
-  
-    <li><a href="./EatingsHelper.html">EatingsHelper</a>
+    <li><a href="./Object.html">Object</a>
   
     <li><a href="./StatisticsController.html">StatisticsController</a>
   
@@ -130,12 +110,6 @@
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
-  
-    <li><a href="./Weight.html">Weight</a>
-  
-    <li><a href="./WeightsController.html">WeightsController</a>
-  
-    <li><a href="./WeightsHelper.html">WeightsHelper</a>
   
   </ul>
 </nav>
@@ -164,113 +138,6 @@
 
     <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-getCategoriesDisplayCountOptionList" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getCategoriesDisplayCountOptionList</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getCategoriesDisplayCountOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/statistics_helper.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getCategoriesDisplayCountOptionList</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-value">5</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-value">10</span>, <span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;selected&quot;</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-value">15</span>) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-value">20</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getCategoriesDisplayCountOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getCategoriesDisplayCountOptionList-method -->
-
-    
-      <div id="method-i-getTransactionTypesOptionList" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getTransactionTypesOptionList</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getTransactionTypesOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/statistics_helper.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getTransactionTypesOptionList</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_cash.to_category'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_account.to_cash'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.to_account'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.to_cash'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_cash.to_cash'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_account.to_category'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_account.to_account'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_cash.to_account'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getTransactionTypesOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getTransactionTypesOptionList-method -->
-
-    
-      <div id="method-i-getTransactionTypesWithCategoriesOptionList" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">getTransactionTypesWithCategoriesOptionList</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="getTransactionTypesWithCategoriesOptionList-source">
-            <pre><span class="ruby-comment"># File app/helpers/statistics_helper.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getTransactionTypesWithCategoriesOptionList</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_cash.to_category'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>)) <span class="ruby-operator">+</span>
-         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:option</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">'menu.transaction.from_account.to_category'</span>), <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">10</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- getTransactionTypesWithCategoriesOptionList-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- getTransactionTypesWithCategoriesOptionList-method -->
-
-    
-    </section><!-- public-instance-method-details -->
-  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->
@@ -278,7 +145,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

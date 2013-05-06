@@ -31,21 +31,15 @@
 //= require colorpicker/eye
 //= require colorpicker/layout
 //= require colorpicker/utils
-//= require hightcharts/highcharts
-//= require hightcharts/iexporting
 //= require chosen-jquery
-//= require turbolinks
 //= require amcharts
-
 //= require_tree .
+//= require turbolinks
+
 
 function mark_menu(menu_id){
     jQuery('ul.nav > li').removeClass("active");
     jQuery('ul.nav > li#' + menu_id).addClass("active");
-}
-
-function resizeChartWrapper(){
-    jQuery(".statistic-graph-wrapper").css("height", document.body.offsetHeight + "px");
 }
 
 jQuery.fn.ForceNumericOnly =function(){
@@ -53,13 +47,11 @@ jQuery.fn.ForceNumericOnly =function(){
         jQuery(this).keydown(function(e){
             var key = e.charCode || e.keyCode || 0;
             return (
-                key == 8 ||
-                    key == 9 ||
-                        key == 46 ||
-                            key == 190 ||
-                                (key >= 37 && key <= 40) ||
-                                    (key >= 48 && key <= 57) ||
-                                        (key >= 96 && key <= 105)
+                key == 8 || key == 9 ||
+                key == 46 || key == 190 ||
+                (key >= 37 && key <= 40) ||
+                (key >= 48 && key <= 57) ||
+                (key >= 96 && key <= 105)
             );
         });
     });

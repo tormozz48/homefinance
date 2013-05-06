@@ -15,11 +15,11 @@ group :test, :development do
 end
 
 group :development do
-  gem 'bullet'
-  gem 'hirb'
-  gem 'rack-mini-profiler'
-  gem 'binding_of_caller'
-  gem 'better_errors'
+  #gem 'bullet'
+  #gem 'hirb'
+  #gem 'rack-mini-profiler'
+  #gem 'binding_of_caller'
+  #gem 'better_errors'
 end
 
 group :test do
@@ -31,7 +31,6 @@ end
 gem 'devise'
 gem 'devise-encryptable'
 gem 'date_validator'
-gem 'kaminari'
 gem 'heroku'
 gem 'taps'
 gem 'omniauth'
@@ -42,6 +41,5 @@ gem 'chosen-rails'
 gem 'twitter-bootstrap-rails'
 gem 'jquery_datepicker'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'amcharts-rails', '~> 2.7.7.1.0'
 
